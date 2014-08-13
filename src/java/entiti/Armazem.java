@@ -46,6 +46,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Armazem.findByIdStatusArmazem", query = "SELECT a FROM Armazem a WHERE a.idStatusArmazem = :idStatusArmazem"),
     @NamedQuery(name = "Armazem.findByIdLocalOper", query = "SELECT a FROM Armazem a WHERE a.idLocalOper = :idLocalOper")})
 public class Armazem implements Serializable {
+    @JoinColumn(name = "id_compatibilidade", referencedColumnName = "id_compatibilidade")
+    @ManyToOne(optional = false)
+    private Compatibilidade idCompatibilidade;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -259,6 +262,14 @@ public class Armazem implements Serializable {
     @Override
     public String toString() {
         return "entiti.Armazem[ idArmazem=" + idArmazem + " ]";
+    }
+
+    public Compatibilidade getIdCompatibilidade() {
+        return idCompatibilidade;
+    }
+
+    public void setIdCompatibilidade(Compatibilidade idCompatibilidade) {
+        this.idCompatibilidade = idCompatibilidade;
     }
 
 }

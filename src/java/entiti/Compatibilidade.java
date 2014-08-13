@@ -41,6 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Compatibilidade.findByDescCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.descCompatibilidade = :descCompatibilidade"),
     @NamedQuery(name = "Compatibilidade.findByCodClassifi", query = "SELECT c FROM Compatibilidade c WHERE c.codClassifi = :codClassifi")})
 public class Compatibilidade implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompatibilidade")
+    private Collection<Armazem> armazemCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -165,6 +167,15 @@ public class Compatibilidade implements Serializable {
     @Override
     public String toString() {
         return "entiti.Compatibilidade[ idCompatibilidade=" + idCompatibilidade + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Armazem> getArmazemCollection() {
+        return armazemCollection;
+    }
+
+    public void setArmazemCollection(Collection<Armazem> armazemCollection) {
+        this.armazemCollection = armazemCollection;
     }
 
 }
