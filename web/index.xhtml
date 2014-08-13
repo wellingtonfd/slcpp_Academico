@@ -11,9 +11,66 @@
             <h:outputText value="#{myBundle.AppName}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:panel header="#{myBundle.Welcome}">
+           <!-- 
+           <p:panel header="#{myBundle.Welcome}">
                 <p><h:outputText value="#{myBundle.WelcomeMessage}"></h:outputText></p>
             </p:panel>
+           -->
+           
+             <h:form>
+            <div align="center">
+                <h:panelGrid  width="10%" style="text-align:center">
+                    <p:panel id="panelLogin">
+                        <p:panel id="display1" header="SLCPP" style="margin-right:10px;">  
+
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <!-- <th colspan="2"> <h:graphicImage value="imagens/cadeado.jpg" />   </th> -->                           
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><h:outputLabel for="usuario" value="Usuário:" /> </td>
+                                        <td><p:inputText id="usuario"   
+                                                         value="#{logar.usuario}" 
+                                                         required="true" 
+                                                         label="Usuario">  
+                                                <f:validateLength minimum="2" />  
+                                            </p:inputText> 
+                                            <p:message for="usuario" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td><h:outputLabel for="senha" value="Senha:" /></td>
+                                        <td> <p:password id="senha"   
+                                                         value="#{logar.senha}" 
+                                                         required="true" 
+                                                         label="Senha"/>  
+                                            <p:message for="senha" /> </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>           
+                            <p:commandButton value="Login" 
+                                             update="panelLogin,display" id="cmdBtnLogin"  
+                                             actionListener="#{logar.logar()}" /> 
+
+
+                        </p:panel>
+                    </p:panel>                  
+
+                    <p:panel id="display" header="Conectou?" style="margin-top:10px;">  
+                        <h:panelGrid columns="2">                          
+                            <h:outputText value="#{logar.conectou}" />                       
+                        </h:panelGrid>  
+                    </p:panel>
+                </h:panelGrid>
+            </div>
+        </h:form>
 
         </ui:define>
 
