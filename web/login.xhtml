@@ -7,23 +7,20 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/include/template.xhtml">
-       
         <ui:define name="title">
             <h:outputText value="#{myBundle.AppName}"></h:outputText>
         </ui:define>
         
-        <ui:define name="body">
-           
-           <!--<p:panel header="#{myBundle.Welcome}">
+        <ui:define name="body">           
+           <p:panel header="#{myBundle.Welcome}">
                 <p><h:outputText value="#{myBundle.WelcomeMessage}"></h:outputText></p>
             </p:panel>
-               -->     
-               <div align="center">
+                      
              <h:form>
-            
-                <h:panelGrid  width="10" style="text-align:center">
+            <div align="center">
+                <h:panelGrid  width="10%" style="text-align:center">
                     <p:panel id="panelLogin">
-                         
+                        <p:panel id="display1" header="SLCPP" style="margin-right:10px;">  
 
 
                             <table>
@@ -62,19 +59,18 @@
                                              actionListener="#{logar.logar()}" /> 
 
 
-                        
+                        </p:panel>
                     </p:panel>                  
 
                     <p:panel id="display" header="Conectou?" style="margin-top:10px;">  
                         <h:panelGrid columns="2">                          
-                            <h:outputText value="#{logar.conectou}" />   
-                            
+                            <h:outputText value="#{logar.conectou}" />                       
                         </h:panelGrid>  
                     </p:panel>
                 </h:panelGrid>
-            
-        </h:form>
             </div>
+        </h:form>
+
         </ui:define>
 
     </ui:composition>
