@@ -1,7 +1,6 @@
 package br.com.login;
 
 
-
 /**
  *
  * @author Administrador
@@ -12,7 +11,7 @@ package br.com.login;
  * and open the template in the editor.
  */
 
-
+import br.com.login.Conexao;
 import java.sql.Connection;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,7 +25,7 @@ public class Logar {
     /**
      * Creates a new instance of Logar
      */
-    public static String usuario;
+    public static String login;
     public static String senha;
     private Conexao conectar;    
     public static Connection con = null;
@@ -39,15 +38,15 @@ public class Logar {
     /**
      * @return the usuario
      */
-    public String getUsuario() {
-        return usuario;
+    public String getLogin() {
+        return login;
     }
 
     /**
      * @param usuario the usuario to set
      */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     /**
@@ -82,7 +81,7 @@ public class Logar {
      public void logar()
     {       
        try{ 
-        con = conectar.conectar(usuario, senha);
+        con = conectar.conectar(login, senha);
         if(con != null){            
                 setConectou("OK");
                 FacesContext.getCurrentInstance().getExternalContext().redirect("acessoAdmin.jsf");
@@ -99,7 +98,7 @@ public class Logar {
        public Connection logarRetorno()
     {       
        try{ 
-        con = conectar.conectar(usuario, senha);
+        con = conectar.conectar(login, senha);
         return con;
        } catch(Exception erro)
        {

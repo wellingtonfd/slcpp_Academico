@@ -2,14 +2,14 @@ package br.com.login;
 
 
 
-
+import br.com.login.Logar;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 
 public class Conexao {
     
-    private static String dbUrl = "jdbc:postgresql://localhost:5432/SLCPP";  
+    private static String dbUrl = "jdbc:postgresql://localhost:5432/academico";  
     private static Connection con = null; 
     
   public static Connection conectar(String usuario, String senha)
