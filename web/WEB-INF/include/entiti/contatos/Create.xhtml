@@ -16,13 +16,20 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" for="tel" />
-                        <p:inputText id="tel" value="#{contatosController.selected.tel}" title="#{myBundle.CreateContatosTitle_tel}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_tel}" size="15" maxlength="15"/>
+                        <p:inputMask id="tel" mask="(99)9999-9999" value="#{contatosController.selected.tel}" title="#{myBundle.CreateContatosTitle_tel}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_tel}" size="15" maxlength="15"/>
 
                         <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
                         <p:inputText id="email" value="#{contatosController.selected.email}" title="#{myBundle.CreateContatosTitle_email}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_email}" size="40" maxlength="40"/>
 
                         <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" for="celular" />
-                        <p:inputText id="celular" value="#{contatosController.selected.celular}" title="#{myBundle.CreateContatosTitle_celular}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_celular}" size="15" maxlength="15"/>
+                        <p:inputMask id="celular" mask="(99)99999-9999" value="#{contatosController.selected.celular}" 
+                                     title="#{myBundle.CreateContatosTitle_celular}" required="true" 
+                                     requiredMessage="#{myBundle.CreateContatosRequiredMessage_celular}" size="15" maxlength="15">
+                             <f:validateRegex
+                    		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+ 
+                            
+                        </p:inputMask>
 
                         <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" for="site" />
                         <p:inputText id="site" value="#{contatosController.selected.site}" title="#{myBundle.CreateContatosTitle_site}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_site}" size="70" maxlength="70"/>

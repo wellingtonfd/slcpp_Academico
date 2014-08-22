@@ -25,7 +25,7 @@
                         <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{myBundle.EditFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{myBundle.EditFornecedorRequiredMessage_razaoSocial}" size="60" maxlength="60"/>
 
                         <p:outputLabel value="#{myBundle.EditFornecedorLabel_cnpj}" for="cnpj" />
-                        <p:inputText id="cnpj" value="#{fornecedorController.selected.cnpj}" title="#{myBundle.EditFornecedorTitle_cnpj}" required="true" requiredMessage="#{myBundle.EditFornecedorRequiredMessage_cnpj}" size="20" maxlength="20"/>
+                        <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" title="#{myBundle.EditFornecedorTitle_cnpj}" required="true" requiredMessage="#{myBundle.EditFornecedorRequiredMessage_cnpj}" size="20" maxlength="20"/>
 
                         <p:outputLabel value="#{myBundle.EditFornecedorLabel_inscSocial}" for="inscSocial" />
                         <p:inputText id="inscSocial" value="#{fornecedorController.selected.inscSocial}" title="#{myBundle.EditFornecedorTitle_inscSocial}" required="true" requiredMessage="#{myBundle.EditFornecedorRequiredMessage_inscSocial}" size="20" maxlength="20"/>

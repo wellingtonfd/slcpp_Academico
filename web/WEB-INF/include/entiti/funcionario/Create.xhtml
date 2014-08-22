@@ -25,10 +25,10 @@
                         <p:inputText id="sexo" value="#{funcionarioController.selected.sexo}" title="#{myBundle.CreateFuncionarioTitle_sexo}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_sexo}" size="1" maxlength="1"/>
 
                         <p:outputLabel value="#{myBundle.CreateFuncionarioLabel_cpf}" for="cpf" />
-                        <p:inputText id="cpf" value="#{funcionarioController.selected.cpf}" title="#{myBundle.CreateFuncionarioTitle_cpf}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_cpf}" size="15" maxlength="15"/>
+                        <p:inputMask id="cpf" mask="999.999.999-99" value="#{funcionarioController.selected.cpf}" title="#{myBundle.CreateFuncionarioTitle_cpf}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_cpf}" size="15" maxlength="15"/>
 
                         <p:outputLabel value="#{myBundle.CreateFuncionarioLabel_rg}" for="rg" />
-                        <p:inputText id="rg" value="#{funcionarioController.selected.rg}" title="#{myBundle.CreateFuncionarioTitle_rg}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_rg}" size="15" maxlength="15"/>
+                        <p:inputMask id="rg" mask="99999999-9" value="#{funcionarioController.selected.rg}" title="#{myBundle.CreateFuncionarioTitle_rg}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_rg}" size="15" maxlength="15"/>
 
                         <p:outputLabel value="#{myBundle.CreateFuncionarioLabel_dtNasc}" for="dtNasc" />
                         <p:calendar id="dtNasc" pattern="MM/dd/yyyy" value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.CreateFuncionarioTitle_dtNasc}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_dtNasc}" showOn="button"/>
