@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -38,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Embalagem.findByCapacidPressao", query = "SELECT e FROM Embalagem e WHERE e.capacidPressao = :capacidPressao"),
     @NamedQuery(name = "Embalagem.findByIdTipoMaterial", query = "SELECT e FROM Embalagem e WHERE e.idTipoMaterial = :idTipoMaterial")})
 public class Embalagem implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

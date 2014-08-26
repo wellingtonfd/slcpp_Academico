@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -37,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "NumCas.findByNumCas", query = "SELECT n FROM NumCas n WHERE n.numCas = :numCas"),
     @NamedQuery(name = "NumCas.findByEspcNumCas", query = "SELECT n FROM NumCas n WHERE n.espcNumCas = :espcNumCas")})
 public class NumCas implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

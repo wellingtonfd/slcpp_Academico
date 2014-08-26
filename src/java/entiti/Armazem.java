@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -46,6 +45,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Armazem.findByIdStatusArmazem", query = "SELECT a FROM Armazem a WHERE a.idStatusArmazem = :idStatusArmazem"),
     @NamedQuery(name = "Armazem.findByIdLocalOper", query = "SELECT a FROM Armazem a WHERE a.idLocalOper = :idLocalOper")})
 public class Armazem implements Serializable {
+
     @JoinColumn(name = "id_compatibilidade", referencedColumnName = "id_compatibilidade")
     @ManyToOne(optional = false)
     private Compatibilidade idCompatibilidade;

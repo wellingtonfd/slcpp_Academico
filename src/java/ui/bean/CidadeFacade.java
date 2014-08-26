@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ui.bean;
 
 import entiti.Cidade;
@@ -18,6 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class CidadeFacade extends AbstractFacade<Cidade> {
+
     @PersistenceContext(unitName = "slcpp_AcademicoPU")
     private EntityManager em;
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:b="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+    <http>
+        <intercept-url pattern="/index.jsf" access="ROLE_ADMIN" />
+        <intercept-url pattern="/index.jsf" access="ROLE_COMMON" />
+        <form-login login-page="/login.jsf"
+                    always-use-default-target="false"
+                    authentication-success-handler-ref="authenticationSuccessHandler"
+                    authentication-failure-url="/login.jsf?login_error=1" />
+        <logout logout-success-url="/login.jsf" 
+                logout-url="/logout"
+                invalidate-session="true"/>
+    </http>
+     
+    <b:bean id="authenticationSuccessHandler"
+            class="utils.security.UrlAuthenticationSuccessHandler" />                
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="slcppDataSource"
+                               authorities-by-username-query="SELECT u.login, r.nome_roler
+                                             FROM usuario u, roler r
+                                            WHERE u.id_usuario = r.id_roler
+                                              AND u.login = ?"
+                               users-by-username-query="SELECT login, senha
+                                           FROM usuario
+                                          WHERE login = ? " />
+        </authentication-provider>
+    </authentication-manager>
+</b:beans>

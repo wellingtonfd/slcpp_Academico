@@ -19,7 +19,7 @@
             </p:panel>
                -->     
                <div align="center">
-             <h:form>
+                   <h:form onsubmit="action='j_spring_security_check'; method='post'">
             
                 <h:panelGrid  width="10" style="text-align:center">
                     <p:panel id="panelLogin">
@@ -34,22 +34,20 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><h:outputLabel for="login" value="Login:" /> </td>
-                                        <td><p:inputText id="login"   
-                                                         value="#{logar.login}" 
+                                        <td><h:outputLabel for="j_username" value="Login:" /> </td>
+                                        <td><p:inputText id="j_username" 
                                                          required="true" 
                                                          label="Login">  
                                                 <f:validateLength minimum="2" />  
                                             </p:inputText> 
-                                            <p:message for="login" /> </td>
+                                            </td>
                                     </tr>
                                     <tr>
-                                        <td><h:outputLabel for="senha" value="Senha:" /></td>
-                                        <td> <p:password id="senha"   
-                                                         value="#{logar.senha}" 
+                                        <td><h:outputLabel for="j_password" value="Senha:" /></td>
+                                        <td> <p:password id="j_password"    
                                                          required="true" 
                                                          label="Senha"/>  
-                                            <p:message for="senha" /> </td>
+                                             </td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -58,19 +56,14 @@
                                 </tbody>
                             </table>           
                             <p:commandButton value="Login" 
-                                             update="panelLogin,display" id="cmdBtnLogin"  
-                                             actionListener="#{logar.logar()}" /> 
+                                             update="panelLogin,display" id="cmdBtnLogin" 
+                                             action="#{index.index()}"
+                                             ajax="false"/> 
 
 
                         
                     </p:panel>                  
 
-                    <p:panel id="display" header="Conectou?" style="margin-top:10px;">  
-                        <h:panelGrid columns="2">                          
-                            <h:outputText value="#{logar.conectou}" />   
-                            
-                        </h:panelGrid>  
-                    </p:panel>
                 </h:panelGrid>
             
         </h:form>

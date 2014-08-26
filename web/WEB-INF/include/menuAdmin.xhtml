@@ -11,13 +11,13 @@
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Maintenance}">
-                   
+
                     <p:menuitem value="#{myBundle.UsuarioHeading}..." 
                                 outcome="/WEB-INF/include/entiti/usuario/Create.jsf"/>
-                               
-                    
+
+
                 </p:submenu>
-                
+
                 <p:menuitem value="#{myBundle.Sair}" action="#{Conexao.encerrar}" outcome="/index" icon="ui-icon-home"/>
             </p:menubar>
         </h:form>
