@@ -67,7 +67,7 @@ public class UrlAuthenticationSuccessHandler implements
             if (isCommon) {
                 return "/index.jsf";
             } else if (isAdmin) {
-                return "/index.jsf";
+                return "/admin/index.jsf";
             } else {
                 throw new IllegalStateException();
             }

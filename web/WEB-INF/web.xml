@@ -28,11 +28,10 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>menu.jsf</welcome-file>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
     
-        <context-param>
+    <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/applicationContext-DataSource.xml
@@ -46,6 +45,10 @@
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
