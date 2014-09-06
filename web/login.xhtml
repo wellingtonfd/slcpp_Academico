@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/include/templateLogin.xhtml">
@@ -13,64 +12,60 @@
         </ui:define>
 
         <ui:define name="body">
-
-<!--<p:panel header="#{myBundle.Welcome}">
-     <p><h:outputText value="#{myBundle.WelcomeMessage}"></h:outputText></p>
- </p:panel>
-                 
-            
-            <div class="container">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background-color: #EEEEEE;">
-                            <h3 class="panel-title">
-                                <strong>Login </strong>
-                            </h3>
+            <!--
+                        
+                        <div class="container">
+                            <div class="col-md-4 col-md-offset-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" style="background-color: #EEEEEE;">
+                                        <h3 class="panel-title">
+                                            <strong>Login </strong>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form role="form" method="post"
+                                              action="${request.contextPath}/j_spring_security_check">
+                                            <div class="form-group">
+                                                <label for="j_username">Usuário</label>
+                                                <input type="text" name='j_username' class="form-control"
+                                                       id="j_username" placeholder="Digite seu usuário" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="j_password">Senha </label> <a
+                                                    style="padding-right: 3px;" href="#">(esqueci a senha)</a>
+                                                <input type="password" name='j_password' class="form-control"
+                                                       id="j_password" placeholder="Digite sua senha" />
+                                            </div>                  
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-default">Login</button>                          
+                                            </div>
+                                            <div class="form-group">
+                                                <h:panelGroup rendered="#{!empty param.login_error}">
+                                                    <span style="color: red">usuário ou senha inválidos</span>
+                                                    <br />
+                                                    <br />
+                                                </h:panelGroup>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <form role="form" method="post"
-                                  action="${request.contextPath}/j_spring_security_check">
-                                <div class="form-group">
-                                    <label for="j_username">Usuário</label>
-                                    <input type="text" name='j_username' class="form-control"
-                                           id="j_username" placeholder="Digite seu usuário" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="j_password">Senha </label> <a
-                                        style="padding-right: 3px;" href="#">(esqueci a senha)</a>
-                                    <input type="password" name='j_password' class="form-control"
-                                           id="j_password" placeholder="Digite sua senha" />
-                                </div>                  
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-default">Login</button>                          
-                                </div>
-                                <div class="form-group">
-                                    <h:panelGroup rendered="#{!empty param.login_error}">
-                                        <span style="color: red">usuário ou senha inválidos</span>
-                                        <br />
-                                        <br />
-                                    </h:panelGroup>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             -->
             <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="280">
-                <center>
-                    <h:outputText value="Usuário ou senha incorretos!" rendered="#{param.erro}" style="color: darkred"/>
-                </center>
                 <form action="j_spring_security_check" method="post">
                     <h:panelGrid columns="2" cellpadding="5">
                         <h:outputLabel for="j_username" value="Username: *" />
                         <h:inputText id="j_username" required="true"/>
                         <h:outputLabel for="j_password" value="Senha: * " />
                         <h:inputSecret id="j_password" required="true"/>
-                        <form>
-                            <h:commandButton type="submit" value="Login"/>
-                        </form>
+                        <h:commandButton type="submit" value="Login"/>
                     </h:panelGrid>
+                    <center>
+                        <h:panelGroup rendered="#{!empty param.login_error}">
+                            <span style="color: red">usuário ou senha inválidos</span><br/>
+                        </h:panelGroup>
+                    </center>
                 </form>
             </p:dialog>
         </ui:define>
