@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByLogin", query = "SELECT u FROM Usuario u WHERE u.login = :login"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
 public class Usuario implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,9 +55,10 @@ public class Usuario implements Serializable {
     @Size(min = 1, max = 25)
     @Column(name = "senha")
     private String senha;
-    @JoinColumn(name = "id_roler", referencedColumnName = "id_roler")
-    @ManyToOne
-    private Roler idRoler;
+    @Column(name = "ativo")
+    private Boolean ativo;
+    @OneToMany(mappedBy = "login")
+    private Collection<UsuarioRoler> usuarioRolerCollection;
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Funcionario> funcionarioCollection;
 
@@ -98,14 +99,6 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public Roler getIdRoler() {
-        return idRoler;
-    }
-
-    public void setIdRoler(Roler idRoler) {
-        this.idRoler = idRoler;
-    }
-
     @XmlTransient
     public Collection<Funcionario> getFuncionarioCollection() {
         return funcionarioCollection;
@@ -138,6 +131,23 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "entiti.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    @XmlTransient
+    public Collection<UsuarioRoler> getUsuarioRolerCollection() {
+        return usuarioRolerCollection;
+    }
+
+    public void setUsuarioRolerCollection(Collection<UsuarioRoler> usuarioRolerCollection) {
+        this.usuarioRolerCollection = usuarioRolerCollection;
     }
 
 }

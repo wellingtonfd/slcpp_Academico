@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Roler.findByIdRoler", query = "SELECT r FROM Roler r WHERE r.idRoler = :idRoler"),
     @NamedQuery(name = "Roler.findByNomeRoler", query = "SELECT r FROM Roler r WHERE r.nomeRoler = :nomeRoler")})
 public class Roler implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,8 +47,8 @@ public class Roler implements Serializable {
     @Size(min = 1, max = 25)
     @Column(name = "nome_roler")
     private String nomeRoler;
-    @OneToMany(mappedBy = "idRoler")
-    private Collection<Usuario> usuarioCollection;
+    @OneToMany(mappedBy = "roler")
+    private Collection<UsuarioRoler> usuarioRolerCollection;
 
     public Roler() {
     }
@@ -78,15 +78,6 @@ public class Roler implements Serializable {
         this.nomeRoler = nomeRoler;
     }
 
-    @XmlTransient
-    public Collection<Usuario> getUsuarioCollection() {
-        return usuarioCollection;
-    }
-
-    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
-        this.usuarioCollection = usuarioCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -110,6 +101,15 @@ public class Roler implements Serializable {
     @Override
     public String toString() {
         return "entiti.Roler[ idRoler=" + idRoler + " ]";
+    }
+
+    @XmlTransient
+    public Collection<UsuarioRoler> getUsuarioRolerCollection() {
+        return usuarioRolerCollection;
+    }
+
+    public void setUsuarioRolerCollection(Collection<UsuarioRoler> usuarioRolerCollection) {
+        this.usuarioRolerCollection = usuarioRolerCollection;
     }
 
 }
