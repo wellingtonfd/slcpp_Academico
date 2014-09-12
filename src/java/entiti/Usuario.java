@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.util.DigestUtils;
+import utils.security.geraMD5;
 
 
 /**
@@ -54,7 +54,7 @@ public class Usuario implements Serializable {
     private String login;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 25)
+    @Size(min = 1, max = 255)
     @Column(name = "senha")
     private String senha;
     @Column(name = "ativo")
@@ -74,7 +74,7 @@ public class Usuario implements Serializable {
     public Usuario(Integer idUsuario, String login, String senha) {
         this.idUsuario = idUsuario;
         this.login = login;
-        this.senha = senha;
+        this.senha = geraMD5.md5(senha);
     }
 
     public Integer getIdUsuario() {
@@ -98,7 +98,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = geraMD5.md5(senha);
     }
 
     @XmlTransient
