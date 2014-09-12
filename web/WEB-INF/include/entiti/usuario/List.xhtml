@@ -15,7 +15,6 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('UsuarioListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('UsuarioListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.UsuarioMenuItem_idRoler}" icon="ui-icon-search"  actionListener="#{usuarioController.prepareIdRoler}" update=":RolerViewForm" oncomplete="RolerViewDialog.show()" disabled="#{empty usuarioController.selected.idRoler}"/>  
                 <p:menuitem value="#{myBundle.UsuarioMenuItem_funcionarioCollection}" icon="ui-icon-search"  action="#{usuarioController.navigateFuncionarioCollection}" disabled="#{empty usuarioController.selected.funcionarioCollection}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
@@ -47,11 +46,11 @@
                     <h:outputText value="#{item.login}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.idRoler.idRoler}" filterBy="#{item.idRoler.idRoler}">
+                <p:column sortBy="#{item.ativo}" filterBy="#{item.ativo}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListUsuarioTitle_idRoler}"/>
+                        <h:outputText value="#{myBundle.ListUsuarioTitle_ativo}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idRoler.idRoler}"/>
+                    <h:outputText value="#{item.ativo}"/>
                 </p:column>
 
 

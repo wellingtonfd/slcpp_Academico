@@ -2,3 +2,7 @@
 /build/
 /nbproject/
 /setup/
+/lib/eclipselinkmodelgen/
+/lib/eclipselink/
+/lib/CopyLibs/
+/lib/javaee-endorsed-api-6.0/

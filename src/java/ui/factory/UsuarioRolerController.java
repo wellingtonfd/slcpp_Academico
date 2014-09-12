@@ -6,6 +6,7 @@
 package ui.factory;
 
 import entiti.UsuarioRoler;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -33,15 +34,15 @@ public class UsuarioRolerController extends AbstractController<UsuarioRoler> {
         idUsuarioController.setSelected(null);
 
     }
-    
-    public void prepareIdUsuario(ActionEvent event){
-        if (this.getSelected() != null && idUsuarioController.getSelected() == null){
+
+    public void prepareIdUsuario(ActionEvent event) {
+        if (this.getSelected() != null && idUsuarioController.getSelected() == null) {
             idUsuarioController.setSelected(this.getSelected().getLogin());
         }
     }
-    
-    public void prepareIdRoler(ActionEvent event){
-        if (this.getSelected() != null && idRolerController.getSelected() == null){
+
+    public void prepareIdRoler(ActionEvent event) {
+        if (this.getSelected() != null && idRolerController.getSelected() == null) {
             idRolerController.setSelected(this.getSelected().getRoler());
         }
     }

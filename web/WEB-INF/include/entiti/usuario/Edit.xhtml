@@ -28,16 +28,8 @@
                                     title="#{myBundle.EditUsuarioTitle_senha}" required="true" 
                                     requiredMessage="#{myBundle.EditUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
 
-                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_idRoler}" for="idRoler" />
-                        <p:selectOneMenu id="idRoler" value="#{usuarioController.selected.idRoler}"  converter="rolerConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{rolerController.items}"
-                                           var="idRolerItem"
-                                           itemValue="#{idRolerItem}"
-                                           itemLabel="#{idRolerItem.idRoler.toString()}"
-                                           />
-
-                        </p:selectOneMenu>
+                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                        <p:selectBooleanCheckbox id="ativo" value="#{usuarioController.selected.ativo}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usuarioController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
