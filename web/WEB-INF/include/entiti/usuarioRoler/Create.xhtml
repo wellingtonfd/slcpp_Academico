@@ -14,8 +14,9 @@
 
                 <h:panelGroup id="display" rendered="#{usuarioRolerController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
+                        
                         <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_login}" for="login" />
-                        <p:selectOneMenu id="Usuario" value="#{usuarioRolerController.selected.login}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_login}" converter="usuarioConverter">
+                        <p:selectOneMenu id="login" value="#{usuarioRolerController.selected.login}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_login}" converter="usuarioConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{usuarioController.items}"
                                            var="loginItems"
@@ -25,7 +26,7 @@
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_roler}" for="roler" />
-                        <p:selectOneMenu id="idPais" value="#{rolerController.selected.idRoler}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_roler}" converter="rolerConverter">
+                        <p:selectOneMenu id="roler" value="#{rolerController.selected.idRoler}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_roler}" converter="rolerConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{rolerController.items}"
                                            var="rolerItems"
@@ -38,7 +39,7 @@
                        
                         
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usuarioRolerController.saveNew}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioRolerCreateDialog);">
+                    <p:commandButton actionListener="#{usuarioRolerController.saveNew}" value="#{myBundle.Save}" update="display,:UsuarioRolerListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioRolerCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 

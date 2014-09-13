@@ -11,8 +11,8 @@
 
             <h:form id="UsuarioRolerEditForm">
 
-                <h:panelGroup id="display">
-                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuarioRolerController.selected != null}">
+                <h:panelGroup id="display" rendered="#{usuarioRolerController.selected != null}">
+                    <p:panelGrid  columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateUsuarioLabel_login}" for="login" />
                         <p:selectOneMenu id="login" value="#{usuarioRolerController.selected.login}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_login}" converter="usuarioConverter">
@@ -36,7 +36,7 @@
                         </p:selectOneMenu>
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{usuarioRolerController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioRolerEditDialog);">
+                    <p:commandButton actionListener="#{usuarioRolerController.save}" value="#{myBundle.Save}" update="display,:UsuarioRolerListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioRolerEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioRolerEditDialog.hide()"/>
