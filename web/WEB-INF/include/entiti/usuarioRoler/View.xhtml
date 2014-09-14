@@ -19,10 +19,10 @@
                         <h:outputText value="#{usuarioRolerController.selected.id}" title="#{myBundle.ViewUsuarioRolerTitle_idUsuario}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuarioRolerLabel_login}"/>
-                        <h:outputText value="#{usuarioRolerController.selected.login}" title="#{myBundle.ViewUsuarioRolerTitle_login}"/>
+                        <h:outputText value="#{usuarioRolerController.selected.login.login}" title="#{myBundle.ViewUsuarioRolerTitle_login}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuarioRolerLabel_roler}"/>
-                        <h:outputText value="#{usuarioRolerController.selected.roler}" title="#{myBundle.ViewUsuarioRolerTitle_Roler}"/>
+                        <h:outputText value="#{usuarioRolerController.selected.roler.nomeRoler}" title="#{myBundle.ViewUsuarioRolerTitle_Roler}"/>
                         
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="UsuarioRolerViewDialog.hide()"/>

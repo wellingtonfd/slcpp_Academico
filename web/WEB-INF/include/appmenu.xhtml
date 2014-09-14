@@ -51,9 +51,7 @@
 
                 <f:facet name="options">
                     #{request.remoteUser}
-                    <a href="#{request.contextPath}/logout">
-                        <p:commandButton type="button" value="#{myBundle.Sair}" icon="ui-icon-extlink" />
-                    </a>
+                    <p:commandButton type="button" onclick="document.location='#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />
                 </f:facet>            
             </p:menubar>
         </h:form>
