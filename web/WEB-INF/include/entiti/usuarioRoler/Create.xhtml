@@ -19,14 +19,14 @@
                         <p:selectOneMenu id="login" value="#{usuarioRolerController.selected.login}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_login}" converter="usuarioConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{usuarioController.items}"
-                                           var="loginItems"
-                                           itemValue="#{loginItems}"
-                                           itemLabel="#{loginItems.login.toString()}"
+                                           var="usuarioItems"
+                                           itemValue="#{usuarioItems}"
+                                           itemLabel="#{usuarioItems.login.toString()}"
                                            />
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_roler}" for="roler" />
-                        <p:selectOneMenu id="roler" value="#{rolerController.selected.idRoler}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_roler}" converter="rolerConverter">
+                        <p:selectOneMenu id="roler" value="#{usuarioRolerController.selected.roler}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_roler}" converter="rolerConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{rolerController.items}"
                                            var="rolerItems"
