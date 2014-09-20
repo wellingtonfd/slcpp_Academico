@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class RolerController extends AbstractController<Roler> {
 
     @Inject
-    private UsuarioController usuarioCollectionController;
+    private UsuarioRolerController UsuarioRolerCollectionController;
 
     public RolerController() {
         // Inform the Abstract parent controller of the concrete Roler?cap_first Entity
@@ -30,12 +30,20 @@ public class RolerController extends AbstractController<Roler> {
      * retrieved from Roler?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Usuario page
-     */
+     *
     public String navigateUsuarioCollection() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Usuario_items", this.getSelected().getUsuarioCollection());
         }
         return "/entiti/usuario/index";
+    }
+    */
+    
+    public String navigateUsuarioRolerCollection(){
+        if (this.getSelected() != null) {
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("UsuarioRoler_items", this.getSelected().getUsuarioRolerCollection());
+        }
+        return "/entiti/usuarioroler/index";
     }
 
 }

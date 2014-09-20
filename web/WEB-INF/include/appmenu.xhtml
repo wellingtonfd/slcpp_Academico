@@ -42,10 +42,14 @@
                     <p:menuitem value="#{myBundle.TipoMaterialHeading}..." outcome="/entiti/tipoMaterial/index" />
                     <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
                     <p:menuitem value="#{myBundle.UsuarioHeading}..." outcome="/entiti/usuario/index" />
+                    <p:menuitem value="#{myBundle.UsuarioRolerHeading}..." outcome="/entiti/usuarioRoler/index" />
                     <p:menuitem value="#{myBundle.VeiculoHeading}..." outcome="/entiti/veiculo/index" />
                 </p:submenu>
-                
-                <p:menuitem value="#{myBundle.Sair}" action="#{logar.encerrar() }" outcome="/login" icon="ui-icon-home"/>
+
+                <f:facet name="options">
+                    #{request.remoteUser}
+                    <p:commandButton type="button" onclick="document.location = '#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />
+                </f:facet>
             </p:menubar>
         </h:form>
     </ui:composition>

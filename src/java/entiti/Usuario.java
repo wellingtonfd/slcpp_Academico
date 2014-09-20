@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -14,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,6 +21,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import utils.security.geraMD5;
+
 
 /**
  *
@@ -39,6 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByLogin", query = "SELECT u FROM Usuario u WHERE u.login = :login"),
     @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
 public class Usuario implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,12 +52,13 @@ public class Usuario implements Serializable {
     private String login;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 25)
+    @Size(min = 1, max = 255)
     @Column(name = "senha")
     private String senha;
-    @JoinColumn(name = "id_roler", referencedColumnName = "id_roler")
-    @ManyToOne
-    private Roler idRoler;
+    @Column(name = "ativo")
+    private Boolean ativo;
+    @OneToMany(mappedBy = "login")
+    private Collection<UsuarioRoler> usuarioRolerCollection;
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Funcionario> funcionarioCollection;
 
@@ -71,7 +72,7 @@ public class Usuario implements Serializable {
     public Usuario(Integer idUsuario, String login, String senha) {
         this.idUsuario = idUsuario;
         this.login = login;
-        this.senha = senha;
+        this.senha = geraMD5.md5(senha);
     }
 
     public Integer getIdUsuario() {
@@ -95,15 +96,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Roler getIdRoler() {
-        return idRoler;
-    }
-
-    public void setIdRoler(Roler idRoler) {
-        this.idRoler = idRoler;
+        this.senha = geraMD5.md5(senha);
     }
 
     @XmlTransient
@@ -138,6 +131,23 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "entiti.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    @XmlTransient
+    public Collection<UsuarioRoler> getUsuarioRolerCollection() {
+        return usuarioRolerCollection;
+    }
+
+    public void setUsuarioRolerCollection(Collection<UsuarioRoler> usuarioRolerCollection) {
+        this.usuarioRolerCollection = usuarioRolerCollection;
     }
 
 }
