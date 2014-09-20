@@ -5,11 +5,11 @@
         <param-value>Development</param-value>
     </context-param>
     
-     <context-param>
+    <context-param>
         <param-name>primefaces.org</param-name>
         <param-value>primefaces</param-value>
     </context-param>
-     <context-param>
+    <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>hot-sneaks</param-value>
     </context-param>
@@ -28,7 +28,28 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-         <welcome-file>menu.jsf</welcome-file>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>login.jsf</welcome-file>
     </welcome-file-list>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/applicationContext-DataSource.xml
+            /WEB-INF/applicationContext-security.xml
+        </param-value>
+    </context-param>
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>

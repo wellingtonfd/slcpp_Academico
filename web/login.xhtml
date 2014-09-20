@@ -13,68 +13,22 @@
         </ui:define>
         
         <ui:define name="body">
-           
-           <!--<p:panel header="#{myBundle.Welcome}">
-                <p><h:outputText value="#{myBundle.WelcomeMessage}"></h:outputText></p>
-            </p:panel>
-               -->     
-               <div align="center">
-             <h:form>
-            
-                <h:panelGrid  width="10" style="text-align:center">
-                    <p:panel id="panelLogin">
-                         
-
-
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <!-- <th colspan="2"> <h:graphicImage value="imagens/cadeado.jpg" />   </th> -->                           
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><h:outputLabel for="login" value="Login:" /> </td>
-                                        <td><p:inputText id="login"   
-                                                         value="#{logar.login}" 
-                                                         required="true" 
-                                                         label="Login">  
-                                                <f:validateLength minimum="2" />  
-                                            </p:inputText> 
-                                            <p:message for="login" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td><h:outputLabel for="senha" value="Senha:" /></td>
-                                        <td> <p:password id="senha"   
-                                                         value="#{logar.senha}" 
-                                                         required="true" 
-                                                         label="Senha"/>  
-                                            <p:message for="senha" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>           
-                            <p:commandButton value="Login" 
-                                             update="panelLogin,display" id="cmdBtnLogin"  
-                                             actionListener="#{logar.logar()}" /> 
-
-
-                        
-                    </p:panel>                  
-
-                    <p:panel id="display" header="Conectou?" style="margin-top:10px;">  
-                        <h:panelGrid columns="2">                          
-                            <h:outputText value="#{logar.conectou}" />   
-                            
-                        </h:panelGrid>  
-                    </p:panel>
-                </h:panelGrid>
-            
-        </h:form>
-            </div>
+           <p:dialog header="Login" visible="true" closable="false" draggable="false" resizable="false" width="280">
+                <form action="j_spring_security_check" method="post">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="j_username" value="Username: *" />
+                        <h:inputText id="j_username" required="true"/>
+                        <h:outputLabel for="j_password" value="Senha: * " />
+                        <h:inputSecret id="j_password" required="true"/>
+                        <h:commandButton type="submit" value="Login"/>
+                    </h:panelGrid>
+                    <center>
+                        <h:panelGroup rendered="#{!empty param.login_error}">
+                            <span style="color: red">usuário ou senha inválidos</span><br/>
+                        </h:panelGroup>
+                    </center>
+                </form>
+            </p:dialog>
         </ui:define>
 
     </ui:composition>
