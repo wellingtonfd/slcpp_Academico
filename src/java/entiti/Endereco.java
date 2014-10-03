@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,17 +16,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "endereco")
@@ -37,11 +30,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Endereco.findAll", query = "SELECT e FROM Endereco e"),
     @NamedQuery(name = "Endereco.findByIdEndereco", query = "SELECT e FROM Endereco e WHERE e.idEndereco = :idEndereco"),
-    @NamedQuery(name = "Endereco.findByIdLogradouro", query = "SELECT e FROM Endereco e WHERE e.idLogradouro = :idLogradouro"),
-    @NamedQuery(name = "Endereco.findByEstadoIdEstado", query = "SELECT e FROM Endereco e WHERE e.estadoIdEstado = :estadoIdEstado"),
+    @NamedQuery(name = "Endereco.findByLogadouro", query = "SELECT e FROM Endereco e WHERE e.logadouro = :logadouro"),
+    @NamedQuery(name = "Endereco.findByNumero", query = "SELECT e FROM Endereco e WHERE e.numero = :numero"),
+    @NamedQuery(name = "Endereco.findByComplemento", query = "SELECT e FROM Endereco e WHERE e.complemento = :complemento"),
     @NamedQuery(name = "Endereco.findByBairro", query = "SELECT e FROM Endereco e WHERE e.bairro = :bairro"),
-    @NamedQuery(name = "Endereco.findByCep", query = "SELECT e FROM Endereco e WHERE e.cep = :cep"),
-    @NamedQuery(name = "Endereco.findByNumero", query = "SELECT e FROM Endereco e WHERE e.numero = :numero")})
+    @NamedQuery(name = "Endereco.findByCep", query = "SELECT e FROM Endereco e WHERE e.cep = :cep")})
 public class Endereco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,51 +42,34 @@ public class Endereco implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_endereco")
     private Integer idEndereco;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_logradouro")
-    private int idLogradouro;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "estado_id_estado")
-    private int estadoIdEstado;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 255)
+    @Column(name = "logadouro")
+    private String logadouro;
+    @Column(name = "numero")
+    private Integer numero;
+    @Size(max = 30)
+    @Column(name = "complemento")
+    private String complemento;
+    @Size(max = 80)
     @Column(name = "bairro")
     private String bairro;
-    @Size(max = 20)
-    @Column(name = "cep")
-    private String cep;
-    @Size(max = 15)
-    @Column(name = "numero")
-    private String numero;
-    @OneToMany(mappedBy = "idEndereco")
-    private Collection<Fornecedor> fornecedorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "enderecoIdEndereco")
-    private Collection<Funcionario> funcionarioCollection;
-    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
-    @ManyToOne(optional = false)
-    private Pais idPais;
-    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
-    @ManyToOne(optional = false)
-    private Estado idEstado;
+    @Column(name = "CEP")
+    private Integer cep;
     @JoinColumn(name = "id_cidade", referencedColumnName = "id_cidade")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Cidade idCidade;
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
+    @ManyToOne
+    private Estado idEstado;
+    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
+    @ManyToOne
+    private Pais idPais;
 
     public Endereco() {
     }
 
     public Endereco(Integer idEndereco) {
         this.idEndereco = idEndereco;
-    }
-
-    public Endereco(Integer idEndereco, int idLogradouro, int estadoIdEstado, String bairro) {
-        this.idEndereco = idEndereco;
-        this.idLogradouro = idLogradouro;
-        this.estadoIdEstado = estadoIdEstado;
-        this.bairro = bairro;
     }
 
     public Integer getIdEndereco() {
@@ -104,20 +80,28 @@ public class Endereco implements Serializable {
         this.idEndereco = idEndereco;
     }
 
-    public int getIdLogradouro() {
-        return idLogradouro;
+    public String getLogadouro() {
+        return logadouro;
     }
 
-    public void setIdLogradouro(int idLogradouro) {
-        this.idLogradouro = idLogradouro;
+    public void setLogadouro(String logadouro) {
+        this.logadouro = logadouro;
     }
 
-    public int getEstadoIdEstado() {
-        return estadoIdEstado;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setEstadoIdEstado(int estadoIdEstado) {
-        this.estadoIdEstado = estadoIdEstado;
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
     public String getBairro() {
@@ -128,46 +112,20 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public String getCep() {
+    public Integer getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
+    public void setCep(Integer cep) {
         this.cep = cep;
     }
 
-    public String getNumero() {
-        return numero;
+    public Cidade getIdCidade() {
+        return idCidade;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    @XmlTransient
-    public Collection<Fornecedor> getFornecedorCollection() {
-        return fornecedorCollection;
-    }
-
-    public void setFornecedorCollection(Collection<Fornecedor> fornecedorCollection) {
-        this.fornecedorCollection = fornecedorCollection;
-    }
-
-    @XmlTransient
-    public Collection<Funcionario> getFuncionarioCollection() {
-        return funcionarioCollection;
-    }
-
-    public void setFuncionarioCollection(Collection<Funcionario> funcionarioCollection) {
-        this.funcionarioCollection = funcionarioCollection;
-    }
-
-    public Pais getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(Pais idPais) {
-        this.idPais = idPais;
+    public void setIdCidade(Cidade idCidade) {
+        this.idCidade = idCidade;
     }
 
     public Estado getIdEstado() {
@@ -178,12 +136,12 @@ public class Endereco implements Serializable {
         this.idEstado = idEstado;
     }
 
-    public Cidade getIdCidade() {
-        return idCidade;
+    public Pais getIdPais() {
+        return idPais;
     }
 
-    public void setIdCidade(Cidade idCidade) {
-        this.idCidade = idCidade;
+    public void setIdPais(Pais idPais) {
+        this.idPais = idPais;
     }
 
     @Override
@@ -210,5 +168,5 @@ public class Endereco implements Serializable {
     public String toString() {
         return "entiti.Endereco[ idEndereco=" + idEndereco + " ]";
     }
-
+    
 }

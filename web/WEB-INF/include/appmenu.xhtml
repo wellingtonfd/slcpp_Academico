@@ -45,7 +45,7 @@
                     <p:menuitem value="#{myBundle.UsuarioRolerHeading}..." outcome="/entiti/usuarioRoler/index" />
                     <p:menuitem value="#{myBundle.VeiculoHeading}..." outcome="/entiti/veiculo/index" />
                 </p:submenu>
-
+             
                 <f:facet name="options">
                     #{request.remoteUser}
                     <p:commandButton type="button" onclick="document.location = '#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />

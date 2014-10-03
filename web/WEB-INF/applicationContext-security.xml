@@ -8,10 +8,12 @@
     <http pattern="/login*" security="none"/>
     <http pattern="/resources/**" security="none"/>
     <http pattern="/theme*" security="none"/>
-    <http>
+    <http auto-config="true" 
+          use-expressions="true"
+          disable-url-rewriting="true">
         <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/entiti/**" access="ROLE_ADMIN,ROLE_COMMON"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/entiti/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/index.jsf" access="ROLE_COMMON"/>
         <access-denied-handler error-page="/403"/>
         <form-login login-page="/login.jsf"
