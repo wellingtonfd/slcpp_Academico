@@ -4,48 +4,50 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
     <ui:composition>
         <h:form id="menuForm">
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/admin/index" icon="ui-icon-home"/>
-                <p:submenu label="#{myBundle.Maintenance}">
-                    <p:menuitem value="#{myBundle.ArmazemHeading}..." outcome="/entiti/armazem/index" />
-                    <p:menuitem value="#{myBundle.CapacidadeHeading}..." outcome="/entiti/capacidade/index" />
-                    <p:menuitem value="#{myBundle.CidadeHeading}..." outcome="/entiti/cidade/index" />
-                    <p:menuitem value="#{myBundle.ClasseHeading}..." outcome="/entiti/classe/index" />
-                    <p:menuitem value="#{myBundle.CombustivelHeading}..." outcome="/entiti/combustivel/index" />
-                    <p:menuitem value="#{myBundle.CompatibilidadeHeading}..." outcome="/entiti/compatibilidade/index" />
-                    <p:menuitem value="#{myBundle.ContatosHeading}..." outcome="/entiti/contatos/index" />
-                    <p:menuitem value="#{myBundle.DetNotaHeading}..." outcome="/entiti/detNota/index" />
-                    <p:menuitem value="#{myBundle.EmbalagemHeading}..." outcome="/entiti/embalagem/index" />
-                    <p:menuitem value="#{myBundle.EndArmazemHeading}..." outcome="/entiti/endArmazem/index" />
-                    <p:menuitem value="#{myBundle.EnderecoHeading}..." outcome="/entiti/endereco/index" />
-                    <p:menuitem value="#{myBundle.EpeHeading}..." outcome="/entiti/epe/index" />
-                    <p:menuitem value="#{myBundle.EpiHeading}..." outcome="/entiti/epi/index" />
-                    <p:menuitem value="#{myBundle.EstFisicoHeading}..." outcome="/entiti/estFisico/index" />
-                    <p:menuitem value="#{myBundle.EstadoHeading}..." outcome="/entiti/estado/index" />
-                    <p:menuitem value="#{myBundle.FornecedorHeading}..." outcome="/entiti/fornecedor/index" />
-                    <p:menuitem value="#{myBundle.FuncionarioHeading}..." outcome="/entiti/funcionario/index" />
-                    <p:menuitem value="#{myBundle.GrupoEmbalagemHeading}..." outcome="/entiti/grupoEmbalagem/index" />
-                    <p:menuitem value="#{myBundle.LegendaCompatibilidadeHeading}..." outcome="/entiti/legendaCompatibilidade/index" />
-                    <p:menuitem value="#{myBundle.LocalOperacaoHeading}..." outcome="/entiti/localOperacao/index" />
-                    <p:menuitem value="#{myBundle.MovimentacaoHeading}..." outcome="/entiti/movimentacao/index" />
-                    <p:menuitem value="#{myBundle.NumCasHeading}..." outcome="/entiti/numCas/index" />
-                    <p:menuitem value="#{myBundle.NumOnuHeading}..." outcome="/entiti/numOnu/index" />
-                    <p:menuitem value="#{myBundle.PaisHeading}..." outcome="/entiti/pais/index" />
-                    <p:menuitem value="#{myBundle.ProdutoHeading}..." outcome="/entiti/produto/index" />
-                    <p:menuitem value="#{myBundle.RolerHeading}..." outcome="/entiti/roler/index" />
-                    <p:menuitem value="#{myBundle.StatusArmazemHeading}..." outcome="/entiti/statusArmazem/index" />
-                    <p:menuitem value="#{myBundle.TipoEquipamentoHeading}..." outcome="/entiti/tipoEquipamento/index" />
-                    <p:menuitem value="#{myBundle.TipoMaterialHeading}..." outcome="/entiti/tipoMaterial/index" />
-                    <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
-                    <p:menuitem value="#{myBundle.UsuarioHeading}..." outcome="/entiti/usuario/index" />
-                    <p:menuitem value="#{myBundle.UsuarioRolerHeading}..." outcome="/entiti/usuarioRoler/index" />
-                    <p:menuitem value="#{myBundle.VeiculoHeading}..." outcome="/entiti/veiculo/index" />
-                </p:submenu>
-             
+                <sec:authorize  access="hasRole('ROLE_ADMIN')">
+                    <p:submenu label="#{myBundle.Maintenance}">
+                        <p:menuitem value="#{myBundle.ArmazemHeading}..." outcome="/entiti/armazem/index" />
+                        <p:menuitem value="#{myBundle.CapacidadeHeading}..." outcome="/entiti/capacidade/index" />
+                        <p:menuitem value="#{myBundle.CidadeHeading}..." outcome="/entiti/cidade/index" />
+                        <p:menuitem value="#{myBundle.ClasseHeading}..." outcome="/entiti/classe/index" />
+                        <p:menuitem value="#{myBundle.CombustivelHeading}..." outcome="/entiti/combustivel/index" />
+                        <p:menuitem value="#{myBundle.CompatibilidadeHeading}..." outcome="/entiti/compatibilidade/index" />
+                        <p:menuitem value="#{myBundle.ContatosHeading}..." outcome="/entiti/contatos/index" />
+                        <p:menuitem value="#{myBundle.DetNotaHeading}..." outcome="/entiti/detNota/index" />
+                        <p:menuitem value="#{myBundle.EmbalagemHeading}..." outcome="/entiti/embalagem/index" />
+                        <p:menuitem value="#{myBundle.EndArmazemHeading}..." outcome="/entiti/endArmazem/index" />
+                        <p:menuitem value="#{myBundle.EnderecoHeading}..." outcome="/entiti/endereco/index" />
+                        <p:menuitem value="#{myBundle.EpeHeading}..." outcome="/entiti/epe/index" />
+                        <p:menuitem value="#{myBundle.EpiHeading}..." outcome="/entiti/epi/index" />
+                        <p:menuitem value="#{myBundle.EstFisicoHeading}..." outcome="/entiti/estFisico/index" />
+                        <p:menuitem value="#{myBundle.EstadoHeading}..." outcome="/entiti/estado/index" />
+                        <p:menuitem value="#{myBundle.FornecedorHeading}..." outcome="/entiti/fornecedor/index" />
+                        <p:menuitem value="#{myBundle.FuncionarioHeading}..." outcome="/entiti/funcionario/index" />
+                        <p:menuitem value="#{myBundle.GrupoEmbalagemHeading}..." outcome="/entiti/grupoEmbalagem/index" />
+                        <p:menuitem value="#{myBundle.LegendaCompatibilidadeHeading}..." outcome="/entiti/legendaCompatibilidade/index" />
+                        <p:menuitem value="#{myBundle.LocalOperacaoHeading}..." outcome="/entiti/localOperacao/index" />
+                        <p:menuitem value="#{myBundle.MovimentacaoHeading}..." outcome="/entiti/movimentacao/index" />
+                        <p:menuitem value="#{myBundle.NumCasHeading}..." outcome="/entiti/numCas/index" />
+                        <p:menuitem value="#{myBundle.NumOnuHeading}..." outcome="/entiti/numOnu/index" />
+                        <p:menuitem value="#{myBundle.PaisHeading}..." outcome="/entiti/pais/index" />
+                        <p:menuitem value="#{myBundle.ProdutoHeading}..." outcome="/entiti/produto/index" />
+                        <p:menuitem value="#{myBundle.RolerHeading}..." outcome="/entiti/roler/index" />
+                        <p:menuitem value="#{myBundle.StatusArmazemHeading}..." outcome="/entiti/statusArmazem/index" />
+                        <p:menuitem value="#{myBundle.TipoEquipamentoHeading}..." outcome="/entiti/tipoEquipamento/index" />
+                        <p:menuitem value="#{myBundle.TipoMaterialHeading}..." outcome="/entiti/tipoMaterial/index" />
+                        <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
+                        <p:menuitem value="#{myBundle.UsuarioHeading}..." outcome="/entiti/usuario/index" />
+                        <p:menuitem value="#{myBundle.UsuarioRolerHeading}..." outcome="/entiti/usuarioRoler/index" />
+                        <p:menuitem value="#{myBundle.VeiculoHeading}..." outcome="/entiti/veiculo/index" />
+                    </p:submenu>
+                </sec:authorize>
                 <f:facet name="options">
                     #{request.remoteUser}
                     <p:commandButton type="button" onclick="document.location = '#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />

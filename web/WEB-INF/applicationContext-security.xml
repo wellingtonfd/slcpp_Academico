@@ -23,6 +23,7 @@
                     username-parameter="j_username"
                     password-parameter="j_password"
                     always-use-default-target="true"
+                    default-target-url="/index.jsf"
                     authentication-success-handler-ref="authenticationSuccessHandler"
                     authentication-failure-url="/login.jsf?login_error=1"/>
         <logout logout-success-url="/login.jsf" 

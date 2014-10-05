@@ -12,11 +12,21 @@
         </ui:define>
         <ui:define name="body">
             <p:panel>
-            
-            <div align="center">
-                <h1><b>Seja Bem-vindo  <h:outputText value="#{logar.login}"/></b></h1>
-                    <p:graphicImage  value="imagens/produtos-perigosos.jpg"/>
+
+                <div align="center">
+                    <h1><b>Seja Bem-vindo  <h:outputText value="#{logar.login}"/></b></h1>
+                    <p:graphicImage  value="/imagens/produtos-perigosos.jpg"/>
                 </div>
+                <h:panelGrid columns="4">
+                        <h:form id="impressao">
+                            <h:commandLink>
+                                <p:fileDownload value="#{report.arquivoRetorno}" />
+                                <h:graphicImage value="/imagens/pdf.jpg"
+                                    title="Imprimir PDF" />
+                            </h:commandLink>                                                
+                        </h:form>
+                        <h:messages />
+                    </h:panelGrid>
             </p:panel>
 
         </ui:define>
