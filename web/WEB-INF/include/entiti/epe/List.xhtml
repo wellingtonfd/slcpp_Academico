@@ -9,7 +9,7 @@
     <h:form id="EpeListForm">
 
         <p:panel header="#{myBundle.ListEpeTitle}">
-            <p:contextMenu id="EpeDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="EpeDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('EpeListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('EpeListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EpeListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -74,9 +74,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{epeController.prepareCreate}" update=":EpeCreateForm" oncomplete="EpeCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":EpeViewForm" oncomplete="EpeViewDialog.show()" disabled="#{empty epeController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EpeEditForm" oncomplete="EpeEditDialog.show()" disabled="#{empty epeController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{epeController.delete}" update=":growl,datalist" disabled="#{empty epeController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":EpeViewForm" oncomplete="EpeViewDialog.show()" disabled="#{empty epeController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EpeEditForm" oncomplete="EpeEditDialog.show()" disabled="#{empty epeController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{epeController.delete}" update=":growl,datalist" disabled="#{empty epeController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

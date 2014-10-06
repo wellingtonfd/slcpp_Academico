@@ -9,7 +9,7 @@
     <h:form id="TipoMaterialListForm">
 
         <p:panel header="#{myBundle.ListTipoMaterialTitle}">
-            <p:contextMenu id="TipoMaterialDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="TipoMaterialDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TipoMaterialListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TipoMaterialListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TipoMaterialListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -56,9 +56,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tipoMaterialController.prepareCreate}" update=":TipoMaterialCreateForm" oncomplete="TipoMaterialCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TipoMaterialViewForm" oncomplete="TipoMaterialViewDialog.show()" disabled="#{empty tipoMaterialController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TipoMaterialEditForm" oncomplete="TipoMaterialEditDialog.show()" disabled="#{empty tipoMaterialController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tipoMaterialController.delete}" update=":growl,datalist" disabled="#{empty tipoMaterialController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":TipoMaterialViewForm" oncomplete="TipoMaterialViewDialog.show()" disabled="#{empty tipoMaterialController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TipoMaterialEditForm" oncomplete="TipoMaterialEditDialog.show()" disabled="#{empty tipoMaterialController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tipoMaterialController.delete}" update=":growl,datalist" disabled="#{empty tipoMaterialController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

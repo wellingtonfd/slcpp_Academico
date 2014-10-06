@@ -9,7 +9,7 @@
     <h:form id="ContatosListForm">
 
         <p:panel header="#{myBundle.ListContatosTitle}">
-            <p:contextMenu id="ContatosDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="ContatosDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ContatosListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ContatosListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ContatosListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -83,9 +83,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{contatosController.prepareCreate}" update=":ContatosCreateForm" oncomplete="ContatosCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ContatosViewForm" oncomplete="ContatosViewDialog.show()" disabled="#{empty contatosController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ContatosEditForm" oncomplete="ContatosEditDialog.show()" disabled="#{empty contatosController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{contatosController.delete}" update=":growl,datalist" disabled="#{empty contatosController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":ContatosViewForm" oncomplete="ContatosViewDialog.show()" disabled="#{empty contatosController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ContatosEditForm" oncomplete="ContatosEditDialog.show()" disabled="#{empty contatosController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{contatosController.delete}" update=":growl,datalist" disabled="#{empty contatosController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

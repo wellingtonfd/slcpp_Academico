@@ -9,7 +9,7 @@
     <h:form id="EnderecoListForm">
 
         <p:panel header="#{myBundle.ListEnderecoTitle}">
-            <p:contextMenu id="EnderecoDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="EnderecoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('EnderecoListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('EnderecoListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EnderecoListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -110,9 +110,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{enderecoController.prepareCreate}" update=":EnderecoCreateForm" oncomplete="EnderecoCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":EnderecoViewForm" oncomplete="EnderecoViewDialog.show()" disabled="#{empty enderecoController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EnderecoEditForm" oncomplete="EnderecoEditDialog.show()" disabled="#{empty enderecoController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{enderecoController.delete}" update=":growl,datalist" disabled="#{empty enderecoController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":EnderecoViewForm" oncomplete="EnderecoViewDialog.show()" disabled="#{empty enderecoController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EnderecoEditForm" oncomplete="EnderecoEditDialog.show()" disabled="#{empty enderecoController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{enderecoController.delete}" update=":growl,datalist" disabled="#{empty enderecoController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

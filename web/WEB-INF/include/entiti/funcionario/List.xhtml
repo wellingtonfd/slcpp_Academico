@@ -9,7 +9,7 @@
     <h:form id="FuncionarioListForm">
 
         <p:panel header="#{myBundle.ListFuncionarioTitle}">
-            <p:contextMenu id="FuncionarioDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="FuncionarioDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('FuncionarioListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('FuncionarioListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('FuncionarioListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -186,9 +186,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{funcionarioController.prepareCreate}" update=":FuncionarioCreateForm" oncomplete="FuncionarioCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":FuncionarioViewForm" oncomplete="FuncionarioViewDialog.show()" disabled="#{empty funcionarioController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":FuncionarioEditForm" oncomplete="FuncionarioEditDialog.show()" disabled="#{empty funcionarioController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{funcionarioController.delete}" update=":growl,datalist" disabled="#{empty funcionarioController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":FuncionarioViewForm" oncomplete="FuncionarioViewDialog.show()" disabled="#{empty funcionarioController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":FuncionarioEditForm" oncomplete="FuncionarioEditDialog.show()" disabled="#{empty funcionarioController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{funcionarioController.delete}" update=":growl,datalist" disabled="#{empty funcionarioController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

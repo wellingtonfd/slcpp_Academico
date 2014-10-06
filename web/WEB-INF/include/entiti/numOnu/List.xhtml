@@ -9,7 +9,7 @@
     <h:form id="NumOnuListForm">
 
         <p:panel header="#{myBundle.ListNumOnuTitle}">
-            <p:contextMenu id="NumOnuDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="NumOnuDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('NumOnuListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('NumOnuListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('NumOnuListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -66,9 +66,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{numOnuController.prepareCreate}" update=":NumOnuCreateForm" oncomplete="NumOnuCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":NumOnuViewForm" oncomplete="NumOnuViewDialog.show()" disabled="#{empty numOnuController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":NumOnuEditForm" oncomplete="NumOnuEditDialog.show()" disabled="#{empty numOnuController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{numOnuController.delete}" update=":growl,datalist" disabled="#{empty numOnuController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":NumOnuViewForm" oncomplete="NumOnuViewDialog.show()" disabled="#{empty numOnuController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":NumOnuEditForm" oncomplete="NumOnuEditDialog.show()" disabled="#{empty numOnuController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{numOnuController.delete}" update=":growl,datalist" disabled="#{empty numOnuController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

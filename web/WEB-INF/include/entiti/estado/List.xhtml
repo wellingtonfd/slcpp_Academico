@@ -9,7 +9,7 @@
     <h:form id="EstadoListForm">
 
         <p:panel header="#{myBundle.ListEstadoTitle}">
-            <p:contextMenu id="EstadoDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="EstadoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('EstadoListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('EstadoListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EstadoListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -58,9 +58,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{estadoController.prepareCreate}" update=":EstadoCreateForm" oncomplete="EstadoCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":EstadoViewForm" oncomplete="EstadoViewDialog.show()" disabled="#{empty estadoController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EstadoEditForm" oncomplete="EstadoEditDialog.show()" disabled="#{empty estadoController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{estadoController.delete}" update=":growl,datalist" disabled="#{empty estadoController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":EstadoViewForm" oncomplete="EstadoViewDialog.show()" disabled="#{empty estadoController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":EstadoEditForm" oncomplete="EstadoEditDialog.show()" disabled="#{empty estadoController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{estadoController.delete}" update=":growl,datalist" disabled="#{empty estadoController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

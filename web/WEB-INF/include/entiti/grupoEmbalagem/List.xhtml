@@ -9,7 +9,7 @@
     <h:form id="GrupoEmbalagemListForm">
 
         <p:panel header="#{myBundle.ListGrupoEmbalagemTitle}">
-            <p:contextMenu id="GrupoEmbalagemDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="GrupoEmbalagemDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('GrupoEmbalagemListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('GrupoEmbalagemListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('GrupoEmbalagemListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -58,9 +58,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{grupoEmbalagemController.prepareCreate}" update=":GrupoEmbalagemCreateForm" oncomplete="GrupoEmbalagemCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":GrupoEmbalagemViewForm" oncomplete="GrupoEmbalagemViewDialog.show()" disabled="#{empty grupoEmbalagemController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":GrupoEmbalagemEditForm" oncomplete="GrupoEmbalagemEditDialog.show()" disabled="#{empty grupoEmbalagemController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{grupoEmbalagemController.delete}" update=":growl,datalist" disabled="#{empty grupoEmbalagemController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":GrupoEmbalagemViewForm" oncomplete="GrupoEmbalagemViewDialog.show()" disabled="#{empty grupoEmbalagemController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":GrupoEmbalagemEditForm" oncomplete="GrupoEmbalagemEditDialog.show()" disabled="#{empty grupoEmbalagemController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{grupoEmbalagemController.delete}" update=":growl,datalist" disabled="#{empty grupoEmbalagemController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

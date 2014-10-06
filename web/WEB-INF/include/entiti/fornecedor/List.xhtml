@@ -9,7 +9,7 @@
     <h:form id="FornecedorListForm">
 
         <p:panel header="#{myBundle.ListFornecedorTitle}">
-            <p:contextMenu id="FornecedorDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="FornecedorDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('FornecedorListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('FornecedorListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('FornecedorListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -101,9 +101,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{fornecedorController.prepareCreate}" update=":FornecedorCreateForm" oncomplete="FornecedorCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":FornecedorViewForm" oncomplete="FornecedorViewDialog.show()" disabled="#{empty fornecedorController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":FornecedorEditForm" oncomplete="FornecedorEditDialog.show()" disabled="#{empty fornecedorController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{fornecedorController.delete}" update=":growl,datalist" disabled="#{empty fornecedorController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":FornecedorViewForm" oncomplete="FornecedorViewDialog.show()" disabled="#{empty fornecedorController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":FornecedorEditForm" oncomplete="FornecedorEditDialog.show()" disabled="#{empty fornecedorController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{fornecedorController.delete}" update=":growl,datalist" disabled="#{empty fornecedorController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

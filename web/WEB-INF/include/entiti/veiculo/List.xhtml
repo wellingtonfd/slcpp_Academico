@@ -9,7 +9,7 @@
     <h:form id="VeiculoListForm">
 
         <p:panel header="#{myBundle.ListVeiculoTitle}">
-            <p:contextMenu id="VeiculoDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="VeiculoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('VeiculoListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('VeiculoListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('VeiculoListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -107,9 +107,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{veiculoController.prepareCreate}" update=":VeiculoCreateForm" oncomplete="VeiculoCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":VeiculoViewForm" oncomplete="VeiculoViewDialog.show()" disabled="#{empty veiculoController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":VeiculoEditForm" oncomplete="VeiculoEditDialog.show()" disabled="#{empty veiculoController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{veiculoController.delete}" update=":growl,datalist" disabled="#{empty veiculoController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":VeiculoViewForm" oncomplete="VeiculoViewDialog.show()" disabled="#{empty veiculoController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":VeiculoEditForm" oncomplete="VeiculoEditDialog.show()" disabled="#{empty veiculoController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{veiculoController.delete}" update=":growl,datalist" disabled="#{empty veiculoController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 

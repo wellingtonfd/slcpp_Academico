@@ -9,7 +9,7 @@
     <h:form id="TipoSolicitacaoListForm">
 
         <p:panel header="#{myBundle.ListTipoSolicitacaoTitle}">
-            <p:contextMenu id="TipoSolicitacaoDataTableContextMenu" for="datalist">  
+            <p:contextMenu id="TipoSolicitacaoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TipoSolicitacaoListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TipoSolicitacaoListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TipoSolicitacaoListForm:editButton').click();" icon="ui-icon-pencil"/>
@@ -101,9 +101,9 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{tipoSolicitacaoController.prepareCreate}" update=":TipoSolicitacaoCreateForm" oncomplete="TipoSolicitacaoCreateDialog.show()"/>
-            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TipoSolicitacaoViewForm" oncomplete="TipoSolicitacaoViewDialog.show()" disabled="#{empty tipoSolicitacaoController.selected}"/>
-            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TipoSolicitacaoEditForm" oncomplete="TipoSolicitacaoEditDialog.show()" disabled="#{empty tipoSolicitacaoController.selected}"/>
-            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tipoSolicitacaoController.delete}" update=":growl,datalist" disabled="#{empty tipoSolicitacaoController.selected}">
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":TipoSolicitacaoViewForm" oncomplete="TipoSolicitacaoViewDialog.show()" disabled="#{empty tipoSolicitacaoController.selected}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TipoSolicitacaoEditForm" oncomplete="TipoSolicitacaoEditDialog.show()" disabled="#{empty tipoSolicitacaoController.selected}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{tipoSolicitacaoController.delete}" update=":growl,datalist" disabled="#{empty tipoSolicitacaoController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
