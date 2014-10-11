@@ -29,40 +29,37 @@
                     <p:menuitem value="#{myBundle.Help}"  icon="ui-icon-help"/>
 
                 </sec:authorize>
-
-                <sec:authorize access="hasRole('ROLE_COMMON')">
+            </p:menubar>
+            
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <sec:authorize access="hasRole('ROLE_SUP')">
                     <p:submenu label="#{myBundle.Cadastros}" >
-
                         <p:separator/>
                         <p:submenu label="#{myBundle.EmbalagemHeading}...">
-                            <p:submenu label="#{myBundle.EmbalagemHeading}">
                                 <p:menuitem value="#{myBundle.EmbalagemHeading}..." outcome="/entiti/embalagem/index" />
-                            </p:submenu>
                         </p:submenu>
                         <p:separator/>
                         <p:submenu label="#{myBundle.Equipamentos}">
-                            <p:menuitem value="#{myBundle.EpeHeading}..." outcome="/entiti/epe/index" />
+                             <p:menuitem value="#{myBundle.EpeHeading}..." outcome="/entiti/epe/index" />
                             <p:separator/>
-                            <p:menuitem value="#{myBundle.EpiHeading}..." outcome="/entiti/epi/index" />
-                        </p:submenu>
-                        <p:separator />
-                        <p:menuitem value="#{myBundle.View}" outcome="/WEB-INF/include/entiti/epi/Create"/>
-                        <p:separator/>
-                        <p:menuitem value="#{myBundle.VeiculoHeading}..." outcome="/entiti/veiculo/index" />
-                    </p:submenu>
-                    <p:separator />
+                             <p:menuitem value="#{myBundle.EpiHeading}..." outcome="/entiti/epi/index" />
+                             <p:separator/>
+                             <p:menuitem value="#{myBundle.VeiculoHeading}..." outcome="/entiti/veiculo/index" />
+                          </p:submenu>                     
+                              <p:separator />
                     <p:submenu label="#{myBundle.Fornecedores}"  >
                         <p:menuitem value="#{myBundle.Create}" outcome="/entiti/usuario/index" />
                         <p:separator />
                         <p:menuitem value="#{myBundle.View}" outcome="/WEB-INF/include/entiti/epi/Create"/>
                     </p:submenu>
-                    <p:separator />
-                    <p:submenu label="#{myBundle.Funcionario}">
+                  <p:separator />
+                   <p:submenu label="#{myBundle.Funcionario}">
                         <p:menuitem value="#{myBundle.Create}" outcome="/entiti/usuario/index" />
                         <p:separator />
                         <p:menuitem value="#{myBundle.View}" outcome="/WEB-INF/include/entiti/epi/Create"/>
                     </p:submenu>
-                    <p:separator/>
+                   <p:separator/>
                     <p:submenu label="#{myBundle.ProdutoHeading}">
                         <p:menuitem value="#{myBundle.ProdutoHeading}..." outcome="/entiti/produto/index" />
                     </p:submenu>
@@ -73,7 +70,8 @@
                         <p:menuitem value="#{myBundle.StatusArmazemHeading}..." outcome="/entiti/statusArmazem/index" />
                         <p:menuitem value="#{myBundle.CompatibilidadeHeading}..." outcome="/entiti/compatibilidade/index" />
                     </p:submenu>
-                    <p:submenu label="#{myBundle.Movimentacoes}">
+                    <p:separator />
+                      <p:submenu label="#{myBundle.Movimentacoes}">
                         <p:menuitem value="#{myBundle.DetNotaHeading}..." outcome="/entiti/detNota/index" />
                         <p:separator/>
                         <p:menuitem value="#{myBundle.LocalOperacaoHeading}..." outcome="/entiti/localOperacao/index" />
@@ -82,6 +80,13 @@
                         <p:separator/>
                         <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
                     </p:submenu>
+                    </p:submenu>
+                    <p:separator />
+                 </sec:authorize>
+                   
+                   
+                    
+                  
 
                     <p:submenu label="#{myBundle.Relatorios}">
                     </p:submenu>
@@ -92,7 +97,7 @@
 
                     <p:menuitem value="#{myBundle.Help}" outcome="/entiti/veiculo/index" icon="ui-icon-help"/>
 
-                </sec:authorize>
+                
                 <f:facet name="options">                  
                     <p:commandButton type="button"  value="#{myBundle.Sair}" icon="ui-icon-extlink" />
                 </f:facet>
