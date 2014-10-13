@@ -11,6 +11,35 @@
         <h:form id="menuForm">  
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                  <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-star" >
+                    <p:submenu label="#{myBundle.UsuarioHeading}...">
+                        <p:menuitem value="rel" url="/entiti/funcionario/index" ajax="false"   />
+                    </p:submenu>
+                 </p:submenu>
+                
+                
+                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" >
+                    <p:submenu label="#{myBundle.UsuarioHeading}...">
+                        <p:menuitem value="#{myBundle.CreateUsuarioTitle}" outcome="/entiti/usuario/index" />
+                             <p:separator/>
+                        <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_usuarioCollection}" outcome="/entiti/usuario/index" />
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.RolerHeading}...">
+                        <p:menuitem value="#{myBundle.CreateRolerTitle}" outcome="/entiti/roler/index" />
+                             <p:separator/>
+                             <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_rolerCollection}" outcome="/entiti/roler/index" />
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.UsuarioRolerHeading}...">
+                        <p:menuitem value="#{myBundle.CreateUsuarioRolerTitle}" outcome="/entiti/usuarioRoler/index" />
+                          <p:separator/>
+                          <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_usuarioCollection}" outcome="/entiti/usuarioRoler/index" />
+                    </p:submenu>
+                 </p:submenu>
+                
+                
+                
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
                     <p:separator/>
                     <p:submenu label="#{myBundle.EmbalagemHeading}...">
@@ -57,13 +86,12 @@
                         <p:separator/>
                         <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
                     </p:submenu>
+                  </p:submenu>
+                <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}" >    
+                        <p:menuitem value="#{myBundle.RelatorioEmbalagem}..." outcome="/indexRelatorio" />
                 </p:submenu>
-
-                <p:submenu label="#{myBundle.Relatorios}">
-                </p:submenu>
-
+            
                 <p:submenu label="#{myBundle.Configuracoes}">
-                    <p:menuitem value="#{myBundle.TipoEquipamentoHeading}..." outcome="/entiti/tipoEquipamento/index" />
                 </p:submenu>
 
                 <p:menuitem value="#{myBundle.Help}" outcome="/entiti/veiculo/index" icon="ui-icon-help"/>

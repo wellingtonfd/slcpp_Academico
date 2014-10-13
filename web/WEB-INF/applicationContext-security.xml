@@ -14,6 +14,12 @@
         <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="any"/>
         <intercept-url pattern="/WEB-INF/include/entiti/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="any"/>
         <intercept-url pattern="/WEB-INF/include/entiti/**" access="hasRole('ROLE_SUP')" requires-channel="https"/>
+            <intercept-url pattern="/WEB-INF/include/entiti/reports/**" access="hasRole('ROLE_DIR','ROLE_OPE')" requires-channel="https"/>
+            <intercept-url pattern="/WEB-INF/include/entiti/usuario/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
+            <intercept-url pattern="/WEB-INF/include/entiti/roler/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
+            <intercept-url pattern="/WEB-INF/include/entiti/usuarioRoler/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
+            <intercept-url pattern="/WEB-INF/include/entiti/viewFuncionario/**" access="hasRole('ROLE_OPE')" requires-channel="https"/>
+            <intercept-url pattern="/WEB-INF/include/entiti/**" access="hasRole('ROLE_OPE')" requires-channel="https"/>
         <intercept-url pattern="/entiti/**" access="hasAnyRole('ROLE_ADMIN','ROLE_COMMON')" requires-channel="https"/>
         <intercept-url pattern="/index.jsf" access="isAuthenticated()" requires-channel="https"/>
         <port-mappings>
