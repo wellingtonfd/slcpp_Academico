@@ -87,14 +87,14 @@
                         <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
                     </p:submenu>
                   </p:submenu>
-                <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}" >    
-                        <p:menuitem value="#{myBundle.RelatorioEmbalagem}..." outcome="/indexRelatorio" />
+                <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}" >
+                        <p:menuitem value="#{myBundle.RelatorioEmbalagem}..." outcome="/entiti/tipoSolicitacao/index" />
                 </p:submenu>
             
                 <p:submenu label="#{myBundle.Configuracoes}">
                 </p:submenu>
 
-                <p:menuitem value="#{myBundle.Help}" outcome="/entiti/veiculo/index" icon="ui-icon-help"/>
+                <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
 
 
                 <f:facet name="options">  
