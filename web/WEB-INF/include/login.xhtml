@@ -7,6 +7,8 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <p:dialog header="Login" visible="true" closable="false" draggable="false" modal="true" appendTo="@(body)" closeOnEscape="true" resizable="false" width="280">
+        <h:outputLabel ><h3 align="center">SLCPP <br />Sistema Logístico de Controle <br />de Produtos Perigosos</h3></h:outputLabel>
+        <p:separator/>
         <form action="j_spring_security_check" method="post" >
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="j_username" value="Username: *" />
