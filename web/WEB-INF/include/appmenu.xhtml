@@ -6,7 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
-    
+
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
     <script src="http://code.jquery.com/jquery-1.9.1.js"/> 
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"/>
@@ -14,64 +14,93 @@
 
     <ui:composition>
         <h:form id="menuForm">  
+            <p:dialog header="Contatos Suporte" widgetVar="View2"  appendToBody="true" modal="true" resizable="false" draggable="false">
+                <h:form id="form2">
+                    <div align="center"><h3> Contatos Suporte </h3> </div><br />
+                    <div> Na necessidade de suporte técnico, entre em contato :<br /><br />
+                        Telefone: (22)2222-2222 / 3333-3333<br />
+                        E-mail: slcpp@com.br<br />
+                    </div>    
+                </h:form>
+            </p:dialog>
             <p:dialog header="Sobre" widgetVar="View1"  appendToBody="true" modal="true" resizable="false" draggable="false">
                 <h:form id="form1">
                     <div align="center"><h3>   SLCPP - Sistema Logístico de Controle de Produtos Perigosos</h3> </div><br /><br />
                     <div> É um  projeto de TCC (Trabalho de Conclusão de Curso) desenvolvido para fins logísticos, com <br />
-                      a sua atividade voltada para o trato e confinamento materiais e produtos perigosos permitindo <br />
-                     a sua gerencia e gestão do ambiente que vai administrá-lo.<br /><br /><br />
-                    
-                     Componentes:<br /><br />
-                     Edilson Jardim<br />
-                     Leonardo Martins<br />
-                     Wellington Duarte<br />
-                    
-                    
-                    </div>    
-                </h:form>
-            </p:dialog>
-               <p:dialog header="Constatos" widgetVar="View2"  appendToBody="true" modal="true" resizable="false" draggable="false">
-                <h:form id="form2">
-                    <div align="center"><h3>   Suporte </h3> </div><br />
-                    <div> Na necessidade de suporte técnico, entre em contato :<br /><br />
-                     Telefone: (22)2222-2222 / 3333-3333<br />
-                     E-mail: slcpp@com.br<br />
+                        a sua atividade voltada para o trato e confinamento materiais e produtos perigosos permitindo <br />
+                        a sua gerencia e gestão do ambiente que vai administrá-lo.<br /><br /><br />
+
+                        Componentes:<br /><br />
+                        Edilson Jardim<br />
+                        Leonardo Martins<br />
+                        Wellington Duarte<br />
+
+
                     </div>    
                 </h:form>
             </p:dialog>
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
-                      <p:menuitem  value="#{myBundle.ViewArmazemIndexLink}" outcome="/entiti/usuario/index" ajax="false"   />
-                 </p:submenu>
-                
-                
-                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
+                    <p:submenu label="Exibir Armazéns...">
+                        <p:menuitem value="#{myBundle.ArmazemHeading}..." outcome="/entiti/armazem/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.EndArmazemHeading}..." outcome="/entiti/endArmazem/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.StatusArmazemHeading}..." outcome="/entiti/statusArmazem/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.CompatibilidadeHeading}..." outcome="/entiti/compatibilidade/index" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:menuitem  value="#{myBundle.ExibirEmbalagem}" outcome="/entiti/usuario/index"/>
+                    <p:separator />
+                        <p:submenu label="Exibir Equipamentos...">
+                            <p:submenu label="EPE">
+                            </p:submenu>
+                            <p:separator/>
+                                <p:menuitem value="EPI" outcome="/entiti/usuario/index" />
+                            <p:separator/>
+                                <p:menuitem value="Veículo" outcome="/entiti/usuario/index" />
+                        </p:submenu>
+                    <p:separator />
+                    <p:menuitem  value="#{myBundle.ExibirFornecedor}" outcome="/entiti/usuario/index"   />
+                    <p:separator />
+                    <p:menuitem  value="#{myBundle.ExibirFuncionario}" outcome="/entiti/usuario/index"   />
+                    <p:separator />
+                    <p:menuitem  value="#{myBundle.ExibirNotas}" outcome="/entiti/usuario/index"   />
+                    <p:separator />
+                    <p:menuitem  value="#{myBundle.ExibirOperacao}" outcome="/entiti/usuario/index"   />
+                    <p:separator />
+                    <p:menuitem  value="#{myBundle.ExibirProduto}" outcome="/entiti/usuario/index"   />
+                </p:submenu>
+
+
+                <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
                     <p:submenu label="#{myBundle.UsuarioHeading}...">
                         <p:menuitem value="#{myBundle.CreateUsuarioTitle}" outcome="/entiti/usuario/index" />
-                             <p:separator/>
+                        <p:separator/>
                         <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_usuarioCollection}" outcome="/entiti/usuario/index" />
                     </p:submenu>
                     <p:separator/>
                     <p:submenu label="#{myBundle.RolerHeading}...">
                         <p:menuitem value="#{myBundle.CreateRolerTitle}" outcome="/entiti/roler/index" />
-                             <p:separator/>
-                             <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_rolerCollection}" outcome="/entiti/roler/index" />
+                        <p:separator/>
+                        <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_rolerCollection}" outcome="/entiti/roler/index" />
                     </p:submenu>
                     <p:separator/>
                     <p:submenu label="#{myBundle.UsuarioRolerHeading}...">
                         <p:menuitem value="#{myBundle.CreateUsuarioRolerTitle}" outcome="/entiti/usuarioRoler/index" />
-                          <p:separator/>
-                          <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_usuarioCollection}" outcome="/entiti/usuarioRoler/index" />
+                        <p:separator/>
+                        <p:menuitem value="#{myBundle.UsuarioRolerMenuItem_usuarioCollection}" outcome="/entiti/usuarioRoler/index" />
                     </p:submenu>
-                 </p:submenu>
-                
-                
-                
+                </p:submenu>
+
+
+
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
                     <p:separator/>
                     <p:submenu label="#{myBundle.EmbalagemHeading}...">
-                        <p:menuitem value="#{myBundle.EmbalagemHeading}..." outcome="/entiti/embalagem/index" />
+                        <p:menuitem value="#{myBundle.EmbalagemHeading}..." outcome="/entiti/epe/index" />
                     </p:submenu>
                     <p:separator/>
                     <p:submenu label="#{myBundle.Equipamentos}">
@@ -85,13 +114,13 @@
                     <p:submenu label="#{myBundle.Fornecedores}"  >
                         <p:menuitem value="#{myBundle.Create}" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="#{myBundle.View}" outcome="/WEB-INF/include/entiti/epi/Create"/>
+                        <p:menuitem value="#{myBundle.View}" outcome="/entiti/usuario/index"/>
                     </p:submenu>
                     <p:separator />
                     <p:submenu label="#{myBundle.Funcionario}">
                         <p:menuitem value="#{myBundle.Create}" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="#{myBundle.View}" outcome="/WEB-INF/include/entiti/epi/Create"/>
+                        <p:menuitem value="#{myBundle.View}" outcome="/entiti/usuario/index"/>
                     </p:submenu>
                     <p:separator/>
                     <p:submenu label="#{myBundle.ProdutoHeading}">
@@ -100,8 +129,11 @@
                     <p:separator/>
                     <p:submenu label="#{myBundle.Armazem}">
                         <p:menuitem value="#{myBundle.ArmazemHeading}..." outcome="/entiti/armazem/index" />
+                        <p:separator />
                         <p:menuitem value="#{myBundle.EndArmazemHeading}..." outcome="/entiti/endArmazem/index" />
+                        <p:separator />
                         <p:menuitem value="#{myBundle.StatusArmazemHeading}..." outcome="/entiti/statusArmazem/index" />
+                        <p:separator />
                         <p:menuitem value="#{myBundle.CompatibilidadeHeading}..." outcome="/entiti/compatibilidade/index" />
                     </p:submenu>
                     <p:separator />
@@ -114,32 +146,59 @@
                         <p:separator/>
                         <p:menuitem value="#{myBundle.TipoSolicitacaoHeading}..." outcome="/entiti/tipoSolicitacao/index" />
                     </p:submenu>
-                  </p:submenu>
-                <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
-                    <p:menuitem value="#{myBundle.RelatorioEmbalagem}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioEquipamento}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioFornecedor}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioFuncionario}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioNotas}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioOperacao}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioProduto}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
-                     <p:separator/>
-                     <p:menuitem value="#{myBundle.RelatorioUsuario}..." outcome="/entiti/viewDiretor/relatorioUsuario" />
                 </p:submenu>
-            
+                <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
+                    <p:submenu label="Armazéns...">
+                        <p:menuitem value="#{myBundle.ArmazemHeading}..." outcome="/entiti/armazem/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.EndArmazemHeading}..." outcome="/entiti/endArmazem/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.StatusArmazemHeading}..." outcome="/entiti/statusArmazem/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.CompatibilidadeHeading}..." outcome="/entiti/compatibilidade/index" />
+                    </p:submenu>
+                     <p:separator />
+                    <p:submenu label="Equipamentos...">
+                        <p:submenu label="EPE">
+                                 <p:menuitem value="#{myBundle.Create}" outcome="/entiti/usuario/index" />
+                                    <p:separator />
+                                 <p:menuitem value="#{myBundle.View}" outcome="/entiti/usuario/index"/>
+                        </p:submenu>
+                        <p:separator/>
+                        <p:menuitem value="EPI" outcome="/entiti/usuario/index" />
+                        <p:separator/>
+                        <p:menuitem value="Veículo" outcome="/entiti/usuario/index" />
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="Fornecedores..." >
+                        <p:menuitem value="#{myBundle.Create}" outcome="/entiti/usuario/index" />
+                        <p:separator />
+                        <p:menuitem value="#{myBundle.View}" outcome="/entiti/usuario/index"/>
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.RelatorioFuncionario}..." >
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.RelatorioNotas}..." >
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.RelatorioOperacao}...">
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.RelatorioProduto}..." >
+                    </p:submenu>
+                    <p:separator/>
+                    <p:submenu label="#{myBundle.RelatorioUsuario}..."  >
+                    </p:submenu>
+
+                </p:submenu>
                 <p:submenu label="#{myBundle.Configuracoes}" icon="ui-icon-gear" >
+                    <p:menuitem value="Contatos Suporte" onclick="PF('View2').show()" />
+                    <p:separator/>
                     <p:menuitem value="Sobre" onclick="PF('View1').show()"/>
-                     <p:separator/>
-                    <p:menuitem value="Contatos" onclick="PF('View2').show()" />
                 </p:submenu>
                 <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
-                
+
                 <f:facet name="options">  
                     #{request.remoteUser}
                     <p:commandButton type="button" onclick="document.location = '#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />
