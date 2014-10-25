@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "compatibilidade")
@@ -37,53 +33,40 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Compatibilidade.findAll", query = "SELECT c FROM Compatibilidade c"),
     @NamedQuery(name = "Compatibilidade.findByIdCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.idCompatibilidade = :idCompatibilidade"),
-    @NamedQuery(name = "Compatibilidade.findByGrupoCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.grupoCompatibilidade = :grupoCompatibilidade"),
+    @NamedQuery(name = "Compatibilidade.findByCodClassifi", query = "SELECT c FROM Compatibilidade c WHERE c.codClassifi = :codClassifi"),
     @NamedQuery(name = "Compatibilidade.findByDescCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.descCompatibilidade = :descCompatibilidade"),
-    @NamedQuery(name = "Compatibilidade.findByCodClassifi", query = "SELECT c FROM Compatibilidade c WHERE c.codClassifi = :codClassifi")})
+    @NamedQuery(name = "Compatibilidade.findByGrupoCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.grupoCompatibilidade = :grupoCompatibilidade")})
 public class Compatibilidade implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompatibilidade")
-    private Collection<Armazem> armazemCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_compatibilidade")
     private Integer idCompatibilidade;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1)
-    @Column(name = "grupo_compatibilidade")
-    private String grupoCompatibilidade;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "desc_compatibilidade")
-    private String descCompatibilidade;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
+    @Size(max = 255)
     @Column(name = "cod_classifi")
     private String codClassifi;
+    @Size(max = 255)
+    @Column(name = "desc_compatibilidade")
+    private String descCompatibilidade;
+    @Size(max = 255)
+    @Column(name = "grupo_compatibilidade")
+    private String grupoCompatibilidade;
     @OneToMany(mappedBy = "idCompatibilidade")
-    private Collection<Embalagem> embalagemCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompatibilidade")
-    private Collection<Produto> produtoCollection;
+    private List<Embalagem> embalagemList;
+    @OneToMany(mappedBy = "idCompatibilidade")
+    private List<Produto> produtoList;
     @JoinColumn(name = "id_legenda_compatibilidade", referencedColumnName = "id_legenda_compatibilidade")
     @ManyToOne
     private LegendaCompatibilidade idLegendaCompatibilidade;
+    @OneToMany(mappedBy = "idCompatibilidade")
+    private List<Armazem> armazemList;
 
     public Compatibilidade() {
     }
 
     public Compatibilidade(Integer idCompatibilidade) {
         this.idCompatibilidade = idCompatibilidade;
-    }
-
-    public Compatibilidade(Integer idCompatibilidade, String grupoCompatibilidade, String descCompatibilidade, String codClassifi) {
-        this.idCompatibilidade = idCompatibilidade;
-        this.grupoCompatibilidade = grupoCompatibilidade;
-        this.descCompatibilidade = descCompatibilidade;
-        this.codClassifi = codClassifi;
     }
 
     public Integer getIdCompatibilidade() {
@@ -94,12 +77,12 @@ public class Compatibilidade implements Serializable {
         this.idCompatibilidade = idCompatibilidade;
     }
 
-    public String getGrupoCompatibilidade() {
-        return grupoCompatibilidade;
+    public String getCodClassifi() {
+        return codClassifi;
     }
 
-    public void setGrupoCompatibilidade(String grupoCompatibilidade) {
-        this.grupoCompatibilidade = grupoCompatibilidade;
+    public void setCodClassifi(String codClassifi) {
+        this.codClassifi = codClassifi;
     }
 
     public String getDescCompatibilidade() {
@@ -110,30 +93,30 @@ public class Compatibilidade implements Serializable {
         this.descCompatibilidade = descCompatibilidade;
     }
 
-    public String getCodClassifi() {
-        return codClassifi;
+    public String getGrupoCompatibilidade() {
+        return grupoCompatibilidade;
     }
 
-    public void setCodClassifi(String codClassifi) {
-        this.codClassifi = codClassifi;
-    }
-
-    @XmlTransient
-    public Collection<Embalagem> getEmbalagemCollection() {
-        return embalagemCollection;
-    }
-
-    public void setEmbalagemCollection(Collection<Embalagem> embalagemCollection) {
-        this.embalagemCollection = embalagemCollection;
+    public void setGrupoCompatibilidade(String grupoCompatibilidade) {
+        this.grupoCompatibilidade = grupoCompatibilidade;
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public List<Embalagem> getEmbalagemList() {
+        return embalagemList;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setEmbalagemList(List<Embalagem> embalagemList) {
+        this.embalagemList = embalagemList;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     public LegendaCompatibilidade getIdLegendaCompatibilidade() {
@@ -142,6 +125,15 @@ public class Compatibilidade implements Serializable {
 
     public void setIdLegendaCompatibilidade(LegendaCompatibilidade idLegendaCompatibilidade) {
         this.idLegendaCompatibilidade = idLegendaCompatibilidade;
+    }
+
+    @XmlTransient
+    public List<Armazem> getArmazemList() {
+        return armazemList;
+    }
+
+    public void setArmazemList(List<Armazem> armazemList) {
+        this.armazemList = armazemList;
     }
 
     @Override
@@ -168,14 +160,5 @@ public class Compatibilidade implements Serializable {
     public String toString() {
         return "entiti.Compatibilidade[ idCompatibilidade=" + idCompatibilidade + " ]";
     }
-
-    @XmlTransient
-    public Collection<Armazem> getArmazemCollection() {
-        return armazemCollection;
-    }
-
-    public void setArmazemCollection(Collection<Armazem> armazemCollection) {
-        this.armazemCollection = armazemCollection;
-    }
-
+    
 }

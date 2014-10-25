@@ -33,7 +33,7 @@ public class EstFisicoController extends AbstractController<EstFisico> {
      */
     public String navigateProdutoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }
         return "/entiti/produto/index";
     }

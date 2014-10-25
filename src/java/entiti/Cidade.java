@@ -44,9 +44,9 @@ public class Cidade implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_cidade")
     private String nomeCidade;
-    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
+    @JoinColumn(name = "fk_estado", referencedColumnName = "id_estado")
     @ManyToOne
-    private Estado idEstado;
+    private Estado fkEstado;
     @OneToMany(mappedBy = "idCidade")
     private List<Endereco> enderecoList;
 
@@ -73,12 +73,12 @@ public class Cidade implements Serializable {
         this.nomeCidade = nomeCidade;
     }
 
-    public Estado getIdEstado() {
-        return idEstado;
+    public Estado getFkEstado() {
+        return fkEstado;
     }
 
-    public void setIdEstado(Estado idEstado) {
-        this.idEstado = idEstado;
+    public void setFkEstado(Estado fkEstado) {
+        this.fkEstado = fkEstado;
     }
 
     @XmlTransient

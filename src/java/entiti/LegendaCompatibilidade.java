@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "legenda_compatibilidade")
@@ -34,8 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "LegendaCompatibilidade.findAll", query = "SELECT l FROM LegendaCompatibilidade l"),
     @NamedQuery(name = "LegendaCompatibilidade.findByIdLegendaCompatibilidade", query = "SELECT l FROM LegendaCompatibilidade l WHERE l.idLegendaCompatibilidade = :idLegendaCompatibilidade"),
-    @NamedQuery(name = "LegendaCompatibilidade.findByLegenda", query = "SELECT l FROM LegendaCompatibilidade l WHERE l.legenda = :legenda"),
-    @NamedQuery(name = "LegendaCompatibilidade.findByEspecLegenda", query = "SELECT l FROM LegendaCompatibilidade l WHERE l.especLegenda = :especLegenda")})
+    @NamedQuery(name = "LegendaCompatibilidade.findByEspecLegenda", query = "SELECT l FROM LegendaCompatibilidade l WHERE l.especLegenda = :especLegenda"),
+    @NamedQuery(name = "LegendaCompatibilidade.findByLegenda", query = "SELECT l FROM LegendaCompatibilidade l WHERE l.legenda = :legenda")})
 public class LegendaCompatibilidade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,29 +40,22 @@ public class LegendaCompatibilidade implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_legenda_compatibilidade")
     private Integer idLegendaCompatibilidade;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1)
-    @Column(name = "legenda")
-    private String legenda;
-    @Size(max = 60)
+    @Size(max = 255)
     @Column(name = "espec_legenda")
     private String especLegenda;
+    @Size(max = 255)
+    @Column(name = "legenda")
+    private String legenda;
     @OneToMany(mappedBy = "idLegendaCompatibilidade")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
     @OneToMany(mappedBy = "idLegendaCompatibilidade")
-    private Collection<Compatibilidade> compatibilidadeCollection;
+    private List<Compatibilidade> compatibilidadeList;
 
     public LegendaCompatibilidade() {
     }
 
     public LegendaCompatibilidade(Integer idLegendaCompatibilidade) {
         this.idLegendaCompatibilidade = idLegendaCompatibilidade;
-    }
-
-    public LegendaCompatibilidade(Integer idLegendaCompatibilidade, String legenda) {
-        this.idLegendaCompatibilidade = idLegendaCompatibilidade;
-        this.legenda = legenda;
     }
 
     public Integer getIdLegendaCompatibilidade() {
@@ -76,14 +66,6 @@ public class LegendaCompatibilidade implements Serializable {
         this.idLegendaCompatibilidade = idLegendaCompatibilidade;
     }
 
-    public String getLegenda() {
-        return legenda;
-    }
-
-    public void setLegenda(String legenda) {
-        this.legenda = legenda;
-    }
-
     public String getEspecLegenda() {
         return especLegenda;
     }
@@ -92,22 +74,30 @@ public class LegendaCompatibilidade implements Serializable {
         this.especLegenda = especLegenda;
     }
 
+    public String getLegenda() {
+        return legenda;
+    }
+
+    public void setLegenda(String legenda) {
+        this.legenda = legenda;
+    }
+
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public List<Produto> getProdutoList() {
+        return produtoList;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @XmlTransient
-    public Collection<Compatibilidade> getCompatibilidadeCollection() {
-        return compatibilidadeCollection;
+    public List<Compatibilidade> getCompatibilidadeList() {
+        return compatibilidadeList;
     }
 
-    public void setCompatibilidadeCollection(Collection<Compatibilidade> compatibilidadeCollection) {
-        this.compatibilidadeCollection = compatibilidadeCollection;
+    public void setCompatibilidadeList(List<Compatibilidade> compatibilidadeList) {
+        this.compatibilidadeList = compatibilidadeList;
     }
 
     @Override
@@ -134,5 +124,5 @@ public class LegendaCompatibilidade implements Serializable {
     public String toString() {
         return "entiti.LegendaCompatibilidade[ idLegendaCompatibilidade=" + idLegendaCompatibilidade + " ]";
     }
-
+    
 }

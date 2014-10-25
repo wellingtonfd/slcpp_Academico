@@ -33,7 +33,7 @@ public class CombustivelController extends AbstractController<Combustivel> {
      */
     public String navigateVeiculoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Veiculo_items", this.getSelected().getVeiculoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Veiculo_items", this.getSelected().getVeiculoList());
         }
         return "/entiti/veiculo/index";
     }

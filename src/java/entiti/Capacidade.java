@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "capacidade")
@@ -42,11 +39,11 @@ public class Capacidade implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_capacidade")
     private Integer idCapacidade;
-    @Size(max = 40)
+    @Size(max = 255)
     @Column(name = "tipo_capacidade")
     private String tipoCapacidade;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCapacidade")
-    private Collection<Embalagem> embalagemCollection;
+    @OneToMany(mappedBy = "idCapacidade")
+    private List<Embalagem> embalagemList;
 
     public Capacidade() {
     }
@@ -72,12 +69,12 @@ public class Capacidade implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Embalagem> getEmbalagemCollection() {
-        return embalagemCollection;
+    public List<Embalagem> getEmbalagemList() {
+        return embalagemList;
     }
 
-    public void setEmbalagemCollection(Collection<Embalagem> embalagemCollection) {
-        this.embalagemCollection = embalagemCollection;
+    public void setEmbalagemList(List<Embalagem> embalagemList) {
+        this.embalagemList = embalagemList;
     }
 
     @Override
@@ -104,5 +101,5 @@ public class Capacidade implements Serializable {
     public String toString() {
         return "entiti.Capacidade[ idCapacidade=" + idCapacidade + " ]";
     }
-
+    
 }

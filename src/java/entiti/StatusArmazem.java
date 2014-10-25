@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "status_armazem")
@@ -35,8 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "StatusArmazem.findAll", query = "SELECT s FROM StatusArmazem s"),
     @NamedQuery(name = "StatusArmazem.findByIdStatusArmazem", query = "SELECT s FROM StatusArmazem s WHERE s.idStatusArmazem = :idStatusArmazem"),
-    @NamedQuery(name = "StatusArmazem.findByTipoStatusArmazem", query = "SELECT s FROM StatusArmazem s WHERE s.tipoStatusArmazem = :tipoStatusArmazem"),
-    @NamedQuery(name = "StatusArmazem.findByEspecStatusArmazem", query = "SELECT s FROM StatusArmazem s WHERE s.especStatusArmazem = :especStatusArmazem")})
+    @NamedQuery(name = "StatusArmazem.findByEspecStatusArmazem", query = "SELECT s FROM StatusArmazem s WHERE s.especStatusArmazem = :especStatusArmazem"),
+    @NamedQuery(name = "StatusArmazem.findByTipoStatusArmazem", query = "SELECT s FROM StatusArmazem s WHERE s.tipoStatusArmazem = :tipoStatusArmazem")})
 public class StatusArmazem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,30 +40,20 @@ public class StatusArmazem implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_status_armazem")
     private Integer idStatusArmazem;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "tipo_status_armazem")
-    private String tipoStatusArmazem;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
+    @Size(max = 255)
     @Column(name = "espec_status_armazem")
     private String especStatusArmazem;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusArmazemIdStatusArmazem")
-    private Collection<Armazem> armazemCollection;
+    @Size(max = 255)
+    @Column(name = "tipo_status_armazem")
+    private String tipoStatusArmazem;
+    @OneToMany(mappedBy = "statusArmazemIdStatusArmazem")
+    private List<Armazem> armazemList;
 
     public StatusArmazem() {
     }
 
     public StatusArmazem(Integer idStatusArmazem) {
         this.idStatusArmazem = idStatusArmazem;
-    }
-
-    public StatusArmazem(Integer idStatusArmazem, String tipoStatusArmazem, String especStatusArmazem) {
-        this.idStatusArmazem = idStatusArmazem;
-        this.tipoStatusArmazem = tipoStatusArmazem;
-        this.especStatusArmazem = especStatusArmazem;
     }
 
     public Integer getIdStatusArmazem() {
@@ -78,14 +64,6 @@ public class StatusArmazem implements Serializable {
         this.idStatusArmazem = idStatusArmazem;
     }
 
-    public String getTipoStatusArmazem() {
-        return tipoStatusArmazem;
-    }
-
-    public void setTipoStatusArmazem(String tipoStatusArmazem) {
-        this.tipoStatusArmazem = tipoStatusArmazem;
-    }
-
     public String getEspecStatusArmazem() {
         return especStatusArmazem;
     }
@@ -94,13 +72,21 @@ public class StatusArmazem implements Serializable {
         this.especStatusArmazem = especStatusArmazem;
     }
 
-    @XmlTransient
-    public Collection<Armazem> getArmazemCollection() {
-        return armazemCollection;
+    public String getTipoStatusArmazem() {
+        return tipoStatusArmazem;
     }
 
-    public void setArmazemCollection(Collection<Armazem> armazemCollection) {
-        this.armazemCollection = armazemCollection;
+    public void setTipoStatusArmazem(String tipoStatusArmazem) {
+        this.tipoStatusArmazem = tipoStatusArmazem;
+    }
+
+    @XmlTransient
+    public List<Armazem> getArmazemList() {
+        return armazemList;
+    }
+
+    public void setArmazemList(List<Armazem> armazemList) {
+        this.armazemList = armazemList;
     }
 
     @Override
@@ -127,5 +113,5 @@ public class StatusArmazem implements Serializable {
     public String toString() {
         return "entiti.StatusArmazem[ idStatusArmazem=" + idStatusArmazem + " ]";
     }
-
+    
 }

@@ -49,14 +49,14 @@ public class UsuarioController extends AbstractController<Usuario> {
      */
     public String navigateFuncionarioCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioList());
         }
         return "/entiti/funcionario/index";
     }
     
     public String navigateUsuarioRolerCollection(){
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("UsuarioRoler_items", this.getSelected().getUsuarioRolerCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("UsuarioRoler_items", this.getSelected().getUsuarioRolerList());
         }
         return "/entiti/usuarioroler/index";
     }

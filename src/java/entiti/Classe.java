@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "classe")
@@ -34,9 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Classe.findAll", query = "SELECT c FROM Classe c"),
     @NamedQuery(name = "Classe.findByIdClasse", query = "SELECT c FROM Classe c WHERE c.idClasse = :idClasse"),
+    @NamedQuery(name = "Classe.findByEspecClasse", query = "SELECT c FROM Classe c WHERE c.especClasse = :especClasse"),
     @NamedQuery(name = "Classe.findByNumClasse", query = "SELECT c FROM Classe c WHERE c.numClasse = :numClasse"),
-    @NamedQuery(name = "Classe.findByNumSubclasse", query = "SELECT c FROM Classe c WHERE c.numSubclasse = :numSubclasse"),
-    @NamedQuery(name = "Classe.findByEspecClasse", query = "SELECT c FROM Classe c WHERE c.especClasse = :especClasse")})
+    @NamedQuery(name = "Classe.findByNumSubclasse", query = "SELECT c FROM Classe c WHERE c.numSubclasse = :numSubclasse")})
 public class Classe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,34 +41,21 @@ public class Classe implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_classe")
     private Integer idClasse;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "num_classe")
-    private int numClasse;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "num_subclasse")
-    private int numSubclasse;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 255)
     @Column(name = "espec_classe")
     private String especClasse;
+    @Column(name = "num_classe")
+    private Integer numClasse;
+    @Column(name = "num_subclasse")
+    private Integer numSubclasse;
     @OneToMany(mappedBy = "idClasse")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
 
     public Classe() {
     }
 
     public Classe(Integer idClasse) {
         this.idClasse = idClasse;
-    }
-
-    public Classe(Integer idClasse, int numClasse, int numSubclasse, String especClasse) {
-        this.idClasse = idClasse;
-        this.numClasse = numClasse;
-        this.numSubclasse = numSubclasse;
-        this.especClasse = especClasse;
     }
 
     public Integer getIdClasse() {
@@ -82,22 +66,6 @@ public class Classe implements Serializable {
         this.idClasse = idClasse;
     }
 
-    public int getNumClasse() {
-        return numClasse;
-    }
-
-    public void setNumClasse(int numClasse) {
-        this.numClasse = numClasse;
-    }
-
-    public int getNumSubclasse() {
-        return numSubclasse;
-    }
-
-    public void setNumSubclasse(int numSubclasse) {
-        this.numSubclasse = numSubclasse;
-    }
-
     public String getEspecClasse() {
         return especClasse;
     }
@@ -106,13 +74,29 @@ public class Classe implements Serializable {
         this.especClasse = especClasse;
     }
 
-    @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public Integer getNumClasse() {
+        return numClasse;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setNumClasse(Integer numClasse) {
+        this.numClasse = numClasse;
+    }
+
+    public Integer getNumSubclasse() {
+        return numSubclasse;
+    }
+
+    public void setNumSubclasse(Integer numSubclasse) {
+        this.numSubclasse = numSubclasse;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -139,5 +123,5 @@ public class Classe implements Serializable {
     public String toString() {
         return "entiti.Classe[ idClasse=" + idClasse + " ]";
     }
-
+    
 }

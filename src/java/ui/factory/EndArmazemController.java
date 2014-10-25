@@ -37,7 +37,7 @@ public class EndArmazemController extends AbstractController<EndArmazem> {
      */
     public String navigateProdutoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }
         return "/entiti/produto/index";
     }
@@ -51,7 +51,7 @@ public class EndArmazemController extends AbstractController<EndArmazem> {
      */
     public String navigateMovimentacaoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }
         return "/entiti/movimentacao/index";
     }
@@ -64,7 +64,7 @@ public class EndArmazemController extends AbstractController<EndArmazem> {
      */
     public String navigateArmazemCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Armazem_items", this.getSelected().getArmazemCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Armazem_items", this.getSelected().getArmazemList());
         }
         return "/entiti/armazem/index";
     }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -23,8 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "embalagem")
@@ -32,11 +30,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Embalagem.findAll", query = "SELECT e FROM Embalagem e"),
     @NamedQuery(name = "Embalagem.findByIdEmbalagem", query = "SELECT e FROM Embalagem e WHERE e.idEmbalagem = :idEmbalagem"),
-    @NamedQuery(name = "Embalagem.findByEspecEmabalagem", query = "SELECT e FROM Embalagem e WHERE e.especEmabalagem = :especEmabalagem"),
-    @NamedQuery(name = "Embalagem.findByPtFulgor", query = "SELECT e FROM Embalagem e WHERE e.ptFulgor = :ptFulgor"),
-    @NamedQuery(name = "Embalagem.findByPtEbulicao", query = "SELECT e FROM Embalagem e WHERE e.ptEbulicao = :ptEbulicao"),
     @NamedQuery(name = "Embalagem.findByCapacidPressao", query = "SELECT e FROM Embalagem e WHERE e.capacidPressao = :capacidPressao"),
-    @NamedQuery(name = "Embalagem.findByIdTipoMaterial", query = "SELECT e FROM Embalagem e WHERE e.idTipoMaterial = :idTipoMaterial")})
+    @NamedQuery(name = "Embalagem.findByEspecEmabalagem", query = "SELECT e FROM Embalagem e WHERE e.especEmabalagem = :especEmabalagem"),
+    @NamedQuery(name = "Embalagem.findByIdTipoMaterial", query = "SELECT e FROM Embalagem e WHERE e.idTipoMaterial = :idTipoMaterial"),
+    @NamedQuery(name = "Embalagem.findByPtEbulicao", query = "SELECT e FROM Embalagem e WHERE e.ptEbulicao = :ptEbulicao"),
+    @NamedQuery(name = "Embalagem.findByPtFulgor", query = "SELECT e FROM Embalagem e WHERE e.ptFulgor = :ptFulgor")})
 public class Embalagem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,20 +42,20 @@ public class Embalagem implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_embalagem")
     private Integer idEmbalagem;
-    @Size(max = 40)
-    @Column(name = "espec_emabalagem")
-    private String especEmabalagem;
-    @Size(max = 20)
-    @Column(name = "pt_fulgor")
-    private String ptFulgor;
-    @Size(max = 20)
-    @Column(name = "pt_ebulicao")
-    private String ptEbulicao;
-    @Size(max = 20)
+    @Size(max = 255)
     @Column(name = "capacid_pressao")
     private String capacidPressao;
+    @Size(max = 255)
+    @Column(name = "espec_emabalagem")
+    private String especEmabalagem;
     @Column(name = "id_tipo_material")
     private Integer idTipoMaterial;
+    @Size(max = 255)
+    @Column(name = "pt_ebulicao")
+    private String ptEbulicao;
+    @Size(max = 255)
+    @Column(name = "pt_fulgor")
+    private String ptFulgor;
     @JoinColumn(name = "id_grupo_embalagem", referencedColumnName = "id_grupo_embalagem")
     @ManyToOne
     private GrupoEmbalagem idGrupoEmbalagem;
@@ -65,7 +63,7 @@ public class Embalagem implements Serializable {
     @ManyToOne
     private Compatibilidade idCompatibilidade;
     @JoinColumn(name = "id_capacidade", referencedColumnName = "id_capacidade")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Capacidade idCapacidade;
 
     public Embalagem() {
@@ -83,6 +81,14 @@ public class Embalagem implements Serializable {
         this.idEmbalagem = idEmbalagem;
     }
 
+    public String getCapacidPressao() {
+        return capacidPressao;
+    }
+
+    public void setCapacidPressao(String capacidPressao) {
+        this.capacidPressao = capacidPressao;
+    }
+
     public String getEspecEmabalagem() {
         return especEmabalagem;
     }
@@ -91,12 +97,12 @@ public class Embalagem implements Serializable {
         this.especEmabalagem = especEmabalagem;
     }
 
-    public String getPtFulgor() {
-        return ptFulgor;
+    public Integer getIdTipoMaterial() {
+        return idTipoMaterial;
     }
 
-    public void setPtFulgor(String ptFulgor) {
-        this.ptFulgor = ptFulgor;
+    public void setIdTipoMaterial(Integer idTipoMaterial) {
+        this.idTipoMaterial = idTipoMaterial;
     }
 
     public String getPtEbulicao() {
@@ -107,20 +113,12 @@ public class Embalagem implements Serializable {
         this.ptEbulicao = ptEbulicao;
     }
 
-    public String getCapacidPressao() {
-        return capacidPressao;
+    public String getPtFulgor() {
+        return ptFulgor;
     }
 
-    public void setCapacidPressao(String capacidPressao) {
-        this.capacidPressao = capacidPressao;
-    }
-
-    public Integer getIdTipoMaterial() {
-        return idTipoMaterial;
-    }
-
-    public void setIdTipoMaterial(Integer idTipoMaterial) {
-        this.idTipoMaterial = idTipoMaterial;
+    public void setPtFulgor(String ptFulgor) {
+        this.ptFulgor = ptFulgor;
     }
 
     public GrupoEmbalagem getIdGrupoEmbalagem() {
@@ -171,5 +169,5 @@ public class Embalagem implements Serializable {
     public String toString() {
         return "entiti.Embalagem[ idEmbalagem=" + idEmbalagem + " ]";
     }
-
+    
 }

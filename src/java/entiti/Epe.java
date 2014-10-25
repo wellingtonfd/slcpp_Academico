@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "epe")
@@ -35,9 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Epe.findAll", query = "SELECT e FROM Epe e"),
     @NamedQuery(name = "Epe.findByIdEpe", query = "SELECT e FROM Epe e WHERE e.idEpe = :idEpe"),
-    @NamedQuery(name = "Epe.findByNomeEpe", query = "SELECT e FROM Epe e WHERE e.nomeEpe = :nomeEpe"),
-    @NamedQuery(name = "Epe.findByClasseEpe", query = "SELECT e FROM Epe e WHERE e.classeEpe = :classeEpe"),
     @NamedQuery(name = "Epe.findByAgenteEpe", query = "SELECT e FROM Epe e WHERE e.agenteEpe = :agenteEpe"),
+    @NamedQuery(name = "Epe.findByClasseEpe", query = "SELECT e FROM Epe e WHERE e.classeEpe = :classeEpe"),
+    @NamedQuery(name = "Epe.findByNomeEpe", query = "SELECT e FROM Epe e WHERE e.nomeEpe = :nomeEpe"),
     @NamedQuery(name = "Epe.findByTipoMaterialIdMaterial", query = "SELECT e FROM Epe e WHERE e.tipoMaterialIdMaterial = :tipoMaterialIdMaterial")})
 public class Epe implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -46,41 +42,25 @@ public class Epe implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_epe")
     private Integer idEpe;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "nome_epe")
-    private String nomeEpe;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "classe_epe")
-    private String classeEpe;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 255)
     @Column(name = "agente_epe")
     private String agenteEpe;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 255)
+    @Column(name = "classe_epe")
+    private String classeEpe;
+    @Size(max = 255)
+    @Column(name = "nome_epe")
+    private String nomeEpe;
     @Column(name = "tipo_material_id_material")
-    private int tipoMaterialIdMaterial;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "epeIdEpe")
-    private Collection<TipoEquipamento> tipoEquipamentoCollection;
+    private Integer tipoMaterialIdMaterial;
+    @OneToMany(mappedBy = "epeIdEpe")
+    private List<TipoEquipamento> tipoEquipamentoList;
 
     public Epe() {
     }
 
     public Epe(Integer idEpe) {
         this.idEpe = idEpe;
-    }
-
-    public Epe(Integer idEpe, String nomeEpe, String classeEpe, String agenteEpe, int tipoMaterialIdMaterial) {
-        this.idEpe = idEpe;
-        this.nomeEpe = nomeEpe;
-        this.classeEpe = classeEpe;
-        this.agenteEpe = agenteEpe;
-        this.tipoMaterialIdMaterial = tipoMaterialIdMaterial;
     }
 
     public Integer getIdEpe() {
@@ -91,12 +71,12 @@ public class Epe implements Serializable {
         this.idEpe = idEpe;
     }
 
-    public String getNomeEpe() {
-        return nomeEpe;
+    public String getAgenteEpe() {
+        return agenteEpe;
     }
 
-    public void setNomeEpe(String nomeEpe) {
-        this.nomeEpe = nomeEpe;
+    public void setAgenteEpe(String agenteEpe) {
+        this.agenteEpe = agenteEpe;
     }
 
     public String getClasseEpe() {
@@ -107,29 +87,29 @@ public class Epe implements Serializable {
         this.classeEpe = classeEpe;
     }
 
-    public String getAgenteEpe() {
-        return agenteEpe;
+    public String getNomeEpe() {
+        return nomeEpe;
     }
 
-    public void setAgenteEpe(String agenteEpe) {
-        this.agenteEpe = agenteEpe;
+    public void setNomeEpe(String nomeEpe) {
+        this.nomeEpe = nomeEpe;
     }
 
-    public int getTipoMaterialIdMaterial() {
+    public Integer getTipoMaterialIdMaterial() {
         return tipoMaterialIdMaterial;
     }
 
-    public void setTipoMaterialIdMaterial(int tipoMaterialIdMaterial) {
+    public void setTipoMaterialIdMaterial(Integer tipoMaterialIdMaterial) {
         this.tipoMaterialIdMaterial = tipoMaterialIdMaterial;
     }
 
     @XmlTransient
-    public Collection<TipoEquipamento> getTipoEquipamentoCollection() {
-        return tipoEquipamentoCollection;
+    public List<TipoEquipamento> getTipoEquipamentoList() {
+        return tipoEquipamentoList;
     }
 
-    public void setTipoEquipamentoCollection(Collection<TipoEquipamento> tipoEquipamentoCollection) {
-        this.tipoEquipamentoCollection = tipoEquipamentoCollection;
+    public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
+        this.tipoEquipamentoList = tipoEquipamentoList;
     }
 
     @Override
@@ -156,5 +136,5 @@ public class Epe implements Serializable {
     public String toString() {
         return "entiti.Epe[ idEpe=" + idEpe + " ]";
     }
-
+    
 }

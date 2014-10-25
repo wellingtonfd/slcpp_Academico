@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,15 +22,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "produto")
@@ -39,21 +36,21 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByIdProduto", query = "SELECT p FROM Produto p WHERE p.idProduto = :idProduto"),
-    @NamedQuery(name = "Produto.findByNomeGenerico", query = "SELECT p FROM Produto p WHERE p.nomeGenerico = :nomeGenerico"),
-    @NamedQuery(name = "Produto.findByOrigem", query = "SELECT p FROM Produto p WHERE p.origem = :origem"),
-    @NamedQuery(name = "Produto.findByRotuloProduto", query = "SELECT p FROM Produto p WHERE p.rotuloProduto = :rotuloProduto"),
-    @NamedQuery(name = "Produto.findByPainelSeguranca", query = "SELECT p FROM Produto p WHERE p.painelSeguranca = :painelSeguranca"),
-    @NamedQuery(name = "Produto.findByNumRisco", query = "SELECT p FROM Produto p WHERE p.numRisco = :numRisco"),
     @NamedQuery(name = "Produto.findByAcoesEmerg", query = "SELECT p FROM Produto p WHERE p.acoesEmerg = :acoesEmerg"),
-    @NamedQuery(name = "Produto.findByNLote", query = "SELECT p FROM Produto p WHERE p.nLote = :nLote"),
-    @NamedQuery(name = "Produto.findByDtFab", query = "SELECT p FROM Produto p WHERE p.dtFab = :dtFab"),
-    @NamedQuery(name = "Produto.findByDtVal", query = "SELECT p FROM Produto p WHERE p.dtVal = :dtVal"),
     @NamedQuery(name = "Produto.findByComposicao", query = "SELECT p FROM Produto p WHERE p.composicao = :composicao"),
     @NamedQuery(name = "Produto.findByDescProduto", query = "SELECT p FROM Produto p WHERE p.descProduto = :descProduto"),
+    @NamedQuery(name = "Produto.findByDtFab", query = "SELECT p FROM Produto p WHERE p.dtFab = :dtFab"),
+    @NamedQuery(name = "Produto.findByDtVal", query = "SELECT p FROM Produto p WHERE p.dtVal = :dtVal"),
     @NamedQuery(name = "Produto.findByFormulaProduto", query = "SELECT p FROM Produto p WHERE p.formulaProduto = :formulaProduto"),
-    @NamedQuery(name = "Produto.findByOdorProduto", query = "SELECT p FROM Produto p WHERE p.odorProduto = :odorProduto"),
+    @NamedQuery(name = "Produto.findByIdArmazem", query = "SELECT p FROM Produto p WHERE p.idArmazem = :idArmazem"),
     @NamedQuery(name = "Produto.findByIdEmbalagem", query = "SELECT p FROM Produto p WHERE p.idEmbalagem = :idEmbalagem"),
-    @NamedQuery(name = "Produto.findByIdArmazem", query = "SELECT p FROM Produto p WHERE p.idArmazem = :idArmazem")})
+    @NamedQuery(name = "Produto.findByNLote", query = "SELECT p FROM Produto p WHERE p.nLote = :nLote"),
+    @NamedQuery(name = "Produto.findByNomeGenerico", query = "SELECT p FROM Produto p WHERE p.nomeGenerico = :nomeGenerico"),
+    @NamedQuery(name = "Produto.findByNumRisco", query = "SELECT p FROM Produto p WHERE p.numRisco = :numRisco"),
+    @NamedQuery(name = "Produto.findByOdorProduto", query = "SELECT p FROM Produto p WHERE p.odorProduto = :odorProduto"),
+    @NamedQuery(name = "Produto.findByOrigem", query = "SELECT p FROM Produto p WHERE p.origem = :origem"),
+    @NamedQuery(name = "Produto.findByPainelSeguranca", query = "SELECT p FROM Produto p WHERE p.painelSeguranca = :painelSeguranca"),
+    @NamedQuery(name = "Produto.findByRotuloProduto", query = "SELECT p FROM Produto p WHERE p.rotuloProduto = :rotuloProduto")})
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,65 +58,47 @@ public class Produto implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_produto")
     private Integer idProduto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "nome_generico")
-    private String nomeGenerico;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 35)
-    @Column(name = "origem")
-    private String origem;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
-    @Column(name = "rotulo_produto")
-    private String rotuloProduto;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
-    @Column(name = "painel_seguranca")
-    private String painelSeguranca;
-    @Column(name = "num_risco")
-    private Integer numRisco;
-    @Size(max = 80)
+    @Size(max = 255)
     @Column(name = "acoes_emerg")
     private String acoesEmerg;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "n_lote")
-    private int nLote;
-    @Basic(optional = false)
-    @NotNull
+    @Size(max = 255)
+    @Column(name = "composicao")
+    private String composicao;
+    @Size(max = 255)
+    @Column(name = "desc_produto")
+    private String descProduto;
     @Column(name = "dt_fab")
     @Temporal(TemporalType.DATE)
     private Date dtFab;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "dt_val")
     @Temporal(TemporalType.DATE)
     private Date dtVal;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "composicao")
-    private String composicao;
-    @Size(max = 60)
-    @Column(name = "desc_produto")
-    private String descProduto;
-    @Size(max = 2147483647)
+    @Size(max = 255)
     @Column(name = "formula_produto")
     private String formulaProduto;
-    @Size(max = 25)
-    @Column(name = "odor_produto")
-    private String odorProduto;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_embalagem")
-    private int idEmbalagem;
     @Column(name = "id_armazem")
     private Integer idArmazem;
+    @Column(name = "id_embalagem")
+    private Integer idEmbalagem;
+    @Column(name = "n_lote")
+    private Integer nLote;
+    @Size(max = 255)
+    @Column(name = "nome_generico")
+    private String nomeGenerico;
+    @Column(name = "num_risco")
+    private Integer numRisco;
+    @Size(max = 255)
+    @Column(name = "odor_produto")
+    private String odorProduto;
+    @Size(max = 255)
+    @Column(name = "origem")
+    private String origem;
+    @Size(max = 255)
+    @Column(name = "painel_seguranca")
+    private String painelSeguranca;
+    @Size(max = 255)
+    @Column(name = "rotulo_produto")
+    private String rotuloProduto;
     @JoinColumn(name = "id_num_onu", referencedColumnName = "id_num_onu")
     @ManyToOne
     private NumOnu idNumOnu;
@@ -136,37 +115,24 @@ public class Produto implements Serializable {
     @ManyToOne
     private EndArmazem idEndarmazem;
     @JoinColumn(name = "id_compatibilidade", referencedColumnName = "id_compatibilidade")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Compatibilidade idCompatibilidade;
     @JoinColumn(name = "id_classe", referencedColumnName = "id_classe")
     @ManyToOne
     private Classe idClasse;
     @JoinColumn(name = "armazem_id_armazem", referencedColumnName = "id_armazem")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Armazem armazemIdArmazem;
     @OneToMany(mappedBy = "idProduto")
-    private Collection<Movimentacao> movimentacaoCollection;
+    private List<Movimentacao> movimentacaoList;
     @OneToMany(mappedBy = "idProduto")
-    private Collection<DetNota> detNotaCollection;
+    private List<DetNota> detNotaList;
 
     public Produto() {
     }
 
     public Produto(Integer idProduto) {
         this.idProduto = idProduto;
-    }
-
-    public Produto(Integer idProduto, String nomeGenerico, String origem, String rotuloProduto, String painelSeguranca, int nLote, Date dtFab, Date dtVal, String composicao, int idEmbalagem) {
-        this.idProduto = idProduto;
-        this.nomeGenerico = nomeGenerico;
-        this.origem = origem;
-        this.rotuloProduto = rotuloProduto;
-        this.painelSeguranca = painelSeguranca;
-        this.nLote = nLote;
-        this.dtFab = dtFab;
-        this.dtVal = dtVal;
-        this.composicao = composicao;
-        this.idEmbalagem = idEmbalagem;
     }
 
     public Integer getIdProduto() {
@@ -177,76 +143,12 @@ public class Produto implements Serializable {
         this.idProduto = idProduto;
     }
 
-    public String getNomeGenerico() {
-        return nomeGenerico;
-    }
-
-    public void setNomeGenerico(String nomeGenerico) {
-        this.nomeGenerico = nomeGenerico;
-    }
-
-    public String getOrigem() {
-        return origem;
-    }
-
-    public void setOrigem(String origem) {
-        this.origem = origem;
-    }
-
-    public String getRotuloProduto() {
-        return rotuloProduto;
-    }
-
-    public void setRotuloProduto(String rotuloProduto) {
-        this.rotuloProduto = rotuloProduto;
-    }
-
-    public String getPainelSeguranca() {
-        return painelSeguranca;
-    }
-
-    public void setPainelSeguranca(String painelSeguranca) {
-        this.painelSeguranca = painelSeguranca;
-    }
-
-    public Integer getNumRisco() {
-        return numRisco;
-    }
-
-    public void setNumRisco(Integer numRisco) {
-        this.numRisco = numRisco;
-    }
-
     public String getAcoesEmerg() {
         return acoesEmerg;
     }
 
     public void setAcoesEmerg(String acoesEmerg) {
         this.acoesEmerg = acoesEmerg;
-    }
-
-    public int getNLote() {
-        return nLote;
-    }
-
-    public void setNLote(int nLote) {
-        this.nLote = nLote;
-    }
-
-    public Date getDtFab() {
-        return dtFab;
-    }
-
-    public void setDtFab(Date dtFab) {
-        this.dtFab = dtFab;
-    }
-
-    public Date getDtVal() {
-        return dtVal;
-    }
-
-    public void setDtVal(Date dtVal) {
-        this.dtVal = dtVal;
     }
 
     public String getComposicao() {
@@ -265,12 +167,68 @@ public class Produto implements Serializable {
         this.descProduto = descProduto;
     }
 
+    public Date getDtFab() {
+        return dtFab;
+    }
+
+    public void setDtFab(Date dtFab) {
+        this.dtFab = dtFab;
+    }
+
+    public Date getDtVal() {
+        return dtVal;
+    }
+
+    public void setDtVal(Date dtVal) {
+        this.dtVal = dtVal;
+    }
+
     public String getFormulaProduto() {
         return formulaProduto;
     }
 
     public void setFormulaProduto(String formulaProduto) {
         this.formulaProduto = formulaProduto;
+    }
+
+    public Integer getIdArmazem() {
+        return idArmazem;
+    }
+
+    public void setIdArmazem(Integer idArmazem) {
+        this.idArmazem = idArmazem;
+    }
+
+    public Integer getIdEmbalagem() {
+        return idEmbalagem;
+    }
+
+    public void setIdEmbalagem(Integer idEmbalagem) {
+        this.idEmbalagem = idEmbalagem;
+    }
+
+    public Integer getNLote() {
+        return nLote;
+    }
+
+    public void setNLote(Integer nLote) {
+        this.nLote = nLote;
+    }
+
+    public String getNomeGenerico() {
+        return nomeGenerico;
+    }
+
+    public void setNomeGenerico(String nomeGenerico) {
+        this.nomeGenerico = nomeGenerico;
+    }
+
+    public Integer getNumRisco() {
+        return numRisco;
+    }
+
+    public void setNumRisco(Integer numRisco) {
+        this.numRisco = numRisco;
     }
 
     public String getOdorProduto() {
@@ -281,20 +239,28 @@ public class Produto implements Serializable {
         this.odorProduto = odorProduto;
     }
 
-    public int getIdEmbalagem() {
-        return idEmbalagem;
+    public String getOrigem() {
+        return origem;
     }
 
-    public void setIdEmbalagem(int idEmbalagem) {
-        this.idEmbalagem = idEmbalagem;
+    public void setOrigem(String origem) {
+        this.origem = origem;
     }
 
-    public Integer getIdArmazem() {
-        return idArmazem;
+    public String getPainelSeguranca() {
+        return painelSeguranca;
     }
 
-    public void setIdArmazem(Integer idArmazem) {
-        this.idArmazem = idArmazem;
+    public void setPainelSeguranca(String painelSeguranca) {
+        this.painelSeguranca = painelSeguranca;
+    }
+
+    public String getRotuloProduto() {
+        return rotuloProduto;
+    }
+
+    public void setRotuloProduto(String rotuloProduto) {
+        this.rotuloProduto = rotuloProduto;
     }
 
     public NumOnu getIdNumOnu() {
@@ -362,21 +328,21 @@ public class Produto implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Movimentacao> getMovimentacaoCollection() {
-        return movimentacaoCollection;
+    public List<Movimentacao> getMovimentacaoList() {
+        return movimentacaoList;
     }
 
-    public void setMovimentacaoCollection(Collection<Movimentacao> movimentacaoCollection) {
-        this.movimentacaoCollection = movimentacaoCollection;
+    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
+        this.movimentacaoList = movimentacaoList;
     }
 
     @XmlTransient
-    public Collection<DetNota> getDetNotaCollection() {
-        return detNotaCollection;
+    public List<DetNota> getDetNotaList() {
+        return detNotaList;
     }
 
-    public void setDetNotaCollection(Collection<DetNota> detNotaCollection) {
-        this.detNotaCollection = detNotaCollection;
+    public void setDetNotaList(List<DetNota> detNotaList) {
+        this.detNotaList = detNotaList;
     }
 
     @Override
@@ -403,5 +369,5 @@ public class Produto implements Serializable {
     public String toString() {
         return "entiti.Produto[ idProduto=" + idProduto + " ]";
     }
-
+    
 }

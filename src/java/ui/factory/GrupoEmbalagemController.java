@@ -34,7 +34,7 @@ public class GrupoEmbalagemController extends AbstractController<GrupoEmbalagem>
      */
     public String navigateEmbalagemCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemList());
         }
         return "/entiti/embalagem/index";
     }

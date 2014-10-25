@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,15 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "tipo_solicitacao")
@@ -36,10 +33,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TipoSolicitacao.findAll", query = "SELECT t FROM TipoSolicitacao t"),
     @NamedQuery(name = "TipoSolicitacao.findByIdTipoSolicitacao", query = "SELECT t FROM TipoSolicitacao t WHERE t.idTipoSolicitacao = :idTipoSolicitacao"),
-    @NamedQuery(name = "TipoSolicitacao.findByTipoSolicitacao", query = "SELECT t FROM TipoSolicitacao t WHERE t.tipoSolicitacao = :tipoSolicitacao"),
     @NamedQuery(name = "TipoSolicitacao.findByEspecTipoSolicitacao", query = "SELECT t FROM TipoSolicitacao t WHERE t.especTipoSolicitacao = :especTipoSolicitacao"),
     @NamedQuery(name = "TipoSolicitacao.findByIdFornecedor", query = "SELECT t FROM TipoSolicitacao t WHERE t.idFornecedor = :idFornecedor"),
-    @NamedQuery(name = "TipoSolicitacao.findBySolicitante", query = "SELECT t FROM TipoSolicitacao t WHERE t.solicitante = :solicitante")})
+    @NamedQuery(name = "TipoSolicitacao.findBySolicitante", query = "SELECT t FROM TipoSolicitacao t WHERE t.solicitante = :solicitante"),
+    @NamedQuery(name = "TipoSolicitacao.findByTipoSolicitacao", query = "SELECT t FROM TipoSolicitacao t WHERE t.tipoSolicitacao = :tipoSolicitacao")})
 public class TipoSolicitacao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,32 +44,28 @@ public class TipoSolicitacao implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_tipo_solicitacao")
     private Integer idTipoSolicitacao;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "tipo_solicitacao")
-    private String tipoSolicitacao;
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "espec_tipo_solicitacao")
     private String especTipoSolicitacao;
     @Column(name = "id_fornecedor")
     private Integer idFornecedor;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(max = 255)
     @Column(name = "solicitante")
     private String solicitante;
+    @Size(max = 255)
+    @Column(name = "tipo_solicitacao")
+    private String tipoSolicitacao;
     @JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
     @ManyToOne
     private Funcionario idFuncionario;
     @JoinColumn(name = "fornecedor_id_fornecedor", referencedColumnName = "id_fornecedor")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Fornecedor fornecedorIdFornecedor;
     @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
     @ManyToOne
     private Armazem idArmazem;
     @OneToMany(mappedBy = "idTipoSolicitacao")
-    private Collection<Movimentacao> movimentacaoCollection;
+    private List<Movimentacao> movimentacaoList;
 
     public TipoSolicitacao() {
     }
@@ -81,26 +74,12 @@ public class TipoSolicitacao implements Serializable {
         this.idTipoSolicitacao = idTipoSolicitacao;
     }
 
-    public TipoSolicitacao(Integer idTipoSolicitacao, String tipoSolicitacao, String solicitante) {
-        this.idTipoSolicitacao = idTipoSolicitacao;
-        this.tipoSolicitacao = tipoSolicitacao;
-        this.solicitante = solicitante;
-    }
-
     public Integer getIdTipoSolicitacao() {
         return idTipoSolicitacao;
     }
 
     public void setIdTipoSolicitacao(Integer idTipoSolicitacao) {
         this.idTipoSolicitacao = idTipoSolicitacao;
-    }
-
-    public String getTipoSolicitacao() {
-        return tipoSolicitacao;
-    }
-
-    public void setTipoSolicitacao(String tipoSolicitacao) {
-        this.tipoSolicitacao = tipoSolicitacao;
     }
 
     public String getEspecTipoSolicitacao() {
@@ -125,6 +104,14 @@ public class TipoSolicitacao implements Serializable {
 
     public void setSolicitante(String solicitante) {
         this.solicitante = solicitante;
+    }
+
+    public String getTipoSolicitacao() {
+        return tipoSolicitacao;
+    }
+
+    public void setTipoSolicitacao(String tipoSolicitacao) {
+        this.tipoSolicitacao = tipoSolicitacao;
     }
 
     public Funcionario getIdFuncionario() {
@@ -152,12 +139,12 @@ public class TipoSolicitacao implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Movimentacao> getMovimentacaoCollection() {
-        return movimentacaoCollection;
+    public List<Movimentacao> getMovimentacaoList() {
+        return movimentacaoList;
     }
 
-    public void setMovimentacaoCollection(Collection<Movimentacao> movimentacaoCollection) {
-        this.movimentacaoCollection = movimentacaoCollection;
+    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
+        this.movimentacaoList = movimentacaoList;
     }
 
     @Override
@@ -184,5 +171,5 @@ public class TipoSolicitacao implements Serializable {
     public String toString() {
         return "entiti.TipoSolicitacao[ idTipoSolicitacao=" + idTipoSolicitacao + " ]";
     }
-
+    
 }

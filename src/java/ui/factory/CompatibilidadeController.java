@@ -39,7 +39,7 @@ public class CompatibilidadeController extends AbstractController<Compatibilidad
      */
     public String navigateEmbalagemCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemList());
         }
         return "/entiti/embalagem/index";
     }
@@ -53,7 +53,7 @@ public class CompatibilidadeController extends AbstractController<Compatibilidad
      */
     public String navigateProdutoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }
         return "/entiti/produto/index";
     }

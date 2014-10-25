@@ -45,7 +45,7 @@ public class FuncionarioController extends AbstractController<Funcionario> {
      */
     public String navigateTipoSolicitacaoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
         }
         return "/entiti/tipoSolicitacao/index";
     }
@@ -59,7 +59,7 @@ public class FuncionarioController extends AbstractController<Funcionario> {
      */
     public String navigateMovimentacaoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }
         return "/entiti/movimentacao/index";
     }

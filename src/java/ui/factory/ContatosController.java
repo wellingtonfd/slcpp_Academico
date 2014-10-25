@@ -35,7 +35,7 @@ public class ContatosController extends AbstractController<Contatos> {
      */
     public String navigateFornecedorCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Fornecedor_items", this.getSelected().getFornecedorCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Fornecedor_items", this.getSelected().getFornecedorList());
         }
         return "/entiti/fornecedor/index";
     }
@@ -48,7 +48,7 @@ public class ContatosController extends AbstractController<Contatos> {
      */
     public String navigateFuncionarioCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioList());
         }
         return "/entiti/funcionario/index";
     }

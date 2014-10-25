@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "fornecedor")
@@ -37,11 +33,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f"),
     @NamedQuery(name = "Fornecedor.findByIdFornecedor", query = "SELECT f FROM Fornecedor f WHERE f.idFornecedor = :idFornecedor"),
-    @NamedQuery(name = "Fornecedor.findByNomeFantasia", query = "SELECT f FROM Fornecedor f WHERE f.nomeFantasia = :nomeFantasia"),
-    @NamedQuery(name = "Fornecedor.findByRazaoSocial", query = "SELECT f FROM Fornecedor f WHERE f.razaoSocial = :razaoSocial"),
     @NamedQuery(name = "Fornecedor.findByCnpj", query = "SELECT f FROM Fornecedor f WHERE f.cnpj = :cnpj"),
+    @NamedQuery(name = "Fornecedor.findByIdContato", query = "SELECT f FROM Fornecedor f WHERE f.idContato = :idContato"),
     @NamedQuery(name = "Fornecedor.findByInscSocial", query = "SELECT f FROM Fornecedor f WHERE f.inscSocial = :inscSocial"),
-    @NamedQuery(name = "Fornecedor.findByIdContato", query = "SELECT f FROM Fornecedor f WHERE f.idContato = :idContato")})
+    @NamedQuery(name = "Fornecedor.findByNomeFantasia", query = "SELECT f FROM Fornecedor f WHERE f.nomeFantasia = :nomeFantasia"),
+    @NamedQuery(name = "Fornecedor.findByRazaoSocial", query = "SELECT f FROM Fornecedor f WHERE f.razaoSocial = :razaoSocial")})
 public class Fornecedor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,37 +45,29 @@ public class Fornecedor implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_fornecedor")
     private Integer idFornecedor;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "nome_fantasia")
-    private String nomeFantasia;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
-    @Column(name = "razao_social")
-    private String razaoSocial;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(max = 255)
     @Column(name = "cnpj")
     private String cnpj;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "insc_social")
-    private String inscSocial;
     @Column(name = "id_contato")
     private Integer idContato;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorIdFornecedor")
-    private Collection<TipoSolicitacao> tipoSolicitacaoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorIdFornecedor")
-    private Collection<DetNota> detNotaCollection;
+    @Size(max = 255)
+    @Column(name = "insc_social")
+    private String inscSocial;
+    @Size(max = 255)
+    @Column(name = "nome_fantasia")
+    private String nomeFantasia;
+    @Size(max = 255)
+    @Column(name = "razao_social")
+    private String razaoSocial;
+    @OneToMany(mappedBy = "fornecedorIdFornecedor")
+    private List<TipoSolicitacao> tipoSolicitacaoList;
+    @OneToMany(mappedBy = "fornecedorIdFornecedor")
+    private List<DetNota> detNotaList;
     @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
     @ManyToOne
     private Endereco idEndereco;
     @JoinColumn(name = "contatos_id_contato", referencedColumnName = "id_contato")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Contatos contatosIdContato;
 
     public Fornecedor() {
@@ -89,20 +77,36 @@ public class Fornecedor implements Serializable {
         this.idFornecedor = idFornecedor;
     }
 
-    public Fornecedor(Integer idFornecedor, String nomeFantasia, String razaoSocial, String cnpj, String inscSocial) {
-        this.idFornecedor = idFornecedor;
-        this.nomeFantasia = nomeFantasia;
-        this.razaoSocial = razaoSocial;
-        this.cnpj = cnpj;
-        this.inscSocial = inscSocial;
-    }
-
     public Integer getIdFornecedor() {
         return idFornecedor;
     }
 
     public void setIdFornecedor(Integer idFornecedor) {
         this.idFornecedor = idFornecedor;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public Integer getIdContato() {
+        return idContato;
+    }
+
+    public void setIdContato(Integer idContato) {
+        this.idContato = idContato;
+    }
+
+    public String getInscSocial() {
+        return inscSocial;
+    }
+
+    public void setInscSocial(String inscSocial) {
+        this.inscSocial = inscSocial;
     }
 
     public String getNomeFantasia() {
@@ -121,46 +125,22 @@ public class Fornecedor implements Serializable {
         this.razaoSocial = razaoSocial;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    @XmlTransient
+    public List<TipoSolicitacao> getTipoSolicitacaoList() {
+        return tipoSolicitacaoList;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getInscSocial() {
-        return inscSocial;
-    }
-
-    public void setInscSocial(String inscSocial) {
-        this.inscSocial = inscSocial;
-    }
-
-    public Integer getIdContato() {
-        return idContato;
-    }
-
-    public void setIdContato(Integer idContato) {
-        this.idContato = idContato;
+    public void setTipoSolicitacaoList(List<TipoSolicitacao> tipoSolicitacaoList) {
+        this.tipoSolicitacaoList = tipoSolicitacaoList;
     }
 
     @XmlTransient
-    public Collection<TipoSolicitacao> getTipoSolicitacaoCollection() {
-        return tipoSolicitacaoCollection;
+    public List<DetNota> getDetNotaList() {
+        return detNotaList;
     }
 
-    public void setTipoSolicitacaoCollection(Collection<TipoSolicitacao> tipoSolicitacaoCollection) {
-        this.tipoSolicitacaoCollection = tipoSolicitacaoCollection;
-    }
-
-    @XmlTransient
-    public Collection<DetNota> getDetNotaCollection() {
-        return detNotaCollection;
-    }
-
-    public void setDetNotaCollection(Collection<DetNota> detNotaCollection) {
-        this.detNotaCollection = detNotaCollection;
+    public void setDetNotaList(List<DetNota> detNotaList) {
+        this.detNotaList = detNotaList;
     }
 
     public Endereco getIdEndereco() {
@@ -203,5 +183,5 @@ public class Fornecedor implements Serializable {
     public String toString() {
         return "entiti.Fornecedor[ idFornecedor=" + idFornecedor + " ]";
     }
-
+    
 }

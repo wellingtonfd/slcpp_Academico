@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,15 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "veiculo")
@@ -36,13 +33,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Veiculo.findAll", query = "SELECT v FROM Veiculo v"),
     @NamedQuery(name = "Veiculo.findByIdVeiculo", query = "SELECT v FROM Veiculo v WHERE v.idVeiculo = :idVeiculo"),
-    @NamedQuery(name = "Veiculo.findByNomeVeiculo", query = "SELECT v FROM Veiculo v WHERE v.nomeVeiculo = :nomeVeiculo"),
-    @NamedQuery(name = "Veiculo.findByModeloVeiculo", query = "SELECT v FROM Veiculo v WHERE v.modeloVeiculo = :modeloVeiculo"),
-    @NamedQuery(name = "Veiculo.findByFabricanteVeiculo", query = "SELECT v FROM Veiculo v WHERE v.fabricanteVeiculo = :fabricanteVeiculo"),
-    @NamedQuery(name = "Veiculo.findByPlacaVeiculo", query = "SELECT v FROM Veiculo v WHERE v.placaVeiculo = :placaVeiculo"),
-    @NamedQuery(name = "Veiculo.findByCorVeiculo", query = "SELECT v FROM Veiculo v WHERE v.corVeiculo = :corVeiculo"),
     @NamedQuery(name = "Veiculo.findByAnoVeiculo", query = "SELECT v FROM Veiculo v WHERE v.anoVeiculo = :anoVeiculo"),
-    @NamedQuery(name = "Veiculo.findByChassiVeiculo", query = "SELECT v FROM Veiculo v WHERE v.chassiVeiculo = :chassiVeiculo")})
+    @NamedQuery(name = "Veiculo.findByChassiVeiculo", query = "SELECT v FROM Veiculo v WHERE v.chassiVeiculo = :chassiVeiculo"),
+    @NamedQuery(name = "Veiculo.findByCorVeiculo", query = "SELECT v FROM Veiculo v WHERE v.corVeiculo = :corVeiculo"),
+    @NamedQuery(name = "Veiculo.findByFabricanteVeiculo", query = "SELECT v FROM Veiculo v WHERE v.fabricanteVeiculo = :fabricanteVeiculo"),
+    @NamedQuery(name = "Veiculo.findByModeloVeiculo", query = "SELECT v FROM Veiculo v WHERE v.modeloVeiculo = :modeloVeiculo"),
+    @NamedQuery(name = "Veiculo.findByNomeVeiculo", query = "SELECT v FROM Veiculo v WHERE v.nomeVeiculo = :nomeVeiculo"),
+    @NamedQuery(name = "Veiculo.findByPlacaVeiculo", query = "SELECT v FROM Veiculo v WHERE v.placaVeiculo = :placaVeiculo")})
 public class Veiculo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,45 +47,31 @@ public class Veiculo implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_veiculo")
     private Integer idVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "nome_veiculo")
-    private String nomeVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "modelo_veiculo")
-    private String modeloVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "fabricante_veiculo")
-    private String fabricanteVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "placa_veiculo")
-    private String placaVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "cor_veiculo")
-    private String corVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
+    @Size(max = 255)
     @Column(name = "ano_veiculo")
     private String anoVeiculo;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
+    @Size(max = 255)
     @Column(name = "chassi_veiculo")
     private String chassiVeiculo;
+    @Size(max = 255)
+    @Column(name = "cor_veiculo")
+    private String corVeiculo;
+    @Size(max = 255)
+    @Column(name = "fabricante_veiculo")
+    private String fabricanteVeiculo;
+    @Size(max = 255)
+    @Column(name = "modelo_veiculo")
+    private String modeloVeiculo;
+    @Size(max = 255)
+    @Column(name = "nome_veiculo")
+    private String nomeVeiculo;
+    @Size(max = 255)
+    @Column(name = "placa_veiculo")
+    private String placaVeiculo;
     @OneToMany(mappedBy = "idVeiculo")
-    private Collection<TipoEquipamento> tipoEquipamentoCollection;
+    private List<TipoEquipamento> tipoEquipamentoList;
     @JoinColumn(name = "id_combustivel", referencedColumnName = "id_combustivel")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Combustivel idCombustivel;
 
     public Veiculo() {
@@ -98,63 +81,12 @@ public class Veiculo implements Serializable {
         this.idVeiculo = idVeiculo;
     }
 
-    public Veiculo(Integer idVeiculo, String nomeVeiculo, String modeloVeiculo, String fabricanteVeiculo, String placaVeiculo, String corVeiculo, String anoVeiculo, String chassiVeiculo) {
-        this.idVeiculo = idVeiculo;
-        this.nomeVeiculo = nomeVeiculo;
-        this.modeloVeiculo = modeloVeiculo;
-        this.fabricanteVeiculo = fabricanteVeiculo;
-        this.placaVeiculo = placaVeiculo;
-        this.corVeiculo = corVeiculo;
-        this.anoVeiculo = anoVeiculo;
-        this.chassiVeiculo = chassiVeiculo;
-    }
-
     public Integer getIdVeiculo() {
         return idVeiculo;
     }
 
     public void setIdVeiculo(Integer idVeiculo) {
         this.idVeiculo = idVeiculo;
-    }
-
-    public String getNomeVeiculo() {
-        return nomeVeiculo;
-    }
-
-    public void setNomeVeiculo(String nomeVeiculo) {
-        this.nomeVeiculo = nomeVeiculo;
-    }
-
-    public String getModeloVeiculo() {
-        return modeloVeiculo;
-    }
-
-    public void setModeloVeiculo(String modeloVeiculo) {
-        this.modeloVeiculo = modeloVeiculo;
-    }
-
-    public String getFabricanteVeiculo() {
-        return fabricanteVeiculo;
-    }
-
-    public void setFabricanteVeiculo(String fabricanteVeiculo) {
-        this.fabricanteVeiculo = fabricanteVeiculo;
-    }
-
-    public String getPlacaVeiculo() {
-        return placaVeiculo;
-    }
-
-    public void setPlacaVeiculo(String placaVeiculo) {
-        this.placaVeiculo = placaVeiculo;
-    }
-
-    public String getCorVeiculo() {
-        return corVeiculo;
-    }
-
-    public void setCorVeiculo(String corVeiculo) {
-        this.corVeiculo = corVeiculo;
     }
 
     public String getAnoVeiculo() {
@@ -173,13 +105,53 @@ public class Veiculo implements Serializable {
         this.chassiVeiculo = chassiVeiculo;
     }
 
-    @XmlTransient
-    public Collection<TipoEquipamento> getTipoEquipamentoCollection() {
-        return tipoEquipamentoCollection;
+    public String getCorVeiculo() {
+        return corVeiculo;
     }
 
-    public void setTipoEquipamentoCollection(Collection<TipoEquipamento> tipoEquipamentoCollection) {
-        this.tipoEquipamentoCollection = tipoEquipamentoCollection;
+    public void setCorVeiculo(String corVeiculo) {
+        this.corVeiculo = corVeiculo;
+    }
+
+    public String getFabricanteVeiculo() {
+        return fabricanteVeiculo;
+    }
+
+    public void setFabricanteVeiculo(String fabricanteVeiculo) {
+        this.fabricanteVeiculo = fabricanteVeiculo;
+    }
+
+    public String getModeloVeiculo() {
+        return modeloVeiculo;
+    }
+
+    public void setModeloVeiculo(String modeloVeiculo) {
+        this.modeloVeiculo = modeloVeiculo;
+    }
+
+    public String getNomeVeiculo() {
+        return nomeVeiculo;
+    }
+
+    public void setNomeVeiculo(String nomeVeiculo) {
+        this.nomeVeiculo = nomeVeiculo;
+    }
+
+    public String getPlacaVeiculo() {
+        return placaVeiculo;
+    }
+
+    public void setPlacaVeiculo(String placaVeiculo) {
+        this.placaVeiculo = placaVeiculo;
+    }
+
+    @XmlTransient
+    public List<TipoEquipamento> getTipoEquipamentoList() {
+        return tipoEquipamentoList;
+    }
+
+    public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
+        this.tipoEquipamentoList = tipoEquipamentoList;
     }
 
     public Combustivel getIdCombustivel() {
@@ -214,5 +186,5 @@ public class Veiculo implements Serializable {
     public String toString() {
         return "entiti.Veiculo[ idVeiculo=" + idVeiculo + " ]";
     }
-
+    
 }

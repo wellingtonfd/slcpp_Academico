@@ -45,7 +45,7 @@ public class TipoEquipamentoController extends AbstractController<TipoEquipament
      */
     public String navigateMovimentacaoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }
         return "/entiti/movimentacao/index";
     }
@@ -96,7 +96,7 @@ public class TipoEquipamentoController extends AbstractController<TipoEquipament
      */
     public String navigateDetNotaCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaList());
         }
         return "/entiti/detNota/index";
     }
