@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "local_operacao")
@@ -44,27 +40,20 @@ public class LocalOperacao implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_local_oper")
     private Integer idLocalOper;
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "desc__local_oper")
     private String descLocalOper;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
+    @Size(max = 255)
     @Column(name = "local_oper")
     private String localOper;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localOperacaoIdLocalOper")
-    private Collection<Armazem> armazemCollection;
+    @OneToMany(mappedBy = "localOperacaoIdLocalOper")
+    private List<Armazem> armazemList;
 
     public LocalOperacao() {
     }
 
     public LocalOperacao(Integer idLocalOper) {
         this.idLocalOper = idLocalOper;
-    }
-
-    public LocalOperacao(Integer idLocalOper, String localOper) {
-        this.idLocalOper = idLocalOper;
-        this.localOper = localOper;
     }
 
     public Integer getIdLocalOper() {
@@ -92,12 +81,12 @@ public class LocalOperacao implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Armazem> getArmazemCollection() {
-        return armazemCollection;
+    public List<Armazem> getArmazemList() {
+        return armazemList;
     }
 
-    public void setArmazemCollection(Collection<Armazem> armazemCollection) {
-        this.armazemCollection = armazemCollection;
+    public void setArmazemList(List<Armazem> armazemList) {
+        this.armazemList = armazemList;
     }
 
     @Override
@@ -124,5 +113,5 @@ public class LocalOperacao implements Serializable {
     public String toString() {
         return "entiti.LocalOperacao[ idLocalOper=" + idLocalOper + " ]";
     }
-
+    
 }

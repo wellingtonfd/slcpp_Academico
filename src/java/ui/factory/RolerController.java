@@ -33,7 +33,7 @@ public class RolerController extends AbstractController<Roler> {
      *
     public String navigateUsuarioCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Usuario_items", this.getSelected().getUsuarioCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Usuario_items", this.getSelected().getUsuarioList());
         }
         return "/entiti/usuario/index";
     }
@@ -41,7 +41,7 @@ public class RolerController extends AbstractController<Roler> {
     
     public String navigateUsuarioRolerCollection(){
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("UsuarioRoler_items", this.getSelected().getUsuarioRolerCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("UsuarioRoler_items", this.getSelected().getUsuarioRolerList());
         }
         return "/entiti/usuarioroler/index";
     }

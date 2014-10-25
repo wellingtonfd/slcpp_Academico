@@ -46,7 +46,7 @@ public class Pais implements Serializable {
     @Size(max = 255)
     @Column(name = "siglapais")
     private String siglapais;
-    @OneToMany(mappedBy = "idPais")
+    @OneToMany(mappedBy = "paisIdPais")
     private List<Estado> estadoList;
     @OneToMany(mappedBy = "idPais")
     private List<Endereco> enderecoList;

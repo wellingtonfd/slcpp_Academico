@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "est_fisico")
@@ -34,8 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "EstFisico.findAll", query = "SELECT e FROM EstFisico e"),
     @NamedQuery(name = "EstFisico.findByIdEstFisico", query = "SELECT e FROM EstFisico e WHERE e.idEstFisico = :idEstFisico"),
-    @NamedQuery(name = "EstFisico.findByNomeEstFisico", query = "SELECT e FROM EstFisico e WHERE e.nomeEstFisico = :nomeEstFisico"),
-    @NamedQuery(name = "EstFisico.findByEspEstFisico", query = "SELECT e FROM EstFisico e WHERE e.espEstFisico = :espEstFisico")})
+    @NamedQuery(name = "EstFisico.findByEspEstFisico", query = "SELECT e FROM EstFisico e WHERE e.espEstFisico = :espEstFisico"),
+    @NamedQuery(name = "EstFisico.findByNomeEstFisico", query = "SELECT e FROM EstFisico e WHERE e.nomeEstFisico = :nomeEstFisico")})
 public class EstFisico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,27 +40,20 @@ public class EstFisico implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_est_fisico")
     private Integer idEstFisico;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 55)
-    @Column(name = "nome_est_fisico")
-    private String nomeEstFisico;
-    @Size(max = 50)
+    @Size(max = 255)
     @Column(name = "esp_est_fisico")
     private String espEstFisico;
+    @Size(max = 255)
+    @Column(name = "nome_est_fisico")
+    private String nomeEstFisico;
     @OneToMany(mappedBy = "idEstFisico")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
 
     public EstFisico() {
     }
 
     public EstFisico(Integer idEstFisico) {
         this.idEstFisico = idEstFisico;
-    }
-
-    public EstFisico(Integer idEstFisico, String nomeEstFisico) {
-        this.idEstFisico = idEstFisico;
-        this.nomeEstFisico = nomeEstFisico;
     }
 
     public Integer getIdEstFisico() {
@@ -74,14 +64,6 @@ public class EstFisico implements Serializable {
         this.idEstFisico = idEstFisico;
     }
 
-    public String getNomeEstFisico() {
-        return nomeEstFisico;
-    }
-
-    public void setNomeEstFisico(String nomeEstFisico) {
-        this.nomeEstFisico = nomeEstFisico;
-    }
-
     public String getEspEstFisico() {
         return espEstFisico;
     }
@@ -90,13 +72,21 @@ public class EstFisico implements Serializable {
         this.espEstFisico = espEstFisico;
     }
 
-    @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public String getNomeEstFisico() {
+        return nomeEstFisico;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setNomeEstFisico(String nomeEstFisico) {
+        this.nomeEstFisico = nomeEstFisico;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -123,5 +113,5 @@ public class EstFisico implements Serializable {
     public String toString() {
         return "entiti.EstFisico[ idEstFisico=" + idEstFisico + " ]";
     }
-
+    
 }

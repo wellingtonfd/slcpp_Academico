@@ -6,7 +6,7 @@
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,17 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import utils.security.geraMD5;
-
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "usuario")
@@ -36,43 +32,33 @@ import utils.security.geraMD5;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByLogin", query = "SELECT u FROM Usuario u WHERE u.login = :login"),
-    @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha")})
+    @NamedQuery(name = "Usuario.findBySenha", query = "SELECT u FROM Usuario u WHERE u.senha = :senha"),
+    @NamedQuery(name = "Usuario.findByAtivo", query = "SELECT u FROM Usuario u WHERE u.ativo = :ativo")})
 public class Usuario implements Serializable {
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_usuario")
     private Integer idUsuario;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
+    @Size(max = 255)
     @Column(name = "login")
     private String login;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "senha")
     private String senha;
     @Column(name = "ativo")
     private Boolean ativo;
-    @OneToMany(mappedBy = "login")
-    private Collection<UsuarioRoler> usuarioRolerCollection;
     @OneToMany(mappedBy = "idUsuario")
-    private Collection<Funcionario> funcionarioCollection;
+    private List<Funcionario> funcionarioList;
+    @OneToMany(mappedBy = "login")
+    private List<UsuarioRoler> usuarioRolerList;
 
     public Usuario() {
     }
 
     public Usuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Usuario(Integer idUsuario, String login, String senha) {
-        this.idUsuario = idUsuario;
-        this.login = login;
-        this.senha = geraMD5.md5(senha);
     }
 
     public Integer getIdUsuario() {
@@ -96,16 +82,33 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = geraMD5.md5(senha);
+        this.senha = senha;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @XmlTransient
-    public Collection<Funcionario> getFuncionarioCollection() {
-        return funcionarioCollection;
+    public List<Funcionario> getFuncionarioList() {
+        return funcionarioList;
     }
 
-    public void setFuncionarioCollection(Collection<Funcionario> funcionarioCollection) {
-        this.funcionarioCollection = funcionarioCollection;
+    public void setFuncionarioList(List<Funcionario> funcionarioList) {
+        this.funcionarioList = funcionarioList;
+    }
+
+    @XmlTransient
+    public List<UsuarioRoler> getUsuarioRolerList() {
+        return usuarioRolerList;
+    }
+
+    public void setUsuarioRolerList(List<UsuarioRoler> usuarioRolerList) {
+        this.usuarioRolerList = usuarioRolerList;
     }
 
     @Override
@@ -132,22 +135,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "entiti.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    @XmlTransient
-    public Collection<UsuarioRoler> getUsuarioRolerCollection() {
-        return usuarioRolerCollection;
-    }
-
-    public void setUsuarioRolerCollection(Collection<UsuarioRoler> usuarioRolerCollection) {
-        this.usuarioRolerCollection = usuarioRolerCollection;
-    }
-
+    
 }

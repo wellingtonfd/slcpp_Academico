@@ -42,7 +42,7 @@ public class FornecedorController extends AbstractController<Fornecedor> {
      */
     public String navigateTipoSolicitacaoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
         }
         return "/entiti/tipoSolicitacao/index";
     }
@@ -55,7 +55,7 @@ public class FornecedorController extends AbstractController<Fornecedor> {
      */
     public String navigateDetNotaCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaList());
         }
         return "/entiti/detNota/index";
     }

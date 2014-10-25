@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -21,14 +20,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "movimentacao")
@@ -36,13 +33,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Movimentacao.findAll", query = "SELECT m FROM Movimentacao m"),
     @NamedQuery(name = "Movimentacao.findByIdMovimentacao", query = "SELECT m FROM Movimentacao m WHERE m.idMovimentacao = :idMovimentacao"),
-    @NamedQuery(name = "Movimentacao.findByDtPrevista", query = "SELECT m FROM Movimentacao m WHERE m.dtPrevista = :dtPrevista"),
     @NamedQuery(name = "Movimentacao.findByDtEntrega", query = "SELECT m FROM Movimentacao m WHERE m.dtEntrega = :dtEntrega"),
+    @NamedQuery(name = "Movimentacao.findByDtPrevista", query = "SELECT m FROM Movimentacao m WHERE m.dtPrevista = :dtPrevista"),
     @NamedQuery(name = "Movimentacao.findByDtSaida", query = "SELECT m FROM Movimentacao m WHERE m.dtSaida = :dtSaida"),
+    @NamedQuery(name = "Movimentacao.findByDuracao", query = "SELECT m FROM Movimentacao m WHERE m.duracao = :duracao"),
     @NamedQuery(name = "Movimentacao.findByQuantFuncionarios", query = "SELECT m FROM Movimentacao m WHERE m.quantFuncionarios = :quantFuncionarios"),
     @NamedQuery(name = "Movimentacao.findByResponsavel", query = "SELECT m FROM Movimentacao m WHERE m.responsavel = :responsavel"),
-    @NamedQuery(name = "Movimentacao.findByTempoPrevisto", query = "SELECT m FROM Movimentacao m WHERE m.tempoPrevisto = :tempoPrevisto"),
-    @NamedQuery(name = "Movimentacao.findByDuracao", query = "SELECT m FROM Movimentacao m WHERE m.duracao = :duracao")})
+    @NamedQuery(name = "Movimentacao.findByTempoPrevisto", query = "SELECT m FROM Movimentacao m WHERE m.tempoPrevisto = :tempoPrevisto")})
 public class Movimentacao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,33 +47,27 @@ public class Movimentacao implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_movimentacao")
     private Integer idMovimentacao;
-    @Column(name = "dt_prevista")
-    @Temporal(TemporalType.DATE)
-    private Date dtPrevista;
     @Column(name = "dt_entrega")
     @Temporal(TemporalType.DATE)
     private Date dtEntrega;
+    @Column(name = "dt_prevista")
+    @Temporal(TemporalType.DATE)
+    private Date dtPrevista;
     @Column(name = "dt_saida")
     @Temporal(TemporalType.DATE)
     private Date dtSaida;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
+    @Column(name = "duracao")
+    @Temporal(TemporalType.TIME)
+    private Date duracao;
+    @Size(max = 255)
     @Column(name = "quant_funcionarios")
     private String quantFuncionarios;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
+    @Size(max = 255)
     @Column(name = "responsavel")
     private String responsavel;
     @Column(name = "tempo_previsto")
     @Temporal(TemporalType.TIME)
     private Date tempoPrevisto;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "duracao")
-    @Temporal(TemporalType.TIME)
-    private Date duracao;
     @JoinColumn(name = "id_tipo_solicitacao", referencedColumnName = "id_tipo_solicitacao")
     @ManyToOne
     private TipoSolicitacao idTipoSolicitacao;
@@ -106,27 +97,12 @@ public class Movimentacao implements Serializable {
         this.idMovimentacao = idMovimentacao;
     }
 
-    public Movimentacao(Integer idMovimentacao, String quantFuncionarios, String responsavel, Date duracao) {
-        this.idMovimentacao = idMovimentacao;
-        this.quantFuncionarios = quantFuncionarios;
-        this.responsavel = responsavel;
-        this.duracao = duracao;
-    }
-
     public Integer getIdMovimentacao() {
         return idMovimentacao;
     }
 
     public void setIdMovimentacao(Integer idMovimentacao) {
         this.idMovimentacao = idMovimentacao;
-    }
-
-    public Date getDtPrevista() {
-        return dtPrevista;
-    }
-
-    public void setDtPrevista(Date dtPrevista) {
-        this.dtPrevista = dtPrevista;
     }
 
     public Date getDtEntrega() {
@@ -137,12 +113,28 @@ public class Movimentacao implements Serializable {
         this.dtEntrega = dtEntrega;
     }
 
+    public Date getDtPrevista() {
+        return dtPrevista;
+    }
+
+    public void setDtPrevista(Date dtPrevista) {
+        this.dtPrevista = dtPrevista;
+    }
+
     public Date getDtSaida() {
         return dtSaida;
     }
 
     public void setDtSaida(Date dtSaida) {
         this.dtSaida = dtSaida;
+    }
+
+    public Date getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(Date duracao) {
+        this.duracao = duracao;
     }
 
     public String getQuantFuncionarios() {
@@ -167,14 +159,6 @@ public class Movimentacao implements Serializable {
 
     public void setTempoPrevisto(Date tempoPrevisto) {
         this.tempoPrevisto = tempoPrevisto;
-    }
-
-    public Date getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Date duracao) {
-        this.duracao = duracao;
     }
 
     public TipoSolicitacao getIdTipoSolicitacao() {
@@ -257,5 +241,5 @@ public class Movimentacao implements Serializable {
     public String toString() {
         return "entiti.Movimentacao[ idMovimentacao=" + idMovimentacao + " ]";
     }
-
+    
 }

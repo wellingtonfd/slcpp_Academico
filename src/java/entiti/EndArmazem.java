@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "end_armazem")
@@ -35,10 +32,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "EndArmazem.findAll", query = "SELECT e FROM EndArmazem e"),
     @NamedQuery(name = "EndArmazem.findByIdEndarmazem", query = "SELECT e FROM EndArmazem e WHERE e.idEndarmazem = :idEndarmazem"),
     @NamedQuery(name = "EndArmazem.findByCorEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.corEndArmazem = :corEndArmazem"),
-    @NamedQuery(name = "EndArmazem.findByRuaEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.ruaEndArmazem = :ruaEndArmazem"),
     @NamedQuery(name = "EndArmazem.findByLadoEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.ladoEndArmazem = :ladoEndArmazem"),
     @NamedQuery(name = "EndArmazem.findByNivelEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.nivelEndArmazem = :nivelEndArmazem"),
-    @NamedQuery(name = "EndArmazem.findByPosicaoEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.posicaoEndArmazem = :posicaoEndArmazem")})
+    @NamedQuery(name = "EndArmazem.findByPosicaoEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.posicaoEndArmazem = :posicaoEndArmazem"),
+    @NamedQuery(name = "EndArmazem.findByRuaEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.ruaEndArmazem = :ruaEndArmazem")})
 public class EndArmazem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,40 +43,33 @@ public class EndArmazem implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_endarmazem")
     private Integer idEndarmazem;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 40)
+    @Size(max = 255)
     @Column(name = "cor_end_armazem")
     private String corEndArmazem;
-    @Size(max = 25)
-    @Column(name = "rua_end_armazem")
-    private String ruaEndArmazem;
-    @Size(max = 15)
+    @Size(max = 255)
     @Column(name = "lado_end_armazem")
     private String ladoEndArmazem;
-    @Size(max = 15)
+    @Size(max = 255)
     @Column(name = "nivel_end_armazem")
     private String nivelEndArmazem;
-    @Size(max = 15)
+    @Size(max = 255)
     @Column(name = "posicao_end_armazem")
     private String posicaoEndArmazem;
+    @Size(max = 255)
+    @Column(name = "rua_end_armazem")
+    private String ruaEndArmazem;
     @OneToMany(mappedBy = "idEndarmazem")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
     @OneToMany(mappedBy = "idEndarmazem")
-    private Collection<Movimentacao> movimentacaoCollection;
+    private List<Movimentacao> movimentacaoList;
     @OneToMany(mappedBy = "idEndarmazem")
-    private Collection<Armazem> armazemCollection;
+    private List<Armazem> armazemList;
 
     public EndArmazem() {
     }
 
     public EndArmazem(Integer idEndarmazem) {
         this.idEndarmazem = idEndarmazem;
-    }
-
-    public EndArmazem(Integer idEndarmazem, String corEndArmazem) {
-        this.idEndarmazem = idEndarmazem;
-        this.corEndArmazem = corEndArmazem;
     }
 
     public Integer getIdEndarmazem() {
@@ -96,14 +86,6 @@ public class EndArmazem implements Serializable {
 
     public void setCorEndArmazem(String corEndArmazem) {
         this.corEndArmazem = corEndArmazem;
-    }
-
-    public String getRuaEndArmazem() {
-        return ruaEndArmazem;
-    }
-
-    public void setRuaEndArmazem(String ruaEndArmazem) {
-        this.ruaEndArmazem = ruaEndArmazem;
     }
 
     public String getLadoEndArmazem() {
@@ -130,31 +112,39 @@ public class EndArmazem implements Serializable {
         this.posicaoEndArmazem = posicaoEndArmazem;
     }
 
-    @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public String getRuaEndArmazem() {
+        return ruaEndArmazem;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Movimentacao> getMovimentacaoCollection() {
-        return movimentacaoCollection;
-    }
-
-    public void setMovimentacaoCollection(Collection<Movimentacao> movimentacaoCollection) {
-        this.movimentacaoCollection = movimentacaoCollection;
+    public void setRuaEndArmazem(String ruaEndArmazem) {
+        this.ruaEndArmazem = ruaEndArmazem;
     }
 
     @XmlTransient
-    public Collection<Armazem> getArmazemCollection() {
-        return armazemCollection;
+    public List<Produto> getProdutoList() {
+        return produtoList;
     }
 
-    public void setArmazemCollection(Collection<Armazem> armazemCollection) {
-        this.armazemCollection = armazemCollection;
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
+    }
+
+    @XmlTransient
+    public List<Movimentacao> getMovimentacaoList() {
+        return movimentacaoList;
+    }
+
+    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
+        this.movimentacaoList = movimentacaoList;
+    }
+
+    @XmlTransient
+    public List<Armazem> getArmazemList() {
+        return armazemList;
+    }
+
+    public void setArmazemList(List<Armazem> armazemList) {
+        this.armazemList = armazemList;
     }
 
     @Override
@@ -181,5 +171,5 @@ public class EndArmazem implements Serializable {
     public String toString() {
         return "entiti.EndArmazem[ idEndarmazem=" + idEndarmazem + " ]";
     }
-
+    
 }

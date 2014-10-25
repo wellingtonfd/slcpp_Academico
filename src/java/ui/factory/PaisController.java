@@ -33,7 +33,7 @@ public class PaisController extends AbstractController<Pais> {
      */
     public String navigateEnderecoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Endereco_items", this.getSelected().getEnderecoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Endereco_items", this.getSelected().getEnderecoList());
         }
         return "/entiti/endereco/index";
     }

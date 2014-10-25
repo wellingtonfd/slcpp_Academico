@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "num_cas")
@@ -34,8 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "NumCas.findAll", query = "SELECT n FROM NumCas n"),
     @NamedQuery(name = "NumCas.findByIdNumCas", query = "SELECT n FROM NumCas n WHERE n.idNumCas = :idNumCas"),
-    @NamedQuery(name = "NumCas.findByNumCas", query = "SELECT n FROM NumCas n WHERE n.numCas = :numCas"),
-    @NamedQuery(name = "NumCas.findByEspcNumCas", query = "SELECT n FROM NumCas n WHERE n.espcNumCas = :espcNumCas")})
+    @NamedQuery(name = "NumCas.findByEspcNumCas", query = "SELECT n FROM NumCas n WHERE n.espcNumCas = :espcNumCas"),
+    @NamedQuery(name = "NumCas.findByNumCas", query = "SELECT n FROM NumCas n WHERE n.numCas = :numCas")})
 public class NumCas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,27 +40,20 @@ public class NumCas implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_num_cas")
     private Integer idNumCas;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "num_cas")
-    private String numCas;
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "espc_num_cas")
     private String espcNumCas;
+    @Size(max = 255)
+    @Column(name = "num_cas")
+    private String numCas;
     @OneToMany(mappedBy = "idNumCas")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
 
     public NumCas() {
     }
 
     public NumCas(Integer idNumCas) {
         this.idNumCas = idNumCas;
-    }
-
-    public NumCas(Integer idNumCas, String numCas) {
-        this.idNumCas = idNumCas;
-        this.numCas = numCas;
     }
 
     public Integer getIdNumCas() {
@@ -74,14 +64,6 @@ public class NumCas implements Serializable {
         this.idNumCas = idNumCas;
     }
 
-    public String getNumCas() {
-        return numCas;
-    }
-
-    public void setNumCas(String numCas) {
-        this.numCas = numCas;
-    }
-
     public String getEspcNumCas() {
         return espcNumCas;
     }
@@ -90,13 +72,21 @@ public class NumCas implements Serializable {
         this.espcNumCas = espcNumCas;
     }
 
-    @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public String getNumCas() {
+        return numCas;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setNumCas(String numCas) {
+        this.numCas = numCas;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -123,5 +113,5 @@ public class NumCas implements Serializable {
     public String toString() {
         return "entiti.NumCas[ idNumCas=" + idNumCas + " ]";
     }
-
+    
 }

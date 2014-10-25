@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Collection;
+import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,15 +23,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "det_nota")
@@ -40,11 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "DetNota.findAll", query = "SELECT d FROM DetNota d"),
     @NamedQuery(name = "DetNota.findByIdDetalheNota", query = "SELECT d FROM DetNota d WHERE d.idDetalheNota = :idDetalheNota"),
-    @NamedQuery(name = "DetNota.findByNumNota", query = "SELECT d FROM DetNota d WHERE d.numNota = :numNota"),
     @NamedQuery(name = "DetNota.findByDtPedido", query = "SELECT d FROM DetNota d WHERE d.dtPedido = :dtPedido"),
-    @NamedQuery(name = "DetNota.findByValorTotal", query = "SELECT d FROM DetNota d WHERE d.valorTotal = :valorTotal"),
     @NamedQuery(name = "DetNota.findByIdFornecedor", query = "SELECT d FROM DetNota d WHERE d.idFornecedor = :idFornecedor"),
     @NamedQuery(name = "DetNota.findByIdTipoEquipamento", query = "SELECT d FROM DetNota d WHERE d.idTipoEquipamento = :idTipoEquipamento"),
+    @NamedQuery(name = "DetNota.findByNumNota", query = "SELECT d FROM DetNota d WHERE d.numNota = :numNota"),
+    @NamedQuery(name = "DetNota.findByValorTotal", query = "SELECT d FROM DetNota d WHERE d.valorTotal = :valorTotal"),
     @NamedQuery(name = "DetNota.findByValorUnitario", query = "SELECT d FROM DetNota d WHERE d.valorUnitario = :valorUnitario")})
 public class DetNota implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -53,37 +50,30 @@ public class DetNota implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_detalhe_nota")
     private Integer idDetalheNota;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
-    @Column(name = "num_nota")
-    private String numNota;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "dt_pedido")
     @Temporal(TemporalType.DATE)
     private Date dtPedido;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "valor_total")
-    private BigDecimal valorTotal;
     @Column(name = "id_fornecedor")
     private Integer idFornecedor;
     @Column(name = "id_tipo_equipamento")
     private Integer idTipoEquipamento;
+    @Size(max = 255)
+    @Column(name = "num_nota")
+    private String numNota;
+    @Column(name = "valor_total")
+    private BigInteger valorTotal;
     @Column(name = "valor_unitario")
     private Integer valorUnitario;
     @OneToMany(mappedBy = "idDetalheNota")
-    private Collection<Movimentacao> movimentacaoCollection;
+    private List<Movimentacao> movimentacaoList;
     @JoinColumn(name = "tipo_equipamento_id_tipo_equipamento", referencedColumnName = "id_tipo_equipamento")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private TipoEquipamento tipoEquipamentoIdTipoEquipamento;
     @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
     @ManyToOne
     private Produto idProduto;
     @JoinColumn(name = "fornecedor_id_fornecedor", referencedColumnName = "id_fornecedor")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Fornecedor fornecedorIdFornecedor;
 
     public DetNota() {
@@ -91,13 +81,6 @@ public class DetNota implements Serializable {
 
     public DetNota(Integer idDetalheNota) {
         this.idDetalheNota = idDetalheNota;
-    }
-
-    public DetNota(Integer idDetalheNota, String numNota, Date dtPedido, BigDecimal valorTotal) {
-        this.idDetalheNota = idDetalheNota;
-        this.numNota = numNota;
-        this.dtPedido = dtPedido;
-        this.valorTotal = valorTotal;
     }
 
     public Integer getIdDetalheNota() {
@@ -108,28 +91,12 @@ public class DetNota implements Serializable {
         this.idDetalheNota = idDetalheNota;
     }
 
-    public String getNumNota() {
-        return numNota;
-    }
-
-    public void setNumNota(String numNota) {
-        this.numNota = numNota;
-    }
-
     public Date getDtPedido() {
         return dtPedido;
     }
 
     public void setDtPedido(Date dtPedido) {
         this.dtPedido = dtPedido;
-    }
-
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
     }
 
     public Integer getIdFornecedor() {
@@ -148,6 +115,22 @@ public class DetNota implements Serializable {
         this.idTipoEquipamento = idTipoEquipamento;
     }
 
+    public String getNumNota() {
+        return numNota;
+    }
+
+    public void setNumNota(String numNota) {
+        this.numNota = numNota;
+    }
+
+    public BigInteger getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigInteger valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
     public Integer getValorUnitario() {
         return valorUnitario;
     }
@@ -157,12 +140,12 @@ public class DetNota implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Movimentacao> getMovimentacaoCollection() {
-        return movimentacaoCollection;
+    public List<Movimentacao> getMovimentacaoList() {
+        return movimentacaoList;
     }
 
-    public void setMovimentacaoCollection(Collection<Movimentacao> movimentacaoCollection) {
-        this.movimentacaoCollection = movimentacaoCollection;
+    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
+        this.movimentacaoList = movimentacaoList;
     }
 
     public TipoEquipamento getTipoEquipamentoIdTipoEquipamento() {
@@ -213,5 +196,5 @@ public class DetNota implements Serializable {
     public String toString() {
         return "entiti.DetNota[ idDetalheNota=" + idDetalheNota + " ]";
     }
-
+    
 }

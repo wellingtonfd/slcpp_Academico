@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "num_onu")
@@ -34,9 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "NumOnu.findAll", query = "SELECT n FROM NumOnu n"),
     @NamedQuery(name = "NumOnu.findByIdNumOnu", query = "SELECT n FROM NumOnu n WHERE n.idNumOnu = :idNumOnu"),
-    @NamedQuery(name = "NumOnu.findByNumOnu", query = "SELECT n FROM NumOnu n WHERE n.numOnu = :numOnu"),
+    @NamedQuery(name = "NumOnu.findByDescProd", query = "SELECT n FROM NumOnu n WHERE n.descProd = :descProd"),
     @NamedQuery(name = "NumOnu.findByNomeProd", query = "SELECT n FROM NumOnu n WHERE n.nomeProd = :nomeProd"),
-    @NamedQuery(name = "NumOnu.findByDescProd", query = "SELECT n FROM NumOnu n WHERE n.descProd = :descProd")})
+    @NamedQuery(name = "NumOnu.findByNumOnu", query = "SELECT n FROM NumOnu n WHERE n.numOnu = :numOnu")})
 public class NumOnu implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,32 +41,22 @@ public class NumOnu implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_num_onu")
     private Integer idNumOnu;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "num_onu")
-    private int numOnu;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 80)
-    @Column(name = "nome_prod")
-    private String nomeProd;
-    @Size(max = 100)
+    @Size(max = 255)
     @Column(name = "desc_prod")
     private String descProd;
+    @Size(max = 255)
+    @Column(name = "nome_prod")
+    private String nomeProd;
+    @Column(name = "num_onu")
+    private Integer numOnu;
     @OneToMany(mappedBy = "idNumOnu")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
 
     public NumOnu() {
     }
 
     public NumOnu(Integer idNumOnu) {
         this.idNumOnu = idNumOnu;
-    }
-
-    public NumOnu(Integer idNumOnu, int numOnu, String nomeProd) {
-        this.idNumOnu = idNumOnu;
-        this.numOnu = numOnu;
-        this.nomeProd = nomeProd;
     }
 
     public Integer getIdNumOnu() {
@@ -80,12 +67,12 @@ public class NumOnu implements Serializable {
         this.idNumOnu = idNumOnu;
     }
 
-    public int getNumOnu() {
-        return numOnu;
+    public String getDescProd() {
+        return descProd;
     }
 
-    public void setNumOnu(int numOnu) {
-        this.numOnu = numOnu;
+    public void setDescProd(String descProd) {
+        this.descProd = descProd;
     }
 
     public String getNomeProd() {
@@ -96,21 +83,21 @@ public class NumOnu implements Serializable {
         this.nomeProd = nomeProd;
     }
 
-    public String getDescProd() {
-        return descProd;
+    public Integer getNumOnu() {
+        return numOnu;
     }
 
-    public void setDescProd(String descProd) {
-        this.descProd = descProd;
+    public void setNumOnu(Integer numOnu) {
+        this.numOnu = numOnu;
     }
 
     @XmlTransient
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public List<Produto> getProdutoList() {
+        return produtoList;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -137,5 +124,5 @@ public class NumOnu implements Serializable {
     public String toString() {
         return "entiti.NumOnu[ idNumOnu=" + idNumOnu + " ]";
     }
-
+    
 }

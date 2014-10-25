@@ -33,7 +33,7 @@ public class EpiController extends AbstractController<Epi> {
      */
     public String navigateTipoEquipamentoCollection() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoCollection());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoList());
         }
         return "/entiti/tipoEquipamento/index";
     }

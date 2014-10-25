@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -37,12 +36,12 @@ public class UsuarioRoler implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "roler", referencedColumnName = "id_roler")
-    @ManyToOne
-    private Roler roler;
     @JoinColumn(name = "login", referencedColumnName = "id_usuario")
     @ManyToOne
     private Usuario login;
+    @JoinColumn(name = "roler", referencedColumnName = "id_roler")
+    @ManyToOne
+    private Roler roler;
 
     public UsuarioRoler() {
     }
@@ -59,20 +58,20 @@ public class UsuarioRoler implements Serializable {
         this.id = id;
     }
 
-    public Roler getRoler() {
-        return roler;
-    }
-
-    public void setRoler(Roler roler) {
-        this.roler = roler;
-    }
-
     public Usuario getLogin() {
         return login;
     }
 
     public void setLogin(Usuario login) {
         this.login = login;
+    }
+
+    public Roler getRoler() {
+        return roler;
+    }
+
+    public void setRoler(Roler roler) {
+        this.roler = roler;
     }
 
     @Override

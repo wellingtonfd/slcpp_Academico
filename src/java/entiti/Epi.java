@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +17,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "epi")
@@ -34,10 +31,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Epi.findAll", query = "SELECT e FROM Epi e"),
     @NamedQuery(name = "Epi.findByIdEpi", query = "SELECT e FROM Epi e WHERE e.idEpi = :idEpi"),
-    @NamedQuery(name = "Epi.findByNomeEpi", query = "SELECT e FROM Epi e WHERE e.nomeEpi = :nomeEpi"),
-    @NamedQuery(name = "Epi.findByGrupoEpi", query = "SELECT e FROM Epi e WHERE e.grupoEpi = :grupoEpi"),
     @NamedQuery(name = "Epi.findByEspecEpi", query = "SELECT e FROM Epi e WHERE e.especEpi = :especEpi"),
-    @NamedQuery(name = "Epi.findByIdMaterial", query = "SELECT e FROM Epi e WHERE e.idMaterial = :idMaterial")})
+    @NamedQuery(name = "Epi.findByGrupoEpi", query = "SELECT e FROM Epi e WHERE e.grupoEpi = :grupoEpi"),
+    @NamedQuery(name = "Epi.findByIdMaterial", query = "SELECT e FROM Epi e WHERE e.idMaterial = :idMaterial"),
+    @NamedQuery(name = "Epi.findByNomeEpi", query = "SELECT e FROM Epi e WHERE e.nomeEpi = :nomeEpi")})
 public class Epi implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,35 +42,25 @@ public class Epi implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_epi")
     private Integer idEpi;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "nome_epi")
-    private String nomeEpi;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 25)
-    @Column(name = "grupo_epi")
-    private String grupoEpi;
-    @Size(max = 2147483647)
+    @Size(max = 255)
     @Column(name = "espec_epi")
     private String especEpi;
+    @Size(max = 255)
+    @Column(name = "grupo_epi")
+    private String grupoEpi;
     @Column(name = "id_material")
     private Integer idMaterial;
+    @Size(max = 255)
+    @Column(name = "nome_epi")
+    private String nomeEpi;
     @OneToMany(mappedBy = "idEpi")
-    private Collection<TipoEquipamento> tipoEquipamentoCollection;
+    private List<TipoEquipamento> tipoEquipamentoList;
 
     public Epi() {
     }
 
     public Epi(Integer idEpi) {
         this.idEpi = idEpi;
-    }
-
-    public Epi(Integer idEpi, String nomeEpi, String grupoEpi) {
-        this.idEpi = idEpi;
-        this.nomeEpi = nomeEpi;
-        this.grupoEpi = grupoEpi;
     }
 
     public Integer getIdEpi() {
@@ -84,12 +71,12 @@ public class Epi implements Serializable {
         this.idEpi = idEpi;
     }
 
-    public String getNomeEpi() {
-        return nomeEpi;
+    public String getEspecEpi() {
+        return especEpi;
     }
 
-    public void setNomeEpi(String nomeEpi) {
-        this.nomeEpi = nomeEpi;
+    public void setEspecEpi(String especEpi) {
+        this.especEpi = especEpi;
     }
 
     public String getGrupoEpi() {
@@ -100,14 +87,6 @@ public class Epi implements Serializable {
         this.grupoEpi = grupoEpi;
     }
 
-    public String getEspecEpi() {
-        return especEpi;
-    }
-
-    public void setEspecEpi(String especEpi) {
-        this.especEpi = especEpi;
-    }
-
     public Integer getIdMaterial() {
         return idMaterial;
     }
@@ -116,13 +95,21 @@ public class Epi implements Serializable {
         this.idMaterial = idMaterial;
     }
 
-    @XmlTransient
-    public Collection<TipoEquipamento> getTipoEquipamentoCollection() {
-        return tipoEquipamentoCollection;
+    public String getNomeEpi() {
+        return nomeEpi;
     }
 
-    public void setTipoEquipamentoCollection(Collection<TipoEquipamento> tipoEquipamentoCollection) {
-        this.tipoEquipamentoCollection = tipoEquipamentoCollection;
+    public void setNomeEpi(String nomeEpi) {
+        this.nomeEpi = nomeEpi;
+    }
+
+    @XmlTransient
+    public List<TipoEquipamento> getTipoEquipamentoList() {
+        return tipoEquipamentoList;
+    }
+
+    public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
+        this.tipoEquipamentoList = tipoEquipamentoList;
     }
 
     @Override
@@ -149,5 +136,5 @@ public class Epi implements Serializable {
     public String toString() {
         return "entiti.Epi[ idEpi=" + idEpi + " ]";
     }
-
+    
 }

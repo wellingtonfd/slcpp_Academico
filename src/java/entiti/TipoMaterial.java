@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -16,14 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "tipo_material")
@@ -31,8 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TipoMaterial.findAll", query = "SELECT t FROM TipoMaterial t"),
     @NamedQuery(name = "TipoMaterial.findByIdTipoMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.idTipoMaterial = :idTipoMaterial"),
-    @NamedQuery(name = "TipoMaterial.findByNomeMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.nomeMaterial = :nomeMaterial"),
-    @NamedQuery(name = "TipoMaterial.findByEspecMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.especMaterial = :especMaterial")})
+    @NamedQuery(name = "TipoMaterial.findByEspecMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.especMaterial = :especMaterial"),
+    @NamedQuery(name = "TipoMaterial.findByNomeMaterial", query = "SELECT t FROM TipoMaterial t WHERE t.nomeMaterial = :nomeMaterial")})
 public class TipoMaterial implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,25 +37,18 @@ public class TipoMaterial implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_tipo_material")
     private Integer idTipoMaterial;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "nome_material")
-    private String nomeMaterial;
-    @Size(max = 60)
+    @Size(max = 255)
     @Column(name = "espec_material")
     private String especMaterial;
+    @Size(max = 255)
+    @Column(name = "nome_material")
+    private String nomeMaterial;
 
     public TipoMaterial() {
     }
 
     public TipoMaterial(Integer idTipoMaterial) {
         this.idTipoMaterial = idTipoMaterial;
-    }
-
-    public TipoMaterial(Integer idTipoMaterial, String nomeMaterial) {
-        this.idTipoMaterial = idTipoMaterial;
-        this.nomeMaterial = nomeMaterial;
     }
 
     public Integer getIdTipoMaterial() {
@@ -69,20 +59,20 @@ public class TipoMaterial implements Serializable {
         this.idTipoMaterial = idTipoMaterial;
     }
 
-    public String getNomeMaterial() {
-        return nomeMaterial;
-    }
-
-    public void setNomeMaterial(String nomeMaterial) {
-        this.nomeMaterial = nomeMaterial;
-    }
-
     public String getEspecMaterial() {
         return especMaterial;
     }
 
     public void setEspecMaterial(String especMaterial) {
         this.especMaterial = especMaterial;
+    }
+
+    public String getNomeMaterial() {
+        return nomeMaterial;
+    }
+
+    public void setNomeMaterial(String nomeMaterial) {
+        this.nomeMaterial = nomeMaterial;
     }
 
     @Override
@@ -109,5 +99,5 @@ public class TipoMaterial implements Serializable {
     public String toString() {
         return "entiti.TipoMaterial[ idTipoMaterial=" + idTipoMaterial + " ]";
     }
-
+    
 }

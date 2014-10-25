@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "tipo_equipamento")
@@ -37,10 +33,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TipoEquipamento.findAll", query = "SELECT t FROM TipoEquipamento t"),
     @NamedQuery(name = "TipoEquipamento.findByIdTipoEquipamento", query = "SELECT t FROM TipoEquipamento t WHERE t.idTipoEquipamento = :idTipoEquipamento"),
-    @NamedQuery(name = "TipoEquipamento.findByNomeTipoEquipamento", query = "SELECT t FROM TipoEquipamento t WHERE t.nomeTipoEquipamento = :nomeTipoEquipamento"),
     @NamedQuery(name = "TipoEquipamento.findByEspcTipoEquipamento", query = "SELECT t FROM TipoEquipamento t WHERE t.espcTipoEquipamento = :espcTipoEquipamento"),
+    @NamedQuery(name = "TipoEquipamento.findByIdEmbalagem", query = "SELECT t FROM TipoEquipamento t WHERE t.idEmbalagem = :idEmbalagem"),
     @NamedQuery(name = "TipoEquipamento.findByIdEpe", query = "SELECT t FROM TipoEquipamento t WHERE t.idEpe = :idEpe"),
-    @NamedQuery(name = "TipoEquipamento.findByIdEmbalagem", query = "SELECT t FROM TipoEquipamento t WHERE t.idEmbalagem = :idEmbalagem")})
+    @NamedQuery(name = "TipoEquipamento.findByNomeTipoEquipamento", query = "SELECT t FROM TipoEquipamento t WHERE t.nomeTipoEquipamento = :nomeTipoEquipamento")})
 public class TipoEquipamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,20 +44,18 @@ public class TipoEquipamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_tipo_equipamento")
     private Integer idTipoEquipamento;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "nome_tipo_equipamento")
-    private String nomeTipoEquipamento;
-    @Size(max = 35)
+    @Size(max = 255)
     @Column(name = "espc_tipo_equipamento")
     private String espcTipoEquipamento;
-    @Column(name = "id_epe")
-    private Integer idEpe;
     @Column(name = "id_embalagem")
     private Integer idEmbalagem;
+    @Column(name = "id_epe")
+    private Integer idEpe;
+    @Size(max = 255)
+    @Column(name = "nome_tipo_equipamento")
+    private String nomeTipoEquipamento;
     @OneToMany(mappedBy = "idTipoEquipamento")
-    private Collection<Movimentacao> movimentacaoCollection;
+    private List<Movimentacao> movimentacaoList;
     @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
     @ManyToOne
     private Veiculo idVeiculo;
@@ -69,21 +63,16 @@ public class TipoEquipamento implements Serializable {
     @ManyToOne
     private Epi idEpi;
     @JoinColumn(name = "epe_id_epe", referencedColumnName = "id_epe")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Epe epeIdEpe;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoEquipamentoIdTipoEquipamento")
-    private Collection<DetNota> detNotaCollection;
+    @OneToMany(mappedBy = "tipoEquipamentoIdTipoEquipamento")
+    private List<DetNota> detNotaList;
 
     public TipoEquipamento() {
     }
 
     public TipoEquipamento(Integer idTipoEquipamento) {
         this.idTipoEquipamento = idTipoEquipamento;
-    }
-
-    public TipoEquipamento(Integer idTipoEquipamento, String nomeTipoEquipamento) {
-        this.idTipoEquipamento = idTipoEquipamento;
-        this.nomeTipoEquipamento = nomeTipoEquipamento;
     }
 
     public Integer getIdTipoEquipamento() {
@@ -94,28 +83,12 @@ public class TipoEquipamento implements Serializable {
         this.idTipoEquipamento = idTipoEquipamento;
     }
 
-    public String getNomeTipoEquipamento() {
-        return nomeTipoEquipamento;
-    }
-
-    public void setNomeTipoEquipamento(String nomeTipoEquipamento) {
-        this.nomeTipoEquipamento = nomeTipoEquipamento;
-    }
-
     public String getEspcTipoEquipamento() {
         return espcTipoEquipamento;
     }
 
     public void setEspcTipoEquipamento(String espcTipoEquipamento) {
         this.espcTipoEquipamento = espcTipoEquipamento;
-    }
-
-    public Integer getIdEpe() {
-        return idEpe;
-    }
-
-    public void setIdEpe(Integer idEpe) {
-        this.idEpe = idEpe;
     }
 
     public Integer getIdEmbalagem() {
@@ -126,13 +99,29 @@ public class TipoEquipamento implements Serializable {
         this.idEmbalagem = idEmbalagem;
     }
 
-    @XmlTransient
-    public Collection<Movimentacao> getMovimentacaoCollection() {
-        return movimentacaoCollection;
+    public Integer getIdEpe() {
+        return idEpe;
     }
 
-    public void setMovimentacaoCollection(Collection<Movimentacao> movimentacaoCollection) {
-        this.movimentacaoCollection = movimentacaoCollection;
+    public void setIdEpe(Integer idEpe) {
+        this.idEpe = idEpe;
+    }
+
+    public String getNomeTipoEquipamento() {
+        return nomeTipoEquipamento;
+    }
+
+    public void setNomeTipoEquipamento(String nomeTipoEquipamento) {
+        this.nomeTipoEquipamento = nomeTipoEquipamento;
+    }
+
+    @XmlTransient
+    public List<Movimentacao> getMovimentacaoList() {
+        return movimentacaoList;
+    }
+
+    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
+        this.movimentacaoList = movimentacaoList;
     }
 
     public Veiculo getIdVeiculo() {
@@ -160,12 +149,12 @@ public class TipoEquipamento implements Serializable {
     }
 
     @XmlTransient
-    public Collection<DetNota> getDetNotaCollection() {
-        return detNotaCollection;
+    public List<DetNota> getDetNotaList() {
+        return detNotaList;
     }
 
-    public void setDetNotaCollection(Collection<DetNota> detNotaCollection) {
-        this.detNotaCollection = detNotaCollection;
+    public void setDetNotaList(List<DetNota> detNotaList) {
+        this.detNotaList = detNotaList;
     }
 
     @Override
@@ -192,5 +181,5 @@ public class TipoEquipamento implements Serializable {
     public String toString() {
         return "entiti.TipoEquipamento[ idTipoEquipamento=" + idTipoEquipamento + " ]";
     }
-
+    
 }
