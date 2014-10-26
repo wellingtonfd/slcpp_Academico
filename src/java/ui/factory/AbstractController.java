@@ -3,7 +3,7 @@ package ui.factory;
 import ui.bean.AbstractFacade;
 import ui.factory.util.JsfUtil;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.event.ActionEvent;
@@ -29,7 +29,7 @@ public abstract class AbstractController<T> implements Serializable {
     private AbstractFacade<T> ejbFacade;
     private Class<T> itemClass;
     private T selected;
-    private Collection<T> items;
+    private List<T> items;
 
     private enum PersistAction {
 
@@ -84,11 +84,11 @@ public abstract class AbstractController<T> implements Serializable {
     }
 
     /**
-     * Returns all items as a Collection object.
+     * Returns all items as a List object.
      *
-     * @return a collection of Entity items returned by the data layer
+     * @return a List of Entity items returned by the data layer
      */
-    public Collection<T> getItems() {
+    public List<T> getItems() {
         if (items == null) {
             items = this.ejbFacade.findAll();
         }
@@ -96,11 +96,11 @@ public abstract class AbstractController<T> implements Serializable {
     }
 
     /**
-     * Pass in collection of items
+     * Pass in List of items
      *
-     * @param items a collection of Entity items
+     * @param items a List of Entity items
      */
-    public void setItems(Collection<T> items) {
+    public void setItems(List<T> items) {
         this.items = items;
     }
 
@@ -230,14 +230,14 @@ public abstract class AbstractController<T> implements Serializable {
     }
 
     /**
-     * Retrieve a collection of Entity items for a specific Controller from
+     * Retrieve a List of Entity items for a specific Controller from
      * another JSF page via Request parameters.
      */
     @PostConstruct
     public void initParams() {
         Object paramItems = FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get(itemClass.getSimpleName() + "_items");
         if (paramItems != null) {
-            this.items = (Collection<T>) paramItems;
+            this.items = (List<T>) paramItems;
         }
     }
 

@@ -12,9 +12,9 @@ import javax.inject.Inject;
 public class FornecedorController extends AbstractController<Fornecedor> {
 
     @Inject
-    private TipoSolicitacaoController tipoSolicitacaoCollectionController;
+    private TipoSolicitacaoController tipoSolicitacaoListController;
     @Inject
-    private DetNotaController detNotaCollectionController;
+    private DetNotaController detNotaListController;
     @Inject
     private EnderecoController idEnderecoController;
     @Inject
@@ -34,13 +34,13 @@ public class FornecedorController extends AbstractController<Fornecedor> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of TipoSolicitacao entities
+     * Sets the "items" attribute with a List of TipoSolicitacao entities
      * that are retrieved from Fornecedor?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for TipoSolicitacao page
      */
-    public String navigateTipoSolicitacaoCollection() {
+    public String navigateTipoSolicitacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
         }
@@ -48,12 +48,12 @@ public class FornecedorController extends AbstractController<Fornecedor> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of DetNota entities that are
+     * Sets the "items" attribute with a List of DetNota entities that are
      * retrieved from Fornecedor?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for DetNota page
      */
-    public String navigateDetNotaCollection() {
+    public String navigateDetNotaList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaList());
         }

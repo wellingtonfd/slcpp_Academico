@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class GrupoEmbalagemController extends AbstractController<GrupoEmbalagem> {
 
     @Inject
-    private EmbalagemController embalagemCollectionController;
+    private EmbalagemController embalagemListController;
 
     public GrupoEmbalagemController() {
         // Inform the Abstract parent controller of the concrete GrupoEmbalagem?cap_first Entity
@@ -26,13 +26,13 @@ public class GrupoEmbalagemController extends AbstractController<GrupoEmbalagem>
     }
 
     /**
-     * Sets the "items" attribute with a collection of Embalagem entities that
+     * Sets the "items" attribute with a List of Embalagem entities that
      * are retrieved from GrupoEmbalagem?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Embalagem page
      */
-    public String navigateEmbalagemCollection() {
+    public String navigateEmbalagemList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemList());
         }

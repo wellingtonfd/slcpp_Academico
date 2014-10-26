@@ -12,9 +12,9 @@ import javax.inject.Inject;
 public class EnderecoController extends AbstractController<Endereco> {
 
     @Inject
-    private FornecedorController fornecedorCollectionController;
+    private FornecedorController fornecedorListController;
     @Inject
-    private FuncionarioController funcionarioCollectionController;
+    private FuncionarioController funcionarioListController;
     @Inject
     private PaisController idPaisController;
     @Inject
@@ -37,12 +37,12 @@ public class EnderecoController extends AbstractController<Endereco> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Fornecedor entities that
+     * Sets the "items" attribute with a List of Fornecedor entities that
      * are retrieved from Endereco?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Fornecedor page
      */
-    public String navigateFornecedorCollection() {
+    public String navigateFornecedorList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Fornecedor_items", this.getSelected().getFornecedorList());
         }
@@ -50,12 +50,12 @@ public class EnderecoController extends AbstractController<Endereco> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Funcionario entities that
+     * Sets the "items" attribute with a List of Funcionario entities that
      * are retrieved from Endereco?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Funcionario page
      */
-    public String navigateFuncionarioCollection() {
+    public String navigateFuncionarioList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioList());
         }

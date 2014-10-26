@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class DetNotaController extends AbstractController<DetNota> {
 
     @Inject
-    private MovimentacaoController movimentacaoCollectionController;
+    private MovimentacaoController movimentacaoListController;
     @Inject
     private TipoEquipamentoController tipoEquipamentoIdTipoEquipamentoController;
     @Inject
@@ -35,13 +35,13 @@ public class DetNotaController extends AbstractController<DetNota> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Movimentacao entities
+     * Sets the "items" attribute with a List of Movimentacao entities
      * that are retrieved from DetNota?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoCollection() {
+    public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }

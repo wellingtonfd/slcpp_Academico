@@ -15,9 +15,9 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EndArmazemListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('EndArmazemListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.EndArmazemMenuItem_produtoCollection}" icon="ui-icon-search"  action="#{endArmazemController.navigateProdutoCollection}" disabled="#{empty endArmazemController.selected.produtoCollection}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.EndArmazemMenuItem_movimentacaoCollection}" icon="ui-icon-search"  action="#{endArmazemController.navigateMovimentacaoCollection}" disabled="#{empty endArmazemController.selected.movimentacaoCollection}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.EndArmazemMenuItem_armazemCollection}" icon="ui-icon-search"  action="#{endArmazemController.navigateArmazemCollection}" disabled="#{empty endArmazemController.selected.armazemCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.EndArmazemMenuItem_produtoList}" icon="ui-icon-search"  action="#{endArmazemController.navigateProdutoList}" disabled="#{empty endArmazemController.selected.produtoList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.EndArmazemMenuItem_movimentacaoList}" icon="ui-icon-search"  action="#{endArmazemController.navigateMovimentacaoList}" disabled="#{empty endArmazemController.selected.movimentacaoList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.EndArmazemMenuItem_armazemList}" icon="ui-icon-search"  action="#{endArmazemController.navigateArmazemList}" disabled="#{empty endArmazemController.selected.armazemList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{endArmazemController.items}"

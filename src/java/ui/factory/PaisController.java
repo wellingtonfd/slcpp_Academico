@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class PaisController extends AbstractController<Pais> {
 
     @Inject
-    private EnderecoController enderecoCollectionController;
+    private EnderecoController enderecoListController;
 
     public PaisController() {
         // Inform the Abstract parent controller of the concrete Pais?cap_first Entity
@@ -26,12 +26,12 @@ public class PaisController extends AbstractController<Pais> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Endereco entities that
+     * Sets the "items" attribute with a List of Endereco entities that
      * are retrieved from Pais?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Endereco page
      */
-    public String navigateEnderecoCollection() {
+    public String navigateEnderecoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Endereco_items", this.getSelected().getEnderecoList());
         }

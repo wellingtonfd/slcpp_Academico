@@ -28,9 +28,9 @@ public class ProdutoController extends AbstractController<Produto> {
     @Inject
     private ArmazemController armazemIdArmazemController;
     @Inject
-    private MovimentacaoController movimentacaoCollectionController;
+    private MovimentacaoController movimentacaoListController;
     @Inject
-    private DetNotaController detNotaCollectionController;
+    private DetNotaController detNotaListController;
 
     public ProdutoController() {
         // Inform the Abstract parent controller of the concrete Produto?cap_first Entity
@@ -156,13 +156,13 @@ public class ProdutoController extends AbstractController<Produto> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Movimentacao entities
+     * Sets the "items" attribute with a List of Movimentacao entities
      * that are retrieved from Produto?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoCollection() {
+    public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }
@@ -170,12 +170,12 @@ public class ProdutoController extends AbstractController<Produto> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of DetNota entities that are
+     * Sets the "items" attribute with a List of DetNota entities that are
      * retrieved from Produto?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for DetNota page
      */
-    public String navigateDetNotaCollection() {
+    public String navigateDetNotaList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaList());
         }

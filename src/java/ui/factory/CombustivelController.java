@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class CombustivelController extends AbstractController<Combustivel> {
 
     @Inject
-    private VeiculoController veiculoCollectionController;
+    private VeiculoController veiculoListController;
 
     public CombustivelController() {
         // Inform the Abstract parent controller of the concrete Combustivel?cap_first Entity
@@ -26,12 +26,12 @@ public class CombustivelController extends AbstractController<Combustivel> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Veiculo entities that are
+     * Sets the "items" attribute with a List of Veiculo entities that are
      * retrieved from Combustivel?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Veiculo page
      */
-    public String navigateVeiculoCollection() {
+    public String navigateVeiculoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Veiculo_items", this.getSelected().getVeiculoList());
         }

@@ -15,8 +15,8 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ContatosListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ContatosListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.ContatosMenuItem_fornecedorCollection}" icon="ui-icon-search"  action="#{contatosController.navigateFornecedorCollection}" disabled="#{empty contatosController.selected.fornecedorCollection}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.ContatosMenuItem_funcionarioCollection}" icon="ui-icon-search"  action="#{contatosController.navigateFuncionarioCollection}" disabled="#{empty contatosController.selected.funcionarioCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ContatosMenuItem_fornecedorList}" icon="ui-icon-search"  action="#{contatosController.navigateFornecedorList}" disabled="#{empty contatosController.selected.fornecedorList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.ContatosMenuItem_funcionarioList}" icon="ui-icon-search"  action="#{contatosController.navigateFuncionarioList}" disabled="#{empty contatosController.selected.funcionarioList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{contatosController.items}"

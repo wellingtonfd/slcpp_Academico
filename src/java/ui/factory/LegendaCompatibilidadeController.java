@@ -12,9 +12,9 @@ import javax.inject.Inject;
 public class LegendaCompatibilidadeController extends AbstractController<LegendaCompatibilidade> {
 
     @Inject
-    private ProdutoController produtoCollectionController;
+    private ProdutoController produtoListController;
     @Inject
-    private CompatibilidadeController compatibilidadeCollectionController;
+    private CompatibilidadeController compatibilidadeListController;
 
     public LegendaCompatibilidadeController() {
         // Inform the Abstract parent controller of the concrete LegendaCompatibilidade?cap_first Entity
@@ -28,13 +28,13 @@ public class LegendaCompatibilidadeController extends AbstractController<Legenda
     }
 
     /**
-     * Sets the "items" attribute with a collection of Produto entities that are
+     * Sets the "items" attribute with a List of Produto entities that are
      * retrieved from LegendaCompatibilidade?cap_first and returns the
      * navigation outcome.
      *
      * @return navigation outcome for Produto page
      */
-    public String navigateProdutoCollection() {
+    public String navigateProdutoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }
@@ -42,13 +42,13 @@ public class LegendaCompatibilidadeController extends AbstractController<Legenda
     }
 
     /**
-     * Sets the "items" attribute with a collection of Compatibilidade entities
+     * Sets the "items" attribute with a List of Compatibilidade entities
      * that are retrieved from LegendaCompatibilidade?cap_first and returns the
      * navigation outcome.
      *
      * @return navigation outcome for Compatibilidade page
      */
-    public String navigateCompatibilidadeCollection() {
+    public String navigateCompatibilidadeList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Compatibilidade_items", this.getSelected().getCompatibilidadeList());
         }

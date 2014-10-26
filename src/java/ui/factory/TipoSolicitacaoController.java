@@ -18,7 +18,7 @@ public class TipoSolicitacaoController extends AbstractController<TipoSolicitaca
     @Inject
     private ArmazemController idArmazemController;
     @Inject
-    private MovimentacaoController movimentacaoCollectionController;
+    private MovimentacaoController movimentacaoListController;
 
     public TipoSolicitacaoController() {
         // Inform the Abstract parent controller of the concrete TipoSolicitacao?cap_first Entity
@@ -74,13 +74,13 @@ public class TipoSolicitacaoController extends AbstractController<TipoSolicitaca
     }
 
     /**
-     * Sets the "items" attribute with a collection of Movimentacao entities
+     * Sets the "items" attribute with a List of Movimentacao entities
      * that are retrieved from TipoSolicitacao?cap_first and returns the
      * navigation outcome.
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoCollection() {
+    public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }

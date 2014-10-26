@@ -12,9 +12,9 @@ import javax.inject.Inject;
 public class ContatosController extends AbstractController<Contatos> {
 
     @Inject
-    private FornecedorController fornecedorCollectionController;
+    private FornecedorController fornecedorListController;
     @Inject
-    private FuncionarioController funcionarioCollectionController;
+    private FuncionarioController funcionarioListController;
 
     public ContatosController() {
         // Inform the Abstract parent controller of the concrete Contatos?cap_first Entity
@@ -28,12 +28,12 @@ public class ContatosController extends AbstractController<Contatos> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Fornecedor entities that
+     * Sets the "items" attribute with a List of Fornecedor entities that
      * are retrieved from Contatos?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Fornecedor page
      */
-    public String navigateFornecedorCollection() {
+    public String navigateFornecedorList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Fornecedor_items", this.getSelected().getFornecedorList());
         }
@@ -41,12 +41,12 @@ public class ContatosController extends AbstractController<Contatos> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Funcionario entities that
+     * Sets the "items" attribute with a List of Funcionario entities that
      * are retrieved from Contatos?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Funcionario page
      */
-    public String navigateFuncionarioCollection() {
+    public String navigateFuncionarioList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioList());
         }

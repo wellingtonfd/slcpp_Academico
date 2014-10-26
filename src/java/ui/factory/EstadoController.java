@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class EstadoController extends AbstractController<Estado> {
 
     @Inject
-    private EnderecoController enderecoCollectionController;
+    private EnderecoController enderecoListController;
 
     public EstadoController() {
         // Inform the Abstract parent controller of the concrete Estado?cap_first Entity
@@ -26,12 +26,12 @@ public class EstadoController extends AbstractController<Estado> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Endereco entities that
+     * Sets the "items" attribute with a List of Endereco entities that
      * are retrieved from Estado?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Endereco page
      */
-    public String navigateEnderecoCollection() {
+    public String navigateEnderecoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Endereco_items", this.getSelected().getEnderecoList());
         }

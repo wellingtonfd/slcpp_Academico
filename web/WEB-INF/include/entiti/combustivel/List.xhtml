@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('CombustivelListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('CombustivelListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.CombustivelMenuItem_veiculoCollection}" icon="ui-icon-search"  action="#{combustivelController.navigateVeiculoCollection}" disabled="#{empty combustivelController.selected.veiculoCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.CombustivelMenuItem_veiculoList}" icon="ui-icon-search"  action="#{combustivelController.navigateVeiculoList}" disabled="#{empty combustivelController.selected.veiculoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{combustivelController.items}"

@@ -12,9 +12,9 @@ import javax.inject.Inject;
 public class CompatibilidadeController extends AbstractController<Compatibilidade> {
 
     @Inject
-    private EmbalagemController embalagemCollectionController;
+    private EmbalagemController embalagemListController;
     @Inject
-    private ProdutoController produtoCollectionController;
+    private ProdutoController produtoListController;
     @Inject
     private LegendaCompatibilidadeController idLegendaCompatibilidadeController;
 
@@ -31,13 +31,13 @@ public class CompatibilidadeController extends AbstractController<Compatibilidad
     }
 
     /**
-     * Sets the "items" attribute with a collection of Embalagem entities that
+     * Sets the "items" attribute with a List of Embalagem entities that
      * are retrieved from Compatibilidade?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Embalagem page
      */
-    public String navigateEmbalagemCollection() {
+    public String navigateEmbalagemList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemList());
         }
@@ -45,13 +45,13 @@ public class CompatibilidadeController extends AbstractController<Compatibilidad
     }
 
     /**
-     * Sets the "items" attribute with a collection of Produto entities that are
+     * Sets the "items" attribute with a List of Produto entities that are
      * retrieved from Compatibilidade?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Produto page
      */
-    public String navigateProdutoCollection() {
+    public String navigateProdutoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }

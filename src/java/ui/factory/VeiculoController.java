@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class VeiculoController extends AbstractController<Veiculo> {
 
     @Inject
-    private TipoEquipamentoController tipoEquipamentoCollectionController;
+    private TipoEquipamentoController tipoEquipamentoListController;
     @Inject
     private CombustivelController idCombustivelController;
 
@@ -29,13 +29,13 @@ public class VeiculoController extends AbstractController<Veiculo> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of TipoEquipamento entities
+     * Sets the "items" attribute with a List of TipoEquipamento entities
      * that are retrieved from Veiculo?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for TipoEquipamento page
      */
-    public String navigateTipoEquipamentoCollection() {
+    public String navigateTipoEquipamentoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoList());
         }

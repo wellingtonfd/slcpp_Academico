@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class TipoEquipamentoController extends AbstractController<TipoEquipamento> {
 
     @Inject
-    private MovimentacaoController movimentacaoCollectionController;
+    private MovimentacaoController movimentacaoListController;
     @Inject
     private VeiculoController idVeiculoController;
     @Inject
@@ -20,7 +20,7 @@ public class TipoEquipamentoController extends AbstractController<TipoEquipament
     @Inject
     private EpeController epeIdEpeController;
     @Inject
-    private DetNotaController detNotaCollectionController;
+    private DetNotaController detNotaListController;
 
     public TipoEquipamentoController() {
         // Inform the Abstract parent controller of the concrete TipoEquipamento?cap_first Entity
@@ -37,13 +37,13 @@ public class TipoEquipamentoController extends AbstractController<TipoEquipament
     }
 
     /**
-     * Sets the "items" attribute with a collection of Movimentacao entities
+     * Sets the "items" attribute with a List of Movimentacao entities
      * that are retrieved from TipoEquipamento?cap_first and returns the
      * navigation outcome.
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoCollection() {
+    public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }
@@ -88,13 +88,13 @@ public class TipoEquipamentoController extends AbstractController<TipoEquipament
     }
 
     /**
-     * Sets the "items" attribute with a collection of DetNota entities that are
+     * Sets the "items" attribute with a List of DetNota entities that are
      * retrieved from TipoEquipamento?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for DetNota page
      */
-    public String navigateDetNotaCollection() {
+    public String navigateDetNotaList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaList());
         }

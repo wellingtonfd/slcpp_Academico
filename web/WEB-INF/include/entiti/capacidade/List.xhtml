@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('CapacidadeListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('CapacidadeListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.CapacidadeMenuItem_embalagemCollection}" icon="ui-icon-search"  action="#{capacidadeController.navigateEmbalagemCollection}" disabled="#{empty capacidadeController.selected.embalagemCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.CapacidadeMenuItem_embalagemList}" icon="ui-icon-search"  action="#{capacidadeController.navigateEmbalagemList}" disabled="#{empty capacidadeController.selected.embalagemList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{capacidadeController.items}"

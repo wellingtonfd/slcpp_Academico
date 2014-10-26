@@ -12,11 +12,11 @@ import javax.inject.Inject;
 public class ArmazemController extends AbstractController<Armazem> {
 
     @Inject
-    private ProdutoController produtoCollectionController;
+    private ProdutoController produtoListController;
     @Inject
-    private TipoSolicitacaoController tipoSolicitacaoCollectionController;
+    private TipoSolicitacaoController tipoSolicitacaoListController;
     @Inject
-    private MovimentacaoController movimentacaoCollectionController;
+    private MovimentacaoController movimentacaoListController;
     @Inject
     private StatusArmazemController statusArmazemIdStatusArmazemController;
     @Inject
@@ -39,12 +39,12 @@ public class ArmazemController extends AbstractController<Armazem> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Produto entities that are
+     * Sets the "items" attribute with a List of Produto entities that are
      * retrieved from Armazem?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Produto page
      */
-    public String navigateProdutoCollection() {
+    public String navigateProdutoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }
@@ -52,13 +52,13 @@ public class ArmazemController extends AbstractController<Armazem> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of TipoSolicitacao entities
+     * Sets the "items" attribute with a List of TipoSolicitacao entities
      * that are retrieved from Armazem?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for TipoSolicitacao page
      */
-    public String navigateTipoSolicitacaoCollection() {
+    public String navigateTipoSolicitacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
         }
@@ -66,13 +66,13 @@ public class ArmazemController extends AbstractController<Armazem> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Movimentacao entities
+     * Sets the "items" attribute with a List of Movimentacao entities
      * that are retrieved from Armazem?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoCollection() {
+    public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }

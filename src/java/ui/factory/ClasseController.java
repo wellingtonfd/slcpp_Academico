@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class ClasseController extends AbstractController<Classe> {
 
     @Inject
-    private ProdutoController produtoCollectionController;
+    private ProdutoController produtoListController;
 
     public ClasseController() {
         // Inform the Abstract parent controller of the concrete Classe?cap_first Entity
@@ -26,12 +26,12 @@ public class ClasseController extends AbstractController<Classe> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Produto entities that are
+     * Sets the "items" attribute with a List of Produto entities that are
      * retrieved from Classe?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Produto page
      */
-    public String navigateProdutoCollection() {
+    public String navigateProdutoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Produto_items", this.getSelected().getProdutoList());
         }

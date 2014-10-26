@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class EpeController extends AbstractController<Epe> {
 
     @Inject
-    private TipoEquipamentoController tipoEquipamentoCollectionController;
+    private TipoEquipamentoController tipoEquipamentoListController;
 
     public EpeController() {
         // Inform the Abstract parent controller of the concrete Epe?cap_first Entity
@@ -26,12 +26,12 @@ public class EpeController extends AbstractController<Epe> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of TipoEquipamento entities
+     * Sets the "items" attribute with a List of TipoEquipamento entities
      * that are retrieved from Epe?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for TipoEquipamento page
      */
-    public String navigateTipoEquipamentoCollection() {
+    public String navigateTipoEquipamentoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoList());
         }

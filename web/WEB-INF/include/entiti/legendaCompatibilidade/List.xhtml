@@ -15,8 +15,8 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('LegendaCompatibilidadeListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('LegendaCompatibilidadeListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.LegendaCompatibilidadeMenuItem_produtoCollection}" icon="ui-icon-search"  action="#{legendaCompatibilidadeController.navigateProdutoCollection}" disabled="#{empty legendaCompatibilidadeController.selected.produtoCollection}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.LegendaCompatibilidadeMenuItem_compatibilidadeCollection}" icon="ui-icon-search"  action="#{legendaCompatibilidadeController.navigateCompatibilidadeCollection}" disabled="#{empty legendaCompatibilidadeController.selected.compatibilidadeCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.LegendaCompatibilidadeMenuItem_produtoList}" icon="ui-icon-search"  action="#{legendaCompatibilidadeController.navigateProdutoList}" disabled="#{empty legendaCompatibilidadeController.selected.produtoList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.LegendaCompatibilidadeMenuItem_compatibilidadeList}" icon="ui-icon-search"  action="#{legendaCompatibilidadeController.navigateCompatibilidadeList}" disabled="#{empty legendaCompatibilidadeController.selected.compatibilidadeList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{legendaCompatibilidadeController.items}"

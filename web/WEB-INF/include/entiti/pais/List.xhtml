@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('PaisListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('PaisListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.PaisMenuItem_enderecoCollection}" icon="ui-icon-search"  action="#{paisController.navigateEnderecoCollection}" disabled="#{empty paisController.selected.enderecoCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.PaisMenuItem_enderecoList}" icon="ui-icon-search"  action="#{paisController.navigateEnderecoList}" disabled="#{empty paisController.selected.enderecoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{paisController.items}"

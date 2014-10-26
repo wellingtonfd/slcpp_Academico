@@ -12,9 +12,9 @@ import javax.inject.Inject;
 public class FuncionarioController extends AbstractController<Funcionario> {
 
     @Inject
-    private TipoSolicitacaoController tipoSolicitacaoCollectionController;
+    private TipoSolicitacaoController tipoSolicitacaoListController;
     @Inject
-    private MovimentacaoController movimentacaoCollectionController;
+    private MovimentacaoController movimentacaoListController;
     @Inject
     private UsuarioController idUsuarioController;
     @Inject
@@ -37,13 +37,13 @@ public class FuncionarioController extends AbstractController<Funcionario> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of TipoSolicitacao entities
+     * Sets the "items" attribute with a List of TipoSolicitacao entities
      * that are retrieved from Funcionario?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for TipoSolicitacao page
      */
-    public String navigateTipoSolicitacaoCollection() {
+    public String navigateTipoSolicitacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
         }
@@ -51,13 +51,13 @@ public class FuncionarioController extends AbstractController<Funcionario> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Movimentacao entities
+     * Sets the "items" attribute with a List of Movimentacao entities
      * that are retrieved from Funcionario?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoCollection() {
+    public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
         }

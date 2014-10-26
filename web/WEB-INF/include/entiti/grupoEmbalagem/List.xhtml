@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('GrupoEmbalagemListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('GrupoEmbalagemListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.GrupoEmbalagemMenuItem_embalagemCollection}" icon="ui-icon-search"  action="#{grupoEmbalagemController.navigateEmbalagemCollection}" disabled="#{empty grupoEmbalagemController.selected.embalagemCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.GrupoEmbalagemMenuItem_embalagemList}" icon="ui-icon-search"  action="#{grupoEmbalagemController.navigateEmbalagemList}" disabled="#{empty grupoEmbalagemController.selected.embalagemList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{grupoEmbalagemController.items}"

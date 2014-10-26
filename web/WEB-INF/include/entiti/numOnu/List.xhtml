@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('NumOnuListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('NumOnuListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.NumOnuMenuItem_produtoCollection}" icon="ui-icon-search"  action="#{numOnuController.navigateProdutoCollection}" disabled="#{empty numOnuController.selected.produtoCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.NumOnuMenuItem_produtoList}" icon="ui-icon-search"  action="#{numOnuController.navigateProdutoList}" disabled="#{empty numOnuController.selected.produtoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{numOnuController.items}"

@@ -15,8 +15,8 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EnderecoListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('EnderecoListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.EnderecoMenuItem_fornecedorCollection}" icon="ui-icon-search"  action="#{enderecoController.navigateFornecedorCollection}" disabled="#{empty enderecoController.selected.fornecedorCollection}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.EnderecoMenuItem_funcionarioCollection}" icon="ui-icon-search"  action="#{enderecoController.navigateFuncionarioCollection}" disabled="#{empty enderecoController.selected.funcionarioCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.EnderecoMenuItem_fornecedorList}" icon="ui-icon-search"  action="#{enderecoController.navigateFornecedorList}" disabled="#{empty enderecoController.selected.fornecedorList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.EnderecoMenuItem_funcionarioList}" icon="ui-icon-search"  action="#{enderecoController.navigateFuncionarioList}" disabled="#{empty enderecoController.selected.funcionarioList}" ajax="false"/>  
                 <p:menuitem value="#{myBundle.EnderecoMenuItem_idPais}" icon="ui-icon-search"  actionListener="#{enderecoController.prepareIdPais}" update=":PaisViewForm" oncomplete="PaisViewDialog.show()" disabled="#{empty enderecoController.selected.idPais}"/>  
                 <p:menuitem value="#{myBundle.EnderecoMenuItem_idEstado}" icon="ui-icon-search"  actionListener="#{enderecoController.prepareIdEstado}" update=":EstadoViewForm" oncomplete="EstadoViewDialog.show()" disabled="#{empty enderecoController.selected.idEstado}"/>  
                 <p:menuitem value="#{myBundle.EnderecoMenuItem_idCidade}" icon="ui-icon-search"  actionListener="#{enderecoController.prepareIdCidade}" update=":CidadeViewForm" oncomplete="CidadeViewDialog.show()" disabled="#{empty enderecoController.selected.idCidade}"/>  

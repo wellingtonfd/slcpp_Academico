@@ -18,7 +18,7 @@
                 <p:menuitem value="#{myBundle.TipoSolicitacaoMenuItem_idFuncionario}" icon="ui-icon-search"  actionListener="#{tipoSolicitacaoController.prepareIdFuncionario}" update=":FuncionarioViewForm" oncomplete="FuncionarioViewDialog.show()" disabled="#{empty tipoSolicitacaoController.selected.idFuncionario}"/>  
                 <p:menuitem value="#{myBundle.TipoSolicitacaoMenuItem_fornecedorIdFornecedor}" icon="ui-icon-search"  actionListener="#{tipoSolicitacaoController.prepareFornecedorIdFornecedor}" update=":FornecedorViewForm" oncomplete="FornecedorViewDialog.show()" disabled="#{empty tipoSolicitacaoController.selected.fornecedorIdFornecedor}"/>  
                 <p:menuitem value="#{myBundle.TipoSolicitacaoMenuItem_idArmazem}" icon="ui-icon-search"  actionListener="#{tipoSolicitacaoController.prepareIdArmazem}" update=":ArmazemViewForm" oncomplete="ArmazemViewDialog.show()" disabled="#{empty tipoSolicitacaoController.selected.idArmazem}"/>  
-                <p:menuitem value="#{myBundle.TipoSolicitacaoMenuItem_movimentacaoCollection}" icon="ui-icon-search"  action="#{tipoSolicitacaoController.navigateMovimentacaoCollection}" disabled="#{empty tipoSolicitacaoController.selected.movimentacaoCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.TipoSolicitacaoMenuItem_movimentacaoList}" icon="ui-icon-search"  action="#{tipoSolicitacaoController.navigateMovimentacaoList}" disabled="#{empty tipoSolicitacaoController.selected.movimentacaoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{tipoSolicitacaoController.items}"

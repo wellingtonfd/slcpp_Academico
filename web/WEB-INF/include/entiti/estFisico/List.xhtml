@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EstFisicoListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('EstFisicoListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.EstFisicoMenuItem_produtoCollection}" icon="ui-icon-search"  action="#{estFisicoController.navigateProdutoCollection}" disabled="#{empty estFisicoController.selected.produtoCollection}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.EstFisicoMenuItem_produtoList}" icon="ui-icon-search"  action="#{estFisicoController.navigateProdutoList}" disabled="#{empty estFisicoController.selected.produtoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{estFisicoController.items}"

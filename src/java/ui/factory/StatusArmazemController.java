@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class StatusArmazemController extends AbstractController<StatusArmazem> {
 
     @Inject
-    private ArmazemController armazemCollectionController;
+    private ArmazemController armazemListController;
 
     public StatusArmazemController() {
         // Inform the Abstract parent controller of the concrete StatusArmazem?cap_first Entity
@@ -26,13 +26,13 @@ public class StatusArmazemController extends AbstractController<StatusArmazem> {
     }
 
     /**
-     * Sets the "items" attribute with a collection of Armazem entities that are
+     * Sets the "items" attribute with a List of Armazem entities that are
      * retrieved from StatusArmazem?cap_first and returns the navigation
      * outcome.
      *
      * @return navigation outcome for Armazem page
      */
-    public String navigateArmazemCollection() {
+    public String navigateArmazemList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Armazem_items", this.getSelected().getArmazemList());
         }
