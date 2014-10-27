@@ -51,41 +51,41 @@
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
                     <p:submenu label="Armazéns...">
-                        <p:menuitem value="Armazém" outcome="/entiti/viewOperador/Armazem/indexArmazem" />
+                        <p:menuitem value="Armazém" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="Endereço Armazém" outcome="/entiti/viewOperador/Armazem/indexArmazem" />
+                        <p:menuitem value="Endereço Armazém" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="Status Armazém" outcome="/entiti/viewOperador/Armazem/indexArmazem" />
+                        <p:menuitem value="Status Armazém" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/viewOperador/compatibilidade/index" />
+                        <p:menuitem value="Compatibilidade" outcome="/entiti/usuario/index" />
                     </p:submenu>
                     <p:separator />
-                    <p:menuitem  value="Embalagem" outcome="/entiti/viewOperador/indexArmazem"/>
+                    <p:menuitem  value="Embalagem" outcome="/entiti/usuario/index"/>
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPE"/>
                         <p:separator/>
-                        <p:menuitem value="EPI" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="EPI" outcome="/entiti/usuario/index" />
                         <p:separator/>
-                        <p:menuitem value="Veículos" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="Veículos" outcome="/entiti/usuario/index" />
                     </p:submenu>
                     <p:separator />
-                    <p:menuitem  value="Fornecedores" outcome="/entiti/viewOperador/indexArmazem"   />
+                    <p:menuitem  value="Fornecedores" outcome="/entiti/usuario/index"   />
                     <p:separator />
-                    <p:menuitem  value="Funcionários" outcome="/entiti/viewOperador/indexArmazem"   />
+                    <p:menuitem  value="Funcionários" outcome="/entiti/usuario/index"   />
                     <p:separator />
-                    <p:menuitem  value="Notas Fiscais" outcome="/entiti/viewOperador/detNota/index"   />
+                    <p:menuitem  value="Notas Fiscais" outcome="/entiti/usuario/index"   />
                     <p:separator />
-                    <p:menuitem  value="Operações" outcome="/entiti/viewOperador/indexArmazem"   />
+                    <p:menuitem  value="Operações" outcome="/entiti/usuario/index"   />
                     <p:separator />
                     <p:submenu label="Produtos" >
-                        <p:menuitem value="Classes" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="Classes" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="Compatibilidade" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="Número ONU" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="Número ONU" outcome="/entiti/usuario/index" />
                         <p:separator />
-                        <p:menuitem value="Número CAS" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="Número CAS" outcome="/entiti/usuario/index" />
                     </p:submenu>
                 </p:submenu>
                 <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >

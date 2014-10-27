@@ -134,11 +134,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{armazemController.prepareCreate}" update=":ArmazemCreateForm"  disabled="#{empty armazemController.selected}" oncomplete="ArmazemCreateDialog.show()"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{armazemController.prepareCreate}" update=":ArmazemCreateForm" oncomplete="ArmazemCreateDialog.show()"/>
             <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":ArmazemViewForm" oncomplete="ArmazemViewDialog.show()" disabled="#{empty armazemController.selected}"/>
             <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ArmazemEditForm" oncomplete="ArmazemEditDialog.show()" disabled="#{empty armazemController.selected}"/>
             <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{armazemController.delete}" update=":growl,datalist" disabled="#{empty armazemController.selected}">
-               
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
         </p:panel>
