@@ -14,6 +14,14 @@
 
     <ui:composition>
         <h:form id="menuForm">  
+               <p:dialog header="Aviso CIPA" widgetVar="View1"  appendToBody="true" modal="true" resizable="false" draggable="false">
+                <h:form id="form1">
+                    <div align="center"><p:graphicImage  value="/imagens/cipa.gif"/><h3> Você que é Operador ou supervisor </h3> </div><br />
+                    <div> Fique atento para a utilização do EPI (Equipamento de Proteção Individual), pois a sua vida depende dele e a sua aguarda a sua volta. <br /><br />
+                        <div align="center">CIPA - Comissão de Interna de Prevenção de Acidentes</div>
+                    </div>    
+                </h:form>
+            </p:dialog>
             <p:dialog header="Contatos Suporte" widgetVar="View2"  appendToBody="true" modal="true" resizable="false" draggable="false">
                 <h:form id="form2">
                     <div align="center"><h3> Contatos Suporte </h3> </div><br />
@@ -23,12 +31,12 @@
                     </div>    
                 </h:form>
             </p:dialog>
-            <p:dialog header="Sobre" widgetVar="View1"  appendToBody="true" modal="true" resizable="false" draggable="false">
-                <h:form id="form1">
+            <p:dialog header="Sobre" widgetVar="View3"  appendToBody="true" modal="true" resizable="false" draggable="false">
+                <h:form id="form3">
                     <div align="center"><h3>   SLCPP - Sistema Logístico de Controle de Produtos Perigosos</h3> </div><br /><br />
-                    <div> É um  projeto de TCC (Trabalho de Conclusão de Curso) desenvolvido para fins logísticos, com <br />
-                        a sua atividade voltada para o trato e confinamento materiais e produtos perigosos permitindo <br />
-                        a sua gerencia e gestão do ambiente que vai administrá-lo.<br /><br /><br />
+                    <div align="center"> É um TCC (Trabalho de Conclusão de Curso) do curso de Sistema da Informação desenvolvido para fins logísticos, com a sua atividade<br />
+                         voltada para o trato e confinamento materiais e produtos perigosos permitindo a sua gerencia e gestão do ambiente.<br />
+                        <br /><br /><br />
 
                         Componentes:<br /><br />
                         Edilson Jardim<br />
@@ -43,41 +51,41 @@
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
                     <p:submenu label="Armazéns...">
-                        <p:menuitem value="Armazém" outcome="/entiti/viewOperador/indexArmazem" />
+                        <p:menuitem value="Armazém" outcome="/entiti/viewOperador/Armazem/indexArmazem" />
                         <p:separator />
-                        <p:menuitem value="Endereço Armazém" outcome="/entiti/endArmazem/index" />
+                        <p:menuitem value="Endereço Armazém" outcome="/entiti/viewOperador/Armazem/indexArmazem" />
                         <p:separator />
-                        <p:menuitem value="Status Armazém" outcome="/entiti/statusArmazem/index" />
+                        <p:menuitem value="Status Armazém" outcome="/entiti/viewOperador/Armazem/indexArmazem" />
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/compatibilidade/index" />
+                        <p:menuitem value="Compatibilidade" outcome="/entiti/viewOperador/compatibilidade/index" />
                     </p:submenu>
                     <p:separator />
-                    <p:menuitem  value="Embalagem" outcome="/entiti/embalagem/index"/>
+                    <p:menuitem  value="Embalagem" outcome="/entiti/viewOperador/indexArmazem"/>
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPE"/>
                         <p:separator/>
-                        <p:menuitem value="EPI" outcome="/entiti/epe/index" />
+                        <p:menuitem value="EPI" outcome="/entiti/viewOperador/indexArmazem" />
                         <p:separator/>
-                        <p:menuitem value="Veículos" outcome="/entiti/usuario/index" />
+                        <p:menuitem value="Veículos" outcome="/entiti/viewOperador/indexArmazem" />
                     </p:submenu>
                     <p:separator />
-                    <p:menuitem  value="Fornecedores" outcome="/entiti/usuario/index"   />
+                    <p:menuitem  value="Fornecedores" outcome="/entiti/viewOperador/indexArmazem"   />
                     <p:separator />
-                    <p:menuitem  value="Funcionários" outcome="/entiti/usuario/index"   />
+                    <p:menuitem  value="Funcionários" outcome="/entiti/viewOperador/indexArmazem"   />
                     <p:separator />
-                    <p:menuitem  value="Notas Fiscais" outcome="/entiti/usuario/index"   />
+                    <p:menuitem  value="Notas Fiscais" outcome="/entiti/viewOperador/detNota/index"   />
                     <p:separator />
-                    <p:menuitem  value="Operações" outcome="/entiti/usuario/index"   />
+                    <p:menuitem  value="Operações" outcome="/entiti/viewOperador/indexArmazem"   />
                     <p:separator />
                     <p:submenu label="Produtos" >
-                        <p:menuitem value="Classes" outcome="/entiti/armazem/index" />
+                        <p:menuitem value="Classes" outcome="/entiti/viewOperador/indexArmazem" />
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/endArmazem/index" />
+                        <p:menuitem value="Compatibilidade" outcome="/entiti/viewOperador/indexArmazem" />
                         <p:separator />
-                        <p:menuitem value="Número ONU" outcome="/entiti/statusArmazem/index" />
+                        <p:menuitem value="Número ONU" outcome="/entiti/viewOperador/indexArmazem" />
                         <p:separator />
-                        <p:menuitem value="Número CAS" outcome="/entiti/compatibilidade/index" />
+                        <p:menuitem value="Número CAS" outcome="/entiti/viewOperador/indexArmazem" />
                     </p:submenu>
                 </p:submenu>
                 <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
@@ -234,9 +242,11 @@
 
                 </p:submenu>
                 <p:submenu label="#{myBundle.Configuracoes}" icon="ui-icon-gear" >
+                    <p:menuitem value="Aviso CIPA" onclick="PF('View1').show()" />
+                    <p:separator/>
                     <p:menuitem value="Contatos Suporte" onclick="PF('View2').show()" />
                     <p:separator/>
-                    <p:menuitem value="Sobre" onclick="PF('View1').show()"/>
+                    <p:menuitem value="Sobre" onclick="PF('View3').show()"/>
                 </p:submenu>
                 <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
 
