@@ -8,20 +8,8 @@
 
     <h:form id="ArmazemListForm">
 
-        <p:panel header="#{myBundle.ListArmazemTitle}">
-            <p:contextMenu id="ArmazemDataTableContextMenu" for="datalist" style="visibility: hidden;">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ArmazemListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ArmazemListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ArmazemListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ArmazemListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                <p:separator/>
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_produtoList}" icon="ui-icon-search"  action="#{armazemController.navigateProdutoList}" disabled="#{empty armazemController.selected.produtoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_tipoSolicitacaoList}" icon="ui-icon-search"  action="#{armazemController.navigateTipoSolicitacaoList}" disabled="#{empty armazemController.selected.tipoSolicitacaoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_movimentacaoList}" icon="ui-icon-search"  action="#{armazemController.navigateMovimentacaoList}" disabled="#{empty armazemController.selected.movimentacaoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_statusArmazemIdStatusArmazem}" icon="ui-icon-search"  actionListener="#{armazemController.prepareStatusArmazemIdStatusArmazem}" update=":StatusArmazemViewForm" oncomplete="StatusArmazemViewDialog.show()" disabled="#{empty armazemController.selected.statusArmazemIdStatusArmazem}"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_localOperacaoIdLocalOper}" icon="ui-icon-search"  actionListener="#{armazemController.prepareLocalOperacaoIdLocalOper}" update=":LocalOperacaoViewForm" oncomplete="LocalOperacaoViewDialog.show()" disabled="#{empty armazemController.selected.localOperacaoIdLocalOper}"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_idEndarmazem}" icon="ui-icon-search"  actionListener="#{armazemController.prepareIdEndarmazem}" update=":EndArmazemViewForm" oncomplete="EndArmazemViewDialog.show()" disabled="#{empty armazemController.selected.idEndarmazem}"/>  
-            </p:contextMenu>
+        <p:panel header="Listar Armazéns">
+          
             <p:dataTable id="datalist"
                          value="#{armazemController.items}"
                          var="item"
@@ -31,11 +19,6 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{armazemController.selected}">
-
-                <p:ajax event="rowSelect"   update=":ArmazemListForm:createButton :ArmazemListForm:viewButton :ArmazemListForm:editButton :ArmazemListForm:deleteButton :ArmazemListForm:ArmazemDataTableContextMenu" listener="#{armazemController.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":ArmazemListForm:createButton :ArmazemListForm:viewButton :ArmazemListForm:editButton :ArmazemListForm:deleteButton :ArmazemListForm:ArmazemDataTableContextMenu" listener="#{armazemController.resetParents}"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ArmazemListForm:viewButton').click();"/>
-
                 <p:column sortBy="#{item.idArmazem}" filterBy="#{item.idArmazem}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListArmazemTitle_idArmazem}"/>
@@ -134,15 +117,9 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{armazemController.prepareCreate}" update=":ArmazemCreateForm" oncomplete="ArmazemCreateDialog.show()"/>
-            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":ArmazemViewForm" oncomplete="ArmazemViewDialog.show()" disabled="#{empty armazemController.selected}"/>
-            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ArmazemEditForm" oncomplete="ArmazemEditDialog.show()" disabled="#{empty armazemController.selected}"/>
-            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{armazemController.delete}" update=":growl,datalist" disabled="#{empty armazemController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
-            </p:commandButton>
-
+           
         </p:panel>
-        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+       
     </h:form>
 
 </ui:composition>

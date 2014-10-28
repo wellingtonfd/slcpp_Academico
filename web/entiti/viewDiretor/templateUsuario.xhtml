@@ -6,9 +6,11 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    <form action="j_spring_security_check" method="post" >
+    <h:form id="UsuarioListForm">
+
         <p:panel header="#{myBundle.ListUsuarioTitle}">
-         <p:dataTable id="datalist"
+         
+            <p:dataTable id="datalist"
                          value="#{usuarioController.items}"
                          var="item"
                          rowKey="#{item.idUsuario}"
@@ -18,7 +20,7 @@
                          selectionMode="single"
                          selection="#{usuarioController.selected}">
 
-                 <p:column sortBy="#{item.idUsuario}" filterBy="#{item.idUsuario}">
+                   <p:column sortBy="#{item.idUsuario}" filterBy="#{item.idUsuario}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListUsuarioTitle_idUsuario}"/>
                     </f:facet>
@@ -42,22 +44,18 @@
 
 
             </p:dataTable>
-        </p:panel>
-        <p:panel header="Parâmetros do Relatório">
-           
+
+           </p:panel>
+        <p:panel header="Gerar Relatório">
             <h:panelGrid columns="2" cellpadding="5">
-                 <h:form id="referencia">
-            <h:outputLabel for="dt_Inicial" value="Data Inicial:" />
-                     <p:calendar value="#{valor}" pattern="dd/MM/yyyy"/>
-            <h:outputLabel for="dt_Final" value="Data Final:" />
-               <p:calendar value="#{valor}" pattern="dd/MM/yyyy"/>
-               <h:commandButton type="submit" value="Gerar Relatorio" >
+                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
+                <h:form id="referencia">
+                    <h:commandButton type="submit" value="Gerar Relatorio" >
                         <p:fileDownload value="#{report.arquivoRetorno}" />
-                </h:commandButton> </h:form>
+                    </h:commandButton> 
+                </h:form>
             </h:panelGrid>
         </p:panel>
-            
-        
-        </form>
-   </ui:composition>
+    </h:form>
 
+</ui:composition>
