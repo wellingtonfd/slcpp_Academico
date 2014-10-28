@@ -14,7 +14,7 @@
                 <h:panelGroup id="display">
                     <p:tabView id="ProdutoTabView">
 
-                        <p:tab id="ProdutoTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                        <p:tab id="ProdutoTab1" title="#{myBundle.PropriedadesProduto}">
                             <p:panelGrid  columns="2" columnClasses="column" rendered="#{produtoController.selected != null}">
 
                                 <h:outputLabel value="#{myBundle.EditProdutoLabel_idProduto}" for="idProduto" />
@@ -111,7 +111,7 @@
 
                             </p:panelGrid>
                         </p:tab>
-                        <p:tab id="ProdutoTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                        <p:tab id="ProdutoTab2" title="#{myBundle.InformaçõesAdicionais}">
                             <p:panelGrid  columns="2" columnClasses="column" rendered="#{produtoController.selected != null}">
                                 <p:outputLabel value="#{myBundle.EditProdutoLabel_idEndarmazem}" for="idEndarmazem" />
                                 <p:selectOneMenu id="idEndarmazem" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">

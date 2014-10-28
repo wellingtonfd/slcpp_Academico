@@ -72,16 +72,16 @@
                     <p:separator />
                     <p:menuitem  value="Notas Fiscais" outcome="/entiti/viewOperador/viewNTFiscal" />
                     <p:separator />
-                    <p:menuitem  value="Operações" outcome="/entiti/viewOperador/viewOperacoes" />
+                    <p:menuitem  value="Movimentações" outcome="/entiti/viewOperador/viewOperacoes" />
                     <p:separator />
                     <p:submenu label="Produtos" >
-                        <p:menuitem value="Classes" outcome="/entiti/viewOperador/viewOperacoes" />
+                        <p:menuitem value="Classes" outcome="/entiti/viewOperador/viewClasse" />
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/usuario/index" />
+                        <p:menuitem value="Compatibilidade" outcome="/entiti/viewOperador/viewCompatibilidade" />
                         <p:separator />
-                        <p:menuitem value="Número ONU" outcome="/entiti/usuario/index" />
+                        <p:menuitem value="Número ONU" outcome="/entiti/viewOperador/viewNOnu" />
                         <p:separator />
-                        <p:menuitem value="Número CAS" outcome="/entiti/usuario/index" />
+                        <p:menuitem value="Número CAS" outcome="/entiti/viewOperador/viewNCas" />
                     </p:submenu>
                 </p:submenu>
                 <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
@@ -98,14 +98,14 @@
                     </p:submenu>
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
-                    <p:submenu label="Dados Armazém...">
+                    <p:submenu label="Dados Armazéns...">
                         <p:menuitem value="Armazém" outcome="/entiti/armazem/index" />
                         <p:separator />
-                        <p:menuitem value="Endereço Armazém" outcome="/entiti/endArmazem/index" />
+                        <p:menuitem value="Endereços Armazém" outcome="/entiti/endArmazem/index" />
                         <p:separator />
                         <p:menuitem value="status Armazém." outcome="/entiti/statusArmazem/index" />
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/compatibilidade/index" />
+                        <p:menuitem value="Compatibilidades" outcome="/entiti/compatibilidade/index" />
                     </p:submenu>
                     <p:separator />
                     <p:submenu label="Equipamentos...">
@@ -120,20 +120,20 @@
                     <p:separator/>
                     <p:menuitem value="#{myBundle.RelatorioFuncionario}" outcome="/entiti/funcionario/index"  />
                     <p:separator/>
-                    <p:menuitem value="Notas Ficais" outcome="/entiti/detNota/index" />
+                    <p:menuitem value="Notas Fiscais" outcome="/entiti/detNota/index" />
                     <p:separator/>
                     <p:menuitem value="Movimentações" outcome="/entiti/movimentacao/index"/>
                     <p:separator/>
                     <p:submenu label="Produtos" >
                         <p:menuitem value="Classes" outcome="/entiti/classe/index"/>
                         <p:separator />
-                        <p:menuitem value="Compatibilidade" outcome="/entiti/compatibilidade/index"/>
+                        <p:menuitem value="Compatibilidades" outcome="/entiti/compatibilidade/index"/>
                         <p:separator />
-                        <p:menuitem value="Número ONU"   outcome="/entiti/numOnu/index"/>
+                        <p:menuitem value="Números ONU"   outcome="/entiti/numOnu/index"/>
                         <p:separator />
-                        <p:menuitem value="Número CAS" outcome="/entiti/numCas/index"/>
-                         <p:separator />
-                        <p:menuitem value="Produto" outcome="/entiti/produto/index"/>
+                        <p:menuitem value="Números CAS" outcome="/entiti/numCas/index"/>
+                        <p:separator />
+                        <p:menuitem value="Produtos" outcome="/entiti/produto/index"/>
                     </p:submenu>
                 </p:submenu>
                 <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
