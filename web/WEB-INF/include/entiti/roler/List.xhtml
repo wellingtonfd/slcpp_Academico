@@ -15,7 +15,7 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('RolerListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('RolerListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.RolerMenuItem_usuarioList}" icon="ui-icon-search"  action="#{rolerController.navigateUsuarioList}" disabled="#{empty rolerController.selected.usuarioList}" ajax="false"/>  
+                <p:menuitem value="#{myBundle.RolerMenuItem_usuarioList}" icon="ui-icon-search"  action="#{rolerController.navigateUsuarioRolerList}" disabled="#{empty rolerController.selected.usuarioRolerList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{rolerController.items}"
