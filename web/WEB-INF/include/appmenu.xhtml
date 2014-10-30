@@ -14,39 +14,6 @@
 
     <ui:composition>
         <h:form id="menuForm">  
-            <p:dialog header="Aviso CIPA" widgetVar="View1"  appendToBody="true" modal="true" resizable="false" draggable="false">
-                <h:form id="form1">
-                    <div align="center"><p:graphicImage  value="/imagens/cipa.gif"/><h3> Você que é Operador ou supervisor </h3> </div><br />
-                    <div> Fique atento para a utilização do EPI (Equipamento de Proteção Individual), pois a sua vida depende dele e a sua aguarda a sua volta. <br /><br />
-                        <div align="center">CIPA - Comissão de Interna de Prevenção de Acidentes</div>
-                    </div>    
-                </h:form>
-            </p:dialog>
-            <p:dialog header="Contatos Suporte" widgetVar="View2"  appendToBody="true" modal="true" resizable="false" draggable="false">
-                <h:form id="form2">
-                    <div align="center"><h3> Contatos Suporte </h3> </div><br />
-                    <div> Na necessidade de suporte técnico, entre em contato :<br /><br />
-                        Telefone: (22)2222-2222 / 3333-3333<br />
-                        E-mail: slcpp@com.br<br />
-                    </div>    
-                </h:form>
-            </p:dialog>
-            <p:dialog header="Sobre" widgetVar="View3"  appendToBody="true" modal="true" resizable="false" draggable="false">
-                <h:form id="form3">
-                    <div align="center"><h3>   SLCPP - Sistema Logístico de Controle de Produtos Perigosos</h3> </div><br /><br />
-                    <div align="center"> É um TCC (Trabalho de Conclusão de Curso) do curso de Sistema da Informação desenvolvido para fins logísticos, com a sua atividade<br />
-                        voltada para o trato e confinamento materiais e produtos perigosos permitindo a sua gerencia e gestão do ambiente.<br />
-                        <br /><br /><br />
-
-                        Componentes:<br /><br />
-                        Edilson Jardim<br />
-                        Leonardo Martins<br />
-                        Wellington Duarte<br />
-
-
-                    </div>    
-                </h:form>
-            </p:dialog>
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
@@ -174,6 +141,9 @@
                 </f:facet>
             </p:menubar>
         </h:form>
+        <ui:include src="configuracoes/avisoCipa.xhtml"/>
+        <ui:include src="configuracoes/sobre.xhtml"/>
+        <ui:include src="configuracoes/suporte.xhtml"/>
     </ui:composition>
 
 </html>
