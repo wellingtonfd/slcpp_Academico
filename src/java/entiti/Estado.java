@@ -48,11 +48,11 @@ public class Estado implements Serializable {
     @Size(max = 255)
     @Column(name = "sigla_estado")
     private String siglaEstado;
-    @OneToMany(mappedBy = "fkEstado")
+    @OneToMany(mappedBy = "idEstado")
     private List<Cidade> cidadeList;
-    @JoinColumn(name = "pais_id_pais", referencedColumnName = "id_pais")
+    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
     @ManyToOne
-    private Pais paisIdPais;
+    private Pais idPais;
     @OneToMany(mappedBy = "idEstado")
     private List<Endereco> enderecoList;
 
@@ -96,12 +96,12 @@ public class Estado implements Serializable {
         this.cidadeList = cidadeList;
     }
 
-    public Pais getPaisIdPais() {
-        return paisIdPais;
+    public Pais getIdPais() {
+        return idPais;
     }
 
-    public void setPaisIdPais(Pais paisIdPais) {
-        this.paisIdPais = paisIdPais;
+    public void setIdPais(Pais idPais) {
+        this.idPais = idPais;
     }
 
     @XmlTransient
