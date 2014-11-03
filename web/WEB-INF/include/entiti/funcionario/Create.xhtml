@@ -64,6 +64,14 @@
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtNasc}" for="dtNasc" />
                                     <p:calendar locale="pt_BR" id="dtNasc" pattern="MM/dd/yyyy" value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.EditFuncionarioTitle_dtNasc}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}" showOn="button"/>
 
+                                    <p:outputLabel value="#{myBundle.CreatePaisLabel_nomePais}" for="nomePais" />
+                                    <p:inputText id="nomePais" value="#{paisController.selected.nomePais}" title="#{myBundle.CreatePaisTitle_nomePais}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_nomePais}" size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateEstadoLabel_nomeEstado}" for="nomeEstado" />
+                                    <p:inputText id="nomeEstado" value="#{estadoController.selected.nomeEstado}" title="#{myBundle.CreateEstadoTitle_nomeEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_nomeEstado}" size="60" maxlength="60"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateCidadeLabel_nomeCidade}" for="nomeCidade" />
+                                    <p:inputText id="nomeCidade" value="#{cidadeController.selected.nomeCidade}" title="#{myBundle.CreateCidadeTitle_nomeCidade}" required="true" requiredMessage="#{myBundle.CreateCidadeRequiredMessage_nomeCidade}" size="60" maxlength="60"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_bairro}" for="bairro" />
                                     <p:inputText id="bairro" value="#{enderecoController.selected.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
@@ -73,8 +81,8 @@
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
                                     <p:inputText id="numero" value="#{funcionarioController.selected.idEndereco}"  title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
-                                    
-                                               
+
+
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" for="tel" />
                                     <p:inputMask id="tel" mask="(99)9999-9999" value="#{contatosController.selected.tel}" title="#{myBundle.CreateContatosTitle_tel}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_tel}" size="15" maxlength="15"/>
 
@@ -101,8 +109,8 @@
                                     
                                                                         <p:outputLabel value="#{myBundle.CreateEnderecoLabel_estadoIdEstado}" for="estadoIdEstado" />
                                                                         <p:inputText id="estadoIdEstado" value="#{enderecoController.selected.estadoIdEstado}" title="#{myBundle.CreateEnderecoTitle_estadoIdEstado}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_estadoIdEstado}"/>-->
-                          
-                         
+
+
 
                                 </p:panelGrid>
 
@@ -115,13 +123,8 @@
                             </p:panel>
                         </p:tab>
                     </p:wizard>
-
                 </h:panelGroup>
             </h:form>
-
-
         </p:dialog>
-
     </ui:composition>
-
 </html>

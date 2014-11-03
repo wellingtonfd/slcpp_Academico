@@ -47,8 +47,39 @@
                     <h:outputText value="#{item.idProduto}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.nomeGenerico}" filterBy="#{item.nomeGenerico}">
+                <p:column sortBy="#{item.idNumOnu.idNumOnu}" filterBy="#{item.idNumOnu.idNumOnu}">
+                    <f:facet name="header">
+                        <h:outputText value="Número ONU"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idNumOnu.idNumOnu}"/>
+                </p:column>
+       
+                                    <p:column sortBy="#{item.NLote}" filterBy="#{item.NLote}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Número Lote"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.NLote}"/>
+                                    </p:column>
+                
+                
+                                    <p:column sortBy="#{item.dtFab}" filterBy="#{item.dtFab}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Data Fab."/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.dtFab}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                
+   
+                                    <p:column sortBy="#{item.formulaProduto}" filterBy="#{item.formulaProduto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Fórmula Produto"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.formulaProduto}"/>
+                                    </p:column>
+                
+<!--                <p:column sortBy="#{item.nomeGenerico}" filterBy="#{item.nomeGenerico}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListProdutoTitle_nomeGenerico}"/>
                     </f:facet>
@@ -77,15 +108,15 @@
                         <h:outputText value="#{myBundle.ListProdutoTitle_painelSeguranca}"/>
                     </f:facet>
                     <h:outputText value="#{item.painelSeguranca}"/>
-                </p:column>
+                </p:column>-->
 
 
-                <p:column sortBy="#{item.numRisco}" filterBy="#{item.numRisco}">
+<!--                <p:column sortBy="#{item.numRisco}" filterBy="#{item.numRisco}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListProdutoTitle_numRisco}"/>
                     </f:facet>
                     <h:outputText value="#{item.numRisco}"/>
-                </p:column>
+                </p:column>-->
 
                 <!--
                                     <p:column sortBy="#{item.acoesEmerg}" filterBy="#{item.acoesEmerg}">
@@ -95,24 +126,7 @@
                                         <h:outputText value="#{item.acoesEmerg}"/>
                                     </p:column>
                 -->
-                <!--
-                                    <p:column sortBy="#{item.NLote}" filterBy="#{item.NLote}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{myBundle.ListProdutoTitle_NLote}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.NLote}"/>
-                                    </p:column>
-                -->
-                <!--
-                                    <p:column sortBy="#{item.dtFab}" filterBy="#{item.dtFab}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{myBundle.ListProdutoTitle_dtFab}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.dtFab}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:outputText>
-                                    </p:column>
-                -->
+        
                 <!--
                                     <p:column sortBy="#{item.dtVal}" filterBy="#{item.dtVal}">
                                         <f:facet name="header">
@@ -139,14 +153,7 @@
                                         <h:outputText value="#{item.descProduto}"/>
                                     </p:column>
                 -->
-                <!--
-                                    <p:column sortBy="#{item.formulaProduto}" filterBy="#{item.formulaProduto}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{myBundle.ListProdutoTitle_formulaProduto}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.formulaProduto}"/>
-                                    </p:column>
-                -->
+             
                 <!--
                                     <p:column sortBy="#{item.odorProduto}" filterBy="#{item.odorProduto}">
                                         <f:facet name="header">
@@ -171,14 +178,7 @@
                                         <h:outputText value="#{item.idArmazem}"/>
                                     </p:column>
                 -->
-                <!--
-                                    <p:column sortBy="#{item.idNumOnu.idNumOnu}" filterBy="#{item.idNumOnu.idNumOnu}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{myBundle.ListProdutoTitle_idNumOnu}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.idNumOnu.idNumOnu}"/>
-                                    </p:column>
-                -->
+
                 <!--
                                     <p:column sortBy="#{item.idNumCas.idNumCas}" filterBy="#{item.idNumCas.idNumCas}">
                                         <f:facet name="header">
