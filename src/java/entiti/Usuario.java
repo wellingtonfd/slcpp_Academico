@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import utils.security.geraMD5;
 
 /**
  *
@@ -82,7 +83,7 @@ public class Usuario implements Serializable {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = geraMD5.md5(senha);
     }
 
     public Boolean getAtivo() {
