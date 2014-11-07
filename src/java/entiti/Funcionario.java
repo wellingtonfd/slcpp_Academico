@@ -43,7 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Funcionario.findByEspecializacao", query = "SELECT f FROM Funcionario f WHERE f.especializacao = :especializacao"),
     @NamedQuery(name = "Funcionario.findByFuncao", query = "SELECT f FROM Funcionario f WHERE f.funcao = :funcao"),
     @NamedQuery(name = "Funcionario.findByIdContato", query = "SELECT f FROM Funcionario f WHERE f.idContato = :idContato"),
-    @NamedQuery(name = "Funcionario.findByIdEndereco", query = "SELECT f FROM Funcionario f WHERE f.idEndereco = :idEndereco"),
     @NamedQuery(name = "Funcionario.findByMatFuncionario", query = "SELECT f FROM Funcionario f WHERE f.matFuncionario = :matFuncionario"),
     @NamedQuery(name = "Funcionario.findByNivelFuncionario", query = "SELECT f FROM Funcionario f WHERE f.nivelFuncionario = :nivelFuncionario"),
     @NamedQuery(name = "Funcionario.findByNomeFuncionario", query = "SELECT f FROM Funcionario f WHERE f.nomeFuncionario = :nomeFuncionario"),
@@ -77,8 +76,6 @@ public class Funcionario implements Serializable {
     private String funcao;
     @Column(name = "id_contato")
     private Integer idContato;
-    @Column(name = "id_endereco")
-    private Integer idEndereco;
     @Column(name = "mat_funcionario")
     private Integer matFuncionario;
     @Size(max = 255)
@@ -105,7 +102,7 @@ public class Funcionario implements Serializable {
     private Usuario idUsuario;
     @JoinColumn(name = "endereco_id_endereco", referencedColumnName = "id_endereco")
     @ManyToOne
-    private Endereco enderecoIdEndereco;
+    private Endereco enderecoIdEndereco = new Endereco();
     @JoinColumn(name = "contatos_id_contato", referencedColumnName = "id_contato")
     @ManyToOne
     private Contatos contatosIdContato;
@@ -179,14 +176,6 @@ public class Funcionario implements Serializable {
 
     public void setIdContato(Integer idContato) {
         this.idContato = idContato;
-    }
-
-    public Integer getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(Integer idEndereco) {
-        this.idEndereco = idEndereco;
     }
 
     public Integer getMatFuncionario() {

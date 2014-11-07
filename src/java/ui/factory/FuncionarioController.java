@@ -6,6 +6,7 @@ import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import org.primefaces.event.FlowEvent;
 
 @Named(value = "funcionarioController")
 @ViewScoped
@@ -21,6 +22,16 @@ public class FuncionarioController extends AbstractController<Funcionario> {
     private EnderecoController enderecoIdEnderecoController;
     @Inject
     private ContatosController contatosIdContatoController;
+    
+    private boolean skip;
+    
+      public boolean isSkip() {
+        return skip;
+    }
+ 
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
 
     public FuncionarioController() {
         // Inform the Abstract parent controller of the concrete Funcionario?cap_first Entity
@@ -102,4 +113,15 @@ public class FuncionarioController extends AbstractController<Funcionario> {
             contatosIdContatoController.setSelected(this.getSelected().getContatosIdContato());
         }
     }
+    
+    public String onFlowProcess(FlowEvent event) {
+        if(skip) {
+            skip = false;   //reset in case user goes back
+            return "confirm";
+        }
+        else {
+            return event.getNewStep();
+        }
+    }
+    
 }

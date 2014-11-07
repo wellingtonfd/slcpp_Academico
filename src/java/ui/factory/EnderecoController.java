@@ -41,26 +41,26 @@ public class EnderecoController extends AbstractController<Endereco> {
      * are retrieved from Endereco?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Fornecedor page
-     */
+     *
     public String navigateFornecedorList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Fornecedor_items", this.getSelected().getFornecedorList());
         }
         return "/entiti/fornecedor/index";
-    }
+    }*/
 
     /**
      * Sets the "items" attribute with a List of Funcionario entities that
      * are retrieved from Endereco?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for Funcionario page
-     */
+     *
     public String navigateFuncionarioList() {
         if (this.getSelected() != null) {
             FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioList());
         }
         return "/entiti/funcionario/index";
-    }
+    }*/
 
     /**
      * Sets the "selected" attribute of the Pais controller in order to display
