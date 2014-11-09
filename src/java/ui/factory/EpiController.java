@@ -30,12 +30,12 @@ public class EpiController extends AbstractController<Epi> {
      * that are retrieved from Epi?cap_first and returns the navigation outcome.
      *
      * @return navigation outcome for TipoEquipamento page
-     */
+     *
     public String navigateTipoEquipamentoList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().);
         }
         return "/entiti/tipoEquipamento/index";
-    }
+    }*/
 
 }
