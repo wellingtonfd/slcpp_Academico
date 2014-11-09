@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entiti;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +16,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "tipo_material")
@@ -43,6 +48,8 @@ public class TipoMaterial implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_material")
     private String nomeMaterial;
+    @OneToMany(mappedBy = "idMaterial")
+    private List<Epi> epiList;
 
     public TipoMaterial() {
     }
@@ -75,6 +82,15 @@ public class TipoMaterial implements Serializable {
         this.nomeMaterial = nomeMaterial;
     }
 
+    @XmlTransient
+    public List<Epi> getEpiList() {
+        return epiList;
+    }
+
+    public void setEpiList(List<Epi> epiList) {
+        this.epiList = epiList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -99,5 +115,5 @@ public class TipoMaterial implements Serializable {
     public String toString() {
         return "entiti.TipoMaterial[ idTipoMaterial=" + idTipoMaterial + " ]";
     }
-    
+
 }

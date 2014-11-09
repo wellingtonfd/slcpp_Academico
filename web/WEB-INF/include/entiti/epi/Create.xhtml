@@ -25,7 +25,16 @@
                         <p:inputTextarea rows="4" cols="30" id="especEpi" value="#{epiController.selected.especEpi}" title="#{myBundle.CreateEpiTitle_especEpi}" />
 
                         <p:outputLabel value="#{myBundle.CreateEpiLabel_idMaterial}" for="idMaterial" />
-                        <p:inputText id="idMaterial" value="#{epiController.selected.idMaterial}" title="#{myBundle.CreateEpiTitle_idMaterial}"/>
+                        <p:selectOneMenu id="idMaterial" value="#{epiController.selected.idMaterial}"  required="true" requiredMessage="#{myBundle.TipoMaterialTitle}" converter="tipoMaterialConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoMaterialController.items}"
+                                           var="tipoMaterialItem"
+                                           itemValue="#{tipoMaterialItem}"
+                                           itemLabel="#{tipoMaterialItem.nomeMaterial.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epiController.saveNew}" value="#{myBundle.Save}" update="display,:EpiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpiCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>

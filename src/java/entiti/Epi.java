@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entiti;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "epi")
@@ -33,7 +34,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Epi.findByIdEpi", query = "SELECT e FROM Epi e WHERE e.idEpi = :idEpi"),
     @NamedQuery(name = "Epi.findByEspecEpi", query = "SELECT e FROM Epi e WHERE e.especEpi = :especEpi"),
     @NamedQuery(name = "Epi.findByGrupoEpi", query = "SELECT e FROM Epi e WHERE e.grupoEpi = :grupoEpi"),
-    @NamedQuery(name = "Epi.findByIdMaterial", query = "SELECT e FROM Epi e WHERE e.idMaterial = :idMaterial"),
     @NamedQuery(name = "Epi.findByNomeEpi", query = "SELECT e FROM Epi e WHERE e.nomeEpi = :nomeEpi")})
 public class Epi implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -48,13 +48,12 @@ public class Epi implements Serializable {
     @Size(max = 255)
     @Column(name = "grupo_epi")
     private String grupoEpi;
-    @Column(name = "id_material")
-    private Integer idMaterial;
     @Size(max = 255)
     @Column(name = "nome_epi")
     private String nomeEpi;
-    @OneToMany(mappedBy = "idEpi")
-    private List<TipoEquipamento> tipoEquipamentoList;
+    @JoinColumn(name = "id_material", referencedColumnName = "id_tipo_material")
+    @ManyToOne
+    private TipoMaterial idMaterial;
 
     public Epi() {
     }
@@ -87,14 +86,6 @@ public class Epi implements Serializable {
         this.grupoEpi = grupoEpi;
     }
 
-    public Integer getIdMaterial() {
-        return idMaterial;
-    }
-
-    public void setIdMaterial(Integer idMaterial) {
-        this.idMaterial = idMaterial;
-    }
-
     public String getNomeEpi() {
         return nomeEpi;
     }
@@ -103,13 +94,12 @@ public class Epi implements Serializable {
         this.nomeEpi = nomeEpi;
     }
 
-    @XmlTransient
-    public List<TipoEquipamento> getTipoEquipamentoList() {
-        return tipoEquipamentoList;
+    public TipoMaterial getIdMaterial() {
+        return idMaterial;
     }
 
-    public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
-        this.tipoEquipamentoList = tipoEquipamentoList;
+    public void setIdMaterial(TipoMaterial idMaterial) {
+        this.idMaterial = idMaterial;
     }
 
     @Override
@@ -136,5 +126,5 @@ public class Epi implements Serializable {
     public String toString() {
         return "entiti.Epi[ idEpi=" + idEpi + " ]";
     }
-    
+
 }

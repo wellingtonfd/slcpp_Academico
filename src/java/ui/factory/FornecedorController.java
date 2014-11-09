@@ -6,6 +6,7 @@ import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import org.primefaces.event.FlowEvent;
 
 @Named(value = "fornecedorController")
 @ViewScoped
@@ -19,6 +20,8 @@ public class FornecedorController extends AbstractController<Fornecedor> {
     private EnderecoController idEnderecoController;
     @Inject
     private ContatosController contatosIdContatoController;
+    
+     private boolean skip;
 
     public FornecedorController() {
         // Inform the Abstract parent controller of the concrete Fornecedor?cap_first Entity
@@ -83,6 +86,15 @@ public class FornecedorController extends AbstractController<Fornecedor> {
     public void prepareContatosIdContato(ActionEvent event) {
         if (this.getSelected() != null && contatosIdContatoController.getSelected() == null) {
             contatosIdContatoController.setSelected(this.getSelected().getContatosIdContato());
+        }
+    }
+        public String onFlowProcess(FlowEvent event) {
+        if(skip) {
+            skip = false;   //reset in case user goes back
+            return "confirm";
+        }
+        else {
+            return event.getNewStep();
         }
     }
 }
