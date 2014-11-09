@@ -16,6 +16,7 @@
                     <p:wizard styleClass="para_wizard" backLabel="Anterior" nextLabel="Próximo">
                         <p:tab id="personales" title="Dados Fornecedores">    
                             <p:panel header="Dados Fornecedores" styleClass="panel_wizard">
+                                <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
                                     <p:outputLabel value="CNPJ:" for="cnpj" />
                                     <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" 
@@ -37,6 +38,7 @@
                         </p:tab>
                         <p:tab id="personales2" title="Contatos Fornecedores">    
                             <p:panel header="Contatos Fornecedores" styleClass="panel_wizard4">
+                                <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
 
                                     <p:outputLabel value="Pais:" for="nomePais" />

@@ -105,7 +105,7 @@ public class Funcionario implements Serializable {
     private Endereco enderecoIdEndereco = new Endereco();
     @JoinColumn(name = "contatos_id_contato", referencedColumnName = "id_contato")
     @ManyToOne
-    private Contatos contatosIdContato;
+    private Contatos contatosIdContato = new Contatos();
 
     public Funcionario() {
     }
