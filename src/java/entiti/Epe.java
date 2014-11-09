@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entiti;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "epe")
@@ -33,8 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Epe.findByIdEpe", query = "SELECT e FROM Epe e WHERE e.idEpe = :idEpe"),
     @NamedQuery(name = "Epe.findByAgenteEpe", query = "SELECT e FROM Epe e WHERE e.agenteEpe = :agenteEpe"),
     @NamedQuery(name = "Epe.findByClasseEpe", query = "SELECT e FROM Epe e WHERE e.classeEpe = :classeEpe"),
-    @NamedQuery(name = "Epe.findByNomeEpe", query = "SELECT e FROM Epe e WHERE e.nomeEpe = :nomeEpe"),
-    @NamedQuery(name = "Epe.findByTipoMaterialIdMaterial", query = "SELECT e FROM Epe e WHERE e.tipoMaterialIdMaterial = :tipoMaterialIdMaterial")})
+    @NamedQuery(name = "Epe.findByNomeEpe", query = "SELECT e FROM Epe e WHERE e.nomeEpe = :nomeEpe")})
 public class Epe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,10 +51,9 @@ public class Epe implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_epe")
     private String nomeEpe;
-    @Column(name = "tipo_material_id_material")
-    private Integer tipoMaterialIdMaterial;
-    @OneToMany(mappedBy = "epeIdEpe")
-    private List<TipoEquipamento> tipoEquipamentoList;
+    @JoinColumn(name = "tipo_material_id_material", referencedColumnName = "id_tipo_material")
+    @ManyToOne
+    private TipoMaterial tipoMaterialIdMaterial;
 
     public Epe() {
     }
@@ -95,21 +94,12 @@ public class Epe implements Serializable {
         this.nomeEpe = nomeEpe;
     }
 
-    public Integer getTipoMaterialIdMaterial() {
+    public TipoMaterial getTipoMaterialIdMaterial() {
         return tipoMaterialIdMaterial;
     }
 
-    public void setTipoMaterialIdMaterial(Integer tipoMaterialIdMaterial) {
+    public void setTipoMaterialIdMaterial(TipoMaterial tipoMaterialIdMaterial) {
         this.tipoMaterialIdMaterial = tipoMaterialIdMaterial;
-    }
-
-    @XmlTransient
-    public List<TipoEquipamento> getTipoEquipamentoList() {
-        return tipoEquipamentoList;
-    }
-
-    public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
-        this.tipoEquipamentoList = tipoEquipamentoList;
     }
 
     @Override
@@ -136,5 +126,5 @@ public class Epe implements Serializable {
     public String toString() {
         return "entiti.Epe[ idEpe=" + idEpe + " ]";
     }
-    
+
 }

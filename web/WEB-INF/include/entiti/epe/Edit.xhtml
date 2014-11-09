@@ -27,8 +27,17 @@
                         <p:outputLabel value="#{myBundle.EditEpeLabel_agenteEpe}" for="agenteEpe" />
                         <p:inputText id="agenteEpe" value="#{epeController.selected.agenteEpe}" title="#{myBundle.EditEpeTitle_agenteEpe}" required="true" requiredMessage="#{myBundle.EditEpeRequiredMessage_agenteEpe}" size="45" maxlength="45"/>
 
-                        <p:outputLabel value="#{myBundle.EditEpeLabel_tipoMaterialIdMaterial}" for="tipoMaterialIdMaterial" />
-                        <p:inputText id="tipoMaterialIdMaterial" value="#{epeController.selected.tipoMaterialIdMaterial}" title="#{myBundle.EditEpeTitle_tipoMaterialIdMaterial}" required="true" requiredMessage="#{myBundle.EditEpeRequiredMessage_tipoMaterialIdMaterial}"/>
+                        <p:outputLabel value="#{myBundle.CreateEpiLabel_idMaterial}" for="idMaterial" />
+                        <p:selectOneMenu id="idMaterial" value="#{epiController.selected.idMaterial}"  required="true" requiredMessage="#{myBundle.TipoMaterialTitle}" converter="tipoMaterialConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoMaterialController.items}"
+                                           var="tipoMaterialItem"
+                                           itemValue="#{tipoMaterialItem}"
+                                           itemLabel="#{tipoMaterialItem.nomeMaterial.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epeController.save}" value="#{myBundle.Save}" update="display,:EpeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpeEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

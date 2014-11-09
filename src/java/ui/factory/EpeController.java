@@ -31,11 +31,11 @@ public class EpeController extends AbstractController<Epe> {
      *
      * @return navigation outcome for TipoEquipamento page
      */
-    public String navigateTipoEquipamentoList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoList());
-        }
-        return "/entiti/tipoEquipamento/index";
-    }
+//    public String navigateTipoEquipamentoList() {
+//        if (this.getSelected() != null) {
+//            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoEquipamento_items", this.getSelected().getTipoEquipamentoList());
+//        }
+//        return "/entiti/tipoEquipamento/index";
+//    }
 
 }

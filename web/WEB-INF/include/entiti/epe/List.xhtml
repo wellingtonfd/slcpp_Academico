@@ -15,7 +15,6 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EpeListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('EpeListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.EpeMenuItem_tipoEquipamentoList}" icon="ui-icon-search"  action="#{epeController.navigateTipoEquipamentoList}" disabled="#{empty epeController.selected.tipoEquipamentoList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{epeController.items}"
@@ -67,7 +66,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListEpeTitle_tipoMaterialIdMaterial}"/>
                     </f:facet>
-                    <h:outputText value="#{item.tipoMaterialIdMaterial}"/>
+                    <h:outputText value="#{item.tipoMaterialIdMaterial.nomeMaterial}"/>
                 </p:column>
 
 

@@ -41,7 +41,7 @@
                                 <p:messages/>
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
-                                
+
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
                                     <p:inputText id="logradouro" value="#{fornecedorController.selected.idEndereco.logadouro}" title="#{myBundle.Createlo}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
 
@@ -50,7 +50,7 @@
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
                                     <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}" title="#{myBundle.CreateEnderecoTitle_cep}" size="8" maxlength="8"/>
-                                      
+
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
                                     <p:inputText id="numero" value="#{fornecedorController.selected.idEndereco.numero}" title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
 
@@ -91,7 +91,7 @@
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" for="tel" />
                                     <p:inputMask id="tel" mask="(99)9999-9999" value="#{fornecedorController.selected.contatosIdContato.tel}" title="#{myBundle.CreateContatosTitle_tel}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_tel}" size="15" maxlength="15"/>
 
-                                    <p:outputLabel value="#{myBundle.CreateContatosHelpText_celular}" for="celular" />
+                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" for="celular" />
                                     <p:inputMask id="celular" mask="(99)99999-9999" value="#{fornecedorController.selected.contatosIdContato.celular}" 
                                                  title="#{myBundle.CreateContatosTitle_celular}" required="true" 
                                                  requiredMessage="#{myBundle.CreateContatosRequiredMessage_celular}" size="15" maxlength="15">
@@ -107,9 +107,25 @@
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
-                                  
+                                    
                                     <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_idFornecedor}" />
+                                        <h:outputText value="#{fornecedorController.selected.idFornecedor}" styleClass="outputLabel"/>
+                                        
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_cnpj}" />
+                                        <h:outputText value="#{fornecedorController.selected.cnpj}" styleClass="outputLabel"/>
+                                        
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_razaoSocial}" />
+                                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" styleClass="outputLabel"/>
 
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_nomeFantasia}" />
+                                        <h:outputText value="#{fornecedorController.selected.nomeFantasia}" styleClass="outputLabel"/>
+                                        
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_razaoSocial}" />
+                                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        
                                         <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
                                         <h:outputText value="#{fornecedorController.selected.idEndereco.logadouro}" styleClass="outputLabel"/>
 
@@ -136,13 +152,13 @@
                                     </h:panelGrid>
                                 </h:panelGrid>
 
-                                <p:commandButton actionListener="#{fornecedorController.saveNew}" value="#{myBundle.Save}" 
-                                                 update="display,:FornecedorListForm:datalist,:growl" 
-                                                 oncomplete="handleSubmit(xhr,status,args,FornecedorCreateDialog);" process="@this">
-                                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
-                                </p:commandButton>
+                                    <p:commandButton actionListener="#{fornecedorController.saveNew}" value="#{myBundle.Save}" 
+                                                     update="display,:FornecedorListForm:datalist,:growl" 
+                                                     oncomplete="handleSubmit(xhr,status,args,FornecedorCreateDialog);" process="@this">
+                                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                                    </p:commandButton>
 
-                                <p:commandButton value="#{myBundle.Cancel}" onclick="FornecedorCreateDialog.hide()"/>
+                                    <p:commandButton value="#{myBundle.Cancel}" onclick="FornecedorCreateDialog.hide()"/>
 
                             </p:panel>
                         </p:tab>

@@ -39,13 +39,13 @@
                         <p:outputLabel value="#{myBundle.EditVeiculoLabel_chassiVeiculo}" for="chassiVeiculo" />
                         <p:inputText id="chassiVeiculo" value="#{veiculoController.selected.chassiVeiculo}" title="#{myBundle.EditVeiculoTitle_chassiVeiculo}" required="true" requiredMessage="#{myBundle.EditVeiculoRequiredMessage_chassiVeiculo}" size="25" maxlength="25"/>
 
-                        <p:outputLabel value="#{myBundle.EditVeiculoLabel_idCombustivel}" for="idCombustivel" />
-                        <p:selectOneMenu id="idCombustivel" value="#{veiculoController.selected.idCombustivel}" required="true" requiredMessage="#{myBundle.EditVeiculoRequiredMessage_idCombustivel}" converter="combustivelConverter">
+                        <p:outputLabel value="#{myBundle.CreateVeiculoLabel_idCombustivel}" for="idCombustivel" />
+                        <p:selectOneMenu id="idCombustivel" value="#{veiculoController.selected.idCombustivel}"  converter="combustivelConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{combustivelController.items}"
                                            var="idCombustivelItem"
                                            itemValue="#{idCombustivelItem}"
-                                           itemLabel="#{idCombustivelItem.idCombustivel.toString()}"
+                                           itemLabel="#{idCombustivelItem.nomeCombustivel.toString()}"
                                            />
 
                         </p:selectOneMenu>

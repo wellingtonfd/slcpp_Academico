@@ -48,8 +48,8 @@ public class TipoMaterial implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_material")
     private String nomeMaterial;
-    @OneToMany(mappedBy = "idMaterial")
-    private List<Epi> epiList;
+    @OneToMany(mappedBy = "tipoMaterialIdMaterial")
+    private List<Epe> epeList;
 
     public TipoMaterial() {
     }
@@ -83,12 +83,12 @@ public class TipoMaterial implements Serializable {
     }
 
     @XmlTransient
-    public List<Epi> getEpiList() {
-        return epiList;
+    public List<Epe> getEpeList() {
+        return epeList;
     }
 
-    public void setEpiList(List<Epi> epiList) {
-        this.epiList = epiList;
+    public void setEpeList(List<Epe> epeList) {
+        this.epeList = epeList;
     }
 
     @Override
