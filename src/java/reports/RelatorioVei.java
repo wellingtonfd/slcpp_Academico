@@ -1,3 +1,5 @@
+
+
 package reports;
 
 import java.io.ByteArrayInputStream;
@@ -24,10 +26,10 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
  
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
- 
-public class ReportUtil {
- 
-    public static final String TEMPLATE = "/home/academico/NetBeansProjects/slcpp_Academico/web/WEB-INF/reports/users.jrxml";
+
+public class RelatorioVei {
+    
+    public static final String TEMPLATE = "C:\\Users\\gingo\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\RelatorioVei.jrxml";
      
     public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          
@@ -35,7 +37,7 @@ public class ReportUtil {
  
         try {
             Connection conexao = this.getConexao();                
-            String reportStream = ReportUtil.TEMPLATE;
+            String reportStream = RelatorioVei.TEMPLATE;
             JasperDesign jd = JRXmlLoader.load(reportStream);
             JasperReport jr = JasperCompileManager.compileReport(jd);
             JasperPrint jp = JasperFillManager.fillReport(jr, parametrosRelatorio, conexao);
@@ -73,3 +75,5 @@ public class ReportUtil {
         return conexao;
     }
 }
+    
+

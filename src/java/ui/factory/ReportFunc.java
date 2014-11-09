@@ -8,11 +8,10 @@ package ui.factory;
 import java.util.HashMap;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.StreamedContent;
-import reports.ReportUtil;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import reports.RelatorioEpi;
+import reports.RelatorioFunc;
  
 
 
@@ -21,14 +20,14 @@ import reports.RelatorioEpi;
  * @author sacramento
  */
 
-@ManagedBean(name = "report")
-public class Report {
+@ManagedBean(name = "reportFunc")
+public class ReportFunc {
  
     private StreamedContent arquivoRetorno;
      
     public StreamedContent getArquivoRetorno() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RelatorioEpi ru = new RelatorioEpi();
+        RelatorioFunc ru = new RelatorioFunc();
         HashMap parametrosRelatorio = new HashMap();
         try {
             this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio);

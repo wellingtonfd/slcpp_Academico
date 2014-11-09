@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioProd" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8c5e040-99dc-4c26-9ca1-01f3908078a4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     produto."id_produto" AS produto_id_produto,
+     produto."acoes_emerg" AS produto_acoes_emerg,
+     produto."composicao" AS produto_composicao,
+     produto."desc_produto" AS produto_desc_produto,
+     produto."dt_fab" AS produto_dt_fab,
+     produto."dt_val" AS produto_dt_val,
+     produto."formula_produto" AS produto_formula_produto,
+     produto."id_armazem" AS produto_id_armazem,
+     produto."id_embalagem" AS produto_id_embalagem,
+     produto."n_lote" AS produto_n_lote,
+     produto."nome_generico" AS produto_nome_generico,
+     produto."num_risco" AS produto_num_risco,
+     produto."odor_produto" AS produto_odor_produto,
+     produto."origem" AS produto_origem,
+     produto."painel_seguranca" AS produto_painel_seguranca,
+     produto."rotulo_produto" AS produto_rotulo_produto,
+     produto."armazem_id_armazem" AS produto_armazem_id_armazem,
+     produto."id_classe" AS produto_id_classe,
+     produto."id_compatibilidade" AS produto_id_compatibilidade,
+     produto."id_endarmazem" AS produto_id_endarmazem,
+     produto."id_est_fisico" AS produto_id_est_fisico,
+     produto."id_legenda_compatibilidade" AS produto_id_legenda_compatibilidade,
+     produto."id_num_cas" AS produto_id_num_cas,
+     produto."id_num_onu" AS produto_id_num_onu,
+     produto."id_fornecedor" AS produto_id_fornecedor
+FROM
+     "public"."produto" produto]]>
+	</queryString>
+	<field name="produto_id_produto" class="java.lang.Integer"/>
+	<field name="produto_desc_produto" class="java.lang.String"/>
+	<field name="produto_composicao" class="java.lang.String"/>
+	<field name="produto_num_risco" class="java.lang.Integer"/>
+	<group name="produto_id_produto">
+		<groupExpression><![CDATA[$F{produto_id_produto}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="d8e7da07-6887-44f9-9c5a-cc520aa7083a"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="01c5eebf-6c6c-4e1d-a36b-076aa4c8968e"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{produto_id_produto}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="c10ba6fd-0b01-4362-88fd-968a8b63782b"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="produto_desc_produto">
+		<groupExpression><![CDATA[$F{produto_desc_produto}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="28f2a77e-c7a1-4484-9f5b-5609a08e770f"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{produto_desc_produto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="53604c08-5016-4c94-805e-a79946169de6"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Descrição ]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="produto_composicao">
+		<groupExpression><![CDATA[$F{produto_composicao}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="3bcd42c2-ec01-48dc-9ed3-8f020df055d5"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{produto_composicao}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="8b3a488b-841f-4848-9ade-f446de9e0aaa"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Composição]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="produto_num_risco">
+		<groupExpression><![CDATA[$F{produto_num_risco}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="62130b34-30ea-43f4-8435-c241a0df4f93"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{produto_num_risco}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="8df4862f-6e16-4e61-950f-62b089d3848c"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Numero de Risco]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="0fbc57e5-573c-4baa-982f-25f56d8e8c89"/>
+				<staticText>
+					<reportElement x="20" y="20" width="345" height="43" forecolor="#FFFFFF" uuid="a295872a-1630-4e7f-943f-645b32d0076f"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório Produto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="f42dd600-78e0-47b0-89b4-64ff679f3fab"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="0b463ceb-03c7-4140-92bb-0cb47e16da9c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="8abeb5d4-90ab-4a05-9de5-4854503abab8"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="96a5531a-402a-4880-8e8a-c6ba9b539fed"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="1cfd74c0-abc7-49c3-b8e1-3405e3faf49a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="8ac03e48-4d57-4701-82fb-b797e099dfc5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
