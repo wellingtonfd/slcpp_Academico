@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:stella="http://stella.caelum.com.br/faces2">
 
     <ui:composition>
 
@@ -21,13 +22,16 @@
                                     <p:outputLabel value="CNPJ:" for="cnpj" />
                                     <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" 
                                                  title="#{myBundle.CreateFornecedorTitle_cnpj}" required="true" 
-                                                 requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_cnpj}" size="20" maxlength="20"/>
+                                                 requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_cnpj}" size="20" maxlength="20">
+                                         <f:validator validatorId="StellaCNPJValidator"/>
+                                    </p:inputMask>
                                     <p:outputLabel value="Razão Social" for="razaoSocial" />
                                     <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{myBundle.CreateFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_razaoSocial}" size="60" maxlength="60"/>
 
                                     <p:outputLabel value="#{myBundle.CreateFornecedorLabel_nomeFantasia}" for="nomeFantasia" />
                                     <p:inputText id="nomeFantasia" value="#{fornecedorController.selected.nomeFantasia}" title="#{myBundle.CreateFornecedorTitle_nomeFantasia}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_nomeFantasia}" size="60" maxlength="60"/>
 
+                                    
                                     <p:outputLabel value="Insc.Social" for="inscSocial" />
                                     <p:inputText id="inscSocial" value="#{fornecedorController.selected.inscSocial}" 
                                                  title="#{myBundle.CreateFornecedorTitle_inscSocial}" required="true" 

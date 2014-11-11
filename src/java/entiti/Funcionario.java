@@ -5,6 +5,7 @@
  */
 package entiti;
 
+import br.com.caelum.stella.bean.validation.CPF;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -61,6 +62,7 @@ public class Funcionario implements Serializable {
     private String cargo;
     @Size(max = 255)
     @Column(name = "cpf")
+    @CPF
     private String cpf;
     @Column(name = "dt_admissao")
     @Temporal(TemporalType.DATE)

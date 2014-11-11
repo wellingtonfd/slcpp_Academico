@@ -42,13 +42,13 @@
                         <p:outputLabel value="#{myBundle.EditArmazemLabel_idLocalOper}" for="idLocalOper" />
                         <p:inputText id="idLocalOper" value="#{armazemController.selected.idLocalOper}" title="#{myBundle.EditArmazemTitle_idLocalOper}"/>
 
-                        <p:outputLabel value="#{myBundle.EditArmazemLabel_statusArmazemIdStatusArmazem}" for="statusArmazemIdStatusArmazem" />
-                        <p:selectOneMenu id="statusArmazemIdStatusArmazem" value="#{armazemController.selected.statusArmazemIdStatusArmazem}" required="true" requiredMessage="#{myBundle.EditArmazemRequiredMessage_statusArmazemIdStatusArmazem}" converter="statusArmazemConverter">
+                        <p:outputLabel value="#{myBundle.EditArmazemLabel_statusArmazemIdStatusArmazem}" for="tipoStatusArmazem" />
+                        <p:selectOneMenu id="statusArmazemIdStatusArmazem" value="#{armazemController.selected.tipoStatusArmazem}" required="true" requiredMessage="#{myBundle.EditArmazemRequiredMessage_statusArmazemIdStatusArmazem}" converter="statusArmazemConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{statusArmazemController.items}"
-                                           var="statusArmazemIdStatusArmazemItem"
-                                           itemValue="#{statusArmazemIdStatusArmazemItem}"
-                                           itemLabel="#{statusArmazemIdStatusArmazemItem.idStatusArmazem.toString()}"
+                            <f:selectItems value="#{especArmazemController.items}"
+                                           var="especArmazemItem"
+                                           itemValue="#{especArmazemItem}"
+                                           itemLabel="#{especArmazemItem.tipoStatusArmazem.toString()}"
                                            />
 
                         </p:selectOneMenu>

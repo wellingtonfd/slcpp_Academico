@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:stella="http://stella.caelum.com.br/faces2">
 
 
 
@@ -64,10 +65,14 @@
                                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                                     </p:selectOneRadio>
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cpf}" for="cpf" />
-                                    <p:inputMask id="cpf" mask="999.999.999-99" value="#{funcionarioController.selected.cpf}" title="#{myBundle.EditFuncionarioTitle_cpf}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cpf}" size="15" maxlength="15"/>
+                                    <p:inputMask id="cpf" mask="999.999.999-99" value="#{funcionarioController.selected.cpf}" title="#{myBundle.EditFuncionarioTitle_cpf}" 
+                                                 required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cpf}" size="15" maxlength="15">
+                                        <f:validator validatorId="StellaCPFValidator"/>
+                                    </p:inputMask>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_rg}" for="rg" />
-                                    <p:inputMask id="rg" mask="99999999-9" value="#{funcionarioController.selected.rg}" title="#{myBundle.EditFuncionarioTitle_rg}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_rg}" size="15" maxlength="15"/>
+                                    <p:inputMask id="rg" mask="99999999-9" value="#{funcionarioController.selected.rg}" title="#{myBundle.EditFuncionarioTitle_rg}" 
+                                                 required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_rg}" size="15" maxlength="15"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtNasc}" for="dtNasc" />
                                     <p:calendar locale="pt_BR" id="dtNasc" pattern="MM/dd/yyyy" value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.EditFuncionarioTitle_dtNasc}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}" showOn="button"/>
@@ -108,7 +113,19 @@
 
                                     </p:selectOneMenu>
 
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
+                                      </p:panelGrid>
+
+                            </p:panel>
+                            
+                        </p:tab>
+                         <p:tab id="personales3" title="Contatos">    
+                            <p:panel header="Contatos">
+                                <p:messages/>
+
+                                <p:panelGrid columns="2" columnClasses="label, value">
+                                    <p:outputLabel value="Teste"  />
+                                    
+                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
                                     <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{paisController.items}"
@@ -130,10 +147,12 @@
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
                                     <p:inputText id="email" value="#{funcionarioController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_email}" size="40" maxlength="40"/>
 
+                             
+                                    
                                 </p:panelGrid>
-
                             </p:panel>
-                        </p:tab>
+                         </p:tab>
+                                
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">

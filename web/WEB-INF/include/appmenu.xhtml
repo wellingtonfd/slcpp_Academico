@@ -50,17 +50,11 @@
                     </p:submenu>
                 </p:submenu>
                 <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
-                    <p:submenu label="#{myBundle.UsuarioHeading}...">
-                        <p:menuitem value="Visualizar Usuário" outcome="/entiti/usuario/index" />
-                    </p:submenu>
+                    <p:menuitem value="#{myBundle.UsuarioHeading}" outcome="/entiti/usuario/index" />
                     <p:separator/>
-                    <p:submenu label="#{myBundle.RolerHeading}...">
-                        <p:menuitem value="Visualizar Roler" outcome="/entiti/roler/index" />
-                    </p:submenu>
+                    <p:menuitem value="#{myBundle.RolerHeading}" outcome="/entiti/roler/index" />
                     <p:separator/>
-                    <p:submenu label="#{myBundle.UsuarioRolerHeading}...">
-                        <p:menuitem value="Visualizar Usuário Roler" outcome="/entiti/usuarioRoler/index" />
-                    </p:submenu>
+                    <p:menuitem value="#{myBundle.UsuarioRolerHeading}" outcome="/entiti/usuarioRoler/index" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
                     <p:submenu label="Dados Armazéns...">

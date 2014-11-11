@@ -5,6 +5,8 @@
  */
 package entiti;
 
+import br.com.caelum.stella.bean.validation.CNPJ;
+import br.com.caelum.stella.bean.validation.IE;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -46,6 +48,7 @@ public class Fornecedor implements Serializable {
     @Column(name = "id_fornecedor")
     private Integer idFornecedor;
     @Size(max = 255)
+    @CNPJ
     @Column(name = "cnpj")
     private String cnpj;
     @Column(name = "id_contato")
