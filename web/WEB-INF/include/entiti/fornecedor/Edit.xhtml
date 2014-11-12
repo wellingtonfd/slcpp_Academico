@@ -34,8 +34,8 @@
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
-                        <p:tab id="personales2" title="Dados Pessoais">    
-                            <p:panel header="Dados Pessoais">
+                        <p:tab id="personales2" title="Dados Cadastrais">    
+                            <p:panel header="Dados Cadastrais">
                                 <p:messages/>
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
@@ -87,16 +87,14 @@
 
                                     </p:selectOneMenu>
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" for="tel" />
-                                    <p:inputMask id="tel" mask="(99)9999-9999" value="#{fornecedorController.selected.contatosIdContato.tel}" title="#{myBundle.CreateContatosTitle_tel}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_tel}" size="15" maxlength="15"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" for="celular" />
-                                    <p:inputMask id="celular" mask="(99)99999-9999" value="#{fornecedorController.selected.contatosIdContato.celular}" 
-                                                 title="#{myBundle.CreateContatosTitle_celular}" required="true" 
-                                                 requiredMessage="#{myBundle.CreateContatosRequiredMessage_celular}" size="15" maxlength="15">
-                                    </p:inputMask>
+                                    <p:inputMask id="tel" mask="(99)9999-9999" value="#{fornecedorController.selected.contatosIdContato.tel}" title="#{myBundle.CreateContatosTitle_tel}" size="15" maxlength="15"/>
 
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
-                                    <p:inputText id="email" value="#{fornecedorController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_email}" size="40" maxlength="40"/>
+                                    <p:inputText id="email" value="#{fornecedorController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}"  size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" for="site" />
+                                    <p:inputText id="site" value="#{fornecedorController.selected.contatosIdContato.site}" title="#{myBundle.CreateContatosTitle_site}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_site}" size="40" maxlength="40"/>
+
 
                                 </p:panelGrid>
 
@@ -105,6 +103,10 @@
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        
+                                    </h:panelGrid>
 
                                     <h:panelGrid columns="2" columnClasses="label, value">
 

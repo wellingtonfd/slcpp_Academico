@@ -42,7 +42,7 @@
                             <f:selectItems value="#{tipoSolicitacaoController.items}"
                                            var="idTipoSolicitacaoItem"
                                            itemValue="#{idTipoSolicitacaoItem}"
-                                           itemLabel="#{idTipoSolicitacaoItem.idTipoSolicitacao.toString()}"
+                                           itemLabel="#{idTipoSolicitacaoItem.tipoSolicitacao.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -53,7 +53,7 @@
                             <f:selectItems value="#{tipoEquipamentoController.items}"
                                            var="idTipoEquipamentoItem"
                                            itemValue="#{idTipoEquipamentoItem}"
-                                           itemLabel="#{idTipoEquipamentoItem.idTipoEquipamento.toString()}"
+                                           itemLabel="#{idTipoEquipamentoItem.nomeTipoEquipamento.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -64,7 +64,7 @@
                             <f:selectItems value="#{produtoController.items}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
-                                           itemLabel="#{idProdutoItem.idProduto.toString()}"
+                                           itemLabel="#{idProdutoItem.descProduto.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -75,7 +75,7 @@
                             <f:selectItems value="#{funcionarioController.items}"
                                            var="idFuncionarioItem"
                                            itemValue="#{idFuncionarioItem}"
-                                           itemLabel="#{idFuncionarioItem.idFuncionario.toString()}"
+                                           itemLabel="#{idFuncionarioItem.nomeFuncionario.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -86,7 +86,7 @@
                             <f:selectItems value="#{endArmazemController.items}"
                                            var="idEndarmazemItem"
                                            itemValue="#{idEndarmazemItem}"
-                                           itemLabel="#{idEndarmazemItem.idEndarmazem.toString()}"
+                                           itemLabel="#{idEndarmazemItem.ladoEndArmazem.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -110,7 +110,7 @@
                                            itemValue="#{idArmazemItem}"
                                            itemLabel="#{idArmazemItem.idArmazem.toString()}"
                                            />
-
+                            
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.saveNew}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
