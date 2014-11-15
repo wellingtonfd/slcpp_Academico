@@ -15,8 +15,8 @@
 
                 <h:panelGroup id="display" rendered="#{fornecedorController.selected != null}">
                     <p:wizard flowListener="#{fornecedorController.onFlowProcess}" backLabel="Anterior" nextLabel="Próximo">
-                        <p:tab id="personales" title="Dados Fornecedores">    
-                            <p:panel header="Dados Fornecedores" styleClass="panel_wizard">
+                        <p:tab id="personales" title="Dados Fornecedor">    
+                            <p:panel header="Dados Fornecedor" styleClass="panel_wizard">
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
                                     <p:outputLabel value="CNPJ:" for="cnpj" />
@@ -40,8 +40,8 @@
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
-                        <p:tab id="personales2" title="Dados Pessoais">    
-                            <p:panel header="Dados Pessoais">
+                       <p:tab id="personales2" title="Dados Cadastrais">    
+                            <p:panel header="Dados Cadastrais">
                                 <p:messages/>
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
@@ -110,51 +110,7 @@
                         </p:tab>
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
-                                <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
-                                    
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_idFornecedor}" />
-                                        <h:outputText value="#{fornecedorController.selected.idFornecedor}" styleClass="outputLabel"/>
-                                        
-                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_cnpj}" />
-                                        <h:outputText value="#{fornecedorController.selected.cnpj}" styleClass="outputLabel"/>
-                                        
-                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_razaoSocial}" />
-                                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_nomeFantasia}" />
-                                        <h:outputText value="#{fornecedorController.selected.nomeFantasia}" styleClass="outputLabel"/>
-                                        
-                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_razaoSocial}" />
-                                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
-                                        <h:outputText value="#{fornecedorController.selected.idEndereco.logadouro}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_numero}"/>
-                                        <h:outputText value="#{fornecedorController.selected.idEndereco.numero}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idCidade}"/>
-                                        <h:outputText value="#{fornecedorController.selected.idEndereco.idCidade.nomeCidade}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idEstado}"/>
-                                        <h:outputText value="#{fornecedorController.selected.idEndereco.idEstado.nomeEstado}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idPais}"/>
-                                        <h:outputText value="#{fornecedorController.selected.idEndereco.idPais.nomePais}"  styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" />
-                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.tel}" styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" />
-                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.celular}" styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" />
-                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.email}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
-                                </h:panelGrid>
+                                
 
                                     <p:commandButton actionListener="#{fornecedorController.saveNew}" value="#{myBundle.Save}" 
                                                      update="display,:FornecedorListForm:datalist,:growl" 

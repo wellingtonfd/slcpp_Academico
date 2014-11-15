@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -52,6 +53,7 @@ public class Movimentacao implements Serializable {
     private Date dtEntrega;
     @Column(name = "dt_prevista")
     @Temporal(TemporalType.DATE)
+    @Future
     private Date dtPrevista;
     @Column(name = "dt_saida")
     @Temporal(TemporalType.DATE)
