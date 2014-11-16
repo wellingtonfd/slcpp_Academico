@@ -30,14 +30,15 @@
                                                        />
                                         <p:separator/>
                                         
-                                        <p:column transient="tt">
-                                            <h:outputText value="#{teste2.numOnu}"/>
+                                        <p:column  headerText="10px" >
+                                            <f:selectItem itemLabel="teste"/>
+                                            <h:outputText value="#{teste2.numOnu}" title="teste"/>
                                         </p:column>
-                                        
                                         <p:column>
                                             <h:outputText value="#{teste2.descProd}"/>
                                         </p:column>
                                     </p:selectOneMenu>
+                                    
                                     
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
                                     <p:selectOneMenu id="idNumCas" value="#{produtoController.selected.idNumCas}"  converter="numCasConverter">
