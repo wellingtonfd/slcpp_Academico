@@ -53,7 +53,7 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.EditTipoEquipamentoLabel_epeIdEpe}" for="epeIdEpe" />
-                        <p:selectOneMenu id="epeIdEpe" value="#{tipoEquipamentoController.selected.epeIdEpe}" required="true" requiredMessage="#{myBundle.EditTipoEquipamentoRequiredMessage_epeIdEpe}" converter="epeConverter">
+                        <p:selectOneMenu id="epeIdEpe" value="#{tipoEquipamentoController.selected.epeIdEpe}"  converter="epeConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{epeController.items}"
                                            var="epeIdEpeItem"

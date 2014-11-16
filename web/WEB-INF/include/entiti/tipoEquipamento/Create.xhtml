@@ -21,9 +21,6 @@
                         <p:outputLabel value="#{myBundle.CreateTipoEquipamentoLabel_espcTipoEquipamento}" for="espcTipoEquipamento" />
                         <p:inputText id="espcTipoEquipamento" value="#{tipoEquipamentoController.selected.espcTipoEquipamento}" title="#{myBundle.CreateTipoEquipamentoTitle_espcTipoEquipamento}" size="35" maxlength="35"/>
 
-                        <p:outputLabel value="#{myBundle.CreateTipoEquipamentoLabel_idEpe}" for="idEpe" />
-                        <p:inputText id="idEpe" value="#{tipoEquipamentoController.selected.idEpe}" title="#{myBundle.CreateTipoEquipamentoTitle_idEpe}"/>
-
                         <p:outputLabel value="#{myBundle.CreateTipoEquipamentoLabel_idEmbalagem}" for="idEmbalagem" />
                         <p:inputText id="idEmbalagem" value="#{tipoEquipamentoController.selected.idEmbalagem}" title="#{myBundle.CreateTipoEquipamentoTitle_idEmbalagem}"/>
 
@@ -33,29 +30,29 @@
                             <f:selectItems value="#{veiculoController.items}"
                                            var="idVeiculoItem"
                                            itemValue="#{idVeiculoItem}"
-                                           itemLabel="#{idVeiculoItem.idVeiculo.toString()}"
+                                           itemLabel="#{idVeiculoItem.nomeVeiculo.toString()}"
                                            />
 
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{myBundle.CreateTipoEquipamentoLabel_idEpi}" for="idEpi" />
+                        <p:outputLabel value="Epi:" for="idEpi" />
                         <p:selectOneMenu id="idEpi" value="#{tipoEquipamentoController.selected.idEpi}"  converter="epiConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{epiController.items}"
                                            var="idEpiItem"
                                            itemValue="#{idEpiItem}"
-                                           itemLabel="#{idEpiItem.idEpi.toString()}"
+                                           itemLabel="#{idEpiItem.nomeEpi.toString()}"
                                            />
 
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.CreateTipoEquipamentoLabel_epeIdEpe}" for="epeIdEpe" />
-                        <p:selectOneMenu id="epeIdEpe" value="#{tipoEquipamentoController.selected.epeIdEpe}" required="true" requiredMessage="#{myBundle.CreateTipoEquipamentoRequiredMessage_epeIdEpe}" converter="epeConverter">
+                        <p:selectOneMenu id="epeIdEpe" value="#{tipoEquipamentoController.selected.epeIdEpe}"  converter="epeConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{epeController.items}"
                                            var="epeIdEpeItem"
                                            itemValue="#{epeIdEpeItem}"
-                                           itemLabel="#{epeIdEpeItem.idEpe.toString()}"
+                                           itemLabel="#{epeIdEpeItem.nomeEpe.toString()}"
                                            />
 
                         </p:selectOneMenu>
