@@ -94,7 +94,7 @@
 
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
-                                    <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                    <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{cidadeController.items}"
                                                        var="idCidadeItem"
