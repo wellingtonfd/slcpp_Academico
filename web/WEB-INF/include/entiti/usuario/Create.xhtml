@@ -20,9 +20,16 @@
 
                         <p:outputLabel value="#{myBundle.CreateUsuarioLabel_senha}" for="senha" />
                         <p:password id="senha" value="#{usuarioController.selected.senha}" 
-                                    feedback="true" 
+                                    feedback="true" match="senha"
                                     promptLabel="Digite a senha" weakLabel="Força da senha : Fraca"   
                                     goodLabel="Força da senha : Média" strongLabel="Força da senha : Forte"
+                                    title="#{myBundle.CreateUsuarioTitle_senha}" required="true" 
+                                    requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
+                        
+                        <p:outputLabel value="#{myBundle.CreateUsuarioLabel_confirmaSenha}" for="confirmaSenha" />
+                        <p:password id="confirmaSenha" value="#{usuarioController.selected.senha}" 
+                                    feedback="true" 
+                                    promptLabel="Digite a senha" 
                                     title="#{myBundle.CreateUsuarioTitle_senha}" required="true" 
                                     requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
 
