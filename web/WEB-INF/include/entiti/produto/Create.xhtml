@@ -16,11 +16,12 @@
 
                     <p:wizard styleClass="para_wizard" backLabel="Anterior" nextLabel="Próximo">
                         <p:tab id="personales" title="Dados Produto">    
-                            <p:panel header="Dados Funcionais" styleClass="panel_wizard">
-
+                            <p:panel header="Informações Adicionais" styleClass="panel_wizard">
+                                <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
                                     <p:selectOneMenu  id="idNumOnu" value="#{produtoController.selected.idNumOnu}"  converter="numOnuConverter"
+                                                      required="true" requiredMessage="#{myBundle.CreateNumOnuRequiredMessage_numOnu}"
                                                       var="teste2" filter="true" >
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{numOnuController.items}"
@@ -28,19 +29,21 @@
                                                        itemValue="#{idNumOnuItem}"
                                                        itemLabel="#{idNumOnuItem.numOnu.toString()}"
                                                        />
-                                                                            
+
                                         <p:column >
-                                         
+
                                             <h:outputText value="#{teste2.numOnu}"/>
                                         </p:column>
                                         <p:column>
                                             <h:outputText value="#{teste2.descProd}"/>
                                         </p:column>
                                     </p:selectOneMenu>
-                                    
-                                    
+
+
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
-                                    <p:selectOneMenu id="idNumCas" value="#{produtoController.selected.idNumCas}"  converter="numCasConverter">
+                                    <p:selectOneMenu id="idNumCas" value="#{produtoController.selected.idNumCas}"  
+                                                     required="true" requiredMessage="#{myBundle.CreateNumCasRequiredMessage_numCas}"
+                                                     converter="numCasConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{numCasController.items}"
                                                        var="idNumCasItem"
@@ -138,7 +141,7 @@
                                     <p:inputText id="odorProduto" value="#{produtoController.selected.odorProduto}" title="#{myBundle.CreateProdutoTitle_odorProduto}" size="25" maxlength="25"/>
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idEmbalagem}" for="idEmbalagem" />
-                                    <p:inputText id="idEmbalagem" value="#{produtoController.selected.idEmbalagem}" title="#{myBundle.CreateProdutoTitle_idEmbalagem}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idEmbalagem}"/>
+                                    <p:inputText id="idEmbalagem" value="#{produtoController.selected.idEmbalagem}" title="#{myBundle.CreateProdutoTitle_idEmbalagem}" />
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_acoesEmerg}" for="acoesEmerg" />
                                     <p:inputText id="acoesEmerg" value="#{produtoController.selected.acoesEmerg}" title="#{myBundle.CreateProdutoTitle_acoesEmerg}" size="80" maxlength="80"/>
@@ -153,7 +156,7 @@
                                         <f:selectItems value="#{compatibilidadeController.items}"
                                                        var="idCompatibilidadeItem"
                                                        itemValue="#{idCompatibilidadeItem}"
-                                                       itemLabel="#{idCompatibilidadeItem.idCompatibilidade.toString()}"
+                                                       itemLabel="#{idCompatibilidadeItem.descCompatibilidade.toString()}"
                                                        />
 
                                     </p:selectOneMenu>
@@ -187,70 +190,68 @@
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_matFuncionario}" />
-                                        <h:outputText  value="#{funcionarioController.selected.matFuncionario}"  styleClass="outputLabel" />
 
-                                        <h:outputText value="Nome:" />
-                                        <h:outputText  value="#{funcionarioController.selected.nomeFuncionario}"  styleClass="outputLabel"/> 
 
-                                        <h:outputText value="Sobrenome:"  />
-                                        <h:outputText value="#{funcionarioController.selected.sbNomeFuncionario}"  styleClass="outputLabel" />
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
+                                        <h:outputText value="#{numOnuController.selected.numOnu}" styleClass="outputLabel" />
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_dtAdmissao}"  />
-                                        <h:outputText value="#{funcionarioController.selected.dtAdmissao}" styleClass="outputLabel" >
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
+                                        <h:outputText   value="#{produtoController.selected.idNumCas}"  styleClass="outputLabel" />
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
+                                        <h:outputText value="#{produtoController.selected.idNumCas}" styleClass="outputLabel"/> 
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_nomeGenerico}" for="nomeGenerico" />
+                                        <h:outputText value="#{produtoController.selected.nomeGenerico}"  styleClass="outputLabel" />
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_NLote}" for="NLote" />
+                                        <h:outputText value="#{produtoController.selected.NLote}"  styleClass="outputLabel" />
+
+                                        <p:outputLabel value="Data Fabricação:" for="dtFab" />
+                                        <h:outputText value="#{produtoController.selected.dtFab}" styleClass="outputLabel" >
                                             <f:convertDateTime locale="pt_BR" type="date"  />
                                         </h:outputText>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_funcao}" />
-                                        <h:outputText value="#{funcionarioController.selected.funcao}" styleClass="outputLabel" />
+                                        <p:outputLabel value="Data Val:" for="dtVal" />
+                                        <h:outputText value="#{produtoController.selected.dtVal}"  styleClass="outputLabel">
+                                            <f:convertDateTime locale="pt_BR" type="date"  />
+                                        </h:outputText>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
-                                        <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_composicao}" for="composicao" />
+                                        <h:outputText value="#{produtoController.selected.composicao}"    styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" />
-                                        <h:outputText value="#{funcionarioController.selected.nivelFuncionario}"  styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_descProduto}" for="descProduto" />
+                                        <h:outputText value="#{produtoController.selected.descProduto}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
-                                        <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_formulaProduto}" for="formulaProduto" />
+                                        <h:outputText value="#{produtoController.selected.formulaProduto}" styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_rotuloProduto}" for="rotuloProduto" />
+                                        <h:outputText value="#{produtoController.selected.rotuloProduto}" styleClass="outputLabel"/>
+
                                     </h:panelGrid>
                                     <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
-                                        <h:outputText value="#{funcionarioController.selected.sexo}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_cpf}" />
-                                        <h:outputText value="#{funcionarioController.selected.cpf}" styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_numRisco}" for="numRisco" />
+                                        <h:outputText value="#{produtoController.selected.numRisco}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_rg}" />
-                                        <h:outputText value="#{funcionarioController.selected.rg}" styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_odorProduto}" for="odorProduto" />
+                                        <h:outputText value="#{produtoController.selected.odorProduto}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_dtNasc}" />
-                                        <h:outputText value="#{funcionarioController.selected.dtNasc}" styleClass="outputLabel">
-                                            <f:convertDateTime locale="pt_BR" type="date"  />
-                                        </h:outputText>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idEmbalagem}" for="idEmbalagem" />
+                                        <h:outputText value="#{produtoController.selected.idEmbalagem}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
-                                        <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_acoesEmerg}" for="acoesEmerg" />
+                                        <h:outputText value="#{produtoController.selected.acoesEmerg}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_numero}"/>
-                                        <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.numero}"  styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_painelSeguranca}" for="painelSeguranca" />
+                                        <h:outputText value="#{produtoController.selected.painelSeguranca}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idCidade}"/>
-                                        <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idCidade.nomeCidade}"  styleClass="outputLabel"/>
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idCompatibilidade}" for="idCompatibilidade" />
+                                        <h:outputText value="#{produtoController.selected.idCompatibilidade}" styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idEstado}"/>
-                                        <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idEstado.nomeEstado}"  styleClass="outputLabel"/>
 
-                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idPais}"/>
-                                        <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idPais.nomePais}"  styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" />
-                                        <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.tel}" styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" />
-                                        <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.celular}" styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" />
-                                        <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.email}" styleClass="outputLabel"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
 
