@@ -15,12 +15,10 @@
                 <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="dtPrevista" />
+                        <p:outputLabel value="Data Prevista" />
                         <p:calendar id="dtPrevista" pattern="MM/dd/yyyy" value="#{movimentacaoController.selected.dtPrevista}" 
                                     title="#{myBundle.CreateMovimentacaoTitle_dtPrevista}"  showOn="button"/>
-                        <p:message for="dtPrevista"/>
-                        <h:outputText/>
-
+                       
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_dtEntrega}" for="dtEntrega" />
                         <p:calendar id="dtEntrega" pattern="MM/dd/yyyy" value="#{movimentacaoController.selected.dtEntrega}" title="#{myBundle.CreateMovimentacaoTitle_dtEntrega}"  showOn="button"/>
 

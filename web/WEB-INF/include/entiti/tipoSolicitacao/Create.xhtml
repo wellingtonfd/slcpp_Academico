@@ -27,14 +27,20 @@
                         <p:outputLabel value="#{myBundle.CreateTipoSolicitacaoLabel_solicitante}" for="solicitante" />
                         <p:inputText id="solicitante" value="#{tipoSolicitacaoController.selected.solicitante}" title="#{myBundle.CreateTipoSolicitacaoTitle_solicitante}" required="true" requiredMessage="#{myBundle.CreateTipoSolicitacaoRequiredMessage_solicitante}" size="50" maxlength="50"/>
 
-                        <p:outputLabel value="#{myBundle.CreateTipoSolicitacaoLabel_idFuncionario}" for="idFuncionario" />
-                        <p:selectOneMenu id="idFuncionario" value="#{tipoSolicitacaoController.selected.idFuncionario}"  converter="funcionarioConverter">
+                        <p:outputLabel value="Funcionário" for="idFuncionario" />
+                        <p:selectOneMenu id="idFuncionario" var="teste1" value="#{tipoSolicitacaoController.selected.idFuncionario}"  converter="funcionarioConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{funcionarioController.items}"
                                            var="idFuncionarioItem"
                                            itemValue="#{idFuncionarioItem}"
-                                           itemLabel="#{idFuncionarioItem.idFuncionario.toString()}"
+                                           itemLabel="#{idFuncionarioItem.nomeFuncionario.toString()}"
                                            />
+                            <p:column >
+                                <h:outputText value="#{teste1.matFuncionario}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{teste1.nomeFuncionario}"/>
+                            </p:column>
 
                         </p:selectOneMenu>
 
@@ -44,7 +50,7 @@
                             <f:selectItems value="#{fornecedorController.items}"
                                            var="fornecedorIdFornecedorItem"
                                            itemValue="#{fornecedorIdFornecedorItem}"
-                                           itemLabel="#{fornecedorIdFornecedorItem.idFornecedor.toString()}"
+                                           itemLabel="#{fornecedorIdFornecedorItem.razaoSocial.toString()}"
                                            />
 
                         </p:selectOneMenu>
@@ -55,7 +61,7 @@
                             <f:selectItems value="#{armazemController.items}"
                                            var="idArmazemItem"
                                            itemValue="#{idArmazemItem}"
-                                           itemLabel="#{idArmazemItem.idArmazem.toString()}"
+                                           itemLabel="#{idArmazemItem.tipoArmazem.toString()}"
                                            />
 
                         </p:selectOneMenu>

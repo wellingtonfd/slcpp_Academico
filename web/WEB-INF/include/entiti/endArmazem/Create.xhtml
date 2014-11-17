@@ -29,8 +29,19 @@
 
                         <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_posicaoEndArmazem}" for="posicaoEndArmazem" />
                         <p:inputText id="posicaoEndArmazem" value="#{endArmazemController.selected.posicaoEndArmazem}" title="#{myBundle.CreateEndArmazemTitle_posicaoEndArmazem}" size="15" maxlength="15"/>
-                   
-                      <p:outputLabel value="Status:" for="statusArmazemIdStatusArmazem" />
+
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idArmazem}" for="idArmazem" />
+                        <p:selectOneMenu id="idArmazem" value="#{movimentacaoController.selected.idArmazem}"  converter="armazemConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{armazemController.items}"
+                                           var="idArmazemItem"
+                                           itemValue="#{idArmazemItem}"
+                                           itemLabel="#{idArmazemItem.tipoArmazem.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Status:" for="statusArmazemIdStatusArmazem" />
                         <p:selectOneMenu id="statusArmazemIdStatusArmazem" value="#{armazemController.selected.statusArmazemIdStatusArmazem}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_statusArmazemIdStatusArmazem}" converter="statusArmazemConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{statusArmazemController.items}"
@@ -40,7 +51,7 @@
                                            />
 
                         </p:selectOneMenu>
-                        
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{endArmazemController.saveNew}" value="#{myBundle.Save}" update="display,:EndArmazemListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EndArmazemCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>

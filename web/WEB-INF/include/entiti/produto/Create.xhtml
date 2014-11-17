@@ -172,6 +172,17 @@
 
                                     </p:selectOneMenu>
 
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
+                                    <p:selectOneMenu id="idEndarmazem" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{endArmazemController.items}"
+                                                       var="idEndarmazemItem"
+                                                       itemValue="#{idEndarmazemItem}"
+                                                       itemLabel="#{idEndarmazemItem.idEndarmazem.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_armazemIdArmazem}" for="armazemIdArmazem" />
                                     <p:selectOneMenu id="armazemIdArmazem" value="#{produtoController.selected.armazemIdArmazem}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_armazemIdArmazem}" converter="armazemConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
@@ -193,14 +204,11 @@
 
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
-                                        <h:outputText value="#{numOnuController.selected.numOnu}" styleClass="outputLabel" />
+                                        <h:outputText value="#{produtoController.selected.idNumOnu.numOnu}" styleClass="outputLabel" />
 
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
-                                        <h:outputText   value="#{produtoController.selected.idNumCas}"  styleClass="outputLabel" />
-
-                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
-                                        <h:outputText value="#{produtoController.selected.idNumCas}" styleClass="outputLabel"/> 
+                                        <h:outputText   value="#{produtoController.selected.idNumCas.numCas}"  styleClass="outputLabel" />
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_nomeGenerico}" for="nomeGenerico" />
                                         <h:outputText value="#{produtoController.selected.nomeGenerico}"  styleClass="outputLabel" />
@@ -249,7 +257,7 @@
                                         <h:outputText value="#{produtoController.selected.painelSeguranca}" styleClass="outputLabel"/>
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idCompatibilidade}" for="idCompatibilidade" />
-                                        <h:outputText value="#{produtoController.selected.idCompatibilidade}" styleClass="outputLabel"/>
+                                        <h:outputText value="#{produtoController.selected.idCompatibilidade.descCompatibilidade}" styleClass="outputLabel"/>
 
 
                                     </h:panelGrid>
