@@ -20,7 +20,11 @@
             <intercept-url pattern="/WEB-INF/include/entiti/usuarioRoler/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
             <intercept-url pattern="/entiti/viewOperador/**" access="hasRole('ROLE_OPE')" requires-channel="https"/>
             <intercept-url pattern="/entiti/viewDiretor/**" access="hasRole('ROLE_DIR')" requires-channel="https"/>
-           
+            
+        <intercept-url pattern="/ajuda.jsf" access="isAuthenticated()" requires-channel="https"/>        
+        <intercept-url pattern="/WEB-INF/include/menuAjuda.jsf" access="isAuthenticated()" requires-channel="https"/>
+        <intercept-url pattern="/entiti/**" access="isAuthenticated()" requires-channel="https"/>
+        <intercept-url pattern="/WEB-INF/configuracoes/**" access="isAuthenticated()" requires-channel="https"/>  
         <intercept-url pattern="/index.jsf" access="isAuthenticated()" requires-channel="https"/>
         <port-mappings>
             <port-mapping http="8080" https="8181"/>
