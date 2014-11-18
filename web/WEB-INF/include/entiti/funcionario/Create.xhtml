@@ -62,7 +62,8 @@
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_sexo}"  />
-                                    <p:selectOneRadio id="selecao"  value="#{funcionarioController.selected.sexo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_sexo}">
+                                    <p:selectOneRadio id="selecao"  value="#{funcionarioController.selected.sexo}" 
+                                                      required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_sexo}">
                                         <f:selectItem itemLabel="Feminino" itemValue="F" />
                                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                                     </p:selectOneRadio>
@@ -162,6 +163,9 @@
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
+
+                                        <h:outputLabel value="#{myBundle.EditFuncionarioLabel_idFuncionario}" for="idFuncionario" />
+                                        <h:outputText id="idFuncionario" value="#{funcionarioController.selected.idFuncionario}" />
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_matFuncionario}" />
                                         <h:outputText  value="#{funcionarioController.selected.matFuncionario}"  styleClass="outputLabel" />

@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 /**
  *
  * @author sacramento
@@ -46,8 +47,8 @@ public class Endereco implements Serializable {
     @Column(name = "bairro")
     private String bairro;
     @Column(name = "cep")
-    private Integer cep;
-    @Size(max = 255)
+    private String cep;
+    @Size(max = 10)
     @Column(name = "complemento")
     private String complemento;
     @Size(max = 255)
@@ -88,11 +89,11 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

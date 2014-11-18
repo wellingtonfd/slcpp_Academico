@@ -27,7 +27,7 @@
                                     goodLabel="Força da senha : Média" strongLabel="Força da senha : Forte"
                                     title="#{myBundle.EditUsuarioTitle_senha}" required="true" 
                                     requiredMessage="#{myBundle.EditUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
-                        
+
                         <p:outputLabel value="#{myBundle.EditUsuarioLabel_confirmaSenha}" for="confirmaSenha" />
                         <p:password id="confirmaSenha" value="#{usuarioController.selected.senha}"  feedback="true"   
                                     promptLabel="Confirme a senha" 
@@ -36,12 +36,13 @@
 
                         <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
                         <p:selectBooleanCheckbox id="ativo" value="#{usuarioController.selected.ativo}"/>
-                        
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usuarioController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
                     <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                    <p:commandButton value="Limpar" type="reset"/>
                 </h:panelGroup>
 
             </h:form>

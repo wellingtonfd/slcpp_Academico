@@ -10,12 +10,12 @@
         <p:dialog id="FornecedorEditDlg" widgetVar="FornecedorEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditFornecedorTitle}" closeOnEscape="true">
 
             <h:form id="FornecedorEditForm">
-                <h:panelGroup id="display" rendered="#{fornecedorController.selected != null}">
+                <h:panelGroup id="display" >
                     <p:wizard flowListener="#{fornecedorController.onFlowProcess}" backLabel="Anterior" nextLabel="Próximo">
                         <p:tab id="personales" title="Dados Fornecedor">    
                             <p:panel header="Dados Fornecedor" styleClass="panel_wizard">
                                 <p:messages/>
-                                <p:panelGrid columns="2" columnClasses="column">
+                                <p:panelGrid columns="2" columnClasses="column" rendered="#{fornecedorController.selected != null}">
                                     <p:outputLabel value="CNPJ:" for="cnpj" />
                                     <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" 
                                                  title="#{myBundle.CreateFornecedorTitle_cnpj}" required="true" 
@@ -47,10 +47,10 @@
                                     <p:inputText id="bairro" value="#{fornecedorController.selected.idEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
-                                    <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}" title="#{myBundle.CreateEnderecoTitle_cep}" size="8" maxlength="8"/>
+                                    <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}" title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
-                                    <p:inputText id="numero" value="#{fornecedorController.selected.idEndereco.numero}" title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
+                                    <p:inputText  id="numero" value="#{fornecedorController.selected.idEndereco.numero}" title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
 
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
@@ -93,7 +93,7 @@
                                     <p:inputText id="email" value="#{fornecedorController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}"  size="40" maxlength="40"/>
 
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" for="site" />
-                                    <p:inputText id="site" value="#{fornecedorController.selected.contatosIdContato.site}" title="#{myBundle.CreateContatosTitle_site}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_site}" size="40" maxlength="40"/>
+                                    <p:inputText id="site" value="#{fornecedorController.selected.contatosIdContato.site}" title="#{myBundle.CreateContatosTitle_site}" size="40" maxlength="40"/>
 
 
                                 </p:panelGrid>
@@ -145,16 +145,20 @@
 
                                         <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" />
                                         <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.email}" styleClass="outputLabel"/>
+                                        
+                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" />
+                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.site}" styleClass="outputLabel"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
+                                
 
                                 <p:commandButton actionListener="#{fornecedorController.saveNew}" value="#{myBundle.Save}" 
                                                  update="display,:FornecedorListForm:datalist,:growl" 
-                                                 oncomplete="handleSubmit(xhr,status,args,FornecedorCreateDialog);" process="@this">
-                                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                                                 oncomplete="handleSubmit(xhr,status,args,FornecedorEditDialog);" process="@this">
+                                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                                 </p:commandButton>
 
-                                <p:commandButton value="#{myBundle.Cancel}" onclick="FornecedorCreateDialog.hide()"/>
+                                <p:commandButton value="#{myBundle.Cancel}" onclick="FornecedorEditDialog.hide()"/>
 
                             </p:panel>
                         </p:tab>
