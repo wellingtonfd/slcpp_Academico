@@ -11,14 +11,14 @@
 
             <h:form id="FuncionarioEditForm">
 
-                <h:panelGroup id="display" rendered="#{funcionarioController.selected != null}">
+                <h:panelGroup id="display" >
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
                         <p:tab id="personales" title="Dados Funcionais">    
                             <p:panel header="Dados Funcionais">
 
                                 <p:messages/>
 
-                                <p:panelGrid columns="2" columnClasses="label, value">
+                                <p:panelGrid columns="2" columnClasses="label, value" rendered="#{funcionarioController.selected != null}">
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_matFuncionario}" for="matFuncionario" />
                                     <p:inputMask mask="999999" id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}" 
@@ -42,11 +42,17 @@
                                     <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" for="nivelFuncionario" />
-                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_nivelFuncionario}" size="10" maxlength="10"/>
+                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}"  size="10" maxlength="10"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_especializacao}" for="especializacao" />
                                     <p:inputText id="especializacao" value="#{funcionarioController.selected.especializacao}" title="#{myBundle.EditFuncionarioTitle_especializacao}" size="12" maxlength="12"/>
 
+                                    <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_login}" for="login" />
+                                    <p:inputText id="login" value="#{funcionarioController.selected.idUsuario.login}"  
+                                                 title="#{myBundle.CreateUsuarioTitle_login}" size="12" maxlength="12"/>
+
+                                    <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                                    <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
 
                                 </p:panelGrid>
                             </p:panel>
@@ -57,7 +63,7 @@
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_sexo}"  />
-                                    <p:selectOneRadio id="selecao"  value="#{funcionarioController.selected.sexo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_sexo}">
+                                    <p:selectOneRadio id="sexo"  value="#{funcionarioController.selected.sexo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_sexo}">
                                         <f:selectItem itemLabel="Feminino" itemValue="F" />
                                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                                     </p:selectOneRadio>
@@ -82,7 +88,7 @@
                                     <p:inputText id="bairro" value="#{funcionarioController.selected.enderecoIdEndereco.bairro}" title="#{myBundle.EditEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="#{myBundle.EditEnderecoLabel_cep}" for="cep" />
-                                    <p:inputText id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}" title="#{myBundle.EditEnderecoTitle_cep}" size="8" maxlength="8"/>
+                                    <p:inputMask mask="99999-999"  id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}" title="#{myBundle.EditEnderecoTitle_cep}" size="8" maxlength="8"/>
 
                                     <p:outputLabel value="#{myBundle.EditEnderecoLabel_numero}" for="numero" />
                                     <p:inputText id="numero" value="#{funcionarioController.selected.enderecoIdEndereco.numero}" title="#{myBundle.EditEnderecoTitle_numero}" size="15" maxlength="15"/>
@@ -196,7 +202,7 @@
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_dtNasc}" />
                                         <h:outputText value="#{funcionarioController.selected.dtNasc}" styleClass="outputLabel">
-                                           <f:convertDateTime locale="pt_BR" type="date"  />
+                                            <f:convertDateTime locale="pt_BR" type="date"  />
                                         </h:outputText>
 
                                         <h:outputText value="#{myBundle.EditEnderecoLabel_idLogradouro}" />
@@ -236,7 +242,7 @@
                             </p:panel>
                         </p:tab>
                     </p:wizard>
-                    
+
                 </h:panelGroup>
             </h:form>
         </p:dialog>

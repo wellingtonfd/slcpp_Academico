@@ -101,7 +101,7 @@ public class Funcionario implements Serializable {
     private List<Movimentacao> movimentacaoList;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne
-    private Usuario idUsuario;
+    private Usuario idUsuario = new Usuario();
     @JoinColumn(name = "endereco_id_endereco", referencedColumnName = "id_endereco")
     @ManyToOne
     private Endereco enderecoIdEndereco = new Endereco();

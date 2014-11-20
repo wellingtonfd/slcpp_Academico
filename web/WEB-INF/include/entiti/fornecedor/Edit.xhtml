@@ -44,17 +44,24 @@
                                     <p:inputText id="logradouro" value="#{fornecedorController.selected.idEndereco.logadouro}" title="#{myBundle.Createlo}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_bairro}" for="bairro" />
-                                    <p:inputText id="bairro" value="#{fornecedorController.selected.idEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
+                                    <p:inputText id="bairro" value="#{fornecedorController.selected.idEndereco.bairro}" 
+                                                 title="#{myBundle.CreateEnderecoTitle_bairro}" 
+                                                 required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
-                                    <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}" title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
+                                    <p:inputMask mask="99999-999" id="cep" value="#{fornecedorController.selected.idEndereco.cep}" 
+                                                 required="true"  requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_cep}"
+                                                 title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
-                                    <p:inputText  id="numero" value="#{fornecedorController.selected.idEndereco.numero}" title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
+                                    <p:inputText  id="numero" value="#{fornecedorController.selected.idEndereco.numero}" 
+                                                  required="true"  requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_numero}"
+                                                  title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
 
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
-                                    <p:selectOneMenu id="idCidade" value="#{fornecedorController.selected.idEndereco.idCidade}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                    <p:selectOneMenu id="idCidade" value="#{fornecedorController.selected.idEndereco.idCidade}" filter="true" 
+                                                     required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{cidadeController.items}"
                                                        var="idCidadeItem"

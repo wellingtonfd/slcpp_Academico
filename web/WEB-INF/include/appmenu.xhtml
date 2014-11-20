@@ -119,13 +119,14 @@
                     <p:menuitem value="Usuários" outcome="/entiti/viewDiretor/relatorioUsuario"/>  
                 </p:submenu>
                 <p:submenu label="#{myBundle.Configuracoes}" icon="ui-icon-gear" >
+                    <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
+                    <p:separator/>
                     <p:menuitem value="Aviso CIPA" onclick="PF('View1').show()" icon="ui-icon-info"/>
                     <p:separator/>
                     <p:menuitem value="Contatos Suporte" onclick="PF('View2').show()" icon="ui-icon-mail-closed" />
                     <p:separator/>
                     <p:menuitem value="Sobre" onclick="PF('View3').show()" icon="ui-icon-star"/>
-                    <p:separator/>
-                    <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
+
                 </p:submenu>
 
                 <f:facet name="options">  

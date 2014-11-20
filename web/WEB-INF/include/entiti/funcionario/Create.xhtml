@@ -47,10 +47,18 @@
                                     <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" for="nivelFuncionario" />
-                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_nivelFuncionario}" size="10" maxlength="10"/>
+                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}" size="10" maxlength="10"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_especializacao}" for="especializacao" />
-                                    <p:inputText id="especializacao" value="#{funcionarioController.selected.especializacao}" title="#{myBundle.EditFuncionarioTitle_especializacao}" size="12" maxlength="12"/>
+                                    <p:inputText id="especializacao" value="#{funcionarioController.selected.especializacao}" 
+                                                 title="#{myBundle.EditFuncionarioTitle_especializacao}" size="12" maxlength="12"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_login}" for="login" />
+                                    <p:inputText id="login" value="#{funcionarioController.selected.idUsuario.login}"  
+                                                 title="#{myBundle.CreateUsuarioTitle_login}" size="12" maxlength="12"/>
+
+                                    <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                                    <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
 
 
                                 </p:panelGrid>
@@ -88,10 +96,14 @@
                                     <p:inputText id="bairro" value="#{funcionarioController.selected.enderecoIdEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
-                                    <p:inputText id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}" title="#{myBundle.CreateEnderecoTitle_cep}" size="8" maxlength="8"/>
+                                    <p:inputMask mask="99999-999" id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}"
+                                                 required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_cep}"
+                                                 title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
-                                    <p:inputText id="numero" value="#{funcionarioController.selected.enderecoIdEndereco.numero}" title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
+                                    <p:inputText id="numero" value="#{funcionarioController.selected.enderecoIdEndereco.numero}"
+                                                 required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_numero}"
+                                                 title="#{myBundle.CreateEnderecoTitle_numero}"  size="9" maxlength="9"/>
 
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
@@ -144,6 +156,7 @@
 
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" for="celular" />
                                     <p:inputMask id="celular" mask="(99)99999-9999" value="#{funcionarioController.selected.contatosIdContato.celular}" 
+                                                 required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_celular}"
                                                  title="#{myBundle.CreateContatosTitle_celular}"  size="15" maxlength="15">
                                     </p:inputMask>
 
@@ -163,6 +176,7 @@
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
+
 
                                         <h:outputLabel value="#{myBundle.EditFuncionarioLabel_idFuncionario}" for="idFuncionario" />
                                         <h:outputText id="idFuncionario" value="#{funcionarioController.selected.idFuncionario}" />
