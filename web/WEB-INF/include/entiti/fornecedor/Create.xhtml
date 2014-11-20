@@ -12,7 +12,7 @@
         <p:dialog id="FornecedorCreateDlg" widgetVar="FornecedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Criar novo Fornecedor" closeOnEscape="true">
 
             <h:form id="FornecedorCreateForm">
-                
+
 
                 <h:panelGroup id="display" rendered="#{fornecedorController.selected != null}">
                     <p:wizard flowListener="#{fornecedorController.onFlowProcess}" backLabel="Anterior" nextLabel="Próximo">
@@ -54,14 +54,18 @@
                                     <p:inputText id="bairro" value="#{fornecedorController.selected.idEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
-                                    <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}"   title="#{myBundle.CreateEnderecoTitle_cep}" size="8" maxlength="8"/>
+                                    <p:inputMask mask="99999-999" id="cep" value="#{fornecedorController.selected.idEndereco.cep}"  
+                                                 required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_cep}"
+                                                 title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
-                                    <p:inputText id="numero" value="#{fornecedorController.selected.idEndereco.numero}" title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
+                                    <p:inputText id="numero" value="#{fornecedorController.selected.idEndereco.numero}" 
+                                                 required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_numero}"
+                                                 title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
 
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
-                                    <p:selectOneMenu id="idCidade" value="#{fornecedorController.selected.idEndereco.idCidade}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                    <p:selectOneMenu id="idCidade" value="#{fornecedorController.selected.idEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{cidadeController.items}"
                                                        var="idCidadeItem"
@@ -100,9 +104,12 @@
                                     <p:inputMask id="celular" mask="(99)99999-9999" value="#{fornecedorController.selected.contatosIdContato.celular}" 
                                                  title="#{myBundle.CreateContatosTitle_celular}"  size="15" maxlength="15">
                                     </p:inputMask>
-                                
+
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
                                     <p:inputText id="email" value="#{fornecedorController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_email}" size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" for="site" />
+                                    <p:inputText id="site" value="#{fornecedorController.selected.contatosIdContato.site}" title="#{myBundle.CreateContatosTitle_site}" size="40" maxlength="40"/>
 
                                 </p:panelGrid>
 
