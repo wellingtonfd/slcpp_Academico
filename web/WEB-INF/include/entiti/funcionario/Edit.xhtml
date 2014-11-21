@@ -20,10 +20,11 @@
 
                                 <p:panelGrid columns="2" columnClasses="label, value" rendered="#{funcionarioController.selected != null}">
 
+                                    <h:outputLabel value="#{myBundle.EditFuncionarioLabel_idFuncionario}" for="idFuncionario" />
+                                    <h:outputText id="idFuncionario" value="#{funcionarioController.selected.idFuncionario}" />
+
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_matFuncionario}" for="matFuncionario" />
-                                    <p:inputMask mask="999999" id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}" 
-                                                 title="#{myBundle.EditFuncionarioTitle_matFuncionario}" size="7" maxlength="7"
-                                                 required="true" requiredMessage="Campo Matrícula é obrigatorio ser preenchido por números"/>
+                                    <p:inputText id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}"/>
 
                                     <p:outputLabel value="Nome:" for="nomeFuncionario" />
                                     <p:inputText id="nomeFuncionario" value="#{funcionarioController.selected.nomeFuncionario}" title="#{myBundle.EditFuncionarioTitle_nomeFuncionario}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_nomeFuncionario}" size="60" maxlength="60"/>
@@ -53,6 +54,8 @@
 
                                     <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
                                     <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
+                                    
+                                    
 
                                 </p:panelGrid>
                             </p:panel>
@@ -189,6 +192,14 @@
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
                                         <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.EditUsuarioRolerLabel_login}" for="login" />
+                                        <h:outputText value="#{funcionarioController.selected.idUsuario.login}" styleClass="outputLabel"/>
+
+                                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                                        <h:outputText value="#{funcionarioController.selected.idUsuario.ativo}" styleClass="outputLabel"/>
+
+
                                     </h:panelGrid>
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
@@ -210,6 +221,9 @@
 
                                         <h:outputText value="#{myBundle.EditEnderecoLabel_numero}"/>
                                         <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.numero}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.EditEnderecoLabel_cep}"/>
+                                        <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.cep}"  styleClass="outputLabel"/>
 
                                         <h:outputText value="#{myBundle.EditEnderecoLabel_idCidade}"/>
                                         <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idCidade.nomeCidade}"  styleClass="outputLabel"/>

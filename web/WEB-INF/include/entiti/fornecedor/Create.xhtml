@@ -20,14 +20,17 @@
                             <p:panel header="Dados Fornecedor" styleClass="panel_wizard">
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
+
+                                    <p:outputLabel value="Razão Social" for="razaoSocial" />
+                                    <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{myBundle.CreateFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_razaoSocial}" size="60" maxlength="60"/>
+
+
                                     <p:outputLabel value="CNPJ:" for="cnpj" />
                                     <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" 
                                                  title="#{myBundle.CreateFornecedorTitle_cnpj}" required="true" 
                                                  requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_cnpj}" size="20" maxlength="20">
                                         <f:validator validatorId="StellaCNPJValidator"/>
                                     </p:inputMask>
-                                    <p:outputLabel value="Razão Social" for="razaoSocial" />
-                                    <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{myBundle.CreateFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_razaoSocial}" size="60" maxlength="60"/>
 
                                     <p:outputLabel value="#{myBundle.CreateFornecedorLabel_nomeFantasia}" for="nomeFantasia" />
                                     <p:inputText id="nomeFantasia" value="#{fornecedorController.selected.nomeFantasia}" title="#{myBundle.CreateFornecedorTitle_nomeFantasia}"  size="60" maxlength="60"/>
@@ -139,6 +142,9 @@
 
                                         <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
                                         <h:outputText value="#{fornecedorController.selected.idEndereco.logadouro}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_cep}"/>
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.cep}"  styleClass="outputLabel"/>
 
                                         <h:outputText value="#{myBundle.CreateEnderecoLabel_numero}"/>
                                         <h:outputText value="#{fornecedorController.selected.idEndereco.numero}"  styleClass="outputLabel"/>

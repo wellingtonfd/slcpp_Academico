@@ -206,6 +206,14 @@
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
                                         <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.EditUsuarioRolerLabel_login}" for="login" />
+                                        <h:outputText value="#{funcionarioController.selected.idUsuario.login}" styleClass="outputLabel"/>
+
+                                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                                        <h:outputText value="#{funcionarioController.selected.idUsuario.ativo}" styleClass="outputLabel"/>
+
+
                                     </h:panelGrid>
                                     <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
