@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFunc" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d72c8fad-f669-4802-8587-fa7487c6c39d">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFun" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b212e71f-717f-4574-8af6-89a777ad75fb">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -13,7 +13,6 @@
      funcionario."especializacao" AS funcionario_especializacao,
      funcionario."funcao" AS funcionario_funcao,
      funcionario."id_contato" AS funcionario_id_contato,
-     funcionario."id_endereco" AS funcionario_id_endereco,
      funcionario."mat_funcionario" AS funcionario_mat_funcionario,
      funcionario."nivel_funcionario" AS funcionario_nivel_funcionario,
      funcionario."nome_funcionario" AS funcionario_nome_funcionario,
@@ -35,21 +34,21 @@ FROM
 		<groupHeader>
 			<band height="33">
 				<staticText>
-					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="f6340337-162a-4b45-aa40-47d3325d9d24"/>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="1da82d17-d65a-4c9c-9128-339cfd89e496"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
-					<text><![CDATA[ID]]></text>
+					<text><![CDATA[Id]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="356a0e0d-d81d-46f1-8c4f-4c6f35acf0c1"/>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="f7e4d352-bab6-42b3-8c7b-7b2c5750afda"/>
 					<textElement>
 						<font size="24" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{funcionario_id_funcionario}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="0534adfe-6749-4113-81ef-1935e2c25fb4"/>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="f41d830b-a711-44f7-978e-8341e59031a9"/>
 				</line>
 			</band>
 		</groupHeader>
@@ -62,42 +61,18 @@ FROM
 		<groupHeader>
 			<band height="32">
 				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="8095309d-56d8-4493-8337-29d994f0fbda"/>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="810e3927-ca1b-4968-a1c2-085c7908eced"/>
 					<textElement>
 						<font size="22" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{funcionario_nome_funcionario}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="f88eaae2-4e22-4f94-9abd-a2a4832b14df"/>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="48496ea3-7ea4-454c-9de3-5b42eb7e16f8"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Nome]]></text>
-				</staticText>
-			</band>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="funcionario_cargo">
-		<groupExpression><![CDATA[$F{funcionario_cargo}]]></groupExpression>
-		<groupHeader>
-			<band height="32">
-				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="e32f9fee-809d-4134-a077-107bba3f28fc"/>
-					<textElement>
-						<font size="20" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{funcionario_cargo}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="69777e20-e3d8-40c1-9e0d-25c44f0ae6c9"/>
-					<textElement>
-						<font size="12"/>
-					</textElement>
-					<text><![CDATA[Cargo]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -110,18 +85,42 @@ FROM
 		<groupHeader>
 			<band height="32">
 				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="90edeb8b-020b-4966-acaf-e4f6bb6c3be1"/>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="ab96eee0-2dad-4b16-9afe-dd488c46d976"/>
 					<textElement>
-						<font size="16" isBold="true"/>
+						<font size="20" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{funcionario_mat_funcionario}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="f2e82694-e6fe-4a73-8750-4f05454af653"/>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="d18ee73d-0366-463f-ac31-82cffb2ff62b"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Matrícula]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="funcionario_cargo">
+		<groupExpression><![CDATA[$F{funcionario_cargo}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="db10c6e0-b0dc-4555-9a09-985189dabe50"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{funcionario_cargo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="09ab827c-d723-4fb6-a3a0-a6d5c463d626"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Cargo]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -135,16 +134,16 @@ FROM
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="9db1b96b-9022-441a-82b3-06875e2917f3"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="4802d544-ee2d-4c74-be56-2d6ea7f6430b"/>
 				<staticText>
-					<reportElement x="20" y="20" width="375" height="43" forecolor="#FFFFFF" uuid="135eebbb-fedc-4bd0-97d1-d8350cd29cc1"/>
+					<reportElement x="20" y="20" width="362" height="43" forecolor="#FFFFFF" uuid="f192a5e1-107c-42ae-9bc6-049afa940db8"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Relatório Funcionário]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="478ee2f1-bdc5-4741-a0af-6a461a1dd634"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="df51aa35-cdae-4079-9afc-c0f19a112894"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -159,14 +158,14 @@ FROM
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="13b04199-2005-4d2d-be3e-2f27e2dd9e04"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="a879233a-e9f7-480d-808b-1644e5906879"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="6c732404-6776-4a6a-a7a2-4ca6050d581d"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="e808e0db-4dec-4622-8b61-3a244fa4d0b2"/>
 			</line>
 		</band>
 	</detail>
@@ -176,16 +175,16 @@ FROM
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="7f49d68a-a255-4574-a571-8fb79120e3b4"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="9317fdb4-4eb6-42b3-b770-34ada1da27b4"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="732e1534-e90c-4860-b5bc-fb1fb87e2fab"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="e4ccf3fe-6b73-4d6d-88b4-4408f425d378"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="900ef311-8f29-49a2-a540-91f2f9a13daa"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="20fec96f-f0fd-47fa-ad9c-9afc277b7362"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

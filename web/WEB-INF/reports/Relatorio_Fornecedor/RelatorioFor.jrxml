@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5509dce4-554f-4bbe-b982-184dfb85d461">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioFor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="90e86356-a0b0-4d2d-99ee-115cfacd6904">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -25,21 +25,21 @@ FROM
 		<groupHeader>
 			<band height="33">
 				<staticText>
-					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="c2cb6ff8-9181-4177-9b1f-d516f09140b3"/>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="bea0f53f-085f-4c2a-ad67-d16ae898a237"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
 					<text><![CDATA[Id]]></text>
 				</staticText>
 				<textField>
-					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="360b524e-3168-4be3-a480-176e9f2ca3be"/>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="f08fc1c4-ba88-45d7-b09a-2a9d4d155054"/>
 					<textElement>
 						<font size="24" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fornecedor_id_fornecedor}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="48c8b359-0d59-48cf-8a18-a54210399729"/>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="43e12dd6-af51-499e-ac49-0cc7095a78f5"/>
 				</line>
 			</band>
 		</groupHeader>
@@ -52,14 +52,14 @@ FROM
 		<groupHeader>
 			<band height="32">
 				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="52d70b09-89bd-49c7-8db6-ae5668c0d507"/>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="c026a537-40b9-437d-90da-21ffe4cd3a21"/>
 					<textElement>
 						<font size="22" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fornecedor_nome_fantasia}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="5491426d-b69f-4377-b6f3-904f5892d91d"/>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="778d7b33-d2c6-41d5-a169-09006ca9c2a8"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -76,18 +76,18 @@ FROM
 		<groupHeader>
 			<band height="32">
 				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="e90a4ad1-019f-4562-ba60-fc4a6881b642"/>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="52a07152-5d1f-4bd1-a0cd-3aa53806f17b"/>
 					<textElement>
 						<font size="20" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fornecedor_razao_social}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="d78f1859-d6d6-4537-aaad-e2a213a7e795"/>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="c407513e-88b8-492a-8214-6c0c8a4b7742"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
-					<text><![CDATA[Razão social]]></text>
+					<text><![CDATA[Razao social]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -100,14 +100,14 @@ FROM
 		<groupHeader>
 			<band height="32">
 				<textField>
-					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="b5e49500-4269-44d9-9688-05e55ea7d328"/>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="42a43d57-bb6a-401e-be67-129925aa3a21"/>
 					<textElement>
 						<font size="16" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{fornecedor_cnpj}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="89074561-aa4b-4f4a-ad41-e5e0cc7082c1"/>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="5dc55d75-5dd8-43e7-ae75-8e8eabddc7fe"/>
 					<textElement>
 						<font size="12"/>
 					</textElement>
@@ -125,16 +125,16 @@ FROM
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="b8a670c0-69c3-4f0b-a152-bda4350fb5b4"/>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="bbf92850-ed5b-4d30-854f-4b5bb873d42a"/>
 				<staticText>
-					<reportElement x="20" y="20" width="355" height="43" forecolor="#FFFFFF" uuid="ad33cf25-1505-4d40-9396-82e15651888a"/>
+					<reportElement x="20" y="20" width="375" height="43" forecolor="#FFFFFF" uuid="bb9b650f-33d8-4037-acd9-fd985b523171"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Relatório Fornecedor]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="d3a171a5-360b-4fa3-a2db-39bcdd022e57"/>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="ca2e163c-5502-462b-a7e5-b4de3f809c80"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
@@ -149,14 +149,14 @@ FROM
 	<columnHeader>
 		<band height="21">
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="79587e5c-bf0c-479d-b94e-5e864cf213ba"/>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="72c0ea4d-45ba-4684-aacc-72fca23933f1"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="caf459f2-3ca7-4cb1-b151-90811f341e33"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="0740f459-9a91-4d3e-8299-7f738aa22270"/>
 			</line>
 		</band>
 	</detail>
@@ -166,16 +166,16 @@ FROM
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="39ef1938-ae1a-45c0-99a9-dc90298a0f2d"/>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="de069ec8-73f7-4f67-8d4b-48b2af969b89"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9e86f831-c403-46ee-a784-5eb434f21454"/>
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="3dfba9ef-fdb8-40d2-97e5-4cafaf82f480"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13" uuid="6dfcd5b3-a805-475d-9142-7e7082575bdb"/>
+				<reportElement x="0" y="4" width="100" height="13" uuid="51738fff-bdb6-40bd-b93a-65c3d2f6428d"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>

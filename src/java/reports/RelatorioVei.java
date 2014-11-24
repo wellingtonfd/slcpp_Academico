@@ -29,7 +29,7 @@ import org.primefaces.model.StreamedContent;
 
 public class RelatorioVei {
     
-    public static final String TEMPLATE = "C:\\Users\\gingo\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\RelatorioVei.jrxml";
+    public static final String TEMPLATE = "C:\\Users\\gingo\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\Relatorio_Veiculo\\RelatorioVei.jrxml";
      
     public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          
@@ -50,7 +50,7 @@ public class RelatorioVei {
  
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
              
-            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "users.pdf");
+            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "RelatorioVeiculo.pdf");
              
         } catch (JRException e) {
             e.printStackTrace();

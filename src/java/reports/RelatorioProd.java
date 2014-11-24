@@ -27,7 +27,7 @@ import org.primefaces.model.StreamedContent;
  
 public class RelatorioProd {
  
-    public static final String TEMPLATE = "C:\\Users\\gingo\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\RelatorioProd.jrxml";
+    public static final String TEMPLATE = "C:\\Users\\gingo\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\Relatorio_Produto\\RelatorioProd.jrxml";
      
     public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          
@@ -48,7 +48,7 @@ public class RelatorioProd {
  
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
              
-            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "users.pdf");
+            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "RelatorioProduto.pdf");
              
         } catch (JRException e) {
             e.printStackTrace();
