@@ -78,16 +78,23 @@ public class Armazem implements Serializable {
     private List<Movimentacao> movimentacaoList;
     @JoinColumn(name = "status_armazem_id_status_armazem", referencedColumnName = "id_status_armazem")
     @ManyToOne
-    private StatusArmazem statusArmazemIdStatusArmazem;
+    private StatusArmazem statusArmazemIdStatusArmazem = new StatusArmazem();
     @JoinColumn(name = "local_operacao_id_local_oper", referencedColumnName = "id_local_oper")
     @ManyToOne
     private LocalOperacao localOperacaoIdLocalOper;
     @JoinColumn(name = "id_endarmazem", referencedColumnName = "id_endarmazem")
     @ManyToOne
-    private EndArmazem idEndarmazem;
+    private EndArmazem idEndarmazem = new EndArmazem();
     @JoinColumn(name = "id_compatibilidade", referencedColumnName = "id_compatibilidade")
     @ManyToOne
-    private Compatibilidade idCompatibilidade;
+    private Compatibilidade idCompatibilidade = new Compatibilidade();
+ 
+
+         
+//    //INSERÇÃO DO CÓDIGO 
+//     @JoinColumn(name = "id_legenda_compatibilidade", referencedColumnName = "id_legenda_compatibilidade")
+//    @ManyToOne
+//    private LegendaCompatibilidade idLegendaCompatibilidad = new LegendaCompatibilidade();
 
     public Armazem() {
     }
