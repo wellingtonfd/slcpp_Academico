@@ -11,8 +11,8 @@
     <http auto-config="true" 
           use-expressions="true"
           disable-url-rewriting="true">
-        <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="any"/>
-        <intercept-url pattern="/WEB-INF/include/entiti/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="any"/>
+        <intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
+        <intercept-url pattern="/WEB-INF/include/entiti/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" requires-channel="https"/>
         <intercept-url pattern="/include/entiti/**" access="hasRole('ROLE_SUP')" requires-channel="https"/>
             <intercept-url pattern="/WEB-INF/include/entiti/reports/**" access="hasRole('ROLE_DIR')" requires-channel="https"/>
             <intercept-url pattern="/WEB-INF/include/entiti/usuario/**" access="hasRole('ROLE_ADMIN')" requires-channel="https"/>
@@ -24,7 +24,7 @@
         <intercept-url pattern="/ajuda.jsf" access="isAuthenticated()" requires-channel="https"/>        
         <intercept-url pattern="/WEB-INF/include/menuAjuda.jsf" access="isAuthenticated()" requires-channel="https"/>
         <intercept-url pattern="/entiti/**" access="isAuthenticated()" requires-channel="https"/>
-        <intercept-url pattern="/WEB-INF/configuracoes/**" access="isAuthenticated()" requires-channel="https"/>  
+        <intercept-url pattern="/WEB-INF/include/configuracoes/**" access="isAuthenticated()" requires-channel="https"/>  
         <intercept-url pattern="/index.jsf" access="isAuthenticated()" requires-channel="https"/>
         <port-mappings>
             <port-mapping http="8080" https="8181"/>
