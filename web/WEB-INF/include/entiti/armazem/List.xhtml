@@ -51,6 +51,13 @@
                     <h:outputText value="#{item.tipoArmazem}"/>
                 </p:column>
 
+                <p:column sortBy="#{item.statusArmazemIdStatusArmazem.tipoStatusArmazem}" filterBy="#{item.statusArmazemIdStatusArmazem.tipoStatusArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_statusArmazemIdStatusArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.statusArmazemIdStatusArmazem.tipoStatusArmazem}"/>
+                </p:column>
+
 
                 <p:column sortBy="#{item.capacidadeArmazem}" filterBy="#{item.capacidadeArmazem}">
                     <f:facet name="header">
@@ -107,21 +114,14 @@
                                         <h:outputText value="#{item.idLocalOper}"/>
                                     </p:column>
                 -->
-                <!--
-                                    <p:column sortBy="#{item.statusArmazemIdStatusArmazem.idStatusArmazem}" filterBy="#{item.statusArmazemIdStatusArmazem.idStatusArmazem}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{myBundle.ListArmazemTitle_statusArmazemIdStatusArmazem}"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.statusArmazemIdStatusArmazem.idStatusArmazem}"/>
-                                    </p:column>
-                -->
+
                 <!--
                                     <p:column sortBy="#{item.localOperacaoIdLocalOper.idLocalOper}" filterBy="#{item.localOperacaoIdLocalOper.idLocalOper}">
-                                        <f:facet name="header">
-                                            <h:outputText value="#{myBundle.ListArmazemTitle_localOperacaoIdLocalOper}"/>
+                            <h:outputText value="#{myBundle.ListArmazemTitle_localOperacaoIdLocalOper}"/>
                                         </f:facet>
                                         <h:outputText value="#{item.localOperacaoIdLocalOper.idLocalOper}"/>
-                                    </p:column>
+                                    </p:column>                           <f:facet name="header">
+                             
                 -->
                 <!--
                                     <p:column sortBy="#{item.idEndarmazem.idEndarmazem}" filterBy="#{item.idEndarmazem.idEndarmazem}">
