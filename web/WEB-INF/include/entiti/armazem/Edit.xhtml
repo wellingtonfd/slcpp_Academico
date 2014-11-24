@@ -36,8 +36,24 @@
                                     <p:outputLabel value="#{myBundle.CreateArmazemLabel_estoqueMin}" for="estoqueMin" />
                                     <p:inputText id="estoqueMin" value="#{armazemController.selected.estoqueMin}" title="#{myBundle.EditArmazemTitle_estoqueMin}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_estoqueMin}" size="30" maxlength="30"/>
 
+                                    <p:outputLabel value="#{myBundle.CreateCompatibilidadeLabel_idLegendaCompatibilidade}" for="idLegendaCompatibilidade" />
+                                    <p:selectOneMenu id="idLegendaCompatibilidade" var="teste3" value="#{armazemController.selected.idCompatibilidade.idLegendaCompatibilidade}"  converter="legendaCompatibilidadeConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{legendaCompatibilidadeController.items}"
+                                                       var="idLegendaCompatibilidadeItem"
+                                                       itemValue="#{idLegendaCompatibilidadeItem}"
+                                                       itemLabel="#{idLegendaCompatibilidadeItem.especLegenda.toString()}"
+                                                       />
+                                        <p:column >
+                                            <h:outputText value="#{teste3.legenda}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText value="#{teste3.especLegenda}"/>
+                                        </p:column>
 
-                                    
+                                    </p:selectOneMenu>
+
+
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>

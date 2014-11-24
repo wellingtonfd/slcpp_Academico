@@ -9,7 +9,7 @@
     <h:form id="ArmazemListForm">
 
         <p:panel header="Listar Armazéns">
-          
+
             <p:dataTable id="datalist"
                          value="#{armazemController.items}"
                          var="item"
@@ -34,6 +34,21 @@
                     <h:outputText value="#{item.tipoArmazem}"/>
                 </p:column>
 
+                <p:column sortBy="#{item.statusArmazemIdStatusArmazem.tipoStatusArmazem}" filterBy="#{item.statusArmazemIdStatusArmazem.tipoStatusArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_statusArmazemIdStatusArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.statusArmazemIdStatusArmazem.tipoStatusArmazem}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idCompatibilidade.grupoCompatibilidade}" filterBy="#{item.idCompatibilidade.grupoCompatibilidade}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListCompatibilidadeTitle_grupoCompatibilidade}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCompatibilidade.grupoCompatibilidade}"/>
+                </p:column>
+
 
                 <p:column sortBy="#{item.capacidadeArmazem}" filterBy="#{item.capacidadeArmazem}">
                     <f:facet name="header">
@@ -43,13 +58,12 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.certificacaoArmazem}" filterBy="#{item.certificacaoArmazem}">
+                <p:column sortBy="#{item.idCompatibilidade.descCompatibilidade}" filterBy="#{item.idCompatibilidade.descCompatibilidade}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListArmazemTitle_certificacaoArmazem}"/>
+                        <h:outputText value="#{myBundle.ListCompatibilidadeTitle_descCompatibilidade}"/>
                     </f:facet>
-                    <h:outputText value="#{item.certificacaoArmazem}"/>
+                    <h:outputText value="#{item.idCompatibilidade.descCompatibilidade}"/>
                 </p:column>
-
 
                 <p:column sortBy="#{item.especArmazem}" filterBy="#{item.especArmazem}">
                     <f:facet name="header">
@@ -117,9 +131,9 @@
 
             </p:dataTable>
 
-           
+
         </p:panel>
-       
+
     </h:form>
 
 </ui:composition>
