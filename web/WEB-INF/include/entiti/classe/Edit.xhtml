@@ -22,10 +22,10 @@
                         <p:inputText id="numClasse" value="#{classeController.selected.numClasse}" title="#{myBundle.EditClasseTitle_numClasse}" required="true" requiredMessage="#{myBundle.EditClasseRequiredMessage_numClasse}"/>
 
                         <p:outputLabel value="#{myBundle.EditClasseLabel_numSubclasse}" for="numSubclasse" />
-                        <p:inputText id="numSubclasse" value="#{classeController.selected.numSubclasse}" title="#{myBundle.EditClasseTitle_numSubclasse}" required="true" requiredMessage="#{myBundle.EditClasseRequiredMessage_numSubclasse}"/>
+                        <p:inputText id="numSubclasse" value="#{classeController.selected.numSubclasse}" title="#{myBundle.EditClasseTitle_numSubclasse}" />
 
                         <p:outputLabel value="#{myBundle.EditClasseLabel_especClasse}" for="especClasse" />
-                        <p:inputText id="especClasse" value="#{classeController.selected.especClasse}" title="#{myBundle.EditClasseTitle_especClasse}" required="true" requiredMessage="#{myBundle.EditClasseRequiredMessage_especClasse}" size="50" maxlength="50"/>
+                        <p:inputTextarea id="especClasse" value="#{classeController.selected.especClasse}" title="#{myBundle.EditClasseTitle_especClasse}" required="true" requiredMessage="#{myBundle.EditClasseRequiredMessage_especClasse}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{classeController.save}" value="#{myBundle.Save}" update="display,:ClasseListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ClasseEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

@@ -16,13 +16,14 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateClasseLabel_numClasse}" for="numClasse" />
-                        <p:inputText id="numClasse" value="#{classeController.selected.numClasse}" title="#{myBundle.CreateClasseTitle_numClasse}" required="true" requiredMessage="#{myBundle.CreateClasseRequiredMessage_numClasse}"/>
+                        <p:inputMask mask="9.9" id="numClasse" value="#{classeController.selected.numClasse}" title="#{myBundle.CreateClasseTitle_numClasse}" 
+                                     size="3"  maxlength="3"  required="true" requiredMessage="#{myBundle.CreateClasseRequiredMessage_numClasse}"/>
 
                         <p:outputLabel value="#{myBundle.CreateClasseLabel_numSubclasse}" for="numSubclasse" />
-                        <p:inputText id="numSubclasse" value="#{classeController.selected.numSubclasse}" title="#{myBundle.CreateClasseTitle_numSubclasse}" required="true" requiredMessage="#{myBundle.CreateClasseRequiredMessage_numSubclasse}"/>
+                        <p:inputText id="numSubclasse" value="#{classeController.selected.numSubclasse}" title="#{myBundle.CreateClasseTitle_numSubclasse}" />
 
                         <p:outputLabel value="#{myBundle.CreateClasseLabel_especClasse}" for="especClasse" />
-                        <p:inputText id="especClasse" value="#{classeController.selected.especClasse}" title="#{myBundle.CreateClasseTitle_especClasse}" required="true" requiredMessage="#{myBundle.CreateClasseRequiredMessage_especClasse}" size="50" maxlength="50"/>
+                        <p:inputTextarea id="especClasse" value="#{classeController.selected.especClasse}" title="#{myBundle.CreateClasseTitle_especClasse}" required="true" requiredMessage="#{myBundle.CreateClasseRequiredMessage_especClasse}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{classeController.saveNew}" value="#{myBundle.Save}" update="display,:ClasseListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ClasseCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>

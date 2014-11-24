@@ -45,9 +45,9 @@ public class Classe implements Serializable {
     @Column(name = "espec_classe")
     private String especClasse;
     @Column(name = "num_classe")
-    private Integer numClasse;
+    private String numClasse;
     @Column(name = "num_subclasse")
-    private Integer numSubclasse;
+    private String numSubclasse;
     @OneToMany(mappedBy = "idClasse")
     private List<Produto> produtoList;
 
@@ -74,19 +74,19 @@ public class Classe implements Serializable {
         this.especClasse = especClasse;
     }
 
-    public Integer getNumClasse() {
+    public String getNumClasse() {
         return numClasse;
     }
 
-    public void setNumClasse(Integer numClasse) {
+    public void setNumClasse(String numClasse) {
         this.numClasse = numClasse;
     }
 
-    public Integer getNumSubclasse() {
+    public String getNumSubclasse() {
         return numSubclasse;
     }
 
-    public void setNumSubclasse(Integer numSubclasse) {
+    public void setNumSubclasse(String numSubclasse) {
         this.numSubclasse = numSubclasse;
     }
 

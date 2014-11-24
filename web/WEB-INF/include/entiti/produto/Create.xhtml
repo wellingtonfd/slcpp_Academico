@@ -59,13 +59,10 @@
                                         <f:selectItems value="#{classeController.items}"
                                                        var="idClasseItem"
                                                        itemValue="#{idClasseItem}"
-                                                       itemLabel="#{idClasseItem.idClasse.toString()}"
+                                                       itemLabel="#{idClasseItem.numClasse.toString()}"
                                                        />
                                         <p:column >
                                             <h:outputText value="#{teste4.numClasse}"/>
-                                        </p:column>
-                                        <p:column>
-                                            <h:outputText value="#{teste4.numSubclasse}"/>
                                         </p:column>
                                         <p:column>
                                             <h:outputText value="#{teste4.especClasse}"/>
@@ -218,9 +215,15 @@
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
                                         <h:outputText value="#{produtoController.selected.idNumOnu.numOnu}" styleClass="outputLabel" />
 
-
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
                                         <h:outputText   value="#{produtoController.selected.idNumCas.numCas}"  styleClass="outputLabel" />
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
+                                        <h:outputText   value="#{produtoController.selected.idNumOnu.numOnu}"  styleClass="outputLabel" />
+
+                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idClasse}" for="idNumClasse" />
+                                        <h:outputText   value="#{produtoController.selected.idClasse.numClasse}"  styleClass="outputLabel" />
+
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_nomeGenerico}" for="nomeGenerico" />
                                         <h:outputText value="#{produtoController.selected.nomeGenerico}"  styleClass="outputLabel" />
