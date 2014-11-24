@@ -129,8 +129,10 @@
 
                 </p:submenu>
 
-                <f:facet name="options">  
-                    #{request.remoteUser}
+                <f:facet name="options">
+                    <p:menuButton value="#{request.remoteUser}">
+                        <p:menuitem value="Alterar Senha" onclick="PF('AltSenha').show()" icon="ui-icon-key"/>
+                    </p:menuButton>
                     <p:commandButton type="button" onclick="document.location = '#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />
                 </f:facet>
             </p:menubar>
