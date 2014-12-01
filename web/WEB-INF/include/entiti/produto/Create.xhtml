@@ -8,17 +8,26 @@
 
     <ui:composition>
 
-        <p:dialog id="ProdutoCreateDlg" widgetVar="ProdutoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateProdutoTitle}" closeOnEscape="true">
+        <p:dialog id="ProdutoCreateDlg" widgetVar="ProdutoCreateDialog" modal="true" resizable="false" appendTo="@(body)" width="700" maximizable="600" header="#{myBundle.CreateProdutoTitle}" closeOnEscape="true">
 
             <h:form id="ProdutoCreateForm">
 
-                <h:panelGroup id="display" rendered="#{produtoController.selected != null}">
+                 <h:panelGroup id="display" rendered="#{produtoController.selected != null}">
 
                     <p:wizard styleClass="para_wizard" backLabel="Anterior" nextLabel="Próximo">
                         <p:tab id="personales" title="Dados Produto">    
                             <p:panel header="Informações Adicionais" styleClass="panel_wizard">
                                 <p:messages/>
-                                <p:panelGrid columns="2" columnClasses="column">
+                                <p:panelGrid columns="2" columnClasses="column" >
+
+                                    <p:outputLabel value="#{myBundle.CreateProdutoTitle_idProduto}"  />
+                                    <h:outputText value="#{produtoController.selected.idProduto}" styleClass="outputLabel" />
+
+                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_nomeGenerico}" for="nomeGenerico" />
+                                    <p:inputText id="nomeGenerico" value="#{produtoController.selected.nomeGenerico}" title="#{myBundle.CreateProdutoTitle_nomeGenerico}" 
+                                                 required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_nomeGenerico}" size="90" maxlength="90"/>
+
+
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
                                     <p:selectOneMenu  id="idNumOnu" value="#{produtoController.selected.idNumOnu}"  converter="numOnuConverter"
                                                       required="true" requiredMessage="#{myBundle.CreateNumOnuRequiredMessage_numOnu}"
@@ -31,30 +40,38 @@
                                                        />
 
                                         <p:column >
+
                                             <h:outputText value="#{teste2.numOnu}"/>
                                         </p:column>
                                         <p:column>
-                                            <h:outputText value="#{teste2.descProd}"/>
+                                            <h:outputText value="#{teste2.nomeProd}"/>
                                         </p:column>
                                     </p:selectOneMenu>
 
-
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
-                                    <p:selectOneMenu id="idNumCas" value="#{produtoController.selected.idNumCas}"  
+                                    <p:selectOneMenu id="idNumCas" var="teste6" value="#{produtoController.selected.idNumCas}"  
                                                      required="true" requiredMessage="#{myBundle.CreateNumCasRequiredMessage_numCas}"
                                                      converter="numCasConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{numCasController.items}"
                                                        var="idNumCasItem"
                                                        itemValue="#{idNumCasItem}"
-                                                       itemLabel="#{idNumCasItem.idNumCas.toString()}"
+                                                       itemLabel="#{idNumCasItem.numCas.toString()}"
                                                        />
 
+                                        <p:column >
+                                            <h:outputText value="#{teste6.numCas}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText value="#{teste6.espcNumCas}"/>
+                                        </p:column>
                                     </p:selectOneMenu>
 
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idClasse}" for="idClasse" />
-                                    <p:selectOneMenu id="idClasse" var="teste4" value="#{produtoController.selected.idClasse}"  converter="classeConverter">
+                                    <p:selectOneMenu id="idClasse" var="teste4" value="#{produtoController.selected.idClasse}" 
+                                                     required="true" requiredMessage="#{myBundle.CreateClasseRequiredMessage_numClasse}"
+                                                     converter="classeConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{classeController.items}"
                                                        var="idClasseItem"
@@ -69,23 +86,31 @@
                                         </p:column>
                                     </p:selectOneMenu>
 
-                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_nomeGenerico}" for="nomeGenerico" />
-                                    <p:inputText id="nomeGenerico" value="#{produtoController.selected.nomeGenerico}" title="#{myBundle.CreateProdutoTitle_nomeGenerico}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_nomeGenerico}" size="60" maxlength="60"/>
+                                    <p:outputLabel value="#{myBundle.EditProdutoLabel_idCompatibilidade}" for="idCompatibilidade" />
+                                    <p:selectOneMenu id="idCompatibilidade" var="teste4" value="#{produtoController.selected.idCompatibilidade}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idCompatibilidade}" converter="compatibilidadeConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{compatibilidadeController.items}"
+                                                       var="idCompatibilidadeItem"
+                                                       itemValue="#{idCompatibilidadeItem}"
+                                                       itemLabel="#{idCompatibilidadeItem.codClassifi.toString()}"
+                                                       />
+                                        <p:column >
+                                            <h:outputText value="#{teste4.codClassifi}"/>
+                                        </p:column>
+                                        <p:column>
+                                            <h:outputText value="#{teste4.descCompatibilidade}"/>
+                                        </p:column>
+
+                                    </p:selectOneMenu>
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_NLote}" for="NLote" />
                                     <p:inputText id="NLote" value="#{produtoController.selected.NLote}" title="#{myBundle.CreateProdutoTitle_NLote}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_NLote}"/>
 
-                                    <p:outputLabel value="Data Fabricação:" for="dtFab" />
-                                    <p:calendar id="dtFab" pattern="MM/dd/yyyy" value="#{produtoController.selected.dtFab}" title="#{myBundle.CreateProdutoTitle_dtFab}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_dtFab}" showOn="button"/>
-
-                                    <p:outputLabel value="Data Val:" for="dtVal" />
-                                    <p:calendar id="dtVal" pattern="MM/dd/yyyy" value="#{produtoController.selected.dtVal}" title="#{myBundle.CreateProdutoTitle_dtVal}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_dtVal}" showOn="button"/>
-
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_composicao}" for="composicao" />
-                                    <p:inputTextarea  id="composicao" value="#{produtoController.selected.composicao}" title="#{myBundle.CreateProdutoTitle_composicao}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_composicao}" />
+                                    <p:inputText id="composicao" value="#{produtoController.selected.composicao}" title="#{myBundle.CreateProdutoTitle_composicao}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_composicao}" size="60" maxlength="60"/>
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_descProduto}" for="descProduto" />
-                                    <p:inputTextarea  id="descProduto" value="#{produtoController.selected.descProduto}" title="#{myBundle.CreateProdutoTitle_descProduto}" />
+                                    <p:inputText id="descProduto" value="#{produtoController.selected.descProduto}" title="#{myBundle.CreateProdutoTitle_descProduto}" size="60" maxlength="60"/>
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_formulaProduto}" for="formulaProduto" />
                                     <p:inputTextarea rows="4" cols="30" id="formulaProduto" value="#{produtoController.selected.formulaProduto}" title="#{myBundle.CreateProdutoTitle_formulaProduto}" />
@@ -145,6 +170,13 @@
                             <p:panel header="Especificações" styleClass="panel_wizard2">
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
+
+                                    <p:outputLabel value="Data Fabricação:" for="dtFab" />
+                                    <p:calendar id="dtFab" pattern="MM/dd/yyyy" value="#{produtoController.selected.dtFab}" title="#{myBundle.CreateProdutoTitle_dtFab}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_dtFab}" showOn="button"/>
+
+                                    <p:outputLabel value="Data Val:" for="dtVal" />
+                                    <p:calendar id="dtVal" pattern="MM/dd/yyyy" value="#{produtoController.selected.dtVal}" title="#{myBundle.CreateProdutoTitle_dtVal}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_dtVal}" showOn="button"/>
+
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_origem}" for="origem" />
                                     <p:inputText id="origem" value="#{produtoController.selected.origem}" title="#{myBundle.CreateProdutoTitle_origem}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_origem}" size="35" maxlength="35"/>
 
@@ -161,35 +193,30 @@
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idEmbalagem}" for="idEmbalagem" />
                                     <p:inputText id="idEmbalagem" value="#{produtoController.selected.idEmbalagem}" title="#{myBundle.CreateProdutoTitle_idEmbalagem}" />
 
-                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_acoesEmerg}" for="acoesEmerg" />
+                                    <p:outputLabel value="Ações de Emergência:" for="acoesEmerg" />
                                     <p:inputText id="acoesEmerg" value="#{produtoController.selected.acoesEmerg}" title="#{myBundle.CreateProdutoTitle_acoesEmerg}" size="80" maxlength="80"/>
 
-                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_painelSeguranca}" for="painelSeguranca" />
-                                    <p:inputText id="painelSeguranca" value="#{produtoController.selected.painelSeguranca}" title="#{myBundle.CreateProdutoTitle_painelSeguranca}" size="25" maxlength="25"/>
+                                    <p:outputLabel value="Painel Segurança:" for="painelSeguranca" />
+                                    <p:inputText id="painelSeguranca" value="#{produtoController.selected.painelSeguranca}" title="#{myBundle.CreateProdutoTitle_painelSeguranca}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_painelSeguranca}" size="25" maxlength="25"/>
 
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
 
-                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_idCompatibilidade}" for="idCompatibilidade" />
-                                    <p:selectOneMenu id="idCompatibilidade" value="#{produtoController.selected.idCompatibilidade}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idCompatibilidade}" converter="compatibilidadeConverter">
-                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{compatibilidadeController.items}"
-                                                       var="idCompatibilidadeItem"
-                                                       itemValue="#{idCompatibilidadeItem}"
-                                                       itemLabel="#{idCompatibilidadeItem.descCompatibilidade.toString()}"
-                                                       />
+                        <p:tab id="ProdutoTab3" title="Armazenamento">
+                            <p:panel header="Armazenamento" styleClass="panel_wizard3">
+                                <p:panelGrid columns="2" columnClasses="column">
 
-                                    </p:selectOneMenu>
-
-                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_armazemIdArmazem}" for="armazemIdArmazem" />
-                                    <p:selectOneMenu id="armazemIdArmazem" value="#{produtoController.selected.armazemIdArmazem}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_armazemIdArmazem}" converter="armazemConverter">
+<!--                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_armazemIdArmazem}" for="armazemIdArmazem" />
+                                    <p:selectOneMenu id="armazemIdArmazem" var="teste5" value="#{armazemController.selected.especArmazem}" converter="armazemConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{armazemController.items}"
                                                        var="armazemIdArmazemItem"
                                                        itemValue="#{armazemIdArmazemItem}"
-                                                       itemLabel="#{armazemIdArmazemItem.especArmazem.toString()}"
+                                                       itemLabel="#{armazemIdArmazemItem.tipoArmazem.toString()}"
                                                        />
 
-                                    </p:selectOneMenu>
-
+                                    </p:selectOneMenu>-->
 
                                     <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
                                     <p:selectOneMenu id="idEndarmazem" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">
@@ -197,10 +224,57 @@
                                         <f:selectItems value="#{endArmazemController.items}"
                                                        var="idEndarmazemItem"
                                                        itemValue="#{idEndarmazemItem}"
-                                                       itemLabel="#{idEndarmazemItem.idEndarmazem.toString()}"
+                                                       itemLabel="#{idEndarmazemItem.corEndArmazem.toString()}"
                                                        />
 
                                     </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
+                                    <p:selectOneMenu id="idEndarmazem1" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{endArmazemController.items}"
+                                                       var="idEndarmazemItem"
+                                                       itemValue="#{idEndarmazemItem}"
+                                                       itemLabel="#{idEndarmazemItem.ruaEndArmazem.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
+                                    <p:selectOneMenu id="idEndarmazem2" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{endArmazemController.items}"
+                                                       var="idEndarmazemItem"
+                                                       itemValue="#{idEndarmazemItem}"
+                                                       itemLabel="#{idEndarmazemItem.ladoEndArmazem.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
+                                    <p:selectOneMenu id="idEndarmazem3" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{endArmazemController.items}"
+                                                       var="idEndarmazemItem"
+                                                       itemValue="#{idEndarmazemItem}"
+                                                       itemLabel="#{idEndarmazemItem.nivelEndArmazem.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
+                                    <p:selectOneMenu id="idEndarmazem4" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{endArmazemController.items}"
+                                                       var="idEndarmazemItem"
+                                                       itemValue="#{idEndarmazemItem}"
+                                                       itemLabel="#{idEndarmazemItem.posicaoEndArmazem.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+
+
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -208,22 +282,15 @@
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
-                                    <p:messages/>
                                     <h:panelGrid columns="2" columnClasses="label, value">
 
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
                                         <h:outputText value="#{produtoController.selected.idNumOnu.numOnu}" styleClass="outputLabel" />
 
+
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
                                         <h:outputText   value="#{produtoController.selected.idNumCas.numCas}"  styleClass="outputLabel" />
-
-                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
-                                        <h:outputText   value="#{produtoController.selected.idNumOnu.numOnu}"  styleClass="outputLabel" />
-
-                                        <p:outputLabel value="#{myBundle.CreateProdutoLabel_idClasse}" for="idNumClasse" />
-                                        <h:outputText   value="#{produtoController.selected.idClasse.numClasse}"  styleClass="outputLabel" />
-
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_nomeGenerico}" for="nomeGenerico" />
                                         <h:outputText value="#{produtoController.selected.nomeGenerico}"  styleClass="outputLabel" />

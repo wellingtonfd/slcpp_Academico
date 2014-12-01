@@ -107,7 +107,7 @@ public class Produto implements Serializable {
     private NumCas idNumCas;
     @JoinColumn(name = "id_legenda_compatibilidade", referencedColumnName = "id_legenda_compatibilidade")
     @ManyToOne
-    private LegendaCompatibilidade idLegendaCompatibilidade;
+    private LegendaCompatibilidade idLegendaCompatibilidade = new LegendaCompatibilidade();
     @JoinColumn(name = "id_est_fisico", referencedColumnName = "id_est_fisico")
     @ManyToOne
     private EstFisico idEstFisico;
@@ -119,7 +119,7 @@ public class Produto implements Serializable {
     private Compatibilidade idCompatibilidade;
     @JoinColumn(name = "id_classe", referencedColumnName = "id_classe")
     @ManyToOne
-    private Classe idClasse;
+    private Classe idClasse = new Classe();//CÓDIGO INSERIDO
     @JoinColumn(name = "armazem_id_armazem", referencedColumnName = "id_armazem")
     @ManyToOne
     private Armazem armazemIdArmazem;

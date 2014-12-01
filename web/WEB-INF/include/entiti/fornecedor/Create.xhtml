@@ -12,7 +12,6 @@
         <p:dialog id="FornecedorCreateDlg" widgetVar="FornecedorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Criar novo Fornecedor" closeOnEscape="true">
 
             <h:form id="FornecedorCreateForm">
-
                 <h:panelGroup id="display" rendered="#{fornecedorController.selected != null}">
                     <p:wizard flowListener="#{fornecedorController.onFlowProcess}" backLabel="Anterior" nextLabel="Próximo">
                         <p:tab id="personales" title="Dados Fornecedor">    

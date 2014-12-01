@@ -58,7 +58,7 @@ public class Compatibilidade implements Serializable {
     private List<Produto> produtoList;
     @JoinColumn(name = "id_legenda_compatibilidade", referencedColumnName = "id_legenda_compatibilidade")
     @ManyToOne
-    private LegendaCompatibilidade idLegendaCompatibilidade;
+    private LegendaCompatibilidade idLegendaCompatibilidade = new LegendaCompatibilidade();
     @OneToMany(mappedBy = "idCompatibilidade")
     private List<Armazem> armazemList;
 
