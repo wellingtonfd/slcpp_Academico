@@ -55,7 +55,7 @@
                                                  required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
-                                    <p:inputMask mask="99999-999" id="cep" value="#{fornecedorController.selected.idEndereco.cep}" 
+                                    <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}" 
                                                  required="true"  requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_cep}"
                                                  title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
 

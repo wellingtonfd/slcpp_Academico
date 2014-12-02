@@ -45,25 +45,35 @@
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.CreateDetNotaLabel_idProduto}" for="idProduto" />
-                        <p:selectOneMenu id="idProduto" value="#{detNotaController.selected.idProduto}"  converter="produtoConverter">
+                        <p:selectOneMenu id="idProduto" var="teste3" value="#{detNotaController.selected.idProduto}"  converter="produtoConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{produtoController.items}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
                                            itemLabel="#{idProdutoItem.idProduto.toString()}"
                                            />
-
+                            <p:column >
+                                <h:outputText value="#{teste3.idProduto}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{teste3.descProduto}"/>
+                            </p:column>
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{myBundle.CreateDetNotaLabel_fornecedorIdFornecedor}" for="fornecedorIdFornecedor" />
-                        <p:selectOneMenu id="fornecedorIdFornecedor" value="#{detNotaController.selected.fornecedorIdFornecedor}" required="true" requiredMessage="#{myBundle.CreateDetNotaRequiredMessage_fornecedorIdFornecedor}" converter="fornecedorConverter">
+                        <p:selectOneMenu id="fornecedorIdFornecedor" var="teste1" value="#{detNotaController.selected.fornecedorIdFornecedor.razaoSocial}" required="true" requiredMessage="#{myBundle.CreateDetNotaRequiredMessage_fornecedorIdFornecedor}" converter="fornecedorConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{fornecedorController.items}"
                                            var="fornecedorIdFornecedorItem"
                                            itemValue="#{fornecedorIdFornecedorItem}"
-                                           itemLabel="#{fornecedorIdFornecedorItem.idFornecedor.toString()}"
+                                           itemLabel="#{fornecedorIdFornecedorItem.razaoSocial.toString()}"
                                            />
-
+                             <p:column >
+                                <h:outputText value="#{teste1.idProduto}"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{teste1.descProduto}"/>
+                            </p:column>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{detNotaController.saveNew}" value="#{myBundle.Save}" update="display,:DetNotaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DetNotaCreateDialog);">
