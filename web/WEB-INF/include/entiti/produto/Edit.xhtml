@@ -48,7 +48,7 @@
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
                                     <p:selectOneMenu id="idNumCas" var="teste6" value="#{produtoController.selected.idNumCas}"  
-                                                     required="true" requiredMessage="#{myBundle.CreateNumCasRequiredMessage_numCas}"
+                                                     required="true" filter="true" requiredMessage="#{myBundle.CreateNumCasRequiredMessage_numCas}"
                                                      converter="numCasConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{numCasController.items}"
@@ -179,7 +179,7 @@
                                     <p:inputText id="origem" value="#{produtoController.selected.origem}" title="#{myBundle.EditProdutoTitle_origem}" required="true" requiredMessage="#{myBundle.EditProdutoRequiredMessage_origem}" size="35" maxlength="35"/>
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_rotuloProduto}" for="rotuloProduto" />
-                                    <p:inputText id="rotuloProduto" value="#{produtoController.selected.rotuloProduto}" title="#{myBundle.EditProdutoTitle_rotuloProduto}" required="true" requiredMessage="#{myBundle.EditProdutoRequiredMessage_rotuloProduto}" size="25" maxlength="25"/>
+                                    <p:inputText id="rotuloProduto" value="#{produtoController.selected.rotuloProduto}" title="#{myBundle.EditProdutoTitle_rotuloProduto}" size="25" maxlength="25"/>
 
                                     <p:outputLabel value="#{myBundle.CreateProdutoLabel_numRisco}" for="numRisco" />
                                     <p:inputText id="numRisco" value="#{produtoController.selected.numRisco}" title="#{myBundle.EditProdutoTitle_numRisco}"/>
@@ -195,7 +195,7 @@
                                     <p:inputText id="acoesEmerg" value="#{produtoController.selected.acoesEmerg}" title="#{myBundle.EditProdutoTitle_acoesEmerg}" size="80" maxlength="80"/>
 
                                     <p:outputLabel value="Painel Segurança:" for="painelSeguranca" />
-                                    <p:inputText id="painelSeguranca" value="#{produtoController.selected.painelSeguranca}" title="#{myBundle.EditProdutoTitle_painelSeguranca}" required="true" requiredMessage="#{myBundle.EditProdutoRequiredMessage_painelSeguranca}" size="25" maxlength="25"/>
+                                    <p:inputText id="painelSeguranca" value="#{produtoController.selected.painelSeguranca}" title="#{myBundle.EditProdutoTitle_painelSeguranca}" size="25" maxlength="25"/>
 
                                 </p:panelGrid>
                             </p:panel>
@@ -279,13 +279,11 @@
 
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
-                                <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
+                                <h:panelGrid id="Confirmação" columns="3" columnClasses="grid,grid,grid">
                                     <h:panelGrid columns="2" columnClasses="label, value">
-
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumOnu}" for="idNumOnu" />
                                         <h:outputText value="#{produtoController.selected.idNumOnu.numOnu}" styleClass="outputLabel" />
-
 
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idNumCas}" for="idNumCas" />
                                         <h:outputText   value="#{produtoController.selected.idNumCas.numCas}"  styleClass="outputLabel" />
@@ -339,10 +337,31 @@
                                         <p:outputLabel value="#{myBundle.CreateProdutoLabel_idCompatibilidade}" for="idCompatibilidade" />
                                         <h:outputText value="#{produtoController.selected.idCompatibilidade.descCompatibilidade}" styleClass="outputLabel"/>
 
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+
+                                        <h:outputText value="#{myBundle.ViewArmazemLabel_tipoArmazem}"/>
+                                        <h:outputText value="#{armazemController.selected.tipoArmazem}" title="#{myBundle.ViewArmazemTitle_tipoArmazem}"/>
+
+                                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_corEndArmazem}"/>
+                                        <h:outputText value="#{produtoController.selected.idEndarmazem.corEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_corEndArmazem}"/>
+
+                                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_ruaEndArmazem}"/>
+                                        <h:outputText value="#{produtoController.selected.idEndarmazem.ruaEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_ruaEndArmazem}"/>
+
+
+                                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_ladoEndArmazem}"/>
+                                        <h:outputText value="#{produtoController.selected.idEndarmazem.ladoEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_ladoEndArmazem}"/>
+
+                                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_nivelEndArmazem}"/>
+                                        <h:outputText value="#{produtoController.selected.idEndarmazem.nivelEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_nivelEndArmazem}"/>
+
+                                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_posicaoEndArmazem}"/>
+                                        <h:outputText value="#{produtoController.selected.idEndarmazem.posicaoEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_posicaoEndArmazem}"/>
+
 
                                     </h:panelGrid>
                                 </h:panelGrid>
-
                                 <p:commandButton actionListener="#{produtoController.saveNew}" value="#{myBundle.Save}" update="display,:ProdutoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ProdutoEditDialog);">
                                     <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                                 </p:commandButton>
