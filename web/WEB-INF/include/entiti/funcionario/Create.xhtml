@@ -54,6 +54,10 @@
                                     <p:inputText id="login" value="#{funcionarioController.selected.idUsuario.login}"  
                                                  title="#{myBundle.CreateUsuarioTitle_login}" size="12" maxlength="12"/>
 
+                                    <p:outputLabel value="Senha:" for="senha" />
+                                    <p:inputText id="senha" value="#{funcionarioController.selected.idUsuario.senha}"  
+                                                 title="#{myBundle.CreateUsuarioTitle_senha}" size="12" maxlength="12"/>
+                                    
                                     <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
                                     <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
 

@@ -35,7 +35,15 @@
 
                                 <h:outputText value="#{myBundle.ViewProdutoLabel_idLegendaCompatibilidade}"/>
                                 <h:outputText value="#{produtoController.selected.idLegendaCompatibilidade.especLegenda}"/>
+                          
+                                
+                                <h:outputText value="#{myBundle.ViewProdutoLabel_composicao}"/>
+                                <h:outputText value="#{produtoController.selected.composicao}" title="#{myBundle.ViewProdutoTitle_composicao}"/>
 
+                                <h:outputText value="#{myBundle.ViewProdutoLabel_descProduto}"/>
+                                <h:outputText value="#{produtoController.selected.descProduto}" title="#{myBundle.ViewProdutoTitle_descProduto}"/>
+
+                                
                                 <h:outputText value="Desc. Compatibilidade:"/>
                                 <h:outputText value="#{produtoController.selected.idCompatibilidade.descCompatibilidade}"/>
 
@@ -73,12 +81,6 @@
                                 <h:outputText value="#{produtoController.selected.dtVal}" title="#{myBundle.ViewProdutoTitle_dtVal}">
                                     <f:convertDateTime pattern="MM/dd/yyyy" />
                                 </h:outputText>
-
-                                <h:outputText value="#{myBundle.ViewProdutoLabel_composicao}"/>
-                                <h:outputText value="#{produtoController.selected.composicao}" title="#{myBundle.ViewProdutoTitle_composicao}"/>
-
-                                <h:outputText value="#{myBundle.ViewProdutoLabel_descProduto}"/>
-                                <h:outputText value="#{produtoController.selected.descProduto}" title="#{myBundle.ViewProdutoTitle_descProduto}"/>
 
                                 <h:outputText value="#{myBundle.ViewProdutoLabel_formulaProduto}"/>
                                 <h:outputText value="#{produtoController.selected.formulaProduto}" title="#{myBundle.ViewProdutoTitle_formulaProduto}"/>
