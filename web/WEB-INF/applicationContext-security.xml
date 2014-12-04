@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <b:beans xmlns="http://www.springframework.org/schema/security"
          xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:mvc="http://www.springframework.org/schema/mvc"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+         xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+                            http://www.springframework.org/schema/mvc
+                            http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+                            http://www.springframework.org/schema/security 
+                            http://www.springframework.org/schema/security/spring-security-3.2.xsd">
    
     <http pattern="/login*" security="none"/>
     <http pattern="/resources/**" security="none"/>
@@ -42,17 +47,27 @@
                 delete-cookies="JSESSIONID"/>
         <session-management session-fixation-protection="newSession"/>
     </http>
+    <mvc:resources mapping="/imagens/**" location="/imagens/"/>
     
-    <b:bean id="userDetailsService" class="utils.security.CustomChangePassword">
+    <b:bean id="jdbcUserService" class="org.springframework.security.provisioning.JdbcUserDetailsManager">
         <b:property name="dataSource" ref="slcppDataSource"/>
+        <b:property name="enableGroups" value="false"/>
+        <b:property name="enableAuthorities" value="true"/>
+        <b:property name="usersByUsernameQuery">
+            <b:value>
+                SELECT u.login, u.senha, u.ativo FROM usuario u WHERE u.login=?
+            </b:value>
+        </b:property>
+        <b:property name="authoritiesByUsernameQuery">
+            <b:value>
+                SELECT login, nome_roler FROM usuario_roler_view WHERE login = ?
+            </b:value>
+        </b:property>
     </b:bean> 
                    
     <authentication-manager>
-        <authentication-provider>
-            <password-encoder hash="md5"/>
-            <jdbc-user-service data-source-ref="slcppDataSource"
-                               users-by-username-query="SELECT u.login, u.senha, u.ativo FROM usuario u WHERE u.login=?"
-                               authorities-by-username-query="SELECT login, nome_roler FROM usuario_roler_view WHERE login = ?"/>
+        <authentication-provider user-service-ref="jdbcUserService">
+            <password-encoder hash="md5"/>        
         </authentication-provider>
     </authentication-manager>
 </b:beans>
