@@ -39,7 +39,7 @@ public class CompatibilidadeController extends AbstractController<Compatibilidad
      */
     public String navigateEmbalagemList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected().getEmbalagemList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Embalagem_items", this.getSelected());
         }
         return "/entiti/embalagem/index";
     }

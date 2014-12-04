@@ -164,7 +164,7 @@ public class ProdutoController extends AbstractController<Produto> {
      */
     public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected());
         }
         return "/entiti/movimentacao/index";
     }
@@ -177,7 +177,7 @@ public class ProdutoController extends AbstractController<Produto> {
      */
     public String navigateDetNotaList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected().getDetNotaList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("DetNota_items", this.getSelected());
         }
         return "/entiti/detNota/index";
     }

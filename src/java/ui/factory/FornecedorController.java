@@ -45,7 +45,7 @@ public class FornecedorController extends AbstractController<Fornecedor> {
      */
     public String navigateTipoSolicitacaoList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected());
         }
         return "/entiti/tipoSolicitacao/index";
     }

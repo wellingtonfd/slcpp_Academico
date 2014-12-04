@@ -60,7 +60,7 @@ public class ArmazemController extends AbstractController<Armazem> {
      */
     public String navigateTipoSolicitacaoList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected().getTipoSolicitacaoList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("TipoSolicitacao_items", this.getSelected());
         }
         return "/entiti/tipoSolicitacao/index";
     }
@@ -74,7 +74,7 @@ public class ArmazemController extends AbstractController<Armazem> {
      */
     public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected());
         }
         return "/entiti/movimentacao/index";
     }

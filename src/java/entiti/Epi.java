@@ -7,6 +7,7 @@
 package entiti;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,9 +18,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -54,6 +57,8 @@ public class Epi implements Serializable {
     @JoinColumn(name = "id_material", referencedColumnName = "id_tipo_material")
     @ManyToOne
     private TipoMaterial idMaterial;
+    @OneToMany(mappedBy = "idEpi")
+    private List<TipoEquipamento> tipoEquipamentoList;
 
     public Epi() {
     }
@@ -100,6 +105,15 @@ public class Epi implements Serializable {
 
     public void setIdMaterial(TipoMaterial idMaterial) {
         this.idMaterial = idMaterial;
+    }
+
+    @XmlTransient
+    public List<TipoEquipamento> getTipoEquipamentoList() {
+        return tipoEquipamentoList;
+    }
+
+    public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
+        this.tipoEquipamentoList = tipoEquipamentoList;
     }
 
     @Override

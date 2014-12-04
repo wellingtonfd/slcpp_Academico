@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entiti;
 
-import br.com.caelum.stella.bean.validation.CNPJ;
-import br.com.caelum.stella.bean.validation.IE;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -27,7 +26,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "fornecedor")
@@ -48,7 +48,6 @@ public class Fornecedor implements Serializable {
     @Column(name = "id_fornecedor")
     private Integer idFornecedor;
     @Size(max = 255)
-    @CNPJ
     @Column(name = "cnpj")
     private String cnpj;
     @Column(name = "id_contato")
@@ -62,16 +61,16 @@ public class Fornecedor implements Serializable {
     @Size(max = 255)
     @Column(name = "razao_social")
     private String razaoSocial;
-    @OneToMany(mappedBy = "fornecedorIdFornecedor")
-    private List<TipoSolicitacao> tipoSolicitacaoList;
+    @OneToMany(mappedBy = "idFornecedor")
+    private List<Produto> produtoList;
     @OneToMany(mappedBy = "fornecedorIdFornecedor")
     private List<DetNota> detNotaList;
     @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
     @ManyToOne
-    private Endereco idEndereco = new Endereco();
+    private Endereco idEndereco;
     @JoinColumn(name = "contatos_id_contato", referencedColumnName = "id_contato")
     @ManyToOne
-    private Contatos contatosIdContato = new Contatos();
+    private Contatos contatosIdContato;
 
     public Fornecedor() {
     }
@@ -129,12 +128,12 @@ public class Fornecedor implements Serializable {
     }
 
     @XmlTransient
-    public List<TipoSolicitacao> getTipoSolicitacaoList() {
-        return tipoSolicitacaoList;
+    public List<Produto> getProdutoList() {
+        return produtoList;
     }
 
-    public void setTipoSolicitacaoList(List<TipoSolicitacao> tipoSolicitacaoList) {
-        this.tipoSolicitacaoList = tipoSolicitacaoList;
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @XmlTransient
@@ -186,5 +185,5 @@ public class Fornecedor implements Serializable {
     public String toString() {
         return "entiti.Fornecedor[ idFornecedor=" + idFornecedor + " ]";
     }
-    
+
 }

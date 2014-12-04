@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entiti;
 
 import java.io.Serializable;
@@ -23,7 +24,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "legenda_compatibilidade")
@@ -48,8 +50,6 @@ public class LegendaCompatibilidade implements Serializable {
     private String legenda;
     @OneToMany(mappedBy = "idLegendaCompatibilidade")
     private List<Produto> produtoList;
-    @OneToMany(mappedBy = "idLegendaCompatibilidade")
-    private List<Compatibilidade> compatibilidadeList;
 
     public LegendaCompatibilidade() {
     }
@@ -91,15 +91,6 @@ public class LegendaCompatibilidade implements Serializable {
         this.produtoList = produtoList;
     }
 
-    @XmlTransient
-    public List<Compatibilidade> getCompatibilidadeList() {
-        return compatibilidadeList;
-    }
-
-    public void setCompatibilidadeList(List<Compatibilidade> compatibilidadeList) {
-        this.compatibilidadeList = compatibilidadeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -124,5 +115,5 @@ public class LegendaCompatibilidade implements Serializable {
     public String toString() {
         return "entiti.LegendaCompatibilidade[ idLegendaCompatibilidade=" + idLegendaCompatibilidade + " ]";
     }
-    
+
 }

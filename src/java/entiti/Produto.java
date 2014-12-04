@@ -6,8 +6,8 @@
 package entiti;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,17 +18,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "produto")
@@ -50,8 +49,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findByOdorProduto", query = "SELECT p FROM Produto p WHERE p.odorProduto = :odorProduto"),
     @NamedQuery(name = "Produto.findByOrigem", query = "SELECT p FROM Produto p WHERE p.origem = :origem"),
     @NamedQuery(name = "Produto.findByPainelSeguranca", query = "SELECT p FROM Produto p WHERE p.painelSeguranca = :painelSeguranca"),
-    @NamedQuery(name = "Produto.findByRotuloProduto", query = "SELECT p FROM Produto p WHERE p.rotuloProduto = :rotuloProduto")})
+    @NamedQuery(name = "Produto.findByRotuloProduto", query = "SELECT p FROM Produto p WHERE p.rotuloProduto = :rotuloProduto"),
+    @NamedQuery(name = "Produto.findByValorProd", query = "SELECT p FROM Produto p WHERE p.valorProd = :valorProd"),
+    @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade")})
 public class Produto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -99,34 +101,49 @@ public class Produto implements Serializable {
     @Size(max = 255)
     @Column(name = "rotulo_produto")
     private String rotuloProduto;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valor_prod")
+    private BigDecimal valorProd;
+    @Column(name = "quantidade")
+    private Integer quantidade;
     @JoinColumn(name = "id_num_onu", referencedColumnName = "id_num_onu")
     @ManyToOne
     private NumOnu idNumOnu;
     @JoinColumn(name = "id_num_cas", referencedColumnName = "id_num_cas")
     @ManyToOne
     private NumCas idNumCas;
+    //inserir
+    @JoinColumn(name = "id_movimentacao", referencedColumnName = "id_movimentacao")
+    @ManyToOne
+    private Movimentacao idMovimentacao = new Movimentacao();
+    //    
     @JoinColumn(name = "id_legenda_compatibilidade", referencedColumnName = "id_legenda_compatibilidade")
     @ManyToOne
     private LegendaCompatibilidade idLegendaCompatibilidade = new LegendaCompatibilidade();
+    @JoinColumn(name = "id_grupo_embalagem", referencedColumnName = "id_grupo_embalagem")
+    @ManyToOne
+    private GrupoEmbalagem idGrupoEmbalagem;
+    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor")
+    @ManyToOne
+    private Fornecedor idFornecedor;
     @JoinColumn(name = "id_est_fisico", referencedColumnName = "id_est_fisico")
     @ManyToOne
     private EstFisico idEstFisico;
     @JoinColumn(name = "id_endarmazem", referencedColumnName = "id_endarmazem")
     @ManyToOne
     private EndArmazem idEndarmazem;
+    @JoinColumn(name = "id_detnota", referencedColumnName = "id_detalhe_nota")
+    @ManyToOne
+    private DetNota idDetnota = new DetNota();
     @JoinColumn(name = "id_compatibilidade", referencedColumnName = "id_compatibilidade")
     @ManyToOne
     private Compatibilidade idCompatibilidade;
     @JoinColumn(name = "id_classe", referencedColumnName = "id_classe")
     @ManyToOne
-    private Classe idClasse = new Classe();//CÓDIGO INSERIDO
+    private Classe idClasse;
     @JoinColumn(name = "armazem_id_armazem", referencedColumnName = "id_armazem")
     @ManyToOne
-    private Armazem armazemIdArmazem;
-    @OneToMany(mappedBy = "idProduto")
-    private List<Movimentacao> movimentacaoList;
-    @OneToMany(mappedBy = "idProduto")
-    private List<DetNota> detNotaList;
+    private Armazem armazemIdArmazem = new Armazem();
 
     public Produto() {
     }
@@ -263,6 +280,30 @@ public class Produto implements Serializable {
         this.rotuloProduto = rotuloProduto;
     }
 
+    public BigDecimal getValorProd() {
+        return valorProd;
+    }
+
+    public void setValorProd(BigDecimal valorProd) {
+        this.valorProd = valorProd;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Movimentacao getIdMovimentacao() {
+        return idMovimentacao;
+    }
+
+    public void setIdMovimentacao(Movimentacao idMovimentacao) {
+        this.idMovimentacao = idMovimentacao;
+    }
+
     public NumOnu getIdNumOnu() {
         return idNumOnu;
     }
@@ -287,6 +328,22 @@ public class Produto implements Serializable {
         this.idLegendaCompatibilidade = idLegendaCompatibilidade;
     }
 
+    public GrupoEmbalagem getIdGrupoEmbalagem() {
+        return idGrupoEmbalagem;
+    }
+
+    public void setIdGrupoEmbalagem(GrupoEmbalagem idGrupoEmbalagem) {
+        this.idGrupoEmbalagem = idGrupoEmbalagem;
+    }
+
+    public Fornecedor getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(Fornecedor idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+
     public EstFisico getIdEstFisico() {
         return idEstFisico;
     }
@@ -301,6 +358,14 @@ public class Produto implements Serializable {
 
     public void setIdEndarmazem(EndArmazem idEndarmazem) {
         this.idEndarmazem = idEndarmazem;
+    }
+
+    public DetNota getIdDetnota() {
+        return idDetnota;
+    }
+
+    public void setIdDetnota(DetNota idDetnota) {
+        this.idDetnota = idDetnota;
     }
 
     public Compatibilidade getIdCompatibilidade() {
@@ -327,24 +392,6 @@ public class Produto implements Serializable {
         this.armazemIdArmazem = armazemIdArmazem;
     }
 
-    @XmlTransient
-    public List<Movimentacao> getMovimentacaoList() {
-        return movimentacaoList;
-    }
-
-    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
-        this.movimentacaoList = movimentacaoList;
-    }
-
-    @XmlTransient
-    public List<DetNota> getDetNotaList() {
-        return detNotaList;
-    }
-
-    public void setDetNotaList(List<DetNota> detNotaList) {
-        this.detNotaList = detNotaList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -369,5 +416,5 @@ public class Produto implements Serializable {
     public String toString() {
         return "entiti.Produto[ idProduto=" + idProduto + " ]";
     }
-    
+
 }

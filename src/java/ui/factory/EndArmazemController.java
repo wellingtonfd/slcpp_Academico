@@ -51,7 +51,7 @@ public class EndArmazemController extends AbstractController<EndArmazem> {
      */
     public String navigateMovimentacaoList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected());
         }
         return "/entiti/movimentacao/index";
     }

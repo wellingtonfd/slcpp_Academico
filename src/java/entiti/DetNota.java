@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entiti;
 
 import java.io.Serializable;
@@ -29,7 +30,8 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author sacramento
+ * @author Administrador
+ * @author Wellington Duarte
  */
 @Entity
 @Table(name = "det_nota")
@@ -42,7 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "DetNota.findByIdTipoEquipamento", query = "SELECT d FROM DetNota d WHERE d.idTipoEquipamento = :idTipoEquipamento"),
     @NamedQuery(name = "DetNota.findByNumNota", query = "SELECT d FROM DetNota d WHERE d.numNota = :numNota"),
     @NamedQuery(name = "DetNota.findByValorTotal", query = "SELECT d FROM DetNota d WHERE d.valorTotal = :valorTotal"),
-    @NamedQuery(name = "DetNota.findByValorUnitario", query = "SELECT d FROM DetNota d WHERE d.valorUnitario = :valorUnitario")})
+    @NamedQuery(name = "DetNota.findByValorUnitario", query = "SELECT d FROM DetNota d WHERE d.valorUnitario = :valorUnitario"),
+    @NamedQuery(name = "DetNota.findByIdProduto", query = "SELECT d FROM DetNota d WHERE d.idProduto = :idProduto")})
 public class DetNota implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,14 +67,13 @@ public class DetNota implements Serializable {
     private BigInteger valorTotal;
     @Column(name = "valor_unitario")
     private Integer valorUnitario;
-    @OneToMany(mappedBy = "idDetalheNota")
-    private List<Movimentacao> movimentacaoList;
+    @Column(name = "id_produto")
+    private Integer idProduto;
+    @OneToMany(mappedBy = "idDetnota")
+    private List<Produto> produtoList;
     @JoinColumn(name = "tipo_equipamento_id_tipo_equipamento", referencedColumnName = "id_tipo_equipamento")
     @ManyToOne
     private TipoEquipamento tipoEquipamentoIdTipoEquipamento;
-    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
-    @ManyToOne
-    private Produto idProduto;
     @JoinColumn(name = "fornecedor_id_fornecedor", referencedColumnName = "id_fornecedor")
     @ManyToOne
     private Fornecedor fornecedorIdFornecedor;
@@ -139,13 +141,21 @@ public class DetNota implements Serializable {
         this.valorUnitario = valorUnitario;
     }
 
-    @XmlTransient
-    public List<Movimentacao> getMovimentacaoList() {
-        return movimentacaoList;
+    public Integer getIdProduto() {
+        return idProduto;
     }
 
-    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
-        this.movimentacaoList = movimentacaoList;
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     public TipoEquipamento getTipoEquipamentoIdTipoEquipamento() {
@@ -154,14 +164,6 @@ public class DetNota implements Serializable {
 
     public void setTipoEquipamentoIdTipoEquipamento(TipoEquipamento tipoEquipamentoIdTipoEquipamento) {
         this.tipoEquipamentoIdTipoEquipamento = tipoEquipamentoIdTipoEquipamento;
-    }
-
-    public Produto getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
     }
 
     public Fornecedor getFornecedorIdFornecedor() {
@@ -196,5 +198,5 @@ public class DetNota implements Serializable {
     public String toString() {
         return "entiti.DetNota[ idDetalheNota=" + idDetalheNota + " ]";
     }
-    
+
 }

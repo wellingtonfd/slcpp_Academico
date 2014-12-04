@@ -48,7 +48,7 @@ public class ContatosController extends AbstractController<Contatos> {
      */
     public String navigateFuncionarioList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected().getFuncionarioList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Funcionario_items", this.getSelected());
         }
         return "/entiti/funcionario/index";
     }

@@ -171,17 +171,16 @@
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
 
-                                    <p:outputLabel value="#{myBundle.CreateFornecedorLabel_razaoSocial}" for="idEstFisico" />
-                                    <p:selectOneMenu id="idEstFisico" value="#{produtoController.selected.id}"  converter="estFisicoConverter">
+                                    <p:outputLabel value="#{myBundle.CreateEstFisicoLabel_idEstFisico}" for="idEstFisico" />
+                                    <p:selectOneMenu id="idEstFisico" value="#{produtoController.selected.idEstFisico}"  converter="estFisicoConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{estFisicoController.items}"
                                                        var="idEstFisicoItem"
                                                        itemValue="#{idEstFisicoItem}"
-                                                       itemLabel="#{idEstFisicoItem.idEstFisico.toString()}"
+                                                       itemLabel="#{idEstFisicoItem.nomeEstFisico.toString()}"
                                                        />
 
                                     </p:selectOneMenu>
-
 
                                     <p:outputLabel value="Data Fabricação:" for="dtFab" />
                                     <p:calendar id="dtFab" pattern="MM/dd/yyyy" value="#{produtoController.selected.dtFab}" title="#{myBundle.CreateProdutoTitle_dtFab}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_dtFab}" showOn="button"/>
@@ -219,8 +218,8 @@
                             <p:panel header="Armazenamento" styleClass="panel_wizard3">
                                 <p:panelGrid columns="2" columnClasses="column">
 
-<!--                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_armazemIdArmazem}" for="armazemIdArmazem" />
-                                    <p:selectOneMenu id="armazemIdArmazem" var="teste5" value="#{armazemController.selected.especArmazem}" converter="armazemConverter">
+                                    <p:outputLabel value="#{myBundle.CreateProdutoLabel_armazemIdArmazem}" for="armazemIdArmazem" />
+                                  <p:selectOneMenu id="armazemIdArmazem" var="teste5" value="#{produtoController.selected.armazemIdArmazem}" converter="armazemConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                         <f:selectItems value="#{armazemController.items}"
                                                        var="armazemIdArmazemItem"
@@ -228,7 +227,7 @@
                                                        itemLabel="#{armazemIdArmazemItem.tipoArmazem.toString()}"
                                                        />
 
-                                    </p:selectOneMenu>-->
+                                    </p:selectOneMenu>
 
                                     <p:outputLabel value="#{myBundle.CreateArmazemLabel_idEndarmazem}" for="idEndarmazem" />
                                     <p:selectOneMenu id="idEndarmazem" value="#{produtoController.selected.idEndarmazem}"  converter="endArmazemConverter">

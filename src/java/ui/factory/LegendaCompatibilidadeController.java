@@ -50,7 +50,7 @@ public class LegendaCompatibilidadeController extends AbstractController<Legenda
      */
     public String navigateCompatibilidadeList() {
         if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Compatibilidade_items", this.getSelected().getCompatibilidadeList());
+            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Compatibilidade_items", this.getSelected());
         }
         return "/entiti/compatibilidade/index";
     }
