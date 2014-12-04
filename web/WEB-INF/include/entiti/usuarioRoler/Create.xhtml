@@ -16,7 +16,7 @@
                     <p:panelGrid columns="2" columnClasses="column">
                         
                         <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_login}" for="login" />
-                        <p:selectOneMenu id="login" value="#{usuarioRolerController.selected.login}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_login}" converter="usuarioConverter">
+                        <p:selectOneMenu id="login" filter="true" value="#{usuarioRolerController.selected.login}" required="true" requiredMessage="#{myBundle.CreateUsuarioRolerRequiredMessage_login}" converter="usuarioConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{usuarioController.items}"
                                            var="usuarioItems"

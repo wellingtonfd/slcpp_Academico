@@ -171,6 +171,18 @@
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
 
+                                    <p:outputLabel value="#{myBundle.CreateFornecedorLabel_razaoSocial}" for="idEstFisico" />
+                                    <p:selectOneMenu id="idEstFisico" value="#{produtoController.selected.id}"  converter="estFisicoConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{estFisicoController.items}"
+                                                       var="idEstFisicoItem"
+                                                       itemValue="#{idEstFisicoItem}"
+                                                       itemLabel="#{idEstFisicoItem.idEstFisico.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+
                                     <p:outputLabel value="Data Fabricação:" for="dtFab" />
                                     <p:calendar id="dtFab" pattern="MM/dd/yyyy" value="#{produtoController.selected.dtFab}" title="#{myBundle.CreateProdutoTitle_dtFab}" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_dtFab}" showOn="button"/>
 
