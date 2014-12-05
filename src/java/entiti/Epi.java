@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -26,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "epi")
@@ -54,11 +52,11 @@ public class Epi implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_epi")
     private String nomeEpi;
+    @OneToMany(mappedBy = "idEpi")
+    private List<TipoEquipamento> tipoEquipamentoList;
     @JoinColumn(name = "id_material", referencedColumnName = "id_tipo_material")
     @ManyToOne
     private TipoMaterial idMaterial;
-    @OneToMany(mappedBy = "idEpi")
-    private List<TipoEquipamento> tipoEquipamentoList;
 
     public Epi() {
     }
@@ -99,14 +97,6 @@ public class Epi implements Serializable {
         this.nomeEpi = nomeEpi;
     }
 
-    public TipoMaterial getIdMaterial() {
-        return idMaterial;
-    }
-
-    public void setIdMaterial(TipoMaterial idMaterial) {
-        this.idMaterial = idMaterial;
-    }
-
     @XmlTransient
     public List<TipoEquipamento> getTipoEquipamentoList() {
         return tipoEquipamentoList;
@@ -114,6 +104,14 @@ public class Epi implements Serializable {
 
     public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
         this.tipoEquipamentoList = tipoEquipamentoList;
+    }
+
+    public TipoMaterial getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(TipoMaterial idMaterial) {
+        this.idMaterial = idMaterial;
     }
 
     @Override
@@ -140,5 +138,5 @@ public class Epi implements Serializable {
     public String toString() {
         return "entiti.Epi[ idEpi=" + idEpi + " ]";
     }
-
+    
 }

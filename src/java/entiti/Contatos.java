@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -24,8 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "contatos")
@@ -152,5 +150,5 @@ public class Contatos implements Serializable {
     public String toString() {
         return "entiti.Contatos[ idContato=" + idContato + " ]";
     }
-
+    
 }

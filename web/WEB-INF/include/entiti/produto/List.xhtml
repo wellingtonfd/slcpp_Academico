@@ -23,7 +23,6 @@
                 <p:menuitem value="#{myBundle.ProdutoMenuItem_idCompatibilidade}" icon="ui-icon-search"  actionListener="#{produtoController.prepareIdCompatibilidade}" update=":CompatibilidadeViewForm" oncomplete="CompatibilidadeViewDialog.show()" disabled="#{empty produtoController.selected.idCompatibilidade}"/>  
                 <p:menuitem value="#{myBundle.ProdutoMenuItem_idClasse}" icon="ui-icon-search"  actionListener="#{produtoController.prepareIdClasse}" update=":ClasseViewForm" oncomplete="ClasseViewDialog.show()" disabled="#{empty produtoController.selected.idClasse}"/>  
                 <p:menuitem value="#{myBundle.ProdutoMenuItem_armazemIdArmazem}" icon="ui-icon-search"  actionListener="#{produtoController.prepareArmazemIdArmazem}" update=":ArmazemViewForm" oncomplete="ArmazemViewDialog.show()" disabled="#{empty produtoController.selected.armazemIdArmazem}"/>  
-                <p:menuitem value="#{myBundle.ProdutoMenuItem_movimentacaoList}" icon="ui-icon-search"  action="#{produtoController.navigateMovimentacaoList}" disabled="#{empty produtoController.selected.movimentacaoList}" ajax="false"/>  
                 <p:menuitem value="#{myBundle.ProdutoMenuItem_detNotaList}" icon="ui-icon-search"  action="#{produtoController.navigateDetNotaList}" disabled="#{empty produtoController.selected.detNotaList}" ajax="false"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"

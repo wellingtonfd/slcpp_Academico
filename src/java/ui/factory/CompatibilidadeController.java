@@ -65,9 +65,9 @@ public class CompatibilidadeController extends AbstractController<Compatibilidad
      *
      * @param event Event object for the widget that triggered an action
      */
-    public void prepareIdLegendaCompatibilidade(ActionEvent event) {
-        if (this.getSelected() != null && idLegendaCompatibilidadeController.getSelected() == null) {
-            idLegendaCompatibilidadeController.setSelected(this.getSelected().getIdLegendaCompatibilidade());
-        }
-    }
+//    public void prepareIdLegendaCompatibilidade(ActionEvent event) {
+//        if (this.getSelected() != null && idLegendaCompatibilidadeController.getSelected() == null) {
+//            idLegendaCompatibilidadeController.setSelected(this.getSelected().getIdLegendaCompatibilidade());
+//        }
+//    }
 }

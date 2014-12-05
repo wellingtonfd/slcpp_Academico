@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -14,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "compatibilidade")
@@ -35,8 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Compatibilidade.findByIdCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.idCompatibilidade = :idCompatibilidade"),
     @NamedQuery(name = "Compatibilidade.findByCodClassifi", query = "SELECT c FROM Compatibilidade c WHERE c.codClassifi = :codClassifi"),
     @NamedQuery(name = "Compatibilidade.findByDescCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.descCompatibilidade = :descCompatibilidade"),
-    @NamedQuery(name = "Compatibilidade.findByGrupoCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.grupoCompatibilidade = :grupoCompatibilidade"),
-    @NamedQuery(name = "Compatibilidade.findByIdLegendaCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.idLegendaCompatibilidade = :idLegendaCompatibilidade")})
+    @NamedQuery(name = "Compatibilidade.findByGrupoCompatibilidade", query = "SELECT c FROM Compatibilidade c WHERE c.grupoCompatibilidade = :grupoCompatibilidade")})
 public class Compatibilidade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,12 +52,13 @@ public class Compatibilidade implements Serializable {
     @Size(max = 255)
     @Column(name = "grupo_compatibilidade")
     private String grupoCompatibilidade;
-    @Column(name = "id_legenda_compatibilidade")
-    private Integer idLegendaCompatibilidade;
-    @OneToMany(mappedBy = "idCompatibilidade")
-    private List<Produto> produtoList;
+    @JoinColumn(name = "id_legenda_compatibilidade", referencedColumnName = "id_legenda_compatibilidade")
+    @ManyToOne
+    private LegendaCompatibilidade idLegendaCompatibilidade;
     @OneToMany(mappedBy = "idCompatibilidade")
     private List<Armazem> armazemList;
+    @OneToMany(mappedBy = "idCompatibilidade")
+    private List<Produto> produtoList;
 
     public Compatibilidade() {
     }
@@ -99,21 +99,12 @@ public class Compatibilidade implements Serializable {
         this.grupoCompatibilidade = grupoCompatibilidade;
     }
 
-    public Integer getIdLegendaCompatibilidade() {
+    public LegendaCompatibilidade getIdLegendaCompatibilidade() {
         return idLegendaCompatibilidade;
     }
 
-    public void setIdLegendaCompatibilidade(Integer idLegendaCompatibilidade) {
+    public void setIdLegendaCompatibilidade(LegendaCompatibilidade idLegendaCompatibilidade) {
         this.idLegendaCompatibilidade = idLegendaCompatibilidade;
-    }
-
-    @XmlTransient
-    public List<Produto> getProdutoList() {
-        return produtoList;
-    }
-
-    public void setProdutoList(List<Produto> produtoList) {
-        this.produtoList = produtoList;
     }
 
     @XmlTransient
@@ -123,6 +114,15 @@ public class Compatibilidade implements Serializable {
 
     public void setArmazemList(List<Armazem> armazemList) {
         this.armazemList = armazemList;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -149,5 +149,5 @@ public class Compatibilidade implements Serializable {
     public String toString() {
         return "entiti.Compatibilidade[ idCompatibilidade=" + idCompatibilidade + " ]";
     }
-
+    
 }

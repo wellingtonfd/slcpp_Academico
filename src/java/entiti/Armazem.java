@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -26,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "armazem")
@@ -41,9 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Armazem.findByEstoqueMax", query = "SELECT a FROM Armazem a WHERE a.estoqueMax = :estoqueMax"),
     @NamedQuery(name = "Armazem.findByEstoqueMin", query = "SELECT a FROM Armazem a WHERE a.estoqueMin = :estoqueMin"),
     @NamedQuery(name = "Armazem.findByIdLocalOper", query = "SELECT a FROM Armazem a WHERE a.idLocalOper = :idLocalOper"),
-    @NamedQuery(name = "Armazem.findByIdStatusArmazem", query = "SELECT a FROM Armazem a WHERE a.idStatusArmazem = :idStatusArmazem"),
-    @NamedQuery(name = "Armazem.findByTipoArmazem", query = "SELECT a FROM Armazem a WHERE a.tipoArmazem = :tipoArmazem"),
-    @NamedQuery(name = "Armazem.findByIdLegendaCompatibilidade", query = "SELECT a FROM Armazem a WHERE a.idLegendaCompatibilidade = :idLegendaCompatibilidade")})
+    @NamedQuery(name = "Armazem.findByTipoArmazem", query = "SELECT a FROM Armazem a WHERE a.tipoArmazem = :tipoArmazem")})
 public class Armazem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,27 +64,26 @@ public class Armazem implements Serializable {
     private String estoqueMin;
     @Column(name = "id_local_oper")
     private Integer idLocalOper;
-    @Column(name = "id_status_armazem")
-    private Integer idStatusArmazem;
     @Size(max = 255)
     @Column(name = "tipo_armazem")
     private String tipoArmazem;
-    @Column(name = "id_legenda_compatibilidade")
-    private Integer idLegendaCompatibilidade;
-    @OneToMany(mappedBy = "armazemIdArmazem")
-    private List<Produto> produtoList;
-    @JoinColumn(name = "status_armazem_id_status_armazem", referencedColumnName = "id_status_armazem")
-    @ManyToOne
-    private StatusArmazem statusArmazemIdStatusArmazem;
-    @JoinColumn(name = "local_operacao_id_local_oper", referencedColumnName = "id_local_oper")
-    @ManyToOne
-    private LocalOperacao localOperacaoIdLocalOper;
-    @JoinColumn(name = "id_endarmazem", referencedColumnName = "id_endarmazem")
-    @ManyToOne
-    private EndArmazem idEndarmazem;
     @JoinColumn(name = "id_compatibilidade", referencedColumnName = "id_compatibilidade")
     @ManyToOne
     private Compatibilidade idCompatibilidade;
+    @JoinColumn(name = "id_endarmazem", referencedColumnName = "id_endarmazem")
+    @ManyToOne
+    private EndArmazem idEndarmazem;
+    @JoinColumn(name = "local_operacao_id_local_oper", referencedColumnName = "id_local_oper")
+    @ManyToOne
+    private LocalOperacao localOperacaoIdLocalOper;
+    @JoinColumn(name = "id_status_armazem", referencedColumnName = "id_status_armazem")
+    @ManyToOne
+    private StatusArmazem idStatusArmazem;
+    @JoinColumn(name = "status_armazem_id_status_armazem", referencedColumnName = "id_status_armazem")
+    @ManyToOne
+    private StatusArmazem statusArmazemIdStatusArmazem;
+    @OneToMany(mappedBy = "armazemIdArmazem")
+    private List<Produto> produtoList;
 
     public Armazem() {
     }
@@ -153,14 +148,6 @@ public class Armazem implements Serializable {
         this.idLocalOper = idLocalOper;
     }
 
-    public Integer getIdStatusArmazem() {
-        return idStatusArmazem;
-    }
-
-    public void setIdStatusArmazem(Integer idStatusArmazem) {
-        this.idStatusArmazem = idStatusArmazem;
-    }
-
     public String getTipoArmazem() {
         return tipoArmazem;
     }
@@ -169,37 +156,12 @@ public class Armazem implements Serializable {
         this.tipoArmazem = tipoArmazem;
     }
 
-    public Integer getIdLegendaCompatibilidade() {
-        return idLegendaCompatibilidade;
+    public Compatibilidade getIdCompatibilidade() {
+        return idCompatibilidade;
     }
 
-    public void setIdLegendaCompatibilidade(Integer idLegendaCompatibilidade) {
-        this.idLegendaCompatibilidade = idLegendaCompatibilidade;
-    }
-
-    @XmlTransient
-    public List<Produto> getProdutoList() {
-        return produtoList;
-    }
-
-    public void setProdutoList(List<Produto> produtoList) {
-        this.produtoList = produtoList;
-    }
-
-    public StatusArmazem getStatusArmazemIdStatusArmazem() {
-        return statusArmazemIdStatusArmazem;
-    }
-
-    public void setStatusArmazemIdStatusArmazem(StatusArmazem statusArmazemIdStatusArmazem) {
-        this.statusArmazemIdStatusArmazem = statusArmazemIdStatusArmazem;
-    }
-
-    public LocalOperacao getLocalOperacaoIdLocalOper() {
-        return localOperacaoIdLocalOper;
-    }
-
-    public void setLocalOperacaoIdLocalOper(LocalOperacao localOperacaoIdLocalOper) {
-        this.localOperacaoIdLocalOper = localOperacaoIdLocalOper;
+    public void setIdCompatibilidade(Compatibilidade idCompatibilidade) {
+        this.idCompatibilidade = idCompatibilidade;
     }
 
     public EndArmazem getIdEndarmazem() {
@@ -210,12 +172,37 @@ public class Armazem implements Serializable {
         this.idEndarmazem = idEndarmazem;
     }
 
-    public Compatibilidade getIdCompatibilidade() {
-        return idCompatibilidade;
+    public LocalOperacao getLocalOperacaoIdLocalOper() {
+        return localOperacaoIdLocalOper;
     }
 
-    public void setIdCompatibilidade(Compatibilidade idCompatibilidade) {
-        this.idCompatibilidade = idCompatibilidade;
+    public void setLocalOperacaoIdLocalOper(LocalOperacao localOperacaoIdLocalOper) {
+        this.localOperacaoIdLocalOper = localOperacaoIdLocalOper;
+    }
+
+    public StatusArmazem getIdStatusArmazem() {
+        return idStatusArmazem;
+    }
+
+    public void setIdStatusArmazem(StatusArmazem idStatusArmazem) {
+        this.idStatusArmazem = idStatusArmazem;
+    }
+
+    public StatusArmazem getStatusArmazemIdStatusArmazem() {
+        return statusArmazemIdStatusArmazem;
+    }
+
+    public void setStatusArmazemIdStatusArmazem(StatusArmazem statusArmazemIdStatusArmazem) {
+        this.statusArmazemIdStatusArmazem = statusArmazemIdStatusArmazem;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -242,5 +229,5 @@ public class Armazem implements Serializable {
     public String toString() {
         return "entiti.Armazem[ idArmazem=" + idArmazem + " ]";
     }
-
+    
 }

@@ -48,8 +48,8 @@ public class GrupoEmbalagem implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_grupo_embalagem")
     private String nomeGrupoEmbalagem;
-    @OneToMany(mappedBy = "idGrupoEmbalagem")
-    private List<Produto> produtoList;
+//    @OneToMany(mappedBy = "idGrupoEmbalagem")
+//    private List<Produto> produtoList;
 
     public GrupoEmbalagem() {
     }
@@ -81,15 +81,15 @@ public class GrupoEmbalagem implements Serializable {
     public void setNomeGrupoEmbalagem(String nomeGrupoEmbalagem) {
         this.nomeGrupoEmbalagem = nomeGrupoEmbalagem;
     }
-
-    @XmlTransient
-    public List<Produto> getProdutoList() {
-        return produtoList;
-    }
-
-    public void setProdutoList(List<Produto> produtoList) {
-        this.produtoList = produtoList;
-    }
+//
+//    @XmlTransient
+//    public List<Produto> getProdutoList() {
+//        return produtoList;
+//    }
+//
+//    public void setProdutoList(List<Produto> produtoList) {
+//        this.produtoList = produtoList;
+//    }
 
     @Override
     public int hashCode() {

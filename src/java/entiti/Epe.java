@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -14,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,8 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "epe")
@@ -37,7 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Epe.findByIdEpe", query = "SELECT e FROM Epe e WHERE e.idEpe = :idEpe"),
     @NamedQuery(name = "Epe.findByAgenteEpe", query = "SELECT e FROM Epe e WHERE e.agenteEpe = :agenteEpe"),
     @NamedQuery(name = "Epe.findByClasseEpe", query = "SELECT e FROM Epe e WHERE e.classeEpe = :classeEpe"),
-    @NamedQuery(name = "Epe.findByNomeEpe", query = "SELECT e FROM Epe e WHERE e.nomeEpe = :nomeEpe")})
+    @NamedQuery(name = "Epe.findByNomeEpe", query = "SELECT e FROM Epe e WHERE e.nomeEpe = :nomeEpe"),
+    @NamedQuery(name = "Epe.findByTipoMaterialIdMaterial", query = "SELECT e FROM Epe e WHERE e.tipoMaterialIdMaterial = :tipoMaterialIdMaterial")})
 public class Epe implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,9 +51,8 @@ public class Epe implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_epe")
     private String nomeEpe;
-    @JoinColumn(name = "tipo_material_id_material", referencedColumnName = "id_tipo_material")
-    @ManyToOne
-    private TipoMaterial tipoMaterialIdMaterial;
+    @Column(name = "tipo_material_id_material")
+    private Integer tipoMaterialIdMaterial;
     @OneToMany(mappedBy = "epeIdEpe")
     private List<TipoEquipamento> tipoEquipamentoList;
 
@@ -99,11 +95,11 @@ public class Epe implements Serializable {
         this.nomeEpe = nomeEpe;
     }
 
-    public TipoMaterial getTipoMaterialIdMaterial() {
+    public Integer getTipoMaterialIdMaterial() {
         return tipoMaterialIdMaterial;
     }
 
-    public void setTipoMaterialIdMaterial(TipoMaterial tipoMaterialIdMaterial) {
+    public void setTipoMaterialIdMaterial(Integer tipoMaterialIdMaterial) {
         this.tipoMaterialIdMaterial = tipoMaterialIdMaterial;
     }
 
@@ -140,5 +136,5 @@ public class Epe implements Serializable {
     public String toString() {
         return "entiti.Epe[ idEpe=" + idEpe + " ]";
     }
-
+    
 }

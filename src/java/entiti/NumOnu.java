@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -24,8 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "num_onu")
@@ -49,9 +47,8 @@ public class NumOnu implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_prod")
     private String nomeProd;
-    @Size(max = 4)
     @Column(name = "num_onu")
-    private String numOnu;
+    private Integer numOnu;
     @OneToMany(mappedBy = "idNumOnu")
     private List<Produto> produtoList;
 
@@ -86,11 +83,11 @@ public class NumOnu implements Serializable {
         this.nomeProd = nomeProd;
     }
 
-    public String getNumOnu() {
+    public Integer getNumOnu() {
         return numOnu;
     }
 
-    public void setNumOnu(String numOnu) {
+    public void setNumOnu(Integer numOnu) {
         this.numOnu = numOnu;
     }
 
@@ -127,5 +124,5 @@ public class NumOnu implements Serializable {
     public String toString() {
         return "entiti.NumOnu[ idNumOnu=" + idNumOnu + " ]";
     }
-
+    
 }

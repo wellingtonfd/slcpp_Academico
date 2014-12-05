@@ -76,9 +76,9 @@ public class Movimentacao implements Serializable {
     @JoinColumn(name = "id_tipo_equipamento", referencedColumnName = "id_tipo_equipamento")
     @ManyToOne
     private TipoEquipamento idTipoEquipamento;
-    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
-    @ManyToOne
-    private Produto idProduto;
+//    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+//    @ManyToOne
+//    private Produto idProduto;
     @JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
     @ManyToOne
     private Funcionario idFuncionario;
@@ -179,13 +179,13 @@ public class Movimentacao implements Serializable {
         this.idTipoEquipamento = idTipoEquipamento;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
-    }
+//    public Produto getIdProduto() {
+//        return idProduto;
+//    }
+//
+//    public void setIdProduto(Produto idProduto) {
+//        this.idProduto = idProduto;
+//    }
 
     public Funcionario getIdFuncionario() {
         return idFuncionario;

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -24,8 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "end_armazem")
@@ -61,9 +59,9 @@ public class EndArmazem implements Serializable {
     @Column(name = "rua_end_armazem")
     private String ruaEndArmazem;
     @OneToMany(mappedBy = "idEndarmazem")
-    private List<Produto> produtoList;
-    @OneToMany(mappedBy = "idEndarmazem")
     private List<Armazem> armazemList;
+    @OneToMany(mappedBy = "idEndarmazem")
+    private List<Produto> produtoList;
 
     public EndArmazem() {
     }
@@ -121,21 +119,21 @@ public class EndArmazem implements Serializable {
     }
 
     @XmlTransient
-    public List<Produto> getProdutoList() {
-        return produtoList;
-    }
-
-    public void setProdutoList(List<Produto> produtoList) {
-        this.produtoList = produtoList;
-    }
-
-    @XmlTransient
     public List<Armazem> getArmazemList() {
         return armazemList;
     }
 
     public void setArmazemList(List<Armazem> armazemList) {
         this.armazemList = armazemList;
+    }
+
+    @XmlTransient
+    public List<Produto> getProdutoList() {
+        return produtoList;
+    }
+
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
@@ -162,5 +160,5 @@ public class EndArmazem implements Serializable {
     public String toString() {
         return "entiti.EndArmazem[ idEndarmazem=" + idEndarmazem + " ]";
     }
-
+    
 }

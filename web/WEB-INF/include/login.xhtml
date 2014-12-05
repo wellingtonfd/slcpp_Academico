@@ -10,6 +10,9 @@
         <h:outputLabel ><h3 align="center">SLCPP <br />Sistema Logístico de Controle <br />de Produtos Perigosos</h3></h:outputLabel>
         <p:separator/>
         <form action="j_spring_security_check" method="post" >
+            <p:growl showDetail="false"/>
+
+
             <h:panelGrid columns="2" cellpadding="5">
                 <h:outputLabel for="j_username" value="Username: *" />
                 <h:inputText id="j_username" required="true"/>

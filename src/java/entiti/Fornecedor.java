@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -26,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "fornecedor")
@@ -61,16 +59,14 @@ public class Fornecedor implements Serializable {
     @Size(max = 255)
     @Column(name = "razao_social")
     private String razaoSocial;
-    @OneToMany(mappedBy = "idFornecedor")
-    private List<Produto> produtoList;
     @OneToMany(mappedBy = "fornecedorIdFornecedor")
     private List<DetNota> detNotaList;
-    @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
-    @ManyToOne
-    private Endereco idEndereco;
     @JoinColumn(name = "contatos_id_contato", referencedColumnName = "id_contato")
     @ManyToOne
     private Contatos contatosIdContato;
+    @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
+    @ManyToOne
+    private Endereco idEndereco;
 
     public Fornecedor() {
     }
@@ -128,15 +124,6 @@ public class Fornecedor implements Serializable {
     }
 
     @XmlTransient
-    public List<Produto> getProdutoList() {
-        return produtoList;
-    }
-
-    public void setProdutoList(List<Produto> produtoList) {
-        this.produtoList = produtoList;
-    }
-
-    @XmlTransient
     public List<DetNota> getDetNotaList() {
         return detNotaList;
     }
@@ -145,20 +132,20 @@ public class Fornecedor implements Serializable {
         this.detNotaList = detNotaList;
     }
 
-    public Endereco getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(Endereco idEndereco) {
-        this.idEndereco = idEndereco;
-    }
-
     public Contatos getContatosIdContato() {
         return contatosIdContato;
     }
 
     public void setContatosIdContato(Contatos contatosIdContato) {
         this.contatosIdContato = contatosIdContato;
+    }
+
+    public Endereco getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Endereco idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     @Override
@@ -185,5 +172,5 @@ public class Fornecedor implements Serializable {
     public String toString() {
         return "entiti.Fornecedor[ idFornecedor=" + idFornecedor + " ]";
     }
-
+    
 }

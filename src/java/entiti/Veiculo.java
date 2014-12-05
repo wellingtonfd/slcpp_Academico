@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -26,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "veiculo")
@@ -70,11 +68,11 @@ public class Veiculo implements Serializable {
     @Size(max = 255)
     @Column(name = "placa_veiculo")
     private String placaVeiculo;
-    @OneToMany(mappedBy = "idVeiculo")
-    private List<TipoEquipamento> tipoEquipamentoList;
     @JoinColumn(name = "id_combustivel", referencedColumnName = "id_combustivel")
     @ManyToOne
     private Combustivel idCombustivel;
+    @OneToMany(mappedBy = "idVeiculo")
+    private List<TipoEquipamento> tipoEquipamentoList;
 
     public Veiculo() {
     }
@@ -147,6 +145,14 @@ public class Veiculo implements Serializable {
         this.placaVeiculo = placaVeiculo;
     }
 
+    public Combustivel getIdCombustivel() {
+        return idCombustivel;
+    }
+
+    public void setIdCombustivel(Combustivel idCombustivel) {
+        this.idCombustivel = idCombustivel;
+    }
+
     @XmlTransient
     public List<TipoEquipamento> getTipoEquipamentoList() {
         return tipoEquipamentoList;
@@ -154,14 +160,6 @@ public class Veiculo implements Serializable {
 
     public void setTipoEquipamentoList(List<TipoEquipamento> tipoEquipamentoList) {
         this.tipoEquipamentoList = tipoEquipamentoList;
-    }
-
-    public Combustivel getIdCombustivel() {
-        return idCombustivel;
-    }
-
-    public void setIdCombustivel(Combustivel idCombustivel) {
-        this.idCombustivel = idCombustivel;
     }
 
     @Override
@@ -188,5 +186,5 @@ public class Veiculo implements Serializable {
     public String toString() {
         return "entiti.Veiculo[ idVeiculo=" + idVeiculo + " ]";
     }
-
+    
 }

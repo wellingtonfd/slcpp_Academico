@@ -68,11 +68,11 @@ public class DetNotaController extends AbstractController<DetNota> {
      *
      * @param event Event object for the widget that triggered an action
      */
-    public void prepareIdProduto(ActionEvent event) {
-        if (this.getSelected() != null && idProdutoController.getSelected() == null) {
-            idProdutoController.setSelected(this.getSelected().getIdProduto());
-        }
-    }
+//    public void prepareIdProduto(ActionEvent event) {
+//        if (this.getSelected() != null && idProdutoController.getSelected() == null) {
+//            idProdutoController.setSelected(this.getSelected().getIdProduto());
+//        }
+//    }
 
     /**
      * Sets the "selected" attribute of the Fornecedor controller in order to

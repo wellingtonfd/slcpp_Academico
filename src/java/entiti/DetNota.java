@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,18 +18,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "det_nota")
@@ -44,8 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "DetNota.findByIdTipoEquipamento", query = "SELECT d FROM DetNota d WHERE d.idTipoEquipamento = :idTipoEquipamento"),
     @NamedQuery(name = "DetNota.findByNumNota", query = "SELECT d FROM DetNota d WHERE d.numNota = :numNota"),
     @NamedQuery(name = "DetNota.findByValorTotal", query = "SELECT d FROM DetNota d WHERE d.valorTotal = :valorTotal"),
-    @NamedQuery(name = "DetNota.findByValorUnitario", query = "SELECT d FROM DetNota d WHERE d.valorUnitario = :valorUnitario"),
-    @NamedQuery(name = "DetNota.findByIdProduto", query = "SELECT d FROM DetNota d WHERE d.idProduto = :idProduto")})
+    @NamedQuery(name = "DetNota.findByValorUnitario", query = "SELECT d FROM DetNota d WHERE d.valorUnitario = :valorUnitario")})
 public class DetNota implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,16 +61,15 @@ public class DetNota implements Serializable {
     private BigInteger valorTotal;
     @Column(name = "valor_unitario")
     private Integer valorUnitario;
-    @Column(name = "id_produto")
-    private Integer idProduto;
-    @OneToMany(mappedBy = "idDetnota")
-    private List<Produto> produtoList;
-    @JoinColumn(name = "tipo_equipamento_id_tipo_equipamento", referencedColumnName = "id_tipo_equipamento")
-    @ManyToOne
-    private TipoEquipamento tipoEquipamentoIdTipoEquipamento;
     @JoinColumn(name = "fornecedor_id_fornecedor", referencedColumnName = "id_fornecedor")
     @ManyToOne
     private Fornecedor fornecedorIdFornecedor;
+    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+    @ManyToOne
+    private Produto idProduto;
+    @JoinColumn(name = "tipo_equipamento_id_tipo_equipamento", referencedColumnName = "id_tipo_equipamento")
+    @ManyToOne
+    private TipoEquipamento tipoEquipamentoIdTipoEquipamento;
 
     public DetNota() {
     }
@@ -141,21 +134,20 @@ public class DetNota implements Serializable {
         this.valorUnitario = valorUnitario;
     }
 
-    public Integer getIdProduto() {
+    public Fornecedor getFornecedorIdFornecedor() {
+        return fornecedorIdFornecedor;
+    }
+
+    public void setFornecedorIdFornecedor(Fornecedor fornecedorIdFornecedor) {
+        this.fornecedorIdFornecedor = fornecedorIdFornecedor;
+    }
+
+    public Produto getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(Integer idProduto) {
+    public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
-    }
-
-    @XmlTransient
-    public List<Produto> getProdutoList() {
-        return produtoList;
-    }
-
-    public void setProdutoList(List<Produto> produtoList) {
-        this.produtoList = produtoList;
     }
 
     public TipoEquipamento getTipoEquipamentoIdTipoEquipamento() {
@@ -164,14 +156,6 @@ public class DetNota implements Serializable {
 
     public void setTipoEquipamentoIdTipoEquipamento(TipoEquipamento tipoEquipamentoIdTipoEquipamento) {
         this.tipoEquipamentoIdTipoEquipamento = tipoEquipamentoIdTipoEquipamento;
-    }
-
-    public Fornecedor getFornecedorIdFornecedor() {
-        return fornecedorIdFornecedor;
-    }
-
-    public void setFornecedorIdFornecedor(Fornecedor fornecedorIdFornecedor) {
-        this.fornecedorIdFornecedor = fornecedorIdFornecedor;
     }
 
     @Override
@@ -198,5 +182,5 @@ public class DetNota implements Serializable {
     public String toString() {
         return "entiti.DetNota[ idDetalheNota=" + idDetalheNota + " ]";
     }
-
+    
 }

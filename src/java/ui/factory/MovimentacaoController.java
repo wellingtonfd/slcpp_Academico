@@ -77,11 +77,11 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
      *
      * @param event Event object for the widget that triggered an action
      */
-    public void prepareIdProduto(ActionEvent event) {
-        if (this.getSelected() != null && idProdutoController.getSelected() == null) {
-            idProdutoController.setSelected(this.getSelected().getIdProduto());
-        }
-    }
+//    public void prepareIdProduto(ActionEvent event) {
+//        if (this.getSelected() != null && idProdutoController.getSelected() == null) {
+//            idProdutoController.setSelected(this.getSelected().getIdProduto());
+//        }
+//    }
 
     /**
      * Sets the "selected" attribute of the Funcionario controller in order to

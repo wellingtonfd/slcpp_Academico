@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -26,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "tipo_equipamento")
@@ -56,15 +54,15 @@ public class TipoEquipamento implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_tipo_equipamento")
     private String nomeTipoEquipamento;
-    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
-    @ManyToOne
-    private Veiculo idVeiculo;
-    @JoinColumn(name = "id_epi", referencedColumnName = "id_epi")
-    @ManyToOne
-    private Epi idEpi;
     @JoinColumn(name = "epe_id_epe", referencedColumnName = "id_epe")
     @ManyToOne
     private Epe epeIdEpe;
+    @JoinColumn(name = "id_epi", referencedColumnName = "id_epi")
+    @ManyToOne
+    private Epi idEpi;
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
+    @ManyToOne
+    private Veiculo idVeiculo;
     @OneToMany(mappedBy = "tipoEquipamentoIdTipoEquipamento")
     private List<DetNota> detNotaList;
 
@@ -115,12 +113,12 @@ public class TipoEquipamento implements Serializable {
         this.nomeTipoEquipamento = nomeTipoEquipamento;
     }
 
-    public Veiculo getIdVeiculo() {
-        return idVeiculo;
+    public Epe getEpeIdEpe() {
+        return epeIdEpe;
     }
 
-    public void setIdVeiculo(Veiculo idVeiculo) {
-        this.idVeiculo = idVeiculo;
+    public void setEpeIdEpe(Epe epeIdEpe) {
+        this.epeIdEpe = epeIdEpe;
     }
 
     public Epi getIdEpi() {
@@ -131,12 +129,12 @@ public class TipoEquipamento implements Serializable {
         this.idEpi = idEpi;
     }
 
-    public Epe getEpeIdEpe() {
-        return epeIdEpe;
+    public Veiculo getIdVeiculo() {
+        return idVeiculo;
     }
 
-    public void setEpeIdEpe(Epe epeIdEpe) {
-        this.epeIdEpe = epeIdEpe;
+    public void setIdVeiculo(Veiculo idVeiculo) {
+        this.idVeiculo = idVeiculo;
     }
 
     @XmlTransient
@@ -172,5 +170,5 @@ public class TipoEquipamento implements Serializable {
     public String toString() {
         return "entiti.TipoEquipamento[ idTipoEquipamento=" + idTipoEquipamento + " ]";
     }
-
+    
 }

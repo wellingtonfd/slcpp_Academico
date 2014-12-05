@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entiti;
 
 import java.io.Serializable;
@@ -26,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Administrador
- * @author Wellington Duarte
+ * @author sacramento
  */
 @Entity
 @Table(name = "endereco")
@@ -50,7 +48,7 @@ public class Endereco implements Serializable {
     @Size(max = 255)
     @Column(name = "bairro")
     private String bairro;
-    @Size(max = 9)
+    @Size(max = 80)
     @Column(name = "cep")
     private String cep;
     @Size(max = 255)
@@ -61,17 +59,17 @@ public class Endereco implements Serializable {
     private String logadouro;
     @Column(name = "numero")
     private Integer numero;
-    @OneToMany(mappedBy = "idEndereco")
-    private List<Fornecedor> fornecedorList;
-    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
-    @ManyToOne
-    private Pais idPais;
-    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
-    @ManyToOne
-    private Estado idEstado;
     @JoinColumn(name = "id_cidade", referencedColumnName = "id_cidade")
     @ManyToOne
     private Cidade idCidade;
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
+    @ManyToOne
+    private Estado idEstado;
+    @JoinColumn(name = "id_pais", referencedColumnName = "id_pais")
+    @ManyToOne
+    private Pais idPais;
+    @OneToMany(mappedBy = "idEndereco")
+    private List<Fornecedor> fornecedorList;
 
     public Endereco() {
     }
@@ -128,21 +126,12 @@ public class Endereco implements Serializable {
         this.numero = numero;
     }
 
-    @XmlTransient
-    public List<Fornecedor> getFornecedorList() {
-        return fornecedorList;
+    public Cidade getIdCidade() {
+        return idCidade;
     }
 
-    public void setFornecedorList(List<Fornecedor> fornecedorList) {
-        this.fornecedorList = fornecedorList;
-    }
-
-    public Pais getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(Pais idPais) {
-        this.idPais = idPais;
+    public void setIdCidade(Cidade idCidade) {
+        this.idCidade = idCidade;
     }
 
     public Estado getIdEstado() {
@@ -153,12 +142,21 @@ public class Endereco implements Serializable {
         this.idEstado = idEstado;
     }
 
-    public Cidade getIdCidade() {
-        return idCidade;
+    public Pais getIdPais() {
+        return idPais;
     }
 
-    public void setIdCidade(Cidade idCidade) {
-        this.idCidade = idCidade;
+    public void setIdPais(Pais idPais) {
+        this.idPais = idPais;
+    }
+
+    @XmlTransient
+    public List<Fornecedor> getFornecedorList() {
+        return fornecedorList;
+    }
+
+    public void setFornecedorList(List<Fornecedor> fornecedorList) {
+        this.fornecedorList = fornecedorList;
     }
 
     @Override
@@ -185,5 +183,5 @@ public class Endereco implements Serializable {
     public String toString() {
         return "entiti.Endereco[ idEndereco=" + idEndereco + " ]";
     }
-
+    
 }

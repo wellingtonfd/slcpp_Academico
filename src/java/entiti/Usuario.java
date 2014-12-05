@@ -136,5 +136,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "entiti.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-    
+   
 }
