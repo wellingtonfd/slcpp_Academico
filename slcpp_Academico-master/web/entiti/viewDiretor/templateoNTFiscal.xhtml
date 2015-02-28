@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="DetNotaListForm">
+
+        <p:panel header="Lista Detalhes Notas Fiscais">
+           
+            <p:dataTable id="datalist"
+                         value="#{detNotaController.items}"
+                         var="item"
+                         rowKey="#{item.idDetalheNota}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{detNotaController.selected}">
+
+                <p:column sortBy="#{item.idDetalheNota}" filterBy="#{item.idDetalheNota}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetNotaTitle_idDetalheNota}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idDetalheNota}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.numNota}" filterBy="#{item.numNota}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetNotaTitle_numNota}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numNota}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dtPedido}" filterBy="#{item.dtPedido}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListDetNotaTitle_dtPedido}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dtPedido}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+
+                <!--
+                                    <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListDetNotaTitle_valorUnitario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.valorUnitario}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.tipoEquipamentoIdTipoEquipamento.idTipoEquipamento}" filterBy="#{item.tipoEquipamentoIdTipoEquipamento.idTipoEquipamento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListDetNotaTitle_tipoEquipamentoIdTipoEquipamento}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tipoEquipamentoIdTipoEquipamento.idTipoEquipamento}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idProduto.idProduto}" filterBy="#{item.idProduto.idProduto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListDetNotaTitle_idProduto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idProduto.idProduto}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.fornecedorIdFornecedor.idFornecedor}" filterBy="#{item.fornecedorIdFornecedor.idFornecedor}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListDetNotaTitle_fornecedorIdFornecedor}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fornecedorIdFornecedor.idFornecedor}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+        </p:panel>
+        <p:panel header="Gerar Relatório">
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
+                <h:form id="referencia">
+                    <h:commandButton type="submit" value="Gerar Relatorio" >
+                        <p:fileDownload value="#{report.arquivoRetorno}" />
+                    </h:commandButton> 
+                </h:form>
+            </h:panelGrid>
+        </p:panel>
+       
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+
+
+
+    <ui:composition>
+        <h:form id="menuForm">  
+            <p:menubar>
+                <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
+                    <p:submenu label="Armazéns...">
+                        <p:menuitem value="Armazém"  outcome="/entiti/viewOperador/viewArmazem" />
+                        <p:separator />
+                        <p:menuitem value="Endereço Armazém" outcome="/entiti/viewOperador/viewEndArmazem" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:menuitem value="Compatibilidades" outcome="/entiti/viewOperador/viewCompatibilidade" />
+                    <p:separator />
+                    <p:submenu label="Equipamentos...">
+                        <p:menuitem value="EPC" outcome="/entiti/viewOperador/viewEPE"/>
+                        <p:separator/>
+                        <p:menuitem value="EPI" outcome="/entiti/viewOperador/viewEPI" />
+                        <p:separator/>
+                        <p:menuitem value="Veículos" outcome="/entiti/veiculo/index" />
+                    </p:submenu>
+                    <p:separator />
+                    <p:menuitem  value="Fornecedores" outcome="/entiti/viewOperador/viewFornecedor"/>
+                    <p:separator />
+                    <p:menuitem  value="Funcionários" outcome="/entiti/viewOperador/viewFuncionario"/>
+                    <p:separator />
+                     <p:menuitem  value="Movimentações" outcome="/entiti/viewOperador/viewOperacoes" />
+                    <p:separator />
+                    <p:submenu label="Produtos" >
+                    </p:submenu>
+                </p:submenu>
+                <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
+                    <p:menuitem value="#{myBundle.UsuarioHeading}" outcome="/entiti/usuario/index" />
+                    <p:separator/>
+                    <p:menuitem value="#{myBundle.RolerHeading}" outcome="/entiti/roler/index" />
+                    <p:separator/>
+                    <p:menuitem value="#{myBundle.UsuarioRolerHeading}" outcome="/entiti/usuarioRoler/index" />
+                </p:submenu>
+                <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
+                    <p:menuitem value="Armazéns" outcome="/entiti/armazem/index" />
+                    <p:separator />
+                    <p:submenu label="Equipamentos...">
+                        <p:menuitem value="EPC" outcome="/entiti/epe/index"/>
+                        <p:separator/>
+                        <p:menuitem value="EPI" outcome="/entiti/epi/index" />
+                        <p:separator/>
+                        <p:menuitem value="Veículo" outcome="/entiti/veiculo/index" />
+                    </p:submenu>
+                    <p:separator/>
+                    <p:menuitem value="Fornecedores" outcome="/entiti/fornecedor/index"  />
+                    <p:separator/>
+                    <p:menuitem value="Funcionários" outcome="/entiti/funcionario/index"  />
+                    <p:separator/>
+                    <p:menuitem value="Movimentações" outcome="/entiti/movimentacao/index"/>
+                    <p:separator/>
+                    <p:menuitem value="Produtos"  outcome="/entiti/produto/index"/>
+                </p:submenu>
+                <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
+                    <p:menuitem value="Armazém" outcome="/entiti/viewDiretor/relatorioArmazem"/>
+                    <p:separator/>
+                    <p:submenu label="Equipamentos...">
+                        <p:menuitem value="EPC" outcome="/entiti/viewDiretor/relatorioEPE"/>  
+                        <p:separator/>
+                        <p:menuitem value="EPI" outcome="/entiti/viewDiretor/relatorioEPI"/>
+                        <p:separator/>
+                        <p:menuitem value="Veículos" outcome="/entiti/viewDiretor/relatorioVeiculo" />
+                    </p:submenu>
+                    <p:separator/>
+                    <p:menuitem value="Fornecedores" outcome="/entiti/viewDiretor/relatorioFornecedor"/>
+                    <p:separator/>
+                    <p:menuitem value="Funcionários" outcome="/entiti/viewDiretor/relatorioFuncionario" />
+                    <p:separator/>
+                    <p:menuitem value="Notas Fiscais" outcome="/entiti/viewDiretor/relatorioNTFiscal"/>
+                    <p:separator/>
+                    <p:menuitem value="Movimentações" outcome="/entiti/viewDiretor/relatorioOperacoes"/>
+                    <p:separator/>
+                    <p:menuitem value="Produtos" outcome="/entiti/viewDiretor/relatorioProdutos"/>
+                    <p:separator/>
+                    <p:menuitem value="Usuários" outcome="/entiti/viewDiretor/relatorioUsuario"/>  
+                </p:submenu>
+                <p:submenu label="Informações" icon="ui-icon-info" >
+                    <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
+                    <p:separator/>
+                    <p:menuitem value="Aviso CIPA" onclick="PF('View1').show()" icon="ui-icon-alert"/>
+                    <p:separator/>
+                    <p:menuitem value="Contatos Suporte" onclick="PF('View2').show()" icon="ui-icon-mail-closed" />
+                    <p:separator/>
+                    <p:menuitem value="Sobre" onclick="PF('View3').show()" icon="ui-icon-star"/>
+
+                </p:submenu>
+
+                <f:facet name="options">
+                    <p:menuButton value="#{request.remoteUser}">
+                        <p:menuitem value="Alterar Senha" onclick="PF('AltSenha').show()" icon="ui-icon-key"/>
+                    </p:menuButton>
+                    <p:commandButton type="button" onclick="document.location = '#{request.contextPath}/logout'" value="#{myBundle.Sair}" icon="ui-icon-extlink" />
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <ui:include src="configuracoes/avisoCipa.xhtml"/>
+        <ui:include src="configuracoes/sobre.xhtml"/>
+        <ui:include src="configuracoes/suporte.xhtml"/>
+        <ui:include src="configuracoes/alterarSenha.xhtml"/>
+    </ui:composition>
+
+</html>

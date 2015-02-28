@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioVei" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0eb3dd40-228d-4340-977c-94ff241acf83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     veiculo."id_veiculo" AS veiculo_id_veiculo,
+     veiculo."ano_veiculo" AS veiculo_ano_veiculo,
+     veiculo."chassi_veiculo" AS veiculo_chassi_veiculo,
+     veiculo."cor_veiculo" AS veiculo_cor_veiculo,
+     veiculo."fabricante_veiculo" AS veiculo_fabricante_veiculo,
+     veiculo."modelo_veiculo" AS veiculo_modelo_veiculo,
+     veiculo."nome_veiculo" AS veiculo_nome_veiculo,
+     veiculo."placa_veiculo" AS veiculo_placa_veiculo,
+     veiculo."id_combustivel" AS veiculo_id_combustivel
+FROM
+     "public"."veiculo" veiculo]]>
+	</queryString>
+	<field name="veiculo_id_veiculo" class="java.lang.Integer"/>
+	<field name="veiculo_nome_veiculo" class="java.lang.String"/>
+	<field name="veiculo_modelo_veiculo" class="java.lang.String"/>
+	<field name="veiculo_cor_veiculo" class="java.lang.String"/>
+	<group name="veiculo_id_veiculo">
+		<groupExpression><![CDATA[$F{veiculo_id_veiculo}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="3506e01e-542f-4f10-9b31-a1fd149f62e1"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Id]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="c401e89b-3457-4c4c-adc1-f54f1d2ced60"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{veiculo_id_veiculo}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="d2ec34f7-0134-4b58-b75f-9b7b52a1aef5"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="veiculo_nome_veiculo">
+		<groupExpression><![CDATA[$F{veiculo_nome_veiculo}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="e91cfc06-71de-43f6-a1cd-ae7979273c2b"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{veiculo_nome_veiculo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="6376fbb0-b2cd-499a-9d25-070c4d081ff4"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Nome]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="veiculo_modelo_veiculo">
+		<groupExpression><![CDATA[$F{veiculo_modelo_veiculo}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="25f29edf-5298-4f2e-8ffc-1e497a806311"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{veiculo_modelo_veiculo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="95edcbe7-4c04-44dc-b55f-e729a966d75c"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Modelo]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="veiculo_cor_veiculo">
+		<groupExpression><![CDATA[$F{veiculo_cor_veiculo}]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="b5bf85c6-db6c-40e9-8150-cf179a78dba2"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{veiculo_cor_veiculo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="13680791-cdfd-40d2-bfc5-21ae78743958"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Cor]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="04bc669c-cf16-4174-9a4e-c2663cf068ed"/>
+				<staticText>
+					<reportElement x="20" y="20" width="333" height="43" forecolor="#FFFFFF" uuid="b69ccca1-a64f-43a3-b351-9d2d10b2495f"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório Veículo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="b16eb3f9-f94e-4458-aecc-f4e9e1b1aafc"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="dfc535b8-fddc-493b-b2de-ea989d2b11a6"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="641e85b2-fd6b-4ffa-956f-ceb452873cc4"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="e4163a14-b956-4691-ab1b-7675dc7c8a1a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="e2031a17-67d9-423d-bd92-c9f418dd66f3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="914c8f8d-395d-475f-8a05-625a940094f9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ArmazemListForm">
+
+        <p:panel header="Listar Armazéns">
+
+            <p:dataTable id="datalist"
+                         value="#{armazemController.items}"
+                         var="item"
+                         rowKey="#{item.idArmazem}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{armazemController.selected}">
+                <p:column sortBy="#{item.idArmazem}" filterBy="#{item.idArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_idArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idArmazem}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.tipoArmazem}" filterBy="#{item.tipoArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_tipoArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipoArmazem}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.capacidadeArmazem}" filterBy="#{item.capacidadeArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_capacidadeArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.capacidadeArmazem}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.certificacaoArmazem}" filterBy="#{item.certificacaoArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_certificacaoArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.certificacaoArmazem}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.especArmazem}" filterBy="#{item.especArmazem}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_especArmazem}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.especArmazem}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.estoqueMax}" filterBy="#{item.estoqueMax}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListArmazemTitle_estoqueMax}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estoqueMax}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.estoqueMin}" filterBy="#{item.estoqueMin}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListArmazemTitle_estoqueMin}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.estoqueMin}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idStatusArmazem}" filterBy="#{item.idStatusArmazem}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListArmazemTitle_idStatusArmazem}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idStatusArmazem}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idLocalOper}" filterBy="#{item.idLocalOper}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListArmazemTitle_idLocalOper}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idLocalOper}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.statusArmazemIdStatusArmazem.idStatusArmazem}" filterBy="#{item.statusArmazemIdStatusArmazem.idStatusArmazem}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListArmazemTitle_statusArmazemIdStatusArmazem}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.statusArmazemIdStatusArmazem.idStatusArmazem}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.localOperacaoIdLocalOper.idLocalOper}" filterBy="#{item.localOperacaoIdLocalOper.idLocalOper}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListArmazemTitle_localOperacaoIdLocalOper}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.localOperacaoIdLocalOper.idLocalOper}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idEndarmazem.idEndarmazem}" filterBy="#{item.idEndarmazem.idEndarmazem}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListArmazemTitle_idEndarmazem}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idEndarmazem.idEndarmazem}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+
+        </p:panel>
+        <p:panel header="Gerar Relatório">
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
+                <h:form id="referencia">
+                    <h:commandButton type="submit" value="Gerar Relatorio" >
+                        <p:fileDownload value="#{report.arquivoRetorno}" />
+                    </h:commandButton> 
+                </h:form>
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>

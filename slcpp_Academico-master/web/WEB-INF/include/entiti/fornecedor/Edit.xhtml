@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="FornecedorEditDlg" widgetVar="FornecedorEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditFornecedorTitle}" closeOnEscape="true">
+
+            <h:form id="FornecedorEditForm">
+                <h:panelGroup id="display" >
+                    <p:wizard flowListener="#{fornecedorController.onFlowProcess}" backLabel="Anterior" nextLabel="Próximo">
+                        <p:tab id="personales" title="Dados Fornecedor">    
+                            <p:panel header="Dados Fornecedor" styleClass="panel_wizard">
+                                <p:messages/>
+                                <p:panelGrid columns="2" columnClasses="column" rendered="#{fornecedorController.selected != null}">
+
+                                    <h:outputText value="#{myBundle.CreateFornecedorTitle_idFornecedor}" />
+                                    <h:outputText value="#{fornecedorController.selected.idFornecedor}" styleClass="outputLabel"/>
+
+                                    <p:outputLabel value="Razão Social" for="razaoSocial" />
+                                    <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{myBundle.CreateFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_razaoSocial}" size="60" maxlength="60"/>
+
+
+                                    <p:outputLabel value="CNPJ:" for="cnpj" />
+                                    <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" 
+                                                 title="#{myBundle.CreateFornecedorTitle_cnpj}" required="true" 
+                                                 requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_cnpj}" size="20" maxlength="20"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateFornecedorLabel_nomeFantasia}" for="nomeFantasia" />
+                                    <p:inputText id="nomeFantasia" value="#{fornecedorController.selected.nomeFantasia}" title="#{myBundle.CreateFornecedorTitle_nomeFantasia}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_nomeFantasia}" size="60" maxlength="60"/>
+
+                                    <p:outputLabel value="Insc.Social" for="inscSocial" />
+                                    <p:inputText id="inscSocial" value="#{fornecedorController.selected.inscSocial}" 
+                                                 title="#{myBundle.CreateFornecedorTitle_inscSocial}" required="true" 
+                                                 requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_inscSocial}" 
+                                                 size="20" maxlength="20"/>
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="personales2" title="Dados Cadastrais">    
+                            <p:panel header="Dados Cadastrais">
+                                <p:messages/>
+
+                                <p:panelGrid columns="2" columnClasses="label, value">
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
+                                    <p:inputText id="logradouro" value="#{fornecedorController.selected.idEndereco.logadouro}" title="#{myBundle.Createlo}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_bairro}" for="bairro" />
+                                    <p:inputText id="bairro" value="#{fornecedorController.selected.idEndereco.bairro}" 
+                                                 title="#{myBundle.CreateEnderecoTitle_bairro}" 
+                                                 required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
+                                    <p:inputText id="cep" value="#{fornecedorController.selected.idEndereco.cep}" 
+                                                 required="true"  requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_cep}"
+                                                 title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
+                                    <p:inputText  id="numero" value="#{fornecedorController.selected.idEndereco.numero}" 
+                                                  required="true"  requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_numero}"
+                                                  title="#{myBundle.CreateEnderecoTitle_numero}" size="15" maxlength="15"/>
+
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
+                                    <p:selectOneMenu id="idCidade" value="#{fornecedorController.selected.idEndereco.idCidade}" filter="true" 
+                                                     required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{cidadeController.items}"
+                                                       var="idCidadeItem"
+                                                       itemValue="#{idCidadeItem}"
+                                                       itemLabel="#{idCidadeItem.nomeCidade.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idEstado}" for="idEstado" />
+                                    <p:selectOneMenu id="idEstado" value="#{fornecedorController.selected.idEndereco.idEstado}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idEstado}" converter="estadoConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{estadoController.items}"
+                                                       var="idEstadoItem"
+                                                       itemValue="#{idEstadoItem}"
+                                                       itemLabel="#{idEstadoItem.nomeEstado.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
+                                    <p:selectOneMenu id="idPais" value="#{fornecedorController.selected.idEndereco.idPais}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
+                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                        <f:selectItems value="#{paisController.items}"
+                                                       var="idPaisItem"
+                                                       itemValue="#{idPaisItem}"
+                                                       itemLabel="#{idPaisItem.nomePais.toString()}"
+                                                       />
+
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" for="tel" />
+                                    <p:inputMask id="tel" mask="(99)9999-9999" value="#{fornecedorController.selected.contatosIdContato.tel}" title="#{myBundle.CreateContatosTitle_tel}" size="15" maxlength="15"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
+                                    <p:inputText id="email" value="#{fornecedorController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}"  size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" for="site" />
+                                    <p:inputText id="site" value="#{fornecedorController.selected.contatosIdContato.site}" title="#{myBundle.CreateContatosTitle_site}" size="40" maxlength="40"/>
+
+
+                                </p:panelGrid>
+
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="confirm" title="Confirmação">
+                            <p:panel header="Confirmação">
+                                <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_idFornecedor}" />
+                                        <h:outputText value="#{fornecedorController.selected.idFornecedor}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_cnpj}" />
+                                        <h:outputText value="#{fornecedorController.selected.cnpj}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_razaoSocial}" />
+                                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_nomeFantasia}" />
+                                        <h:outputText value="#{fornecedorController.selected.nomeFantasia}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateFornecedorTitle_razaoSocial}" />
+                                        <h:outputText value="#{fornecedorController.selected.razaoSocial}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.logadouro}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_cep}"/>
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.cep}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_numero}"/>
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.numero}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idCidade}"/>
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.idCidade.nomeCidade}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idEstado}"/>
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.idEstado.nomeEstado}"  styleClass="outputLabel"/>
+
+                                        <h:outputText value="#{myBundle.CreateEnderecoLabel_idPais}"/>
+                                        <h:outputText value="#{fornecedorController.selected.idEndereco.idPais.nomePais}"  styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" />
+                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.tel}" styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" />
+                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.celular}" styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" />
+                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.email}" styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.CreateContatosLabel_site}" />
+                                        <p:outputLabel value="#{fornecedorController.selected.contatosIdContato.site}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+
+                                <p:commandButton actionListener="#{fornecedorController.saveNew}" value="#{myBundle.Save}" 
+                                                 update="display,:FornecedorListForm:datalist,:growl" 
+                                                 oncomplete="handleSubmit(xhr,status,args,FornecedorEditDialog);" process="@this">
+                                    <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                                </p:commandButton>
+
+                                <p:commandButton value="#{myBundle.Cancel}" onclick="FornecedorEditDialog.hide()"/>
+
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+                </h:panelGroup>
+
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

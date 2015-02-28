@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovimentacaoCreateDlg" widgetVar="MovimentacaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateMovimentacaoTitle}" closeOnEscape="true">
+
+            <h:form id="MovimentacaoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_responsavel}" for="responsavel" />
+                        <p:inputText id="responsavel" value="#{movimentacaoController.selected.responsavel}" title="#{myBundle.CreateMovimentacaoTitle_responsavel}" required="true" requiredMessage="#{myBundle.CreateMovimentacaoRequiredMessage_responsavel}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idTipoSolicitacao}" for="idTipoSolicitacao" />
+                        <p:selectOneMenu id="idTipoSolicitacao" value="#{movimentacaoController.selected.idTipoSolicitacao}"  converter="tipoSolicitacaoConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoSolicitacaoController.items}"
+                                           var="idTipoSolicitacaoItem"
+                                           itemValue="#{idTipoSolicitacaoItem}"
+                                           itemLabel="#{idTipoSolicitacaoItem.tipoSolicitacao.toString()}"
+                                           />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idEndarmazem}" for="idEndarmazem" />
+                        <p:selectOneMenu id="idEndarmazem" value="#{movimentacaoController.selected.idEndarmazem}"  converter="endArmazemConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{endArmazemController.items}"
+                                           var="idEndarmazemItem"
+                                           itemValue="#{idEndarmazemItem}"
+                                           itemLabel="#{idEndarmazemItem.ladoEndArmazem.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idArmazem}" for="idArmazem" />
+                        <p:selectOneMenu id="idArmazem" value="#{movimentacaoController.selected.idArmazem}"  converter="armazemConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{armazemController.items}"
+                                           var="idArmazemItem"
+                                           itemValue="#{idArmazemItem}"
+                                           itemLabel="#{idArmazemItem.idArmazem.toString()}"
+                                           />
+                            
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{movimentacaoController.saveNew}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="MovimentacaoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

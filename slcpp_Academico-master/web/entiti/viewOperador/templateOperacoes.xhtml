@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MovimentacaoListForm">
+
+        <p:panel header="Lista Movimentações">
+
+            <p:dataTable id="datalist"
+                         value="#{movimentacaoController.items}"
+                         var="item"
+                         rowKey="#{item.idMovimentacao}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{movimentacaoController.selected}">
+                <p:column sortBy="#{item.idMovimentacao}" filterBy="#{item.idMovimentacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idMovimentacao}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dtPrevista}" filterBy="#{item.dtPrevista}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_dtPrevista}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dtPrevista}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dtEntrega}" filterBy="#{item.dtEntrega}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_dtEntrega}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dtEntrega}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.dtSaida}" filterBy="#{item.dtSaida}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_dtSaida}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dtSaida}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column sortBy="#{item.responsavel}" filterBy="#{item.responsavel}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_responsavel}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.responsavel}"/>
+                </p:column>
+
+                <!--
+                                    <p:column sortBy="#{item.tempoPrevisto}" filterBy="#{item.tempoPrevisto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_tempoPrevisto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tempoPrevisto}">
+                                            <f:convertDateTime pattern="HH:mm:ss" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.duracao}" filterBy="#{item.duracao}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_duracao}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.duracao}">
+                                            <f:convertDateTime pattern="HH:mm:ss" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idTipoSolicitacao.idTipoSolicitacao}" filterBy="#{item.idTipoSolicitacao.idTipoSolicitacao}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idTipoSolicitacao}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idTipoSolicitacao.idTipoSolicitacao}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idTipoEquipamento.idTipoEquipamento}" filterBy="#{item.idTipoEquipamento.idTipoEquipamento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idTipoEquipamento}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idTipoEquipamento.idTipoEquipamento}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idProduto.idProduto}" filterBy="#{item.idProduto.idProduto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idProduto.idProduto}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idFuncionario.idFuncionario}" filterBy="#{item.idFuncionario.idFuncionario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idFuncionario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idFuncionario.idFuncionario}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idEndarmazem.idEndarmazem}" filterBy="#{item.idEndarmazem.idEndarmazem}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idEndarmazem}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idEndarmazem.idEndarmazem}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idDetalheNota.idDetalheNota}" filterBy="#{item.idDetalheNota.idDetalheNota}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idDetalheNota}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idDetalheNota.idDetalheNota}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.idArmazem.idArmazem}" filterBy="#{item.idArmazem.idArmazem}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListMovimentacaoTitle_idArmazem}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idArmazem.idArmazem}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </h:form>
+
+</ui:composition>
