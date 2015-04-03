@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/include/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="#{myBundle.ProdutoTitle}"/>
+    </ui:define>
+
+    <ui:define name="body">
+
+        <ui:include src="/WEB-INF/include/entiti/produto/List.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/produto/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/produto/Edit.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/produto/Create.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/numOnu/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/classe/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/legendaCompatibilidade/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/compatibilidade/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/endArmazem/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/estFisico/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/numCas/View.xhtml"/>
+        <ui:include src="/WEB-INF/include/entiti/armazem/View.xhtml"/>
+
+    </ui:define>
+
+</ui:composition>

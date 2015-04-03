@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FuncionarioViewDlg" widgetVar="FuncionarioViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewFuncionarioTitle}" closeOnEscape="true">
+
+            <h:form id="FuncionarioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{funcionarioController.selected != null}">
+                        <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_matFuncionario}" />
+                                <h:outputText  value="#{funcionarioController.selected.matFuncionario}"  styleClass="outputLabel" />
+
+                                <h:outputText value="Nome:" />
+                                <h:outputText  value="#{funcionarioController.selected.nomeFuncionario}"  styleClass="outputLabel"/> 
+
+                                <h:outputText value="Sobrenome:"  />
+                                <h:outputText value="#{funcionarioController.selected.sbNomeFuncionario}"  styleClass="outputLabel" />
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_dtAdmissao}"  />
+                                <h:outputText value="#{funcionarioController.selected.dtAdmissao}" styleClass="outputLabel" >
+                                    <f:convertDateTime locale="pt_BR" type="date"  />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_funcao}" />
+                                <h:outputText value="#{funcionarioController.selected.funcao}" styleClass="outputLabel" />
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
+                                <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" />
+                                <h:outputText value="#{funcionarioController.selected.nivelFuncionario}"  styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
+                                <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
+                                <h:outputText value="#{funcionarioController.selected.sexo}" styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_cpf}" />
+                                <h:outputText value="#{funcionarioController.selected.cpf}" styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_rg}" />
+                                <h:outputText value="#{funcionarioController.selected.rg}" styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.EditFuncionarioLabel_dtNasc}" />
+                                <h:outputText value="#{funcionarioController.selected.dtNasc}" styleClass="outputLabel">
+                                    <f:convertDateTime locale="pt_BR" type="date"  />
+                                </h:outputText>
+
+                                <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
+                                <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.CreateEnderecoLabel_numero}"/>
+                                <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.numero}"  styleClass="outputLabel"/>
+                                
+                                <h:outputText value="#{myBundle.CreateEnderecoLabel_cep}"/>
+                                <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.cep}"  styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.CreateEnderecoLabel_idCidade}"/>
+                                <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idCidade.nomeCidade}"  styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.CreateEnderecoLabel_idEstado}"/>
+                                <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idEstado.nomeEstado}"  styleClass="outputLabel"/>
+
+                                <h:outputText value="#{myBundle.CreateEnderecoLabel_idPais}"/>
+                                <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idPais.nomePais}"  styleClass="outputLabel"/>
+
+                                <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" />
+                                <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.tel}" styleClass="outputLabel"/>
+
+                                <p:outputLabel value="#{myBundle.CreateContatosLabel_celular}" />
+                                <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.celular}" styleClass="outputLabel"/>
+
+                                <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" />
+                                <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.email}" styleClass="outputLabel"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="FuncionarioViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

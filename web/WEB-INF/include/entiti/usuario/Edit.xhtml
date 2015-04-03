@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditUsuarioTitle}" closeOnEscape="true">
+
+            <h:form id="UsuarioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuarioController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_idUsuario}" for="idUsuario" />
+                        <h:outputText id="idUsuario" value="#{usuarioController.selected.idUsuario}" />
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{usuarioController.selected.login}" title="#{myBundle.EditUsuarioTitle_login}" required="true" requiredMessage="#{myBundle.EditUsuarioRequiredMessage_login}" size="25" maxlength="25"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_senha}" for="senha" />
+                        <p:password id="senha" value="#{usuarioController.selected.senha}"  feedback="true" match="confirmaSenha"
+                                    promptLabel="Digite a senha" weakLabel="Força da senha : Fraca"   
+                                    goodLabel="Força da senha : Média" strongLabel="Força da senha : Forte"
+                                    title="#{myBundle.EditUsuarioTitle_senha}" required="true" 
+                                    requiredMessage="#{myBundle.EditUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuarioLabel_confirmaSenha}" for="confirmaSenha" />
+                        <p:password id="confirmaSenha" value="#{usuarioController.selected.senha}"  feedback="true"   
+                                    promptLabel="Confirme a senha" 
+                                    title="#{myBundle.EditUsuarioTitle_senha}" required="true" 
+                                    requiredMessage="#{myBundle.EditUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
+
+                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                        <p:selectBooleanCheckbox id="ativo" value="#{usuarioController.selected.ativo}"/>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.save}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioEditDialog);">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                    <p:commandButton value="Limpar" type="reset"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
