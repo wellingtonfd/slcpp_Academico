@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author wellington
+ * @author sacramento
  */
 @Entity
 @Table(name = "classe")
@@ -45,8 +45,6 @@ public class Classe implements Serializable {
     @Size(max = 450)
     @Column(name = "desc_classe")
     private String descClasse;
-    @OneToMany(mappedBy = "idClasse")
-    private List<TipoComp> tipoCompList;
     @OneToMany(mappedBy = "classe")
     private List<Produto> produtoList;
 
@@ -79,15 +77,6 @@ public class Classe implements Serializable {
 
     public void setDescClasse(String descClasse) {
         this.descClasse = descClasse;
-    }
-
-    @XmlTransient
-    public List<TipoComp> getTipoCompList() {
-        return tipoCompList;
-    }
-
-    public void setTipoCompList(List<TipoComp> tipoCompList) {
-        this.tipoCompList = tipoCompList;
     }
 
     @XmlTransient

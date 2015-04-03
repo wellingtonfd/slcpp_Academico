@@ -56,17 +56,6 @@ public class EndArmazemController extends AbstractController<EndArmazem> {
         return "/entiti/movimentacao/index";
     }
 
-    /**
-     * Sets the "items" attribute with a List of Armazem entities that are
-     * retrieved from EndArmazem?cap_first and returns the navigation outcome.
-     *
-     * @return navigation outcome for Armazem page
-     */
-    public String navigateArmazemList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Armazem_items", this.getSelected().getArmazemList());
-        }
-        return "/entiti/armazem/index";
-    }
+  
 
 }

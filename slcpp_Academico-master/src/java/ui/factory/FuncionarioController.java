@@ -61,19 +61,7 @@ public class FuncionarioController extends AbstractController<Funcionario> {
         return "/entiti/tipoSolicitacao/index";
     }
 
-    /**
-     * Sets the "items" attribute with a List of Movimentacao entities
-     * that are retrieved from Funcionario?cap_first and returns the navigation
-     * outcome.
-     *
-     * @return navigation outcome for Movimentacao page
-     */
-    public String navigateMovimentacaoList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
-        }
-        return "/entiti/movimentacao/index";
-    }
+    
 
     /**
      * Sets the "selected" attribute of the Usuario controller in order to

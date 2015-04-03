@@ -6,7 +6,6 @@
 package entiti;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,11 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -33,14 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Movimentacao.findAll", query = "SELECT m FROM Movimentacao m"),
-    @NamedQuery(name = "Movimentacao.findByIdMovimentacao", query = "SELECT m FROM Movimentacao m WHERE m.idMovimentacao = :idMovimentacao"),
-    @NamedQuery(name = "Movimentacao.findByDtEntrega", query = "SELECT m FROM Movimentacao m WHERE m.dtEntrega = :dtEntrega"),
-    @NamedQuery(name = "Movimentacao.findByDtPrevista", query = "SELECT m FROM Movimentacao m WHERE m.dtPrevista = :dtPrevista"),
-    @NamedQuery(name = "Movimentacao.findByDtSaida", query = "SELECT m FROM Movimentacao m WHERE m.dtSaida = :dtSaida"),
-    @NamedQuery(name = "Movimentacao.findByDuracao", query = "SELECT m FROM Movimentacao m WHERE m.duracao = :duracao"),
-    @NamedQuery(name = "Movimentacao.findByQuantFuncionarios", query = "SELECT m FROM Movimentacao m WHERE m.quantFuncionarios = :quantFuncionarios"),
-    @NamedQuery(name = "Movimentacao.findByResponsavel", query = "SELECT m FROM Movimentacao m WHERE m.responsavel = :responsavel"),
-    @NamedQuery(name = "Movimentacao.findByTempoPrevisto", query = "SELECT m FROM Movimentacao m WHERE m.tempoPrevisto = :tempoPrevisto")})
+    @NamedQuery(name = "Movimentacao.findByIdMovimentacao", query = "SELECT m FROM Movimentacao m WHERE m.idMovimentacao = :idMovimentacao")})
 public class Movimentacao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,49 +37,12 @@ public class Movimentacao implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_movimentacao")
     private Integer idMovimentacao;
-    @Column(name = "dt_entrega")
-    @Temporal(TemporalType.DATE)
-    private Date dtEntrega;
-    @Column(name = "dt_prevista")
-    @Temporal(TemporalType.DATE)
-    @Future
-    private Date dtPrevista;
-    @Column(name = "dt_saida")
-    @Temporal(TemporalType.DATE)
-    private Date dtSaida;
-    @Column(name = "duracao")
-    @Temporal(TemporalType.TIME)
-    private Date duracao;
-    @Size(max = 255)
-    @Column(name = "quant_funcionarios")
-    private String quantFuncionarios;
-    @Size(max = 255)
-    @Column(name = "responsavel")
-    private String responsavel;
-    @Column(name = "tempo_previsto")
-    @Temporal(TemporalType.TIME)
-    private Date tempoPrevisto;
-    @JoinColumn(name = "id_tipo_solicitacao", referencedColumnName = "id_tipo_solicitacao")
-    @ManyToOne
-    private TipoSolicitacao idTipoSolicitacao;
-    @JoinColumn(name = "id_tipo_equipamento", referencedColumnName = "id_tipo_equipamento")
-    @ManyToOne
-    private TipoEquipamento idTipoEquipamento;
-//    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
-//    @ManyToOne
-//    private Produto idProduto;
-    @JoinColumn(name = "id_funcionario", referencedColumnName = "id_funcionario")
-    @ManyToOne
-    private Funcionario idFuncionario;
     @JoinColumn(name = "id_endarmazem", referencedColumnName = "id_endarmazem")
-    @ManyToOne
+    @OneToOne
     private EndArmazem idEndarmazem;
-    @JoinColumn(name = "id_detalhe_nota", referencedColumnName = "id_detalhe_nota")
+    @JoinColumn(name = "id_produto", referencedColumnName = "num_onu")
     @ManyToOne
-    private DetNota idDetalheNota;
-    @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
-    @ManyToOne
-    private Armazem idArmazem;
+    private Produto idProduto;
 
     public Movimentacao() {
     }
@@ -107,94 +59,6 @@ public class Movimentacao implements Serializable {
         this.idMovimentacao = idMovimentacao;
     }
 
-    public Date getDtEntrega() {
-        return dtEntrega;
-    }
-
-    public void setDtEntrega(Date dtEntrega) {
-        this.dtEntrega = dtEntrega;
-    }
-
-    public Date getDtPrevista() {
-        return dtPrevista;
-    }
-
-    public void setDtPrevista(Date dtPrevista) {
-        this.dtPrevista = dtPrevista;
-    }
-
-    public Date getDtSaida() {
-        return dtSaida;
-    }
-
-    public void setDtSaida(Date dtSaida) {
-        this.dtSaida = dtSaida;
-    }
-
-    public Date getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Date duracao) {
-        this.duracao = duracao;
-    }
-
-    public String getQuantFuncionarios() {
-        return quantFuncionarios;
-    }
-
-    public void setQuantFuncionarios(String quantFuncionarios) {
-        this.quantFuncionarios = quantFuncionarios;
-    }
-
-    public String getResponsavel() {
-        return responsavel;
-    }
-
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
-    }
-
-    public Date getTempoPrevisto() {
-        return tempoPrevisto;
-    }
-
-    public void setTempoPrevisto(Date tempoPrevisto) {
-        this.tempoPrevisto = tempoPrevisto;
-    }
-
-    public TipoSolicitacao getIdTipoSolicitacao() {
-        return idTipoSolicitacao;
-    }
-
-    public void setIdTipoSolicitacao(TipoSolicitacao idTipoSolicitacao) {
-        this.idTipoSolicitacao = idTipoSolicitacao;
-    }
-
-    public TipoEquipamento getIdTipoEquipamento() {
-        return idTipoEquipamento;
-    }
-
-    public void setIdTipoEquipamento(TipoEquipamento idTipoEquipamento) {
-        this.idTipoEquipamento = idTipoEquipamento;
-    }
-
-//    public Produto getIdProduto() {
-//        return idProduto;
-//    }
-//
-//    public void setIdProduto(Produto idProduto) {
-//        this.idProduto = idProduto;
-//    }
-
-    public Funcionario getIdFuncionario() {
-        return idFuncionario;
-    }
-
-    public void setIdFuncionario(Funcionario idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
-
     public EndArmazem getIdEndarmazem() {
         return idEndarmazem;
     }
@@ -203,20 +67,12 @@ public class Movimentacao implements Serializable {
         this.idEndarmazem = idEndarmazem;
     }
 
-    public DetNota getIdDetalheNota() {
-        return idDetalheNota;
+    public Produto getIdProduto() {
+        return idProduto;
     }
 
-    public void setIdDetalheNota(DetNota idDetalheNota) {
-        this.idDetalheNota = idDetalheNota;
-    }
-
-    public Armazem getIdArmazem() {
-        return idArmazem;
-    }
-
-    public void setIdArmazem(Armazem idArmazem) {
-        this.idArmazem = idArmazem;
+    public void setIdProduto(Produto idProduto) {
+        this.idProduto = idProduto;
     }
 
     @Override

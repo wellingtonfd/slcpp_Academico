@@ -80,11 +80,11 @@ public class TipoSolicitacaoController extends AbstractController<TipoSolicitaca
      *
      * @return navigation outcome for Movimentacao page
      */
-    public String navigateMovimentacaoList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
-        }
-        return "/entiti/movimentacao/index";
-    }
+//    public String navigateMovimentacaoList() {
+//        if (this.getSelected() != null) {
+//            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Movimentacao_items", this.getSelected().getMovimentacaoList());
+//        }
+//        return "/entiti/movimentacao/index";
+//    }
 
 }

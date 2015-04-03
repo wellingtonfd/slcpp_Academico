@@ -64,8 +64,6 @@ public class TipoSolicitacao implements Serializable {
     @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
     @ManyToOne
     private Armazem idArmazem;
-    @OneToMany(mappedBy = "idTipoSolicitacao")
-    private List<Movimentacao> movimentacaoList;
 
     public TipoSolicitacao() {
     }
@@ -138,14 +136,6 @@ public class TipoSolicitacao implements Serializable {
         this.idArmazem = idArmazem;
     }
 
-    @XmlTransient
-    public List<Movimentacao> getMovimentacaoList() {
-        return movimentacaoList;
-    }
-
-    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
-        this.movimentacaoList = movimentacaoList;
-    }
 
     @Override
     public int hashCode() {

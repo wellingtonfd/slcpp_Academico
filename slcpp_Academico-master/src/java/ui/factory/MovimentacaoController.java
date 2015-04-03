@@ -44,31 +44,8 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         idArmazemController.setSelected(null);
     }
 
-    /**
-     * Sets the "selected" attribute of the TipoSolicitacao controller in order
-     * to display its data in a dialog. This is reusing existing the existing
-     * View dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareIdTipoSolicitacao(ActionEvent event) {
-        if (this.getSelected() != null && idTipoSolicitacaoController.getSelected() == null) {
-            idTipoSolicitacaoController.setSelected(this.getSelected().getIdTipoSolicitacao());
-        }
-    }
+ 
 
-    /**
-     * Sets the "selected" attribute of the TipoEquipamento controller in order
-     * to display its data in a dialog. This is reusing existing the existing
-     * View dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareIdTipoEquipamento(ActionEvent event) {
-        if (this.getSelected() != null && idTipoEquipamentoController.getSelected() == null) {
-            idTipoEquipamentoController.setSelected(this.getSelected().getIdTipoEquipamento());
-        }
-    }
 
     /**
      * Sets the "selected" attribute of the Produto controller in order to
@@ -83,18 +60,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 //        }
 //    }
 
-    /**
-     * Sets the "selected" attribute of the Funcionario controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareIdFuncionario(ActionEvent event) {
-        if (this.getSelected() != null && idFuncionarioController.getSelected() == null) {
-            idFuncionarioController.setSelected(this.getSelected().getIdFuncionario());
-        }
-    }
+ 
 
     /**
      * Sets the "selected" attribute of the EndArmazem controller in order to
@@ -109,29 +75,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         }
     }
 
-    /**
-     * Sets the "selected" attribute of the DetNota controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareIdDetalheNota(ActionEvent event) {
-        if (this.getSelected() != null && idDetalheNotaController.getSelected() == null) {
-            idDetalheNotaController.setSelected(this.getSelected().getIdDetalheNota());
-        }
-    }
+    
 
-    /**
-     * Sets the "selected" attribute of the Armazem controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareIdArmazem(ActionEvent event) {
-        if (this.getSelected() != null && idArmazemController.getSelected() == null) {
-            idArmazemController.setSelected(this.getSelected().getIdArmazem());
-        }
-    }
+  
 }

@@ -97,8 +97,6 @@ public class Funcionario implements Serializable {
     private String sexo;
     @OneToMany(mappedBy = "idFuncionario")
     private List<TipoSolicitacao> tipoSolicitacaoList;
-    @OneToMany(mappedBy = "idFuncionario")
-    private List<Movimentacao> movimentacaoList;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne
     private Usuario idUsuario = new Usuario();
@@ -237,14 +235,7 @@ public class Funcionario implements Serializable {
         this.tipoSolicitacaoList = tipoSolicitacaoList;
     }
 
-    @XmlTransient
-    public List<Movimentacao> getMovimentacaoList() {
-        return movimentacaoList;
-    }
 
-    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
-        this.movimentacaoList = movimentacaoList;
-    }
 
     public Usuario getIdUsuario() {
         return idUsuario;

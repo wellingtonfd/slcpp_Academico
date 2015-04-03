@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author wellington
+ * @author sacramento
  */
 @Entity
 @Table(name = "produto")
@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findByNumOnu", query = "SELECT p FROM Produto p WHERE p.numOnu = :numOnu"),
     @NamedQuery(name = "Produto.findByDescProduto", query = "SELECT p FROM Produto p WHERE p.descProduto = :descProduto")})
 public class Produto implements Serializable {
+    @OneToMany(mappedBy = "idProduto")
+    private List<Movimentacao> movimentacaoList;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -46,8 +48,6 @@ public class Produto implements Serializable {
     @JoinColumn(name = "classe", referencedColumnName = "id_classe")
     @ManyToOne
     private Classe classe;
-    @OneToMany(mappedBy = "numonu")
-    private List<Compatibilidade> compatibilidadeList;
 
     public Produto() {
     }
@@ -80,15 +80,6 @@ public class Produto implements Serializable {
         this.classe = classe;
     }
 
-    @XmlTransient
-    public List<Compatibilidade> getCompatibilidadeList() {
-        return compatibilidadeList;
-    }
-
-    public void setCompatibilidadeList(List<Compatibilidade> compatibilidadeList) {
-        this.compatibilidadeList = compatibilidadeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -112,6 +103,15 @@ public class Produto implements Serializable {
     @Override
     public String toString() {
         return "entiti.Produto[ numOnu=" + numOnu + " ]";
+    }
+
+    @XmlTransient
+    public List<Movimentacao> getMovimentacaoList() {
+        return movimentacaoList;
+    }
+
+    public void setMovimentacaoList(List<Movimentacao> movimentacaoList) {
+        this.movimentacaoList = movimentacaoList;
     }
     
 }
