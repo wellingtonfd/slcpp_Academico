@@ -15,41 +15,28 @@
                 <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
-                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_responsavel}" for="responsavel" />
-                        <p:inputText id="responsavel" value="#{movimentacaoController.selected.responsavel}" title="#{myBundle.CreateMovimentacaoTitle_responsavel}" required="true" requiredMessage="#{myBundle.CreateMovimentacaoRequiredMessage_responsavel}" size="30" maxlength="30"/>
-
-                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idTipoSolicitacao}" for="idTipoSolicitacao" />
-                        <p:selectOneMenu id="idTipoSolicitacao" value="#{movimentacaoController.selected.idTipoSolicitacao}"  converter="tipoSolicitacaoConverter">
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
+                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoSolicitacaoController.items}"
-                                           var="idTipoSolicitacaoItem"
-                                           itemValue="#{idTipoSolicitacaoItem}"
-                                           itemLabel="#{idTipoSolicitacaoItem.tipoSolicitacao.toString()}"
+                            <f:selectItems value="#{produtoController.items}"
+                                           var="idProdutoItem"
+                                           itemValue="#{idProdutoItem}"
+                                           itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
-                        </p:selectOneMenu>
 
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idEndarmazem}" for="idEndarmazem" />
                         <p:selectOneMenu id="idEndarmazem" value="#{movimentacaoController.selected.idEndarmazem}"  converter="endArmazemConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{endArmazemController.items}"
                                            var="idEndarmazemItem"
                                            itemValue="#{idEndarmazemItem}"
-                                           itemLabel="#{idEndarmazemItem.ladoEndArmazem.toString()}"
+                                           itemLabel="#{idEndarmazemItem.ruaEndArmazem.toString()}"
                                            />
 
                         </p:selectOneMenu>
 
 
-                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idArmazem}" for="idArmazem" />
-                        <p:selectOneMenu id="idArmazem" value="#{movimentacaoController.selected.idArmazem}"  converter="armazemConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{armazemController.items}"
-                                           var="idArmazemItem"
-                                           itemValue="#{idArmazemItem}"
-                                           itemLabel="#{idArmazemItem.idArmazem.toString()}"
-                                           />
-                            
-                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.saveNew}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
