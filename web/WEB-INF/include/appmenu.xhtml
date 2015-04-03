@@ -48,7 +48,7 @@
                     <p:menuitem value="#{myBundle.UsuarioRolerHeading}" outcome="/entiti/usuarioRoler/index" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
-                    <p:menuitem value="Armazéns" outcome="/entiti/armazem/index" />
+                    <p:menuitem value="Armazéns" outcome="/entiti/endArmazem/index" />
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/epe/index"/>

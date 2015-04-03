@@ -18,21 +18,14 @@
                         <h:outputText value="#{myBundle.ViewEndArmazemLabel_idEndarmazem}"/>
                         <h:outputText value="#{endArmazemController.selected.idEndarmazem}" title="#{myBundle.ViewEndArmazemTitle_idEndarmazem}"/>
 
-                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_corEndArmazem}"/>
-                        <h:outputText value="#{endArmazemController.selected.corEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_corEndArmazem}"/>
-
+                      
                         <h:outputText value="#{myBundle.ViewEndArmazemLabel_ruaEndArmazem}"/>
                         <h:outputText value="#{endArmazemController.selected.ruaEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_ruaEndArmazem}"/>
 
-                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_ladoEndArmazem}"/>
-                        <h:outputText value="#{endArmazemController.selected.ladoEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_ladoEndArmazem}"/>
+                        <h:outputText value="Estatos"/>
+                        <h:outputText value="#{endArmazemController.selected.estatos}" title="Ocupado"/>
 
-                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_nivelEndArmazem}"/>
-                        <h:outputText value="#{endArmazemController.selected.nivelEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_nivelEndArmazem}"/>
-
-                        <h:outputText value="#{myBundle.ViewEndArmazemLabel_posicaoEndArmazem}"/>
-                        <h:outputText value="#{endArmazemController.selected.posicaoEndArmazem}" title="#{myBundle.ViewEndArmazemTitle_posicaoEndArmazem}"/>
-                    </p:panelGrid>
+                       </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="EndArmazemViewDialog.hide()"/>
                 </h:panelGroup>
 

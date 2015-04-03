@@ -14,11 +14,7 @@
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('EndArmazemListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('EndArmazemListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('EndArmazemListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                <p:separator/>
-                <p:menuitem value="#{myBundle.EndArmazemMenuItem_produtoList}" icon="ui-icon-search"  action="#{endArmazemController.navigateProdutoList}" disabled="#{empty endArmazemController.selected.produtoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.EndArmazemMenuItem_movimentacaoList}" icon="ui-icon-search"  action="#{endArmazemController.navigateMovimentacaoList}" disabled="#{empty endArmazemController.selected.movimentacaoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.EndArmazemMenuItem_armazemList}" icon="ui-icon-search"  action="#{endArmazemController.navigateArmazemList}" disabled="#{empty endArmazemController.selected.armazemList}" ajax="false"/>  
-            </p:contextMenu>
+             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{endArmazemController.items}"
                          var="item"
@@ -41,14 +37,6 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.corEndArmazem}" filterBy="#{item.corEndArmazem}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEndArmazemTitle_corEndArmazem}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.corEndArmazem}"/>
-                </p:column>
-                
-                
 
 
                 <p:column sortBy="#{item.ruaEndArmazem}" filterBy="#{item.ruaEndArmazem}">
@@ -59,31 +47,12 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.ladoEndArmazem}" filterBy="#{item.ladoEndArmazem}">
+                <p:column sortBy="#{item.estatos}" filterBy="#{item.estatos}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEndArmazemTitle_ladoEndArmazem}"/>
+                        <h:outputText value="Ocupado"/>
                     </f:facet>
-                    <h:outputText value="#{item.ladoEndArmazem}"/>
+                    <h:outputText value="#{item.estatos}"/>
                 </p:column>
-
-
-                <p:column sortBy="#{item.nivelEndArmazem}" filterBy="#{item.nivelEndArmazem}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEndArmazemTitle_nivelEndArmazem}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.nivelEndArmazem}"/>
-                </p:column>
-
-
-                <p:column sortBy="#{item.posicaoEndArmazem}" filterBy="#{item.posicaoEndArmazem}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEndArmazemTitle_posicaoEndArmazem}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.posicaoEndArmazem}"/>
-                </p:column>
-                
-                
-
 
             </p:dataTable>
 
