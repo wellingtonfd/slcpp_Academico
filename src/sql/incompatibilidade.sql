@@ -14,6 +14,8 @@
 			WHERE
 				p.num_onu = p_numonu
 				AND
+				p_numonu != c.numonu
+				AND
 				p.classe = t.id_classe
 				AND
 				t.id_tipo_comp = c.id_tipo_comp;
