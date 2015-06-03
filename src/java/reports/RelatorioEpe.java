@@ -26,10 +26,8 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
  
 public class RelatorioEpe {
- public static final String TEMPLATE = "C:\\Users\\wellington\\Documents\\NetBeansProjects\\slcpp_Academico-master\\web\\WEB-INF\\reports\\Relatorio_Epe\\RelatorioEpe.jrxml";
-     
-    //public static final String TEMPLATE = "C:\\Users\\gingo\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\Relatorio_Epe\\RelatorioEpe.jrxml";
-     
+ public static final String TEMPLATE = "C:\\Users\\wellington\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\Relatorio_Epe\\RelatorioEpe.jrxml";
+         
     public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          
         StreamedContent arquivoRetorno = null;
