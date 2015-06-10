@@ -27,7 +27,7 @@ import org.primefaces.model.StreamedContent;
  
 public class ReportUtil {
    // public static final String TEMPLATE =C:\Users\wellington\Documents\NetBeansProjects\slcpp_Academico-master\web\WEB-INF\reports
-    public static final String TEMPLATE = "C:\\Users\\wellington\\Documents\\NetBeansProjects\\slcpp_Academico-master\\web\\WEB-INF\\reports\\users.jrxml";
+    public static final String TEMPLATE = "C:\\Users\\wellington\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\users.jrxml";
      
     public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          

@@ -30,9 +30,16 @@
 
                 <p:column sortBy="#{item.descProduto}" filterBy="#{item.descProduto}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListProdutoTitle_descProduto}"/>
+                        <h:outputText value="Nome e Descrição Produto"/>
                     </f:facet>
                     <h:outputText value="#{item.descProduto}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.classe.idClasse}" filterBy="#{item.classe.idClasse}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListProdutoTitle_idClasse}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.classe.idClasse}"/>
                 </p:column>
                             
             </p:dataTable>

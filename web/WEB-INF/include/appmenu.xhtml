@@ -16,9 +16,9 @@
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
                     <p:submenu label="Armazéns...">
-                        <p:menuitem value="Armazém"  outcome="/entiti/viewOperador/viewArmazem" />
+                        <p:menuitem value="Armazéns"  outcome="/entiti/viewOperador/viewArmazem" />
                         <p:separator />
-                        <p:menuitem value="Endereço Armazém" outcome="/entiti/viewOperador/viewEndArmazem" />
+                        <p:menuitem value="Lotes" outcome="/entiti/viewOperador/viewEndArmazem" />
                     </p:submenu>
                     <p:separator />
                     <p:menuitem value="Compatibilidades" outcome="/entiti/viewOperador/viewCompatibilidade" />
@@ -35,10 +35,9 @@
                     <p:separator />
                     <p:menuitem  value="Funcionários" outcome="/entiti/viewOperador/viewFuncionario"/>
                     <p:separator />
-                     <p:menuitem  value="Movimentações" outcome="/entiti/viewOperador/viewOperacoes" />
+                     <p:menuitem  value="Movimentações???" outcome="/entiti/viewOperador/viewOperacoes" />
                     <p:separator />
-                    <p:submenu label="Produtos" >
-                    </p:submenu>
+                    <p:menuitem value="Produtos" outcome="/entiti/viewOperador/viewProdutos" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
                     <p:menuitem value="#{myBundle.UsuarioHeading}" outcome="/entiti/usuario/index" />
@@ -48,7 +47,11 @@
                     <p:menuitem value="#{myBundle.UsuarioRolerHeading}" outcome="/entiti/usuarioRoler/index" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
-                    <p:menuitem value="Armazéns" outcome="/entiti/endArmazem/index" />
+                    <p:submenu label="Armazém">
+                    <p:menuitem value="Armazéns" outcome="/entiti/armazem/index" />
+                    <p:separator />
+                    <p:menuitem value="Lotes" outcome="/entiti/endArmazem/index" />
+                    </p:submenu>
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/epe/index"/>
