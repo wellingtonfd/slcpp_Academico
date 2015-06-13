@@ -7,21 +7,12 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
 
-
-
-
     <ui:composition>
         <h:form id="menuForm">  
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
                 <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
-                    <p:submenu label="Armazéns...">
-                        <p:menuitem value="Armazéns"  outcome="/entiti/viewOperador/viewArmazem" />
-                        <p:separator />
-                        <p:menuitem value="Lotes" outcome="/entiti/viewOperador/viewEndArmazem" />
-                    </p:submenu>
-                    <p:separator />
-                    <p:menuitem value="Compatibilidades" outcome="/entiti/viewOperador/viewCompatibilidade" />
+                       <p:menuitem value="Armazéns"  outcome="/entiti/viewOperador/viewArmazem" />                  
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/viewOperador/viewEPE"/>
@@ -47,11 +38,7 @@
                     <p:menuitem value="#{myBundle.UsuarioRolerHeading}" outcome="/entiti/usuarioRoler/index" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
-                    <p:submenu label="Armazém">
                     <p:menuitem value="Armazéns" outcome="/entiti/armazem/index" />
-                    <p:separator />
-                    <p:menuitem value="Lotes" outcome="/entiti/endArmazem/index" />
-                    </p:submenu>
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/epe/index"/>
@@ -70,7 +57,7 @@
                     <p:menuitem value="Produtos"  outcome="/entiti/produto/index"/>
                 </p:submenu>
                 <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
-                    <p:menuitem value="Armazém" outcome="/entiti/viewDiretor/relatorioArmazem"/>
+                    <p:menuitem value="Armazéns" outcome="/entiti/viewDiretor/relatorioArmazem"/>
                     <p:separator/>
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/viewDiretor/relatorioEPE"/>  
@@ -100,9 +87,7 @@
                     <p:menuitem value="Contatos Suporte" onclick="PF('View2').show()" icon="ui-icon-mail-closed" />
                     <p:separator/>
                     <p:menuitem value="Sobre" onclick="PF('View3').show()" icon="ui-icon-star"/>
-
                 </p:submenu>
-
                 <f:facet name="options">
                     <p:menuButton value="#{request.remoteUser}">
                         <p:menuitem value="Alterar Senha" onclick="PF('AltSenha').show()" icon="ui-icon-key"/>

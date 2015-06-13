@@ -5,11 +5,8 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
-
     <h:form id="VeiculoListForm">
-
         <p:panel header="#{myBundle.ListVeiculoTitle}">
-
             <p:dataTable id="datalist"
                          value="#{veiculoController.items}"
                          var="item"
@@ -19,47 +16,36 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{veiculoController.selected}">
-
                 <p:column sortBy="#{item.idVeiculo}" filterBy="#{item.idVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_idVeiculo}"/>
                     </f:facet>
                     <h:outputText value="#{item.idVeiculo}"/>
                 </p:column>
-
-
                 <p:column sortBy="#{item.nomeVeiculo}" filterBy="#{item.nomeVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_nomeVeiculo}"/>
                     </f:facet>
                     <h:outputText value="#{item.nomeVeiculo}"/>
                 </p:column>
-
-
                 <p:column sortBy="#{item.modeloVeiculo}" filterBy="#{item.modeloVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_modeloVeiculo}"/>
                     </f:facet>
                     <h:outputText value="#{item.modeloVeiculo}"/>
                 </p:column>
-
-
                 <p:column sortBy="#{item.fabricanteVeiculo}" filterBy="#{item.fabricanteVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_fabricanteVeiculo}"/>
                     </f:facet>
                     <h:outputText value="#{item.fabricanteVeiculo}"/>
                 </p:column>
-
-
                 <p:column sortBy="#{item.placaVeiculo}" filterBy="#{item.placaVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_placaVeiculo}"/>
                     </f:facet>
                     <h:outputText value="#{item.placaVeiculo}"/>
                 </p:column>
-
-
                 <p:column sortBy="#{item.corVeiculo}" filterBy="#{item.corVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_corVeiculo}"/>
@@ -93,9 +79,6 @@
                 -->
 
             </p:dataTable>
-
         </p:panel>
-
     </h:form>
-
 </ui:composition>
