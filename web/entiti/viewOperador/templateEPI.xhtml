@@ -36,14 +36,6 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.grupoEpi}" filterBy="#{item.grupoEpi}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEpiTitle_grupoEpi}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.grupoEpi}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.especEpi}" filterBy="#{item.especEpi}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListEpiTitle_especEpi}"/>
@@ -56,7 +48,7 @@
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListEpiTitle_idMaterial}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idMaterial}"/>
+                    <h:outputText value="#{item.idMaterial.nomeMaterial}"/>
                 </p:column>
 
 

@@ -26,7 +26,14 @@
                     </f:facet>
                     <h:outputText value="#{item.idFuncionario}"/>
                 </p:column>
-
+                
+                                <!--codigo gerado em 27/10/2014-->
+                <p:column sortBy="#{item.matFuncionario}" filterBy="#{item.matFuncionario}">
+                    <f:facet name="header">
+                        <h:outputText value="Matrícula"/>
+                    </f:facet>
+                    <h:outputText value="#{item.matFuncionario}"/>
+                </p:column>
 
                 <p:column sortBy="#{item.nomeFuncionario}" filterBy="#{item.nomeFuncionario}">
                     <f:facet name="header">
@@ -34,16 +41,27 @@
                     </f:facet>
                     <h:outputText value="#{item.nomeFuncionario}"/>
                 </p:column>
-
-
-                <!--codigo gerado em 27/10/2014-->
-                <p:column sortBy="#{item.matFuncionario}" filterBy="#{item.matFuncionario}">
+                
+                 <p:column sortBy="#{item.sbNomeFuncionario}" filterBy="#{item.sbNomeFuncionario}">
                     <f:facet name="header">
-                        <h:outputText value="Matrícula Funcionário"/>
+                        <h:outputText value="#{myBundle.ListFuncionarioTitle_sbNomeFuncionario}"/>
                     </f:facet>
-                    <h:outputText value="#{item.matFuncionario}"/>
+                    <h:outputText value="#{item.sbNomeFuncionario}"/>
                 </p:column>
 
+                <p:column sortBy="#{item.funcao}" filterBy="#{item.funcao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListFuncionarioTitle_funcao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.funcao}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.cargo}" filterBy="#{item.cargo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListFuncionarioTitle_cargo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cargo}"/>
+                </p:column>
 
                 <p:column sortBy="#{item.cpf}" filterBy="#{item.cpf}">
                     <f:facet name="header">

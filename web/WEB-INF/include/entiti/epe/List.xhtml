@@ -61,15 +61,6 @@
                     <h:outputText value="#{item.agenteEpe}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.tipoMaterialIdMaterial}" filterBy="#{item.tipoMaterialIdMaterial}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEpeTitle_tipoMaterialIdMaterial}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.tipoMaterialIdMaterial.nomeMaterial}"/>
-                </p:column>
-
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{epeController.prepareCreate}" update=":EpeCreateForm" oncomplete="EpeCreateDialog.show()"/>

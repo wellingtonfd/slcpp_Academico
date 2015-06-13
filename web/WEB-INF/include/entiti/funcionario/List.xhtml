@@ -35,6 +35,13 @@
                 <p:ajax event="rowUnselect" update=":FuncionarioListForm:createButton :FuncionarioListForm:viewButton :FuncionarioListForm:editButton :FuncionarioListForm:deleteButton :FuncionarioListForm:FuncionarioDataTableContextMenu" listener="#{funcionarioController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('FuncionarioListForm:viewButton').click();"/>
 
+                <p:column sortBy="#{item.idFuncionario}" filterBy="#{item.idFuncionario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListFuncionarioTitle_idFuncionario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idFuncionario}"/>
+                </p:column>
+                
                 <p:column sortBy="#{item.matFuncionario}" filterBy="#{item.matFuncionario}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFuncionarioTitle_matFuncionario}"/>
@@ -49,8 +56,13 @@
                     </f:facet>
                     <h:outputText value="#{item.nomeFuncionario}"/>
                 </p:column>
-
-
+                
+                <p:column sortBy="#{item.sbNomeFuncionario}" filterBy="#{item.sbNomeFuncionario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListFuncionarioTitle_sbNomeFuncionario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sbNomeFuncionario}"/>
+                </p:column>
 
                 <p:column sortBy="#{item.funcao}" filterBy="#{item.funcao}">
                     <f:facet name="header">
@@ -59,15 +71,19 @@
                     <h:outputText value="#{item.funcao}"/>
                 </p:column>
 
-
-
                 <p:column sortBy="#{item.cargo}" filterBy="#{item.cargo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFuncionarioTitle_cargo}"/>
                     </f:facet>
                     <h:outputText value="#{item.cargo}"/>
                 </p:column>
-
+                
+                <p:column sortBy="#{item.cpf}" filterBy="#{item.cpf}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListFuncionarioTitle_cpf}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cpf}"/>
+                </p:column>
 
 <!--
                 <p:column sortBy="#{item.cpf}" filterBy="#{item.cpf}">
