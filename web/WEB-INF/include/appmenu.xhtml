@@ -52,7 +52,11 @@
                     <p:separator/>
                     <p:menuitem value="Funcionários" outcome="/entiti/funcionario/index"  />
                     <p:separator/>
-                    <p:menuitem value="Movimentações" outcome="/entiti/movimentacao/index"/>
+                    <p:submenu label="Movimentações...">
+                    <p:menuitem value="Entrada" outcome="/entiti/movimentacao/index"/>
+                    <p:separator/>
+                    <p:menuitem value="Saída" outcome="/entiti/movimentacao/index"/>
+                    </p:submenu>
                     <p:separator/>
                     <p:menuitem value="Produtos"  outcome="/entiti/produto/index"/>
                 </p:submenu>
