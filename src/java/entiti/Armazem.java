@@ -75,7 +75,7 @@ public class Armazem implements Serializable {
     private EndArmazem idEndarmazem;
     @JoinColumn(name = "local_operacao_id_local_oper", referencedColumnName = "id_local_oper")
     @ManyToOne
-    private LocalOperacao localOperacaoIdLocalOper;
+    private LocalOperacao localOperacaoIdLocalOper = new LocalOperacao();
     @JoinColumn(name = "id_status_armazem", referencedColumnName = "id_status_armazem")
     @ManyToOne
     private StatusArmazem idStatusArmazem;

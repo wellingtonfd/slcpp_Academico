@@ -63,10 +63,10 @@ public class Fornecedor implements Serializable {
     private List<DetNota> detNotaList;
     @JoinColumn(name = "contatos_id_contato", referencedColumnName = "id_contato")
     @ManyToOne
-    private Contatos contatosIdContato;
+    private Contatos contatosIdContato = new Contatos();
     @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
     @ManyToOne
-    private Endereco idEndereco;
+    private Endereco idEndereco = new Endereco();//instanciar
 
     public Fornecedor() {
     }

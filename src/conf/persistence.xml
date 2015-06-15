@@ -3,7 +3,7 @@
   <persistence-unit name="slcpp_AcademicoPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>slcpp</jta-data-source>
-    <shared-cache-mode>ALL</shared-cache-mode>
+    <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
     <properties>
     </properties>
   </persistence-unit>
