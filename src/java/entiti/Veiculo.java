@@ -70,9 +70,24 @@ public class Veiculo implements Serializable {
     private String placaVeiculo;
     @JoinColumn(name = "id_combustivel", referencedColumnName = "id_combustivel")
     @ManyToOne
-    private Combustivel idCombustivel;
+    private Combustivel idCombustivel= new Combustivel();
+    //Inserido  
+    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor")
+    @ManyToOne
+    private Fornecedor idFornecedor = new Fornecedor();
+    
     @OneToMany(mappedBy = "idVeiculo")
     private List<TipoEquipamento> tipoEquipamentoList;
+
+    
+    public Fornecedor getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(Fornecedor idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+    
 
     public Veiculo() {
     }

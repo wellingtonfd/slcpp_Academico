@@ -39,6 +39,16 @@
                         <p:outputLabel value="#{myBundle.EditVeiculoLabel_chassiVeiculo}" for="chassiVeiculo" />
                         <p:inputText id="chassiVeiculo" value="#{veiculoController.selected.chassiVeiculo}" title="#{myBundle.EditVeiculoTitle_chassiVeiculo}"  size="25" maxlength="25"/>
 
+                      <p:outputLabel value="#{myBundle.CreateFornecedorLabel_idFornecedor}" for="idFornecedor" />
+                        <p:selectOneMenu id="idFornecedor" value="#{veiculoController.selected.idFornecedor}"  converter="fornecedorConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{fornecedorController.items}"
+                                           var="idFornecedorItem"
+                                           itemValue="#{idFornecedorItem}"
+                                           itemLabel="#{idFornecedorItem.nomeFantasia.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel value="#{myBundle.CreateVeiculoLabel_idCombustivel}" for="idCombustivel" />
                         <p:selectOneMenu id="idCombustivel" value="#{veiculoController.selected.idCombustivel}"  converter="combustivelConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
@@ -47,7 +57,6 @@
                                            itemValue="#{idCombustivelItem}"
                                            itemLabel="#{idCombustivelItem.nomeCombustivel.toString()}"
                                            />
-
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{veiculoController.save}" value="#{myBundle.Save}" update="display,:VeiculoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,VeiculoEditDialog);">

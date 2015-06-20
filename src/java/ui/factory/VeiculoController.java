@@ -15,6 +15,8 @@ public class VeiculoController extends AbstractController<Veiculo> {
     private TipoEquipamentoController tipoEquipamentoListController;
     @Inject
     private CombustivelController idCombustivelController;
+    @Inject
+    private FornecedorController idFornecedorController;
 
     public VeiculoController() {
         // Inform the Abstract parent controller of the concrete Veiculo?cap_first Entity
@@ -26,7 +28,10 @@ public class VeiculoController extends AbstractController<Veiculo> {
      */
     public void resetParents() {
         idCombustivelController.setSelected(null);
+        idFornecedorController.setSelected(null);
     }
+    
+    
 
     /**
      * Sets the "items" attribute with a List of TipoEquipamento entities
@@ -52,6 +57,12 @@ public class VeiculoController extends AbstractController<Veiculo> {
     public void prepareIdCombustivel(ActionEvent event) {
         if (this.getSelected() != null && idCombustivelController.getSelected() == null) {
             idCombustivelController.setSelected(this.getSelected().getIdCombustivel());
+        }
+    }
+    
+     public void prepareIdFornecedor(ActionEvent event) {
+        if (this.getSelected() != null && idFornecedorController.getSelected() == null) {
+            idFornecedorController.setSelected(this.getSelected().getIdFornecedor());
         }
     }
 }
