@@ -46,7 +46,7 @@ public class TipoMaterial implements Serializable {
     @Size(max = 255)
     @Column(name = "nome_material")
     private String nomeMaterial;
-    @OneToMany(mappedBy = "idMaterial")
+    @OneToMany(mappedBy = "idTipoMaterial")
     private List<Epi> epiList;
 
     public TipoMaterial() {

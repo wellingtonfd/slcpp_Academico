@@ -13,6 +13,8 @@ public class EpeController extends AbstractController<Epe> {
 
     @Inject
     private TipoEquipamentoController tipoEquipamentoListController;
+    @Inject
+    private FornecedorController idFornecedorController;
 
     public EpeController() {
         // Inform the Abstract parent controller of the concrete Epe?cap_first Entity
@@ -23,6 +25,7 @@ public class EpeController extends AbstractController<Epe> {
      * Resets the "selected" attribute of any parent Entity controllers.
      */
     public void resetParents() {
+        idFornecedorController.setSelected(null);
     }
 
     /**
@@ -37,5 +40,10 @@ public class EpeController extends AbstractController<Epe> {
 //        }
 //        return "/entiti/tipoEquipamento/index";
 //    }
+    public void prepareIdFornecedor(ActionEvent event) {
+        if (this.getSelected() != null && idFornecedorController.getSelected() == null) {
+            idFornecedorController.setSelected(this.getSelected().getIdFornecedor());
+        }
+    }
 
 }

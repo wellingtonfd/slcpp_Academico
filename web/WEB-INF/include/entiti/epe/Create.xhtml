@@ -24,17 +24,16 @@
                         <p:outputLabel value="#{myBundle.CreateEpeLabel_agenteEpe}" for="agenteEpe" />
                         <p:inputText id="agenteEpe" value="#{epeController.selected.agenteEpe}" title="#{myBundle.CreateEpeTitle_agenteEpe}"  size="45" maxlength="45"/>
 
-                        <p:outputLabel value="#{myBundle.CreateEpiLabel_idMaterial}" for="idMaterial" />
-                        <p:selectOneMenu id="idMaterial" value="#{epeController.selected.tipoMaterialIdMaterial}"  required="true" requiredMessage="#{myBundle.TipoMaterialTitle}" converter="tipoMaterialConverter">
+                        <p:outputLabel value="#{myBundle.CreateFornecedorLabel_idFornecedor}" for="idFornecedor" />
+                        <p:selectOneMenu id="idFornecedor" value="#{epeController.selected.idFornecedor}"  converter="fornecedorConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoMaterialController.items}"
-                                           var="tipoMaterialItem"
-                                           itemValue="#{tipoMaterialItem}"
-                                           itemLabel="#{tipoMaterialItem.nomeMaterial.toString()}"
+                            <f:selectItems value="#{fornecedorController.items}"
+                                           var="idFornecedorItem"
+                                           itemValue="#{idFornecedorItem}"
+                                           itemLabel="#{idFornecedorItem.nomeFantasia.toString()}"
                                            />
-
                         </p:selectOneMenu>
-
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epeController.saveNew}" value="#{myBundle.Save}" update="display,:EpeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpeCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>

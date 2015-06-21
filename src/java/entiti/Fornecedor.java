@@ -67,6 +67,8 @@ public class Fornecedor implements Serializable {
     @JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
     @ManyToOne
     private Endereco idEndereco = new Endereco();//instanciar
+    @OneToMany(mappedBy = "idFornecedor")
+    private List<Veiculo> veiculoList;
 
     public Fornecedor() {
     }
