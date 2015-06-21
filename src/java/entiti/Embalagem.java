@@ -66,6 +66,15 @@ public class Embalagem implements Serializable {
     @ManyToOne
     private Capacidade idCapacidade;
 
+    
+    //TODO: mapeamento de dimensões 
+    
+    private double largura;
+    private double altura;
+    private double comprimento;
+    
+    
+    
     public Embalagem() {
     }
 
@@ -145,6 +154,32 @@ public class Embalagem implements Serializable {
         this.idCapacidade = idCapacidade;
     }
 
+    public double getLargura() {
+        return largura;
+    }
+
+    public void setLargura(double largura) {
+        this.largura = largura;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public double getComprimento() {
+        return comprimento;
+    }
+
+    public void setComprimento(double comprimento) {
+        this.comprimento = comprimento;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

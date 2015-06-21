@@ -75,13 +75,25 @@ public class Armazem implements Serializable {
     private EndArmazem idEndarmazem;
     @JoinColumn(name = "local_operacao_id_local_oper", referencedColumnName = "id_local_oper")
     @ManyToOne
-    private LocalOperacao localOperacaoIdLocalOper = new LocalOperacao();
+    private LocalOperacao localOperacaoIdLocalOper;
     @JoinColumn(name = "id_status_armazem", referencedColumnName = "id_status_armazem")
     @ManyToOne
     private StatusArmazem idStatusArmazem;
     @JoinColumn(name = "status_armazem_id_status_armazem", referencedColumnName = "id_status_armazem")
     @ManyToOne
     private StatusArmazem statusArmazemIdStatusArmazem;
+    
+    
+      
+    //TODO: colocar mapeamento nas dimensões no armazem
+    
+    //    @Column(name = "")
+    private Dimensoes dimensoes;
+   // @Column(name = "")
+    
+    // tamanho y do armazem que sera usado para dar tamanho ao lote
+    private double tamanhoEspacoArmazenagem;
+
     
 
     public Armazem() {
@@ -195,7 +207,25 @@ public class Armazem implements Serializable {
         this.statusArmazemIdStatusArmazem = statusArmazemIdStatusArmazem;
     }
 
+ 
+
+    public Dimensoes getDimensoes() {
+        return dimensoes;
+    }
+
+    public void setDimensoes(Dimensoes dimensoes) {
+        this.dimensoes = dimensoes;
+    }
+
+    public double getTamanhoEspacoArmazenagem() {
+        return tamanhoEspacoArmazenagem;
+    }
+
+    public void setTamanhoEspacoArmazenagem(double tamanhoEspacoArmazenagem) {
+        this.tamanhoEspacoArmazenagem = tamanhoEspacoArmazenagem;
+    }
     
+            
 
     @Override
     public int hashCode() {

@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByNumOnu", query = "SELECT p FROM Produto p WHERE p.numOnu = :numOnu"),
     @NamedQuery(name = "Produto.findByDescProduto", query = "SELECT p FROM Produto p WHERE p.descProduto = :descProduto")})
+    
 public class Produto implements Serializable {
     @OneToMany(mappedBy = "idProduto")
     private List<Movimentacao> movimentacaoList;
@@ -47,6 +48,10 @@ public class Produto implements Serializable {
     private String descProduto;
     @JoinColumn(name = "classe", referencedColumnName = "id_classe")
     @ManyToOne
+    
+    //TODO: mapeamento 
+    private double quantidadePorPalete;
+    
     private Classe classe;
 
     public Produto() {
@@ -79,6 +84,16 @@ public class Produto implements Serializable {
     public void setClasse(Classe classe) {
         this.classe = classe;
     }
+
+    public double getQuantidadePorPalete() {
+        return quantidadePorPalete;
+    }
+
+    public void setQuantidadePorPalete(double quantidadePorPalete) {
+        this.quantidadePorPalete = quantidadePorPalete;
+    }
+    
+    
 
     @Override
     public int hashCode() {
