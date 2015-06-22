@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.ws.soap.MTOM;
 
 /**
  *
@@ -39,7 +40,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Armazem.findByEstoqueMax", query = "SELECT a FROM Armazem a WHERE a.estoqueMax = :estoqueMax"),
     @NamedQuery(name = "Armazem.findByEstoqueMin", query = "SELECT a FROM Armazem a WHERE a.estoqueMin = :estoqueMin"),
     @NamedQuery(name = "Armazem.findByIdLocalOper", query = "SELECT a FROM Armazem a WHERE a.idLocalOper = :idLocalOper"),
-    @NamedQuery(name = "Armazem.findByTipoArmazem", query = "SELECT a FROM Armazem a WHERE a.tipoArmazem = :tipoArmazem")})
+    @NamedQuery(name = "Armazem.findByTipoArmazem", query = "SELECT a FROM Armazem a WHERE a.tipoArmazem = :tipoArmazem"),
+    @NamedQuery(name = "Armazem.findByTamanhoEspacoArmazenagem", query = "SELECT a FROM Armazem a WHERE a.tamanhoEspacoArmazenagem = :tamanhoEspacoArmazenagem")})
 public class Armazem implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -82,16 +84,10 @@ public class Armazem implements Serializable {
     @JoinColumn(name = "status_armazem_id_status_armazem", referencedColumnName = "id_status_armazem")
     @ManyToOne
     private StatusArmazem statusArmazemIdStatusArmazem;
-    
-    
-      
-    //TODO: colocar mapeamento nas dimensões no armazem
-    
-    //    @Column(name = "")
+    @JoinColumn(name = "fk_id_dimensoes", referencedColumnName = "id_dimensoes")
+    @ManyToOne
     private Dimensoes dimensoes;
-   // @Column(name = "")
-    
-    // tamanho y do armazem que sera usado para dar tamanho ao lote
+    @Column(name = "tamanho_espaco_armazenagem")
     private double tamanhoEspacoArmazenagem;
 
     

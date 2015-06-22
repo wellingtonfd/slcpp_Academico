@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
 @NamedQuery(name = "Dimensoes.findAll", query = "SELECT a FROM Dimensoes a"),
+@NamedQuery(name = "Dimensoes.findByIdImensoes", query = "SELECT a FROM Dimensoes a WHERE a.idDimensoes = :idDimensoes"),
+@NamedQuery(name = "Dimensoes.findByLargura", query = "SELECT a FROM Dimensoes a WHERE a.largura = :idDimensoes"),
 @NamedQuery(name = "Dimensoes.findByIdImensoes", query = "SELECT a FROM Dimensoes a WHERE a.idDimensoes = :idDimensoes")})
 public class Dimensoes implements Serializable {
  
@@ -38,13 +40,11 @@ public class Dimensoes implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_dimensoes")
     private Integer idDimensoes; 
-    
-    
-    //TODO Mapeamento base de dados
+    @Column(name = "lar_dimensao")    
     private double largura;
-    
+    @Column(name = "alt_dimensao")
     private double altura;
-    
+    @Column(name = "comp_dimensao")
     private double comprimento;
 
     public double getComprimento() {

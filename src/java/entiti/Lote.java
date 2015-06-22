@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -22,87 +24,88 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Gustavo
- * classe lote representa o espaço ocupado pelo produto armazenado
- * todo armazem será dividido em lotes; 
- * O endereço do lote é definido de acordo com o armazem 
- * que ele está locado, o lado do armazem onde ele está, Esquerda ou Direita
- * e o sequencial para indicar a posição onde o lote esta naquela Rua do Armazem
-  */
- @Entity
-    @Table(name = "lote")
-    @NamedQueries({
-    @NamedQuery(name = "Lote.findAll", query = "SELECT a FROM Lote a")})
+ * @author Gustavo classe lote representa o espaço ocupado pelo produto
+ * armazenado todo armazem será dividido em lotes; O endereço do lote é definido
+ * de acordo com o armazem que ele está locado, o lado do armazem onde ele está,
+ * Esquerda ou Direita e o sequencial para indicar a posição onde o lote esta
+ * naquela Rua do Armazem
+ */
+@Entity
+@Table(name = "lote")
+@NamedQueries({
+    @NamedQuery(name = "Lote.findAll", query = "SELECT l FROM Lote l"),
+    @NamedQuery(name = "Lote.findByIdLote", query = "SELECT l FROM Lote l WHERE l.idLote = :idLote"),
+    @NamedQuery(name = "Lote.findByLado", query = "SELECT l FROM Lote l WHERE l.lado = :lado"),
+    @NamedQuery(name = "Lote.findBySequencial", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial"),
+    @NamedQuery(name = "Lote.findByQuantidadeProduto", query = "SELECT l FROM Lote l WHERE l.quantidadeProduto = :quantidadeProduto"),
+    @NamedQuery(name = "Lote.findByNumeroPaletesArmazenados", query = "SELECT l FROM Lote l WHERE l.numeroPaletesArmazenados = :numeroPaletesArmazenados")})
 
- public class Lote implements Serializable {
-    
-         
+public class Lote implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_lote")
     private Integer idLote;
-    
-    
+    @Column(name = "numero_paletes_armazenados")
+    private int numeroPaletesArmazenados;
+    @Column(name = "lado")
+    private String lado;
+    @Column(name = "sequencial")
+    private int sequencial;    // Sequencial que identifica a posição do lote no armazem
+    @Column(name = "quantidade_produto")
+    private double quantidadeProduto; // quantidade de um produto para necessidade de retiradas parciais
+    @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
+    @ManyToOne
+    private Armazem armazem;
+    @JoinColumn(name = "fk_id_dimensoes", referencedColumnName = "id_dimensoes")
+    @ManyToOne
+    private Dimensoes dimensoes;
+    @JoinColumn(name = "num_onu", referencedColumnName = "num_onu")
+    @ManyToOne
+    private Produto produto;
     //Comprimento padrão para o caso onde é necessário criar o lote vazio
     double comprimentoPadrao = 4.0;
-    
+
     //TODO mapeamento do banco
-  
     /**
      * Enum para representar o estado do lote
      */
     public static enum EstadoArmazenagem {
- 
-      VAZIO(1), SEMIPREENCHIDO(2), CHEIO(3);
-      private final int codigo;
 
-    EstadoArmazenagem(int codigo) { this.codigo = codigo; }
+        VAZIO(1), SEMIPREENCHIDO(2), CHEIO(3);
+        private final int codigo;
 
-    int codigo() { return codigo; }
-
-    public static EstadoArmazenagem porCodigo(int codigo) {
-        for (EstadoArmazenagem estado: EstadoArmazenagem.values()) {
-            if (codigo == estado.codigo()) return estado;
+        EstadoArmazenagem(int codigo) {
+            this.codigo = codigo;
         }
-        throw new IllegalArgumentException("codigo invalido");
-    }
-     
- }
-  
-    @OneToOne
-    private Dimensoes dimensoes;
-    
-    private Produto produto;
 
-    private int numeroPaletesArmazenados;
-    
-    // D para direta do armazem; E para esquerda do armazem
-    private String lado;
-    
-    // Sequencial que identifica a posição do lote no armazem
-    private int sequencial;
-    
-    
-    // quantidade de um produto para necessidade de retiradas parciais
-    private double quantidadeProduto;
-    
-    private Armazem armazem;
-    
-    
+        int codigo() {
+            return codigo;
+        }
+
+        public static EstadoArmazenagem porCodigo(int codigo) {
+            for (EstadoArmazenagem estado : EstadoArmazenagem.values()) {
+                if (codigo == estado.codigo()) {
+                    return estado;
+                }
+            }
+            throw new IllegalArgumentException("codigo invalido");
+        }
+
+    }
+
     public Lote(Dimensoes dimensoes) {
-              
-       this.dimensoes = dimensoes;
+
+        this.dimensoes = dimensoes;
     }
-    
-    
+
     public Lote() {
-              
-       Dimensoes dim = new Dimensoes(comprimentoPadrao, 0);
-       this.dimensoes = dim;
+
+        Dimensoes dim = new Dimensoes(comprimentoPadrao, 0);
+        this.dimensoes = dim;
     }
-    
-      
+
     private static final Logger LOG = Logger.getLogger(Lote.class.getName());
 
     public Integer getIdLote() {
@@ -120,7 +123,6 @@ import javax.persistence.Table;
     public void setDimensoes(Dimensoes dimensoes) {
         this.dimensoes = dimensoes;
     }
-
 
     public Produto getProduto() {
         return produto;
@@ -200,14 +202,4 @@ import javax.persistence.Table;
         return true;
     }
 
-  
-
-      
-  
-    
-            
-    
-    
-    
-     
 }

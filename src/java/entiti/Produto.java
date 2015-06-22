@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
     @NamedQuery(name = "Produto.findByNumOnu", query = "SELECT p FROM Produto p WHERE p.numOnu = :numOnu"),
-    @NamedQuery(name = "Produto.findByDescProduto", query = "SELECT p FROM Produto p WHERE p.descProduto = :descProduto")})
+    @NamedQuery(name = "Produto.findByDescProduto", query = "SELECT p FROM Produto p WHERE p.descProduto = :descProduto"),
+    @NamedQuery(name = "Produto.findByQtdPorPalete", query = "SELECT p FROM Produto p WHERE p.quantidadePorPalete = :quantidadePorPalete")})
     
 public class Produto implements Serializable {
     @OneToMany(mappedBy = "idProduto")
@@ -48,12 +49,10 @@ public class Produto implements Serializable {
     private String descProduto;
     @JoinColumn(name = "classe", referencedColumnName = "id_classe")
     @ManyToOne
-    
-    //TODO: mapeamento 
+    private Classe classe;
+    @Column(name = "qtd_por_palete")
     private double quantidadePorPalete;
     
-    private Classe classe;
-
     public Produto() {
     }
 
