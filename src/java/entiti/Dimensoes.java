@@ -47,6 +47,9 @@ public class Dimensoes implements Serializable {
     @Column(name = "comp_dimensao")
     private double comprimento;
 
+    public Dimensoes() {
+    }
+
     public double getComprimento() {
         return comprimento;
     }
