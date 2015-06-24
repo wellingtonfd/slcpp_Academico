@@ -8,11 +8,13 @@ package Service;
 import entiti.Armazem;
 import entiti.Dimensoes;
 import entiti.Lote;
+import entiti.Lote.EstadoArmazenagem;
 import entiti.Produto;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,8 +27,7 @@ public class ArmazenagemService {
     private EntityManager em;
 
     /**
-     * Verifica de o produto a ser inserido ja está armazenado
-     *
+     * Verifica se o produto a ser inserido ja está armazenado
      * @param produto
      * @return boolean
      */
@@ -54,17 +55,20 @@ public class ArmazenagemService {
          
         List<Lote> lotes = null;
         try {
-            lotes =  em.createNamedQuery("Lote.findAllByProduto")
+            lotes =  em.createNamedQuery("Lote.findByProduto")
                     .setParameter("produto", produto)
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         }
-      
         return lotes  ;
      }
       
-     
+         
+     /**
+      * retorna todos os lotes
+      * @return List Lote
+      */
      public List<Lote> getAllLotes(){
      
             List<Lote> lotes = null;
@@ -74,7 +78,6 @@ public class ArmazenagemService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-      
         return lotes  ;
      
      }
@@ -84,25 +87,41 @@ public class ArmazenagemService {
             List<Lote> lotes = null;
         try {
             lotes =  em.createNamedQuery("Lote.findAllByArmazem")
-                    .setParameter("produto", armazem) 
+                    .setParameter("armazem", armazem) 
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         }
       
         return lotes  ;
+    }
+          
+     /**
+     * retorna a lista de lotes vazios em um determibnado armazem
+     * @param armazem
+     * @return 
+      */     
+     public List<Lote> getLotesdisponiveis (Armazem armazem){
+        Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
+                        .setParameter("armazem", armazem)  
+                        .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
+        return  query.getResultList();
+    }
+     
+     public boolean verificaArmazemVazio(Armazem armazem){
+     
+         Query query = em.createQuery("SELECT l FROM Lote l WHERE l.armazem = :armazem")
+                        .setParameter("armazem", armazem);  
+         return  query.getResultList() == null;
      
      }
      
+         
      
-     /**
-      * 
-      * @param produto
-      * @return 
-      */     
-     public Lote getLotedisponivel (Produto produto){
-            return null;
-    }
+     public boolean verificaCompatibilidade(Produto produto){
+            
+     return false;
+     }
      
      
     /**
@@ -137,9 +156,44 @@ public class ArmazenagemService {
      * @return 
      */
     public boolean retiraProtudo(Produto produto, int quantidade){
+        List<Lote> lotes =  getLocalProdutoArmazenado(produto);
+      
         
         return false;
     } 
      
-     
+        
+       
+    /**
+     * retorna a quanidade total de um determinado produto
+     * @param produto
+     * @return 
+     */
+    public  Number getQuantidadeTotalProduto(Produto produto) {
+        Query query = em.createQuery("SELECT SUM(l.quantidadeProduto) FROM Lote l  WHERE l.produto = :produto");
+        return (Number) query.getSingleResult();
+    }
+    
+    
+   /**
+    * retorna o proximo sequencial a ser utilizado para o 
+    * enrereçamento do lote
+    * @param produto
+    * @return 
+    */
+     public  Number getProximoSequencial(Produto produto) {
+        Query query = em.createQuery("SELECT SUM(l.quantidadeProduto) FROM Lote l  WHERE l.produto = :produto");
+        return (Number) query.getSingleResult();
+    }
+    
+    /**
+     * Persist lote
+     * @param lote
+      */
+    public void  persistLote(Lote lote){
+         em.getTransaction().begin();
+         em.persist(lote);
+         em.getTransaction().commit();
+    }
+            
 }

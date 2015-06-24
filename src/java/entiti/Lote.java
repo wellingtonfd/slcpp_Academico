@@ -38,37 +38,15 @@ import javax.persistence.Table;
     @NamedQuery(name = "Lote.findByLado", query = "SELECT l FROM Lote l WHERE l.lado = :lado"),
     @NamedQuery(name = "Lote.findBySequencial", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial"),
     @NamedQuery(name = "Lote.findByQuantidadeProduto", query = "SELECT l FROM Lote l WHERE l.quantidadeProduto = :quantidadeProduto"),
-    @NamedQuery(name = "Lote.findByNumeroPaletesArmazenados", query = "SELECT l FROM Lote l WHERE l.numeroPaletesArmazenados = :numeroPaletesArmazenados")})
-
+    @NamedQuery(name = "Lote.findByNumeroPaletesArmazenados", query = "SELECT l FROM Lote l WHERE l.numeroPaletesArmazenados = :numeroPaletesArmazenados"),
+    @NamedQuery(name = "Lote.findLoteVazio", query = "SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem"  ),
+    @NamedQuery(name = "Lote.findByProduto", query = "SELECT l FROM Lote l WHERE l.produto = :produto"),
+    @NamedQuery(name = "Lote.findByEndereco", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial and l.lado = :lado"),
+    @NamedQuery(name = "Lote.findByArmazem", query = "SELECT l FROM Lote l WHERE l.armazem = :armazem")})
 public class Lote implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id_lote")
-    private Integer idLote;
-    @Column(name = "numero_paletes_armazenados")
-    private int numeroPaletesArmazenados;
-    @Column(name = "lado")
-    private String lado;
-    @Column(name = "sequencial")
-    private int sequencial;    // Sequencial que identifica a posição do lote no armazem
-    @Column(name = "quantidade_produto")
-    private double quantidadeProduto; // quantidade de um produto para necessidade de retiradas parciais
-    @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
-    @ManyToOne
-    private Armazem armazem;
-    @JoinColumn(name = "fk_id_dimensoes", referencedColumnName = "id_dimensoes")
-    @ManyToOne
-    private Dimensoes dimensoes;
-    @JoinColumn(name = "num_onu", referencedColumnName = "num_onu")
-    @ManyToOne
-    private Produto produto;
-    //Comprimento padrão para o caso onde é necessário criar o lote vazio
-    double comprimentoPadrao = 4.0;
-
-    //TODO mapeamento do banco
-    /**
+    
+      /**
      * Enum para representar o estado do lote
      */
     public static enum EstadoArmazenagem {
@@ -94,7 +72,35 @@ public class Lote implements Serializable {
         }
 
     }
-
+    
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_lote")
+    private Integer idLote;
+    @Column(name = "numero_paletes_armazenados")
+    private int numeroPaletesArmazenados;
+    @Column(name = "lado")
+    private String lado;
+    @Column(name = "sequencial")
+    private int sequencial;    // Sequencial que identifica a posição do lote no armazem
+    @Column(name = "quantidade_produto")
+    private double quantidadeProduto; // quantidade de um produto para necessidade de retiradas parciais
+    @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
+    @ManyToOne
+    private Armazem armazem;
+    @JoinColumn(name = "fk_id_dimensoes", referencedColumnName = "id_dimensoes")
+    @ManyToOne
+    private Dimensoes dimensoes;
+    @JoinColumn(name = "num_onu", referencedColumnName = "num_onu")
+    @ManyToOne
+    private Produto produto;
+    //Comprimento padrão para o caso onde é necessário criar o lote vazio
+    double comprimentoPadrao = 4.0;
+   
+    EstadoArmazenagem estadoArmazenagem = EstadoArmazenagem.VAZIO;
+        
     public Lote(Dimensoes dimensoes) {
 
         this.dimensoes = dimensoes;
@@ -180,6 +186,15 @@ public class Lote implements Serializable {
         this.armazem = armazem;
     }
 
+    public EstadoArmazenagem getEstadoArmazenamento() {
+        return estadoArmazenagem;
+    }
+
+    public void setEstadoArmazenamento(EstadoArmazenagem estadoArmazenamento) {
+        this.estadoArmazenagem = estadoArmazenamento;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;

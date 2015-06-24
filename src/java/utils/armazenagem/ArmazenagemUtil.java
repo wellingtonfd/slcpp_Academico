@@ -98,15 +98,28 @@ public class ArmazenagemUtil {
      * @param produto
      * @param armazem 
      * @param numeroPaletes 
+     * @param totalProduto 
      */
-    public void armazenaProduto(Armazem armazem,Produto produto, int numeroPaletes){
+    public void armazenaProduto (Armazem armazem,Produto produto, int numeroPaletes, double totalProduto){
     
-        Lote lote;
-     
-        lote = armazenagemService.getLotedisponivel(produto);
-        if(lote !=null){
-           
-             armazenagemService.armazenaProduto(produto, lote, numeroPaletes);
+        Lote lote = null; 
+             
+        if(armazenagemService.verificaArmazemVazio(armazem)){
+             lote = new Lote(); 
+             lote.setArmazem(armazem);
+             lote.setProduto(produto);
+             lote.setNumeroPaletesArmazenados(numeroPaletes);
+             lote.setQuantidadeProduto(totalProduto);
+             lote.setSequencial(1);
+             lote.setLado("E");
+             lote.setDimensoes(getTamanhoNecessarioLote(armazem, numeroPaletes));
+             armazenagemService.persistLote(lote);
+             return;
+        }
+        
+       List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazem);
+        if(lotes !=null){
+            armazenaProdutoLoteExistente();
         }
         
         else
@@ -120,23 +133,10 @@ public class ArmazenagemUtil {
      * @return 
      */
     public List<Lote> getLocalProdutoArmazenado(Produto produto){
-    
-        return armazenagemService.getLocalProdutoArmazenado(produto);
+       return armazenagemService.getLocalProdutoArmazenado(produto);
     }
     
-    /**
-     * armazena o produto
-     * @param produto
-     * @param numeroPaletes
-     * @return 
-     */
-    public boolean armazenaProduto(Produto produto, int numeroPaletes){
-    
-        Armazem armazem;
-                     
-         return false;         
-     }
-    
+     
     
     /** 
      * retira a determinada quantidade do produto armazenado
@@ -151,16 +151,20 @@ public class ArmazenagemUtil {
     }
     
     /**
-     * Metoto utilizado para retorno do primeiro lote vazio
+     * Metoto utilizado para retorno dos lotes vazios
      * @param armazem
      * @return 
      */
-    public Lote getPrimerioLoteVazio(Armazem armazem){
-        Lote lote = new Lote();
-        
-        return lote;
-                
-                
-    }
+    public List<Lote> getlotesDisponiveis(Armazem armazem){
+        return armazenagemService.getLotesdisponiveis(armazem);
+   }
+    
+     
+   public void armazenaProdutoLoteExistente(){
+   
+   
+   
+   } 
+    
      
 }
