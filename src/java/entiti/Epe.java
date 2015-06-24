@@ -58,12 +58,23 @@ public class Epe implements Serializable {
     @JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor")
     @ManyToOne
     private Fornecedor idFornecedor = new Fornecedor();
+    @JoinColumn(name = "id_tipo_material", referencedColumnName = "id_tipo_material")
+    @ManyToOne
+    private TipoMaterial idTipoMaterial = new TipoMaterial();
 
     public Epe() {
     }
 
     public Epe(Integer idEpe) {
         this.idEpe = idEpe;
+    }
+    
+      public TipoMaterial getIdTipoMaterial() {
+        return idTipoMaterial;
+    }
+
+    public void setIdTipoMaterial(TipoMaterial idTipoMaterial) {
+        this.idTipoMaterial = idTipoMaterial;
     }
     
     public Fornecedor getIdFornecedor() {

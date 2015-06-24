@@ -27,15 +27,14 @@
                         <p:outputLabel value="#{myBundle.EditEpiLabel_especEpi}" for="especEpi" />
                         <p:inputTextarea rows="4" cols="30" id="especEpi" value="#{epiController.selected.especEpi}" title="#{myBundle.EditEpiTitle_especEpi}" />
 
-                        <p:outputLabel value="#{myBundle.CreateEpiLabel_idMaterial}" for="idMaterial" />
-                        <p:selectOneMenu id="idMaterial" value="#{epiController.selected.idMaterial}"  required="true" requiredMessage="#{myBundle.TipoMaterialTitle}" converter="tipoMaterialConverter">
+                        <p:outputLabel value="Tipo Material" for="idTipoMaterial" />
+                        <p:selectOneMenu id="idTipoMaterial" value="#{epeController.selected.idTipoMaterial}"  converter="tipoMaterialConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoMaterialController.items}"
-                                           var="tipoMaterialItem"
-                                           itemValue="#{tipoMaterialItem}"
-                                           itemLabel="#{tipoMaterialItem.nomeMaterial.toString()}"
+                            <f:selectItems value="#{TipoMaterialController.items}"
+                                           var="idFornecedorItem"
+                                           itemValue="#{idTipoMaterialItem}"
+                                           itemLabel="#{idTipoMaterialItem.nomeMaterial.toString()}"
                                            />
-
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epiController.save}" value="#{myBundle.Save}" update="display,:EpiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpiEditDialog);">

@@ -40,6 +40,13 @@
                     </f:facet>
                     <h:outputText value="#{item.agenteEpe}"/>
                 </p:column>
+                
+                <p:column sortBy="#{item.idFornecedor.nomeFantasia}" filterBy="#{item.idFornecedor.nomeFantasia}">
+                    <f:facet name="header">
+                        <h:outputText value="Nome Fornecedor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idFornecedor.nomeFantasia}"/>
+                </p:column>
             </p:dataTable>
         </p:panel>
     </h:form>

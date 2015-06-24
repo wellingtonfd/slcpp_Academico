@@ -19,6 +19,7 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{epeController.selected}">
+                
                 <p:column sortBy="#{item.idEpe}" filterBy="#{item.idEpe}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListEpeTitle_idEpe}"/>
@@ -48,6 +49,13 @@
                         <h:outputText value="#{myBundle.ListEpeTitle_agenteEpe}"/>
                     </f:facet>
                     <h:outputText value="#{item.agenteEpe}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.idFornecedor.nomeFantasia}" filterBy="#{item.idFornecedor.nomeFantasia}">
+                    <f:facet name="header">
+                        <h:outputText value="Nome Fornecedor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idFornecedor.nomeFantasia}"/>
                 </p:column>
 
             </p:dataTable>

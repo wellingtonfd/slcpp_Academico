@@ -60,6 +60,20 @@
                     </f:facet>
                     <h:outputText value="#{item.agenteEpe}"/>
                 </p:column>
+                
+                <p:column sortBy="#{item.agenteEpe}" filterBy="#{item.agenteEpe}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListEpeTitle_agenteEpe}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.agenteEpe}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.idFornecedor.nomeFantasia}" filterBy="#{item.idFornecedor.nomeFantasia}">
+                    <f:facet name="header">
+                        <h:outputText value="Nome Fornecedor"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idFornecedor.nomeFantasia}"/>
+                </p:column>
 
             </p:dataTable>
 

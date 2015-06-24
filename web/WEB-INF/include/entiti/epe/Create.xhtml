@@ -33,7 +33,7 @@
                                            itemLabel="#{idFornecedorItem.nomeFantasia.toString()}"
                                            />
                         </p:selectOneMenu>
-                        
+                                                
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epeController.saveNew}" value="#{myBundle.Save}" update="display,:EpeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpeCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
