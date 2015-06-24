@@ -13,8 +13,7 @@ import entiti.Produto;
 import java.util.List;
 
 /**
- *
- * @author Gustavo
+ * 
  * Classe para realizar os calculos referentes ao processo 
  * de armazenagem
  */
@@ -40,13 +39,10 @@ public class ArmazenagemUtil {
      * @return Dimensoes
      */
     public Dimensoes getTamanhoNecessarioLote(Armazem armazen, int numeroPaletes){
-            
+           
         double y = armazen.getTamanhoEspacoArmazenagem();       
-    
         int qtdY = (int) (y/ tamanhoPalete.getLargura());
-        
         int qtdX = 1;
-        
         while((qtdY * qtdX) < numeroPaletes){
              qtdX++;
         }
@@ -65,7 +61,7 @@ public class ArmazenagemUtil {
     public double getTamanhoRestanteArmazem(Armazem armazem){
     
         double resultado = 0;
-        
+      
         Dimensoes dim =  armazem.getDimensoes();
                         
         return resultado;
@@ -78,8 +74,8 @@ public class ArmazenagemUtil {
      * @param quantidadeTotal
      * @return 
      */
-    public double getNumeroPaletes(double qtbPorPalete, double quantidadeTotal){
-        return  Math.ceil(quantidadeTotal/qtbPorPalete);
+    public int getNumeroPaletes(double qtbPorPalete, double quantidadeTotal){
+        return  (int)Math.ceil(quantidadeTotal/qtbPorPalete);
     }
     
     /**
@@ -88,8 +84,8 @@ public class ArmazenagemUtil {
      * @param quantidadeTotal
      * @return 
      */
-     public double getNumeroPaletes(Produto produto, double quantidadeTotal){
-        return   Math.ceil(quantidadeTotal/produto.getQuantidadePorPalete());
+     public int getNumeroPaletes(Produto produto, double quantidadeTotal){
+        return  (int) Math.ceil(quantidadeTotal/produto.getQuantidadePorPalete());
      }
     
     
@@ -119,9 +115,9 @@ public class ArmazenagemUtil {
         
        List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazem);
         if(lotes !=null){
-            armazenaProdutoLoteExistente();
+            lote = criaNovoLote();
+            armazenagemService.persistLote(lote);
         }
-        
         else
            armazenagemService.armazenaProdutoNovo(produto, getTamanhoNecessarioLote(armazem, numeroPaletes), numeroPaletes);
     
@@ -137,8 +133,18 @@ public class ArmazenagemUtil {
     }
     
      
-   public void armazenaProduto(Produto produto, double quantidade, int quantidadePorPalete) 
-   {}
+   /**
+    * metodo de armazenamento do produto usado pelo controller 
+    * @param produto
+    * @param quantidadeTotal
+    * @param quantidadePorPalete 
+    */ 
+   public void armazenaProduto(Produto produto, double quantidadeTotal, int quantidadePorPalete) {
+         Armazem armazem =  getArmazens().get(0);
+         int numeroDePaletes =  getNumeroPaletes(quantidadePorPalete, quantidadeTotal);
+         armazenaProduto(armazem,produto, numeroDePaletes, quantidadeTotal);
+   
+   }
     
     
     /** 
@@ -148,7 +154,6 @@ public class ArmazenagemUtil {
      * @return 
      */
     public boolean retiraProtudo(Produto produto, int quantidade){
-    
         return armazenagemService.retiraProtudo(produto, quantidade);
         
     }
@@ -171,11 +176,18 @@ public class ArmazenagemUtil {
         return (Double)armazenagemService.getQuantidadeTotalProduto(produto);
    } 
     
-   public void armazenaProdutoLoteExistente(){
-   
-   
-   
-   } 
+   /**
+    * retorna lista de armazens disponiveis
+    * @return 
+    */
+    public List<Armazem> getArmazens(){
+        return armazenagemService.getAllArmazens();
+   }
     
+    public Lote criaNovoLote(){
+      return new Lote();
+    
+    
+    }
      
 }

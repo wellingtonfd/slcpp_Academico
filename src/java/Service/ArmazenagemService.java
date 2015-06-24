@@ -45,7 +45,6 @@ public class ArmazenagemService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return (lote != null);
     }
 
@@ -77,7 +76,7 @@ public class ArmazenagemService {
 
         List<Lote> lotes = null;
         try {
-            lotes = em.createNamedQuery("Lote.findAllBy")
+            lotes = em.createNamedQuery("Lote.findAll")
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,6 +85,25 @@ public class ArmazenagemService {
 
     }
 
+    
+     /**
+     * retorna todos os lotes
+     *
+     * @return List Armazem
+     */
+    public List<Armazem> getAllArmazens() {
+
+        List<Armazem> armazens = null;
+        try {
+            armazens = em.createNamedQuery("Armazem.findAll")
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return armazens;
+
+    }
+    
     public List<Lote> getLotesPorAramazem(Armazem armazem) {
 
         List<Lote> lotes = null;
@@ -96,8 +114,7 @@ public class ArmazenagemService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return lotes;
+       return lotes;
     }
 
     /**
@@ -114,11 +131,9 @@ public class ArmazenagemService {
     }
 
     public boolean verificaArmazemVazio(Armazem armazem) {
-
         Query query = em.createQuery("SELECT l FROM Lote l WHERE l.armazem = :armazem")
                 .setParameter("armazem", armazem);
         return query.getResultList() == null;
-
     }
 
     /**
@@ -226,5 +241,8 @@ public class ArmazenagemService {
         List<Integer> resultado = (List<Integer>) storedProcedure.getOutputParameterValue("numonu");
         return resultado;
     }
+    
+    
+    
 
 }
