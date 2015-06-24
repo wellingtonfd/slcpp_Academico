@@ -13,12 +13,15 @@ import entiti.Produto;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 /**
+ * Classe service para tratar das interações [com o banco de dados da classe
+ * armazenagem Util
  *
- * @author Gustavo
  */
 @Stateless
 public class ArmazenagemService {
@@ -28,6 +31,7 @@ public class ArmazenagemService {
 
     /**
      * Verifica se o produto a ser inserido ja está armazenado
+     *
      * @param produto
      * @return boolean
      */
@@ -41,159 +45,186 @@ public class ArmazenagemService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-      
-        return (lote!=null) ;
+
+        return (lote != null);
     }
 
-  
-       /**
-       * metodo que retorna a lista de lotes onde o produto está armazenado
-       * @param produto
-       * @return 
-       */
-     public List<Lote> getLocalProdutoArmazenado(Produto produto){
-         
+    /**
+     * metodo que retorna a lista de lotes onde o produto está armazenado
+     *
+     * @param produto
+     * @return
+     */
+    public List<Lote> getLocalProdutoArmazenado(Produto produto) {
+
         List<Lote> lotes = null;
         try {
-            lotes =  em.createNamedQuery("Lote.findByProduto")
+            lotes = em.createNamedQuery("Lote.findByProduto")
                     .setParameter("produto", produto)
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return lotes  ;
-     }
-      
-         
-     /**
-      * retorna todos os lotes
-      * @return List Lote
-      */
-     public List<Lote> getAllLotes(){
-     
-            List<Lote> lotes = null;
+        return lotes;
+    }
+
+    /**
+     * retorna todos os lotes
+     *
+     * @return List Lote
+     */
+    public List<Lote> getAllLotes() {
+
+        List<Lote> lotes = null;
         try {
-            lotes =  em.createNamedQuery("Lote.findAllBy")
-                     .getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return lotes  ;
-     
-     }
-     
-      public List<Lote> getLotesPorAramazem(Armazem armazem){
-     
-            List<Lote> lotes = null;
-        try {
-            lotes =  em.createNamedQuery("Lote.findAllByArmazem")
-                    .setParameter("armazem", armazem) 
+            lotes = em.createNamedQuery("Lote.findAllBy")
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         }
-      
-        return lotes  ;
+        return lotes;
+
     }
-          
-     /**
+
+    public List<Lote> getLotesPorAramazem(Armazem armazem) {
+
+        List<Lote> lotes = null;
+        try {
+            lotes = em.createNamedQuery("Lote.findAllByArmazem")
+                    .setParameter("armazem", armazem)
+                    .getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lotes;
+    }
+
+    /**
      * retorna a lista de lotes vazios em um determibnado armazem
+     *
      * @param armazem
-     * @return 
-      */     
-     public List<Lote> getLotesdisponiveis (Armazem armazem){
+     * @return
+     */
+    public List<Lote> getLotesdisponiveis(Armazem armazem) {
         Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
-                        .setParameter("armazem", armazem)  
-                        .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
-        return  query.getResultList();
+                .setParameter("armazem", armazem)
+                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
+        return query.getResultList();
     }
-     
-     public boolean verificaArmazemVazio(Armazem armazem){
-     
-         Query query = em.createQuery("SELECT l FROM Lote l WHERE l.armazem = :armazem")
-                        .setParameter("armazem", armazem);  
-         return  query.getResultList() == null;
-     
-     }
-     
-         
-     
-     public boolean verificaCompatibilidade(Produto produto){
-            
-     return false;
-     }
-     
-     
+
+    public boolean verificaArmazemVazio(Armazem armazem) {
+
+        Query query = em.createQuery("SELECT l FROM Lote l WHERE l.armazem = :armazem")
+                .setParameter("armazem", armazem);
+        return query.getResultList() == null;
+
+    }
+
+    /**
+     * Metodo verifica se o produto que será armazenado
+     * é compativel com o produto vizinho ja armazenado
+     * @param produtoParaArmazenar
+     * @param produtoVizinho
+     * @return
+     */
+    public boolean verificaCompatibilidade(Produto produtoParaArmazenar, Produto produtoVizinho) {
+        List<Integer> numeros;
+        numeros = getProdutosIncompativeis(produtoParaArmazenar.getNumOnu());
+        return !numeros.contains(produtoVizinho.getNumOnu());
+
+    }
+
     /**
      * Aramazena o produto que que já esta armazenado anteriormente
+     *
      * @param produto
      * @param lote
      * @param numeroPaletes
-     * @return 
-     */ 
-     public boolean armazenaProduto (Produto produto, Lote lote, int numeroPaletes){
-      
-         return true;
+     * @return
+     */
+    public boolean armazenaProduto(Produto produto, Lote lote, int numeroPaletes) {
+
+        return true;
     }
-     
-     /**
-      * armazena um novo produto
-      * @param produto
-      * @param dimensoesLote
-      * @param numeroPaletes
-      * @return 
-      */
-    public boolean armazenaProdutoNovo (Produto produto, Dimensoes dimensoesLote, int numeroPaletes){
-               
-         return true;
+
+    /**
+     * armazena um novo produto
+     *
+     * @param produto
+     * @param dimensoesLote
+     * @param numeroPaletes
+     * @return
+     */
+    public boolean armazenaProdutoNovo(Produto produto, Dimensoes dimensoesLote, int numeroPaletes) {
+
+        return true;
     }
-       
-     
+
     /**
      * retira o produto
+     *
      * @param produto
      * @param quantidade
-     * @return 
+     * @return
      */
-    public boolean retiraProtudo(Produto produto, int quantidade){
-        List<Lote> lotes =  getLocalProdutoArmazenado(produto);
-      
-        
+    public boolean retiraProtudo(Produto produto, int quantidade) {
+        List<Lote> lotes = getLocalProdutoArmazenado(produto);
+
         return false;
-    } 
-     
-        
-       
+    }
+
     /**
      * retorna a quanidade total de um determinado produto
+     *
      * @param produto
-     * @return 
+     * @return
      */
-    public  Number getQuantidadeTotalProduto(Produto produto) {
+    public Number getQuantidadeTotalProduto(Produto produto) {
         Query query = em.createQuery("SELECT SUM(l.quantidadeProduto) FROM Lote l  WHERE l.produto = :produto");
         return (Number) query.getSingleResult();
     }
-    
-    
-   /**
-    * retorna o proximo sequencial a ser utilizado para o 
-    * enrereçamento do lote
-    * @param produto
-    * @return 
-    */
-     public  Number getProximoSequencial(Produto produto) {
+
+    /**
+     * retorna o proximo sequencial a ser utilizado para o enrereçamento do lote
+     *
+     * @param produto
+     * @return
+     */
+    public Number getProximoSequencial(Produto produto) {
         Query query = em.createQuery("SELECT SUM(l.quantidadeProduto) FROM Lote l  WHERE l.produto = :produto");
         return (Number) query.getSingleResult();
     }
-    
+
     /**
      * Persist lote
+     *
      * @param lote
-      */
-    public void  persistLote(Lote lote){
-         em.getTransaction().begin();
-         em.persist(lote);
-         em.getTransaction().commit();
+     */
+    public void persistLote(Lote lote) {
+        em.getTransaction().begin();
+        em.persist(lote);
+        em.getTransaction().commit();
     }
-            
+
+    /**
+     * Metodo que executa procedure para buscar os produtos inconpativeis
+     *
+     * @param nOnu
+     * @return
+     */
+    public List<Integer> getProdutosIncompativeis(int nOnu) {
+
+        StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("incompatibilidade");
+        // set parametros
+        storedProcedure.registerStoredProcedureParameter("p_numonu ", Integer.class, ParameterMode.IN);
+        storedProcedure.registerStoredProcedureParameter("numonu", Integer.class, ParameterMode.OUT);
+        storedProcedure.setParameter("p_numonu", nOnu);
+        // executa SP
+        storedProcedure.execute();
+        // get resultado
+        List<Integer> resultado = (List<Integer>) storedProcedure.getOutputParameterValue("numonu");
+        return resultado;
+    }
+
 }

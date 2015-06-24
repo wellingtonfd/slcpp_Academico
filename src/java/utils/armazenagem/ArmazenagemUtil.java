@@ -162,7 +162,15 @@ public class ArmazenagemUtil {
         return armazenagemService.getLotesdisponiveis(armazem);
    }
     
-     
+   /**
+    * Metodo retorna a quantidade total de um produto
+    * @param produto
+    * @return 
+    */  
+   public Double getQuantidadeTotalProduto(Produto produto){
+        return (Double)armazenagemService.getQuantidadeTotalProduto(produto);
+   } 
+    
    public void armazenaProdutoLoteExistente(){
    
    
