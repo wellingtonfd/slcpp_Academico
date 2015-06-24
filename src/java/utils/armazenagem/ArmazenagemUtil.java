@@ -137,6 +137,9 @@ public class ArmazenagemUtil {
     }
     
      
+   public void armazenaProduto(Produto produto, double quantidade, int quantidadePorPalete) 
+   {}
+    
     
     /** 
      * retira a determinada quantidade do produto armazenado
