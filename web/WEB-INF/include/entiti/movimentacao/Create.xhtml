@@ -24,20 +24,16 @@
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idEndarmazem}" for="idEndarmazem" />
-                        <p:selectOneMenu id="idEndarmazem" value="#{movimentacaoController.selected.idEndarmazem}"  converter="endArmazemConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{endArmazemController.items}"
-                                           var="idEndarmazemItem"
-                                           itemValue="#{idEndarmazemItem}"
-                                           itemLabel="#{idEndarmazemItem.ruaEndArmazem.toString()}"
-                                           />
+                        <p:outputLabel value="Quantidade de Produdos" for="idEndarmazem" />
+                        <p:inputText id="siglaEstado" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
-                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Quuantidade de Produtos por Paletes" for="idEndarmazem" />
+                        <p:inputText id="siglaEstado" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{movimentacaoController.saveNew}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
+                    <p:commandButton actionListener="#{movimentacaoController.armazenaProduto()}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
