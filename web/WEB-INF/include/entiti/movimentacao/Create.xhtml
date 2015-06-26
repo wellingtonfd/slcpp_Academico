@@ -24,9 +24,12 @@
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
                         </p:selectOneMenu>
-                       
-                        <p:outputLabel value="Quuantidade de Produtos por Paletes" for="idEndarmazem" />
-                        <p:inputText id="siglaEstado" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
+                        
+                        <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
+                        <p:inputText id="qtdProd" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
+
+                        <p:outputLabel value="Quantidade de Produtos por Paletes" for="qtdProdPalete" />
+                        <p:inputText id="qtdProdPalete" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
 
                     </p:panelGrid>
