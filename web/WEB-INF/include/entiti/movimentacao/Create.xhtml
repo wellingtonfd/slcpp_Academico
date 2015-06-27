@@ -12,11 +12,11 @@
 
             <h:form id="MovimentacaoCreateForm">
 
-                <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
+                <h:panelGroup id="display" rendered="#{armazenaController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
-                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter">
+                        <p:selectOneMenu id="idProduto" value="#{armazenaController.produto}"  converter="produtoConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{produtoController.items}"
                                            var="idProdutoItem"
@@ -26,14 +26,14 @@
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
-                        <p:inputText id="qtdProd" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
+                        <p:inputText id="qtdProd" value="#{armazenaController.qtd}" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
                         <p:outputLabel value="Quantidade de Produtos por Paletes" for="qtdProdPalete" />
-                        <p:inputText id="qtdProdPalete" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
+                        <p:inputText id="qtdProdPalete" value="#{armazenaController.qdtPalete}" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
 
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{movimentacaoController.armazenaProduto()}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
+                    <p:commandButton action="#{movimentacaoController.armazena()}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
