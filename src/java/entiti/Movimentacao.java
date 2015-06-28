@@ -16,9 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import utils.armazenagem.ArmazenagemUtil;
 
 /**
  *
@@ -29,7 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Movimentacao.findAll", query = "SELECT m FROM Movimentacao m"),
-    @NamedQuery(name = "Movimentacao.findByIdMovimentacao", query = "SELECT m FROM Movimentacao m WHERE m.idMovimentacao = :idMovimentacao")})
+    @NamedQuery(name = "Movimentacao.findByIdMovimentacao", query = "SELECT m FROM Movimentacao m WHERE m.idMovimentacao = :idMovimentacao"),
+    @NamedQuery(name = "Movimentacao.findByQuantidadeTotal", query = "SELECT m FROM Movimentacao m WHERE m.quantidadeTotal = :quantidadeTotal"),
+    @NamedQuery(name = "Movimentacao.findByQuantitdadePorPalete", query = "SELECT m FROM Movimentacao m WHERE m.quantidadePorPalete = :quantidadePorPalete")})
 public class Movimentacao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,13 +39,14 @@ public class Movimentacao implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_movimentacao")
     private Integer idMovimentacao;
-    @JoinColumn(name = "id_endarmazem", referencedColumnName = "id_endarmazem")
-    @OneToOne
-    private EndArmazem idEndarmazem;
     @JoinColumn(name = "id_produto", referencedColumnName = "num_onu")
     @ManyToOne
     private Produto idProduto;
-
+    @Column(name = "qtdtotal")
+    private double quantidadeTotal;
+    @Column(name = "qtdporpalete")
+    private Integer quantidadePorPalete;
+    
     public Movimentacao() {
     }
 
@@ -59,14 +62,6 @@ public class Movimentacao implements Serializable {
         this.idMovimentacao = idMovimentacao;
     }
 
-    public EndArmazem getIdEndarmazem() {
-        return idEndarmazem;
-    }
-
-    public void setIdEndarmazem(EndArmazem idEndarmazem) {
-        this.idEndarmazem = idEndarmazem;
-    }
-
     public Produto getIdProduto() {
         return idProduto;
     }
@@ -74,6 +69,24 @@ public class Movimentacao implements Serializable {
     public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
     }
+
+    public double getQuantidadeTotal() {
+        return quantidadeTotal;
+    }
+
+    public void setQuantidadeTotal(double quantidadeTotal) {
+        this.quantidadeTotal = quantidadeTotal;
+    }
+
+    public Integer getQuantidadePorPalete() {
+        return quantidadePorPalete;
+    }
+
+    public void setQuantidadePorPalete(Integer quantidadePorPalete) {
+        this.quantidadePorPalete = quantidadePorPalete;
+    }
+    
+    
 
     @Override
     public int hashCode() {

@@ -60,22 +60,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 //        }
 //    }
 
- 
 
-    /**
-     * Sets the "selected" attribute of the EndArmazem controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    public void prepareIdEndarmazem(ActionEvent event) {
-        if (this.getSelected() != null && idEndarmazemController.getSelected() == null) {
-            idEndarmazemController.setSelected(this.getSelected().getIdEndarmazem());
-        }
-    }
-
-    
 
   
 }

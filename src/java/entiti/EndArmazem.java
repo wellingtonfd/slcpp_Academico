@@ -32,8 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "EndArmazem.findByRuaEndArmazem", query = "SELECT e FROM EndArmazem e WHERE e.ruaEndArmazem = :ruaEndArmazem"),
     @NamedQuery(name = "EndArmazem.findByEstatos", query = "SELECT e FROM EndArmazem e WHERE e.estatos = :estatos")})
 public class EndArmazem implements Serializable {
-    @OneToOne(mappedBy = "idEndarmazem")
-    private Movimentacao movimentacao;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,12 +100,5 @@ public class EndArmazem implements Serializable {
         return "entiti.EndArmazem[ idEndarmazem=" + idEndarmazem + " ]";
     }
 
-    public Movimentacao getMovimentacao() {
-        return movimentacao;
-    }
-
-    public void setMovimentacao(Movimentacao movimentacao) {
-        this.movimentacao = movimentacao;
-    }
     
 }
