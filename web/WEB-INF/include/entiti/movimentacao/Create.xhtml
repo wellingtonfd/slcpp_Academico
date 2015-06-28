@@ -26,10 +26,10 @@
                         </p:selectOneMenu>
                         
                         <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
-                        <p:inputText id="qtdProd" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
+                        <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
                         <p:outputLabel value="Quantidade de Produtos por Paletes" for="qtdProdPalete" />
-                        <p:inputText id="qtdProdPalete" value="" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
+                        <p:inputText id="qtdProdPalete" value="#{movimentacaoController.selected.quantidadePorPalete}" title="#{myBundle.CreateEstadoTitle_siglaEstado}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_siglaEstado}" size="2" maxlength="2"/>
 
 
                     </p:panelGrid>
