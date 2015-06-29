@@ -24,9 +24,6 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         idProdutoController.setSelected(null);
     }
 
- 
-
-
     /**
      * Sets the "selected" attribute of the Produto controller in order to
      * display its data in a dialog. This is reusing existing the existing View

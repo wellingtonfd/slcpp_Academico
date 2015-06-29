@@ -85,8 +85,7 @@ public class ArmazenagemService {
 
     }
 
-    
-     /**
+    /**
      * retorna todos os lotes
      *
      * @return List Armazem
@@ -103,7 +102,7 @@ public class ArmazenagemService {
         return armazens;
 
     }
-    
+
     public List<Lote> getLotesPorAramazem(Armazem armazem) {
 
         List<Lote> lotes = null;
@@ -114,7 +113,7 @@ public class ArmazenagemService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       return lotes;
+        return lotes;
     }
 
     /**
@@ -137,8 +136,9 @@ public class ArmazenagemService {
     }
 
     /**
-     * Metodo verifica se o produto que será armazenado
-     * é compativel com o produto vizinho ja armazenado
+     * Metodo verifica se o produto que será armazenado é compativel com o
+     * produto vizinho ja armazenado
+     *
      * @param produtoParaArmazenar
      * @param produtoVizinho
      * @return
@@ -147,12 +147,10 @@ public class ArmazenagemService {
         List<Integer> numeros;
         numeros = getProdutosIncompativeis(produtoParaArmazenar.getNumOnu());
         return !numeros.contains(produtoVizinho.getNumOnu());
-
     }
 
     /**
      * Aramazena o produto que que já esta armazenado anteriormente
-     *
      * @param produto
      * @param lote
      * @param numeroPaletes
@@ -186,6 +184,8 @@ public class ArmazenagemService {
     public boolean retiraProtudo(Produto produto, int quantidade) {
         List<Lote> lotes = getLocalProdutoArmazenado(produto);
 
+        
+        
         return false;
     }
 
@@ -241,8 +241,61 @@ public class ArmazenagemService {
         List<Integer> resultado = (List<Integer>) storedProcedure.getOutputParameterValue("numonu");
         return resultado;
     }
+
+    /**
+     * Verifica se Existe lote disponivel no armazem
+     *
+     * @param armazem
+     * @return
+     */
+    public boolean verificaLoteDisponivel(Armazem armazem) {
+        Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
+                .setParameter("armazem", armazem)
+                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
+        return query.getResultList() != null;
+    }
+
+    /**
+     * Metodo verifica o espaço vazio dentro do armazem. Usado para a criação de
+     * um novo lote
+     *
+     * @param armazem
+     * @return
+     */
+    public boolean verificaEspacoVazioArmazem(Armazem armazem) {
+
+        double comprimento = 0;
+        if (verificaLoteDisponivel(armazem)) {
+            return true;
+        } else {
+            List<Lote> lotes = getLotesPorAramazem(armazem);
+            for (Lote lote : lotes) {
+                comprimento += lote.getDimensoes().getComprimento();
+            }
+            if (comprimento < armazem.getDimensoes().getComprimento()) {
+                return true;
+            }
+        }
+        return false;
+    }
     
-    
-    
+    public List<Lote> getLotesVizinhos(Lote lote){
+        if(lote.getLado().equals("E")){
+        
+        Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
+                .setParameter("armazem", lote.getArmazem())
+                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
+        return query.getResultList();
+        }else{
+        
+          Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
+                .setParameter("armazem", lote.getArmazem())
+                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
+        return query.getResultList();
+        
+        
+        }
+            
+    }
 
 }

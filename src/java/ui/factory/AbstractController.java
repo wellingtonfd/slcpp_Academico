@@ -3,6 +3,7 @@ package ui.factory;
 import ui.bean.AbstractFacade;
 import ui.factory.util.JsfUtil;
 import java.io.Serializable;
+import static java.lang.System.out;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -124,6 +125,7 @@ public abstract class AbstractController<T> implements Serializable {
     public void saveNew(ActionEvent event) {
         String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Created");
         persist(PersistAction.CREATE, msg);
+        out.println("SAVE NEW");
         if (!isValidationFailed()) {
             items = null; // Invalidate list of items to trigger re-query.
         }

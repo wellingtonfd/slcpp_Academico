@@ -39,18 +39,14 @@ public class ArmazenagemUtil {
      * @return Dimensoes
      */
     public Dimensoes getTamanhoNecessarioLote(Armazem armazen, int numeroPaletes){
-           
         double y = armazen.getTamanhoEspacoArmazenagem();       
         int qtdY = (int) (y/ tamanhoPalete.getLargura());
         int qtdX = 1;
         while((qtdY * qtdX) < numeroPaletes){
              qtdX++;
         }
-        
         Dimensoes dimensoesLote = new Dimensoes(y, qtdX* tamanhoPalete.getComprimento());
-        
         return dimensoesLote;
-        
     }  
         
     /**
@@ -59,11 +55,8 @@ public class ArmazenagemUtil {
      * @return 
      */
     public double getTamanhoRestanteArmazem(Armazem armazem){
-    
         double resultado = 0;
-      
         Dimensoes dim =  armazem.getDimensoes();
-                        
         return resultado;
     }
     
@@ -115,24 +108,23 @@ public class ArmazenagemUtil {
         
        List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazem);
         if(lotes !=null){
-            lote = criaNovoLote();
+            for (Lote loteExistente : lotes) {
+            }
+            lote = criaNovoLote(armazem, produto, numeroPaletes, totalProduto);
             armazenagemService.persistLote(lote);
         }
         else
            armazenagemService.armazenaProdutoNovo(produto, getTamanhoNecessarioLote(armazem, numeroPaletes), numeroPaletes);
-    
-       }
+        }
     
     /**retorna lista de lotes onde o produto está armazenado
-     * 
      * @param produto
      * @return 
      */
     public List<Lote> getLocalProdutoArmazenado(Produto produto){
        return armazenagemService.getLocalProdutoArmazenado(produto);
     }
-    
-     
+         
    /**
     * metodo de armazenamento do produto usado pelo controller 
     * @param produto
@@ -140,14 +132,15 @@ public class ArmazenagemUtil {
     * @param quantidadePorPalete 
     */ 
    public void armazenaProduto(Produto produto, double quantidadeTotal, int quantidadePorPalete) {
-         Armazem armazem =  getArmazens().get(0);
+         Armazem armazem =  verificaArmazemDisponivel(getArmazens());
+         if(armazem == null){
+             return;
+         }
          int numeroDePaletes =  getNumeroPaletes(quantidadePorPalete, quantidadeTotal);
          armazenaProduto(armazem,produto, numeroDePaletes, quantidadeTotal);
-   
    }
-    
-    
-    /** 
+   
+   /** 
      * retira a determinada quantidade do produto armazenado
      * @param produto
      * @param quantidade
@@ -155,7 +148,6 @@ public class ArmazenagemUtil {
      */
     public boolean retiraProtudo(Produto produto, int quantidade){
         return armazenagemService.retiraProtudo(produto, quantidade);
-        
     }
     
     /**
@@ -184,10 +176,23 @@ public class ArmazenagemUtil {
         return armazenagemService.getAllArmazens();
    }
     
-    public Lote criaNovoLote(){
+    public Lote criaNovoLote(Armazem armazem,Produto produto, int numeroPaletes, double totalProduto){
       return new Lote();
-    
-    
     }
      
+    
+    /**
+     * MMetodo verica e retorna o armazem que será utilizado
+     * @param armazens
+     * @return 
+     */
+   public Armazem verificaArmazemDisponivel(List<Armazem> armazens){
+       Armazem retorno = null;
+       for (Armazem armazem : armazens) {
+           if(armazenagemService.verificaEspacoVazioArmazem(armazem)){
+               return armazem;
+           }
+       }
+         return retorno;
+    }
 }
