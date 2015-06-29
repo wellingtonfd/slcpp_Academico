@@ -10,6 +10,7 @@ import entiti.Movimentacao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import utils.armazenagem.ArmazenagemUtil;
 
 /**
  *
@@ -20,6 +21,8 @@ import javax.persistence.PersistenceContext;
 public class MovimentacaoFacade extends AbstractFacade<Movimentacao> {
     @PersistenceContext(unitName = "slcpp_AcademicoPU")
     private EntityManager em;
+    
+    private ArmazenagemUtil armazenagemUtil;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -29,5 +32,13 @@ public class MovimentacaoFacade extends AbstractFacade<Movimentacao> {
     public MovimentacaoFacade() {
         super(Movimentacao.class);
     }
+
+    @Override
+    public void create(Movimentacao entity) {
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        armazenagemUtil.armazenaProduto(entity.getIdProduto(), entity.getQuantidadeTotal(), entity.getQuantidadePorPalete());
+    }
+    
+    
 
 }

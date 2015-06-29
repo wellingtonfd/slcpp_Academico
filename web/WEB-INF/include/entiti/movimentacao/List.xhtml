@@ -16,7 +16,6 @@
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('MovimentacaoListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
                 <p:menuitem value="#{myBundle.MovimentacaoMenuItem_idProduto}" icon="ui-icon-search"  actionListener="#{movimentacaoController.prepareIdProduto}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty movimentacaoController.selected.idProduto}"/>  
-                <p:menuitem value="#{myBundle.MovimentacaoMenuItem_idEndarmazem}" icon="ui-icon-search"  actionListener="#{movimentacaoController.prepareIdEndarmazem}" update=":EndArmazemViewForm" oncomplete="EndArmazemViewDialog.show()" disabled="#{empty movimentacaoController.selected.idEndarmazem}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
                          value="#{movimentacaoController.items}"

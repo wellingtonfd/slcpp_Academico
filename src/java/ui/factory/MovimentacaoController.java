@@ -3,8 +3,6 @@ package ui.factory;
 import entiti.Movimentacao;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 @Named(value = "movimentacaoController")
@@ -12,19 +10,7 @@ import javax.inject.Inject;
 public class MovimentacaoController extends AbstractController<Movimentacao> {
 
     @Inject
-    private TipoSolicitacaoController idTipoSolicitacaoController;
-    @Inject
-    private TipoEquipamentoController idTipoEquipamentoController;
-    @Inject
     private ProdutoController idProdutoController;
-    @Inject
-    private FuncionarioController idFuncionarioController;
-    @Inject
-    private EndArmazemController idEndarmazemController;
-    @Inject
-    private DetNotaController idDetalheNotaController;
-    @Inject
-    private ArmazemController idArmazemController;
 
     public MovimentacaoController() {
         // Inform the Abstract parent controller of the concrete Movimentacao?cap_first Entity
@@ -35,13 +21,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
      * Resets the "selected" attribute of any parent Entity controllers.
      */
     public void resetParents() {
-        idTipoSolicitacaoController.setSelected(null);
-        idTipoEquipamentoController.setSelected(null);
         idProdutoController.setSelected(null);
-        idFuncionarioController.setSelected(null);
-        idEndarmazemController.setSelected(null);
-        idDetalheNotaController.setSelected(null);
-        idArmazemController.setSelected(null);
     }
 
  

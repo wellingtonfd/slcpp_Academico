@@ -6,9 +6,7 @@
 package utils.armazenagem;
 
 import entiti.Movimentacao;
-import javax.ejb.Stateless;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.faces.event.ActionEvent;
 
 /**
  *
@@ -20,7 +18,7 @@ public class Armazena {
     
     public ArmazenagemUtil armazenagemUtil = null;
   
-    public void armazena(){
+    public void armazena(ActionEvent event){
         armazenagemUtil.armazenaProduto(movimentacao.getIdProduto(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete());
     }
     

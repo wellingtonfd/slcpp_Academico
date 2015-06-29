@@ -26,17 +26,10 @@
 
                         </p:selectOneMenu>
 
-        
-                        <p:outputLabel value="#{myBundle.EditMovimentacaoLabel_idEndarmazem}" for="idEndarmazem" />
-                        <p:selectOneMenu id="idEndarmazem" value="#{movimentacaoController.selected.idEndarmazem}"  converter="endArmazemConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{endArmazemController.items}"
-                                           var="idEndarmazemItem"
-                                           itemValue="#{idEndarmazemItem}"
-                                           itemLabel="#{idEndarmazemItem.idEndarmazem.toString()}"
-                                           />
 
-                        </p:selectOneMenu>
+                        <p:outputLabel value="#{myBundle.EditMovimentacaoLabel_idEndarmazem}" for="idEndarmazem" />
+                        <p:inputText id="localOper" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateLocalOperacaoTitle_localOper}" required="true" requiredMessage="#{myBundle.CreateLocalOperacaoRequiredMessage_localOper}" size="45" maxlength="45"/>
+
 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.save}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoEditDialog);">
