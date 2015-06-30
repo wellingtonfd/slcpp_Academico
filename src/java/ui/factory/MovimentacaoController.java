@@ -1,6 +1,7 @@
 package ui.factory;
 
 import entiti.Movimentacao;
+import static java.lang.System.out;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -24,6 +25,15 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         idProdutoController.setSelected(null);
     }
 
+    
+    public void teste(){
+    
+       out.println("teste");
+    
+    
+    }
+    
+    
     /**
      * Sets the "selected" attribute of the Produto controller in order to
      * display its data in a dialog. This is reusing existing the existing View

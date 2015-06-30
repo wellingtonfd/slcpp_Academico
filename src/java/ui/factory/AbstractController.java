@@ -125,12 +125,16 @@ public abstract class AbstractController<T> implements Serializable {
     public void saveNew(ActionEvent event) {
         String msg = ResourceBundle.getBundle("/MyBundle").getString(itemClass.getSimpleName() + "Created");
         persist(PersistAction.CREATE, msg);
-        out.println("SAVE NEW");
         if (!isValidationFailed()) {
             items = null; // Invalidate list of items to trigger re-query.
         }
-    }
+        if ( "Movimentacao".equals(itemClass.getSimpleName())){
+          MovimentacaoController mc = new MovimentacaoController();
+          mc.teste();
+        }
+   }
 
+   
     /**
      * Remove an existing item from the data layer.
      *
