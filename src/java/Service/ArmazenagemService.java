@@ -152,8 +152,7 @@ public class ArmazenagemService {
         return !numeros.contains(produtoVizinho.getNumOnu());
     }
 
-   
-       /**
+    /**
      * retira o produto
      *
      * @param produto
@@ -196,7 +195,7 @@ public class ArmazenagemService {
     public void persistLote(Lote lote) {
         System.out.println("persiste lote: " + lote);
         em.getTransaction().begin();
-        em.persist(lote);
+        em.merge(lote);
         em.getTransaction().commit();
     }
 
@@ -240,7 +239,7 @@ public class ArmazenagemService {
      * @param armazem
      * @return
      */
-    public boolean verificaEspacoVazioArmazem(Armazem armazem) {
+    public boolean verificaEspacoVazioArmazem(Armazem armazem, String lado) {
 
         double comprimento = 0;
         if (verificaLoteDisponivel(armazem)) {
@@ -248,7 +247,9 @@ public class ArmazenagemService {
         } else {
             List<Lote> lotes = getLotesPorAramazem(armazem);
             for (Lote lote : lotes) {
-                comprimento += lote.getDimensoes().getComprimento();
+                if (lote.getLado().equals(lado)) {
+                    comprimento += lote.getDimensoes().getComprimento();
+                }
             }
             if (comprimento < armazem.getDimensoes().getComprimento()) {
                 return true;
@@ -257,6 +258,13 @@ public class ArmazenagemService {
         return false;
     }
 
+    /**
+     * retorno os lotes vizinhos a um lote já criado porem vazio assim podemos
+     * reaproveitar os lotes vazios no meio do armazem
+     *
+     * @param lote
+     * @return
+     */
     public List<Lote> getLotesVizinhos(Lote lote) {
         int seqA = lote.getSequencial() - 1;
         int seqB = lote.getSequencial() + 1;
@@ -266,16 +274,24 @@ public class ArmazenagemService {
         } else {
             lado = "D";
         }
-      Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem <> :estadoArmazenagem AND l.armazem = :armazem AND l.lado =:lado AND l.sequencial in (:seqA,:seqB)")
-            .setParameter("armazem", lote.getArmazem())
-            .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO)
-            .setParameter("lado", lado)
-            .setParameter("seqA", seqA)
-            .setParameter("seqB", seqB);
-      
+        Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem <> :estadoArmazenagem AND l.armazem = :armazem AND l.lado =:lado AND l.sequencial in (:seqA,:seqB)")
+                .setParameter("armazem", lote.getArmazem())
+                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO)
+                .setParameter("lado", lado)
+                .setParameter("seqA", seqA)
+                .setParameter("seqB", seqB);
 
-      return query.getResultList ();
+        return query.getResultList();
 
-}
+    }
+
+    public boolean verificaLotesVizinhosCompativeis(List<Lote> lotes, Produto produtoArmazenar) {
+
+        boolean retorno = true;
+        for (Lote lote : lotes) {
+            retorno = retorno && verificaCompatibilidade(produtoArmazenar, lote.getProduto());
+        }
+        return retorno;
+    }
 
 }
