@@ -132,7 +132,10 @@ public class ArmazenagemService {
     public boolean verificaArmazemVazio(Armazem armazem) {
         Query query = em.createQuery("SELECT l FROM Lote l WHERE l.armazem = :armazem")
                 .setParameter("armazem", armazem);
-        return query.getResultList() == null;
+
+        boolean retorno = (query.getResultList() == null);
+        System.out.println("Verifica armazem vazio " + retorno);
+        return retorno;
     }
 
     /**
@@ -149,32 +152,8 @@ public class ArmazenagemService {
         return !numeros.contains(produtoVizinho.getNumOnu());
     }
 
-    /**
-     * Aramazena o produto que que já esta armazenado anteriormente
-     * @param produto
-     * @param lote
-     * @param numeroPaletes
-     * @return
-     */
-    public boolean armazenaProduto(Produto produto, Lote lote, int numeroPaletes) {
-
-        return true;
-    }
-
-    /**
-     * armazena um novo produto
-     *
-     * @param produto
-     * @param dimensoesLote
-     * @param numeroPaletes
-     * @return
-     */
-    public boolean armazenaProdutoNovo(Produto produto, Dimensoes dimensoesLote, int numeroPaletes) {
-
-        return true;
-    }
-
-    /**
+   
+       /**
      * retira o produto
      *
      * @param produto
@@ -184,8 +163,6 @@ public class ArmazenagemService {
     public boolean retiraProtudo(Produto produto, int quantidade) {
         List<Lote> lotes = getLocalProdutoArmazenado(produto);
 
-        
-        
         return false;
     }
 
@@ -206,8 +183,8 @@ public class ArmazenagemService {
      * @param produto
      * @return
      */
-    public Number getProximoSequencial(Produto produto) {
-        Query query = em.createQuery("SELECT SUM(l.quantidadeProduto) FROM Lote l  WHERE l.produto = :produto");
+    public Number getProximoSequencial(Armazem armazem) {
+        Query query = em.createQuery("SELECT Max(l.sequencial) FROM Lote l  WHERE l.armazem = :armazem");
         return (Number) query.getSingleResult();
     }
 
@@ -217,6 +194,7 @@ public class ArmazenagemService {
      * @param lote
      */
     public void persistLote(Lote lote) {
+        System.out.println("persiste lote: " + lote);
         em.getTransaction().begin();
         em.persist(lote);
         em.getTransaction().commit();
@@ -250,8 +228,8 @@ public class ArmazenagemService {
      */
     public boolean verificaLoteDisponivel(Armazem armazem) {
         Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
-                .setParameter("armazem", armazem)
-                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
+                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO)
+                .setParameter("armazem", armazem);
         return query.getResultList() != null;
     }
 
@@ -278,24 +256,26 @@ public class ArmazenagemService {
         }
         return false;
     }
-    
-    public List<Lote> getLotesVizinhos(Lote lote){
-        if(lote.getLado().equals("E")){
-        
-        Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
-                .setParameter("armazem", lote.getArmazem())
-                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
-        return query.getResultList();
-        }else{
-        
-          Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem AND l.armazem = :armazem order by l.sequencial")
-                .setParameter("armazem", lote.getArmazem())
-                .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO);
-        return query.getResultList();
-        
-        
+
+    public List<Lote> getLotesVizinhos(Lote lote) {
+        int seqA = lote.getSequencial() - 1;
+        int seqB = lote.getSequencial() + 1;
+        String lado = null;
+        if (lote.getLado().equals("E")) {
+            lado = "E";
+        } else {
+            lado = "D";
         }
-            
-    }
+      Query query = em.createQuery("SELECT l FROM Lote l WHERE l.estadoArmazenagem <> :estadoArmazenagem AND l.armazem = :armazem AND l.lado =:lado AND l.sequencial in (:seqA,:seqB)")
+            .setParameter("armazem", lote.getArmazem())
+            .setParameter("estadoArmazenagem", EstadoArmazenagem.VAZIO)
+            .setParameter("lado", lado)
+            .setParameter("seqA", seqA)
+            .setParameter("seqB", seqB);
+      
+
+      return query.getResultList ();
+
+}
 
 }

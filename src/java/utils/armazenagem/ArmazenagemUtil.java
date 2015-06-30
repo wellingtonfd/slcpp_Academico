@@ -10,6 +10,7 @@ import entiti.Armazem;
 import entiti.Dimensoes;
 import entiti.Lote;
 import entiti.Produto;
+import static java.lang.System.out;
 import java.util.List;
 
 /**
@@ -113,8 +114,8 @@ public class ArmazenagemUtil {
             lote = criaNovoLote(armazem, produto, numeroPaletes, totalProduto);
             armazenagemService.persistLote(lote);
         }
-        else
-           armazenagemService.armazenaProdutoNovo(produto, getTamanhoNecessarioLote(armazem, numeroPaletes), numeroPaletes);
+      //  else
+         //  armazenagemService.armazenaProdutoNovo(produto, getTamanhoNecessarioLote(armazem, numeroPaletes), numeroPaletes);
         }
     
     /**retorna lista de lotes onde o produto está armazenado
@@ -137,6 +138,7 @@ public class ArmazenagemUtil {
              return;
          }
          int numeroDePaletes =  getNumeroPaletes(quantidadePorPalete, quantidadeTotal);
+         System.out.println("armazem: " + armazem + "numero paletes: " + numeroDePaletes);
          armazenaProduto(armazem,produto, numeroDePaletes, quantidadeTotal);
    }
    

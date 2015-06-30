@@ -7,6 +7,7 @@
 package ui.bean;
 
 import entiti.Movimentacao;
+import static java.lang.System.out;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,8 +36,14 @@ public class MovimentacaoFacade extends AbstractFacade<Movimentacao> {
 
     @Override
     public void create(Movimentacao entity) {
-        super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("ENTITY  1" + entity);
+        out.println("teste 2");
+       // super.create(entity); //To change body of generated methods, choose Tools | Templates.
+        armazenagemUtil = new ArmazenagemUtil();
+        System.out.println("ENTITY " + entity);
         armazenagemUtil.armazenaProduto(entity.getIdProduto(), entity.getQuantidadeTotal(), entity.getQuantidadePorPalete());
+       
+        
     }
     
     
