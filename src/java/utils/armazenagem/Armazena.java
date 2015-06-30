@@ -5,21 +5,51 @@
  */
 package utils.armazenagem;
 
-import entiti.Movimentacao;
+import entiti.Produto;
+import javax.annotation.ManagedBean;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 
 /**
  *
  * @author sacramento
  */
+@Named(value = "armazena")
 public class Armazena {
   
-    public Movimentacao movimentacao = null;
+   
+    private Produto idProduto;
+    private double qtdTotal;
+    private int qtdPalete;
+
+    public Produto getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Produto idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public double getQtdTotal() {
+        return qtdTotal;
+    }
+
+    public void setQtdTotal(double qtdTotal) {
+        this.qtdTotal = qtdTotal;
+    }
+
+    public int getQtdPalete() {
+        return qtdPalete;
+    }
+
+    public void setQtdPalete(int qtdPalete) {
+        this.qtdPalete = qtdPalete;
+    }
     
-    public ArmazenagemUtil armazenagemUtil = null;
+    ArmazenagemUtil armazenagemUtil= new ArmazenagemUtil();
   
     public void armazena(ActionEvent event){
-        armazenagemUtil.armazenaProduto(movimentacao.getIdProduto(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete());
+        armazenagemUtil.armazenaProduto(idProduto, qtdTotal, qtdPalete);
     }
     
 }
