@@ -9,9 +9,11 @@ import Service.ArmazenagemService;
 import entiti.Armazem;
 import entiti.Dimensoes;
 import entiti.Lote;
+import entiti.Movimentacao;
 import entiti.Produto;
 import static java.lang.System.out;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -22,8 +24,10 @@ public class ArmazenagemUtil {
     // estamos arbitrando que o tamanho do palete é 1x1;
     final Dimensoes tamanhoPalete;
 
-    ArmazenagemService armazenagemService;
+     @Autowired 
+    ArmazenagemService armazenagemService ;
 
+       
     public ArmazenagemUtil() {
         this.tamanhoPalete = new Dimensoes(1.0, 1.0);
     }
@@ -223,5 +227,12 @@ public class ArmazenagemUtil {
             }
         }
         return retorno;
+    }
+    
+    public void insereUltimaMovimentacao(){
+      Movimentacao  movimentacao = new Movimentacao();
+      movimentacao = armazenagemService.getUltimaMovimentacao();
+      out.println("movimentacao: " + movimentacao);
+    
     }
 }

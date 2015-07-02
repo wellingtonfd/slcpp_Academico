@@ -1,5 +1,6 @@
 package ui.factory;
 
+import entiti.Produto;
 import ui.bean.AbstractFacade;
 import ui.factory.util.JsfUtil;
 import java.io.Serializable;
@@ -130,8 +131,12 @@ public abstract class AbstractController<T> implements Serializable {
         }
         if ( "Movimentacao".equals(itemClass.getSimpleName())){
           MovimentacaoController mc = new MovimentacaoController();
-          mc.teste();
+          mc.salvaArmazenagem();   
+          
+          
         }
+        
+             
    }
 
    

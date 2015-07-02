@@ -6,10 +6,11 @@
 package Service;
 
 import entiti.Armazem;
-import entiti.Dimensoes;
 import entiti.Lote;
 import entiti.Lote.EstadoArmazenagem;
+import entiti.Movimentacao;
 import entiti.Produto;
+import static java.lang.System.out;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,8 +28,9 @@ import javax.persistence.StoredProcedureQuery;
 public class ArmazenagemService {
 
     @PersistenceContext(unitName = "slcpp_AcademicoPU")
-    private EntityManager em;
+     private EntityManager em; //getEntityManager();
 
+  
     /**
      * Verifica se o produto a ser inserido ja está armazenado
      *
@@ -285,6 +287,12 @@ public class ArmazenagemService {
 
     }
 
+    /**
+     * Passado um produto e uma lsta de lotes, os lotes vizinhos metodo verifica a compatibilidade
+     * @param lotes
+     * @param produtoArmazenar
+     * @return 
+     */
     public boolean verificaLotesVizinhosCompativeis(List<Lote> lotes, Produto produtoArmazenar) {
 
         boolean retorno = true;
@@ -292,6 +300,16 @@ public class ArmazenagemService {
             retorno = retorno && verificaCompatibilidade(produtoArmazenar, lote.getProduto());
         }
         return retorno;
+    }
+    
+    
+    public Movimentacao getUltimaMovimentacao(){
+        Movimentacao  movimentacao = null;
+        Query query = em.createQuery("SELECT m FROM Movimentacao m  WHERE m.idMovimentacao = select MAX(b.idMovimentacao) from Movimentacao b");
+        movimentacao =(Movimentacao)query.getSingleResult();        
+        out.println("teste service: " + movimentacao);
+        return movimentacao;
+     
     }
 
 }

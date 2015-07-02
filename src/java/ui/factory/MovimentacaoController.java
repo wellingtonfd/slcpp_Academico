@@ -1,10 +1,11 @@
 package ui.factory;
 
 import entiti.Movimentacao;
-import static java.lang.System.out;
+import static java.sql.DriverManager.println;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import utils.armazenagem.ArmazenagemUtil;
 
 @Named(value = "movimentacaoController")
 @ViewScoped
@@ -25,12 +26,15 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         idProdutoController.setSelected(null);
     }
 
+    /**
+     * metodo utilizado para realizar a armazenagem a partir da movimentacao realizada
+     */
+    public void salvaArmazenagem(){
     
-    public void teste(){
-    
-       out.println("teste");
-    
-    
+        ArmazenagemUtil armazenagemUtil = new ArmazenagemUtil();
+        armazenagemUtil.insereUltimaMovimentacao();
+        
+      
     }
     
     
