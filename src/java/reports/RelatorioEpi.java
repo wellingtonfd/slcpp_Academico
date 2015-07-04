@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javax.faces.context.FacesContext;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -27,7 +28,6 @@ import org.primefaces.model.StreamedContent;
  
 public class RelatorioEpi {
  
-    public static final String TEMPLATE = "C:\\Users\\wellington\\Documents\\NetBeansProjects\\slcpp_Academico\\web\\WEB-INF\\reports\\Relatorio_Epi\\RelatorioEpi.jrxml";
      
     public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
          
@@ -35,9 +35,7 @@ public class RelatorioEpi {
  
         try {
             Connection conexao = jasperConnection.getConexao();                
-            String reportStream = RelatorioEpi.TEMPLATE;
-            JasperDesign jd = JRXmlLoader.load(reportStream);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
+            String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Epi/RelatorioEpi.jasper");
             JasperPrint jp = JasperFillManager.fillReport(jr, parametrosRelatorio, conexao);
              
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
