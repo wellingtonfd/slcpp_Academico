@@ -33,7 +33,7 @@ public class RelatorioProd {
         StreamedContent arquivoRetorno = null;
  
         try {
-            Connection conexao = this.getConexao();                
+            Connection conexao = jasperConnection.getConexao();                
             String reportStream = RelatorioProd.TEMPLATE;
             JasperDesign jd = JRXmlLoader.load(reportStream);
             JasperReport jr = JasperCompileManager.compileReport(jd);
@@ -57,18 +57,5 @@ public class RelatorioProd {
         }
         return arquivoRetorno;
     }
- 
-    private Connection getConexao() throws Exception {
-        java.sql.Connection conexao = null;
-        try {
-            Context initContext = new InitialContext();
-            DataSource ds = (DataSource) initContext.lookup("slcpp");
-            conexao = (java.sql.Connection) ds.getConnection();
-        } catch (NamingException e) {
-            throw new Exception("Não foi possível encontrar o nome da conexão do banco.", e);
-        } catch (SQLException e) {
-            throw new Exception("Ocorreu um erro de SQL.", e);
-        }
-        return conexao;
-    }
+
 }

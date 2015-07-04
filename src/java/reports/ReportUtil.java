@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import reports.jasperConnection;
  
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -34,7 +35,7 @@ public class ReportUtil {
         StreamedContent arquivoRetorno = null;
  
         try {
-            Connection conexao = this.getConexao();                
+            Connection conexao = jasperConnection.getConexao();                
             String reportStream = ReportUtil.TEMPLATE;
             JasperDesign jd = JRXmlLoader.load(reportStream);
             JasperReport jr = JasperCompileManager.compileReport(jd);
@@ -59,17 +60,5 @@ public class ReportUtil {
         return arquivoRetorno;
     }
  
-    private Connection getConexao() throws Exception {
-        java.sql.Connection conexao = null;
-        try {
-            Context initContext = new InitialContext();
-            DataSource ds = (DataSource) initContext.lookup("slcpp");
-            conexao = (java.sql.Connection) ds.getConnection();
-        } catch (NamingException e) {
-            throw new Exception("Não foi possível encontrar o nome da conexão do banco.", e);
-        } catch (SQLException e) {
-            throw new Exception("Ocorreu um erro de SQL.", e);
-        }
-        return conexao;
-    }
+    
 }
