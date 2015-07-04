@@ -86,7 +86,7 @@ public class Armazem implements Serializable {
     private StatusArmazem statusArmazemIdStatusArmazem;
     @JoinColumn(name = "fk_id_dimensoes", referencedColumnName = "id_dimensoes")
     @ManyToOne
-    private Dimensoes dimensoes;
+    private Dimensoes dimensoes = new Dimensoes();
     @Column(name = "tamanho_espaco_armazenagem")
     private double tamanhoEspacoArmazenagem;
 

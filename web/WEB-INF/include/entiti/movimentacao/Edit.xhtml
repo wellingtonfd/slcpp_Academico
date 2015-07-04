@@ -13,24 +13,20 @@
 
                 <h:panelGroup id="display">
                     <p:panelGrid  columns="2" columnClasses="column" rendered="#{movimentacaoController.selected != null}">
-
-
-                        <p:outputLabel value="#{myBundle.EditMovimentacaoLabel_idProduto}" for="idProduto" />
-                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter">
+                        
+                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
+                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{produtoController.items}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
-                                           itemLabel="#{idProdutoItem.idProduto.toString()}"
+                                           itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
-
-                        </p:selectOneMenu>
-
-
-                        <p:outputLabel value="#{myBundle.EditMovimentacaoLabel_idEndarmazem}" for="idEndarmazem" />
-                        <p:inputText id="localOper" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateLocalOperacaoTitle_localOper}" required="true" requiredMessage="#{myBundle.CreateLocalOperacaoRequiredMessage_localOper}" size="45" maxlength="45"/>
-
-
+                         </p:selectOneMenu>
+                        <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
+                        <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
+                        <p:outputLabel value="Quantidade de Produtos por Paletes" for="qtdProdPalete" />
+                        <p:inputText id="qtdProdPalete" value="#{movimentacaoController.selected.quantidadePorPalete}" title="#{myBundle.CreateEstadoTitle_qtdProdPalete}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProdPalete}" size="4" maxlength="4"/>     
                     </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.save}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

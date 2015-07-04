@@ -54,7 +54,7 @@ public class Epi implements Serializable {
     private String nomeEpi;
     @OneToMany(mappedBy = "idEpi")
     private List<TipoEquipamento> tipoEquipamentoList;
-    @JoinColumn(name = "id_material", referencedColumnName = "id_tipo_material")
+    @JoinColumn(name = "id_tipo_material", referencedColumnName = "id_tipo_material")
     @ManyToOne
     private TipoMaterial idMaterial;
 

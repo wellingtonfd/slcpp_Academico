@@ -23,6 +23,7 @@ public class ArmazemController extends AbstractController<Armazem> {
     private LocalOperacaoController localOperacaoIdLocalOperController;
     @Inject
     private EndArmazemController idEndarmazemController;
+    
 
     public ArmazemController() {
         // Inform the Abstract parent controller of the concrete Armazem?cap_first Entity

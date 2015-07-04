@@ -43,7 +43,7 @@ public class Movimentacao implements Serializable {
     @ManyToOne
     private Produto idProduto;
     @Column(name = "qtdtotal")
-    private double quantidadeTotal;
+    private Integer quantidadeTotal;
     @Column(name = "qtdporpalete")
     private Integer quantidadePorPalete;
     
@@ -70,11 +70,11 @@ public class Movimentacao implements Serializable {
         this.idProduto = idProduto;
     }
 
-    public double getQuantidadeTotal() {
+    public Integer getQuantidadeTotal() {
         return quantidadeTotal;
     }
 
-    public void setQuantidadeTotal(double quantidadeTotal) {
+    public void setQuantidadeTotal(Integer quantidadeTotal) {
         this.quantidadeTotal = quantidadeTotal;
     }
 

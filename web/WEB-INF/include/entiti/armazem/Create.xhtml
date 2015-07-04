@@ -19,19 +19,11 @@
                                     <p:outputLabel value="#{myBundle.CreateArmazemLabel_tipoArmazem}" for="tipoArmazem" />
                                     <p:inputText id="tipoArmazem" value="#{armazemController.selected.tipoArmazem}" title="#{myBundle.CreateArmazemTitle_tipoArmazem}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_tipoArmazem}" size="45" maxlength="45"/>
                                     <p:outputLabel value="#{myBundle.CreateArmazemLabel_especArmazem}" for="especArmazem" />
-                                    <p:inputTextarea id="especArmazem" value="#{armazemController.selected.especArmazem}" title="#{myBundle.CreateArmazemTitle_especArmazem}"  maxlength="45"/>
-                                    
-                                </p:panelGrid>
-                            </p:panel>
-                        </p:tab>
-                        <p:tab id="personales2" title="Especificação">    
-                            <p:panel header="Endereçamento">
-                                <p:messages/>
-                                <p:panelGrid columns="2" columnClasses="column">                                    
-                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_ladoEndArmazem}" for="ladoEndArmazem" />
-                                    <p:inputText id="ladoEndArmazem" value="#{armazemController.selected.idEndarmazem}" title="#{myBundle.CreateEndArmazemTitle_ladoEndArmazem}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_ladoEndArmazem}" size="15" maxlength="15"/>
-                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_posicaoEndArmazem}" for="posicaoEndArmazem" />
-                                    <p:inputText id="posicaoEndArmazem" value="#{armazemController.selected.idEndarmazem.posicaoEndArmazem}" title="#{myBundle.CreateEndArmazemTitle_posicaoEndArmazem}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_posicaoEndArmazem}" size="15" maxlength="15"/>
+                                    <p:inputText id="especArmazem" value="#{armazemController.selected.especArmazem}" title="#{myBundle.CreateArmazemTitle_especArmazem}" size="45" maxlength="45"/>                                        
+                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_comp_Dimensao}" for="ladoEndArmazem" />
+                                    <p:inputText id="ladoEndArmazem" value="#{armazemController.selected.idEndarmazem}" title="#{myBundle.CreateEndArmazemTitle_comp_Dimensao}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_comp_Dimensao}" size="15" maxlength="15"/>
+                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_lar_Dimensao}" for="posicaoEndArmazem" />
+                                    <p:inputText id="posicaoEndArmazem" value="#{armazemController.selected.idEndarmazem}" title="#{myBundle.CreateEndArmazemTitle_lar_Dimensao}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_lar_Dimensao}" size="15" maxlength="15"/>
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -43,14 +35,10 @@
                                     <h:outputText value="#{armazemController.selected.tipoArmazem}" styleClass="outputLabel"/>
                                     <h:outputLabel value="#{myBundle.EditArmazemLabel_especArmazem}" for="especArmazem" />
                                     <h:outputText value="#{armazemController.selected.especArmazem}" styleClass="outputLabel"/>
-                                   </h:panelGrid>                                
-                                <h:panelGrid  columns="2" columnClasses="grid,grid">
-                                    <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputLabel value="#{myBundle.EditEndArmazemLabel_ladoEndArmazem}" for="ladoEndArmazem" />
                                         <h:outputText value="#{armazemController.selected.idEndarmazem.ladoEndArmazem}" styleClass="outputLabel"/>
                                         <h:outputLabel value="#{myBundle.EditEndArmazemLabel_posicaoEndArmazem}" for="posicaoEndArmazem" />
                                         <h:outputText value="#{armazemController.selected.idEndarmazem.posicaoEndArmazem}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
                                 </h:panelGrid>
                                 <p:commandButton actionListener="#{armazemController.saveNew}" value="#{myBundle.Save}" update="display,:ArmazemListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ArmazemCreateDialog);">
                                     <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
