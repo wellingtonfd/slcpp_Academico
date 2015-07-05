@@ -9,36 +9,33 @@ import java.util.HashMap;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.StreamedContent;
 import reports.ReportUtil;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import reports.RelatorioEpi;
- 
-
 
 /**
  *
  * @author sacramento
  */
-
 @ManagedBean(name = "report")
 public class Report {
- 
+
     private StreamedContent arquivoRetorno;
-     
+    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Epi/RelatorioEpi.jasper");
+
     public StreamedContent getArquivoRetorno() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RelatorioEpi ru = new RelatorioEpi();
+        ReportUtil ru = new ReportUtil();
         HashMap parametrosRelatorio = new HashMap();
         try {
-            this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio);
+            this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio,jr);
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(e.getMessage()));
             return null;
-        }         
+        }
         return this.arquivoRetorno;
-    }    
+    }
+
     public void setArquivoRetorno(StreamedContent arquivoRetorno) {
         this.arquivoRetorno = arquivoRetorno;
-    }    
+    }
 }

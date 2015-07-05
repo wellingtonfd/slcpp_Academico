@@ -8,21 +8,19 @@ package ui.factory;
 import java.util.HashMap;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.StreamedContent;
-import reports.RelatorioIncompProduto;
+import reports.ReportUtil;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
- 
-
 
 /**
  *
  * @author sacramento
  */
-
 @ManagedBean(name = "reportIncomp")
 public class ReportIncomp {
- 
+
     private StreamedContent arquivoRetorno;
+    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Incompatibilidade.jasper");
     private int produto;
 
     public int getProduto() {
@@ -32,22 +30,23 @@ public class ReportIncomp {
     public void setProduto(int produto) {
         this.produto = produto;
     }
-     
+
     public StreamedContent getArquivoRetorno() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RelatorioIncompProduto ru = new RelatorioIncompProduto();
+        ReportUtil ru = new ReportUtil();
         HashMap incompatibilidade = new HashMap();
         incompatibilidade.put("produto", produto);
-        
+
         try {
-            this.arquivoRetorno = ru.geraRelatorio(incompatibilidade);
+            this.arquivoRetorno = ru.geraRelatorio(incompatibilidade,jr);
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(e.getMessage()));
             return null;
-        }         
+        }
         return this.arquivoRetorno;
-    }    
+    }
+
     public void setArquivoRetorno(StreamedContent arquivoRetorno) {
         this.arquivoRetorno = arquivoRetorno;
-    }    
+    }
 }

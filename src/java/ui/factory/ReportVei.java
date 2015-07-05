@@ -3,36 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ui.factory;
 
 import java.util.HashMap;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.StreamedContent;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import reports.RelatorioVei;
+import reports.ReportUtil;
 
 @ManagedBean(name = "reportVei")
 public class ReportVei {
-    
+
     private StreamedContent arquivoRetorno;
-     
+    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Veicuto/RelatorioVei.jasper");
+
     public StreamedContent getArquivoRetorno() {
         FacesContext context = FacesContext.getCurrentInstance();
-        RelatorioVei ru = new RelatorioVei();
+        ReportUtil ru = new ReportUtil();
         HashMap parametrosRelatorio = new HashMap();
         try {
-            this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio);
+            this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio,jr);
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(e.getMessage()));
             return null;
-        }         
+        }
         return this.arquivoRetorno;
-    }    
+    }
+
     public void setArquivoRetorno(StreamedContent arquivoRetorno) {
         this.arquivoRetorno = arquivoRetorno;
-    }  
-    
+    }
+
 }

@@ -29,13 +29,12 @@ import org.primefaces.model.StreamedContent;
  
 public class ReportUtil {
      
-    public StreamedContent geraRelatorio(HashMap parametrosRelatorio) throws Exception {
+    public StreamedContent geraRelatorio(HashMap parametrosRelatorio, String jr) throws Exception {
          
         StreamedContent arquivoRetorno = null;
  
         try {
             Connection conexao = jasperConnection.getConexao();                
-            String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/users.jasper");
             JasperPrint jp = JasperFillManager.fillReport(jr, parametrosRelatorio, conexao);
              
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -46,7 +45,7 @@ public class ReportUtil {
  
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
              
-            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "users.pdf");
+            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "relatorio.pdf");
              
         } catch (JRException e) {
             e.printStackTrace();
