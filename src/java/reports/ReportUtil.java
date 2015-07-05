@@ -3,33 +3,21 @@ package reports;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
-import javax.faces.context.FacesContext;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import reports.jasperConnection;
  
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
  
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
  
 public class ReportUtil {
      
-    public StreamedContent geraRelatorio(HashMap parametrosRelatorio, String jr) throws Exception {
+    public StreamedContent geraRelatorio(HashMap parametrosRelatorio, String jr,String nomeReport) throws Exception {
          
         StreamedContent arquivoRetorno = null;
  
@@ -45,7 +33,7 @@ public class ReportUtil {
  
             ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
              
-            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "relatorio.pdf");
+            arquivoRetorno = new DefaultStreamedContent(bais, "pdf", nomeReport+".pdf");
              
         } catch (JRException e) {
             e.printStackTrace();

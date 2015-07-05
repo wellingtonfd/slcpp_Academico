@@ -22,6 +22,11 @@ public class ReportIncomp {
     private StreamedContent arquivoRetorno;
     String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Incompatibilidade.jasper");
     private int produto;
+    private String nomeReport = "Incompatibilidade";
+
+    public String getNomeReport() {
+        return nomeReport;
+    }
 
     public int getProduto() {
         return produto;
@@ -38,7 +43,7 @@ public class ReportIncomp {
         incompatibilidade.put("produto", produto);
 
         try {
-            this.arquivoRetorno = ru.geraRelatorio(incompatibilidade,jr);
+            this.arquivoRetorno = ru.geraRelatorio(incompatibilidade,jr,nomeReport);
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(e.getMessage()));
             return null;

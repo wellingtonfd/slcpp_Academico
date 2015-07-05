@@ -20,6 +20,12 @@ import javax.faces.application.FacesMessage;
 public class Report {
 
     private StreamedContent arquivoRetorno;
+    private String nomeReport = "RelatorioEPI";
+
+    public String getNomeReport() {
+        return nomeReport;
+    }
+
     String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Epi/RelatorioEpi.jasper");
 
     public StreamedContent getArquivoRetorno() {
@@ -27,7 +33,7 @@ public class Report {
         ReportUtil ru = new ReportUtil();
         HashMap parametrosRelatorio = new HashMap();
         try {
-            this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio,jr);
+            this.arquivoRetorno = ru.geraRelatorio(parametrosRelatorio,jr,nomeReport);
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(e.getMessage()));
             return null;
