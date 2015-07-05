@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-07-05T12:43:31 -->
+<!-- 2015-07-05T13:36:13 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70d1b080-5ad4-4d9a-99f2-edd93184d2db">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="slcpp"/>
 	<parameter name="produto" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[$P{produto}]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT p2.numonu , p1.desc_produto from incompatibilidade(3221) as p2 inner join produto as p1 on p1.num_onu = p2.numonu;]]>
+		<![CDATA[SELECT p2.numonu , p1.desc_produto from incompatibilidade($P{produto}) as p2 inner join produto as p1 on p1.num_onu = p2.numonu;]]>
 	</queryString>
 	<field name="numonu" class="java.lang.Integer"/>
 	<field name="desc_produto" class="java.lang.String"/>
@@ -76,25 +76,25 @@
 		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="33" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="-20" y="10" width="595" height="20" forecolor="#CAD7F6" backcolor="#C6D3F1" uuid="c0d955af-dc31-4b29-aed7-291ab364151e"/>
-				<textField pattern="dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
-					<reportElement x="19" y="1" width="161" height="19" uuid="1268bdfb-79ea-4554-b560-e8b5c9730b87"/>
-					<textElement verticalAlignment="Middle"/>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="312" y="3" width="228" height="14" uuid="fdcc4323-ca72-4a14-b20d-2a4c2a2e3b85"/>
-					<textElement textAlignment="Right"/>
-					<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<textField evaluationTime="Report">
-					<reportElement x="540" y="3" width="55" height="14" uuid="0ecd9859-a068-471c-9f83-058db0e61be7"/>
-					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-			</frame>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-20" y="0" width="595" height="20" forecolor="#C7D5F3" backcolor="#CAD7F6" uuid="f94dae04-5c7a-41b8-8b5d-cefe76b65485"/>
+			</rectangle>
+			<textField pattern="dd &apos;de&apos; MMMM &apos;de&apos; yyyy">
+				<reportElement x="-10" y="0" width="180" height="20" uuid="c1309103-a851-41ff-8aea-c52e05933dbc"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="1" width="100" height="14" uuid="85c3a4ac-7e1d-4675-a6f8-959a2af2d0e0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="490" y="0" width="80" height="17" uuid="9e55e266-a261-44f2-bfe7-bd9562f9d555"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 	<summary>

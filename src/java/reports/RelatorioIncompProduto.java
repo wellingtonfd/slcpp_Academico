@@ -24,7 +24,7 @@ public class RelatorioIncompProduto {
  
         try {
             Connection conexao = jasperConnection.getConexao();                
-            String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/IncompabilidadeProduto.jasper");
+            String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/IncompatibilidadeProduto.jasper");
             JasperPrint jp = JasperFillManager.fillReport(jr, parametrosRelatorio, conexao);
              
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
