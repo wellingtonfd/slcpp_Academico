@@ -24,7 +24,7 @@ public class RelatorioIncompProduto {
  
         try {
             Connection conexao = jasperConnection.getConexao();                
-            String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/IncompatibilidadeProduto.jasper");
+            String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Incompatibilidade.jasper");
             JasperPrint jp = JasperFillManager.fillReport(jr, parametrosRelatorio, conexao);
              
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -38,6 +38,7 @@ public class RelatorioIncompProduto {
             arquivoRetorno = new DefaultStreamedContent(bais, "pdf", "ProdutoIncompativeis.pdf");
              
         } catch (JRException e) {
+            e.printStackTrace();
             throw new Exception("Não foi possível gerar o relatório.", e);
         } catch (FileNotFoundException e) {
             throw new Exception("Arquivo do relatório nõo encontrado.", e);

@@ -9,10 +9,8 @@ import java.util.HashMap;
 import javax.faces.bean.ManagedBean;
 import org.primefaces.model.StreamedContent;
 import reports.RelatorioIncompProduto;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-import reports.RelatorioEpi;
  
 
 
