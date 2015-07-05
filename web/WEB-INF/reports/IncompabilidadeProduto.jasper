@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-07-05T12:43:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70d1b080-5ad4-4d9a-99f2-edd93184d2db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="slcpp"/>
+	<parameter name="produto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[$P{produto}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT p2.numonu , p1.desc_produto from incompatibilidade(3221) as p2 inner join produto as p1 on p1.num_onu = p2.numonu;]]>
+	</queryString>
+	<field name="numonu" class="java.lang.Integer"/>
+	<field name="desc_produto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="595" height="120" backcolor="#2566B0" uuid="a4ccdbe5-ed03-4b69-9157-d6734bd44a34"/>
+				<staticText>
+					<reportElement x="10" y="20" width="272" height="30" forecolor="#FFFFFF" uuid="67cb4349-c42c-46fa-bf16-0f98eb05fec9"/>
+					<textElement verticalAlignment="Middle">
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Incompatibilidade]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="480" y="80" width="100" height="30" uuid="508b0143-cece-4aca-a73e-d0a3ca8a2b35"/>
+					<textFieldExpression><![CDATA[$P{produto}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="595" height="31" backcolor="#D1DFFF" uuid="c5556f41-3c9d-48b1-97b4-c292b1e12c4c"/>
+				<staticText>
+					<reportElement x="19" y="5" width="231" height="20" forecolor="#082D59" uuid="323daf71-4deb-41e1-8b36-e4b10c21a3c6"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#D1DFFF"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid"/>
+					</box>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Produtos incompativeis]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="20" uuid="f923dae7-a605-4f29-b39e-705497c8fbc5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numonu}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-15" y="20" width="590" height="1" uuid="6eacd982-1441-4b17-81f9-82736832df4a"/>
+			</line>
+			<textField>
+				<reportElement x="50" y="0" width="525" height="21" uuid="325d9a96-9424-4c90-9ce4-974613bed135"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{desc_produto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="10" width="595" height="20" forecolor="#CAD7F6" backcolor="#C6D3F1" uuid="c0d955af-dc31-4b29-aed7-291ab364151e"/>
+				<textField pattern="dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+					<reportElement x="19" y="1" width="161" height="19" uuid="1268bdfb-79ea-4554-b560-e8b5c9730b87"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="312" y="3" width="228" height="14" uuid="fdcc4323-ca72-4a14-b20d-2a4c2a2e3b85"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="540" y="3" width="55" height="14" uuid="0ecd9859-a068-471c-9f83-058db0e61be7"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

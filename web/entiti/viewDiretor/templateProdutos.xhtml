@@ -48,10 +48,12 @@
             <h:panelGrid columns="2" cellpadding="5">
                 <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
                 <h:form id="referencia">
-                    <h:commandButton type="submit" value="Gerar Relatorio" >
-                        <p:fileDownload value="#{reportProd.arquivoRetorno}" />
-                    </h:commandButton> 
-                </h:form>
+                     <h:outputText value="Codigo do produto"/>
+                     <h:inputText value="#{reportIncomp.produto}"/>
+               <h:commandButton type="submit" value="Gerar Relatorio" >
+                   <p:fileDownload value="#{reportIncomp.arquivoRetorno}" />
+                </h:commandButton> 
+                 </h:form>
             </h:panelGrid>
         </p:panel>
        

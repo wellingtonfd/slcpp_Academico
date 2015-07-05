@@ -1,0 +1,55 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package ui.factory;
+
+import java.util.HashMap;
+import javax.faces.bean.ManagedBean;
+import org.primefaces.model.StreamedContent;
+import reports.RelatorioIncompProduto;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import reports.RelatorioEpi;
+ 
+
+
+/**
+ *
+ * @author sacramento
+ */
+
+@ManagedBean(name = "reportIncomp")
+public class ReportIncomp {
+ 
+    private StreamedContent arquivoRetorno;
+    private int produto;
+
+    public int getProduto() {
+        return produto;
+    }
+
+    public void setProduto(int produto) {
+        this.produto = produto;
+    }
+     
+    public StreamedContent getArquivoRetorno() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        RelatorioIncompProduto ru = new RelatorioIncompProduto();
+        HashMap incompatibilidade = new HashMap();
+        incompatibilidade.put("produto", produto);
+        
+        try {
+            this.arquivoRetorno = ru.geraRelatorio(incompatibilidade);
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(e.getMessage()));
+            return null;
+        }         
+        return this.arquivoRetorno;
+    }    
+    public void setArquivoRetorno(StreamedContent arquivoRetorno) {
+        this.arquivoRetorno = arquivoRetorno;
+    }    
+}
