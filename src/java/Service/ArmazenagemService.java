@@ -5,16 +5,18 @@
  */
 package Service;
 
+import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 import entiti.Armazem;
 import entiti.Lote;
 import entiti.Lote.EstadoArmazenagem;
 import entiti.Movimentacao;
-import entiti.Produto;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -393,7 +395,34 @@ public class ArmazenagemService {
 //        storedProcedure.execute();
 //        // get resultado
 //        List<Integer> resultado = (List<Integer>) storedProcedure.getOutputParameterValue("numonu");
-        return null;
+          List<Integer> retorno = new ArrayList<Integer>();
+        
+        try { 
+            
+            Connection connection = jasperConnection.getConexao();
+           
+            CallableStatement proc =  connection.prepareCall(" { call incompatibilidade(?) } ");
+           
+            proc.registerOutParameter(1,Type.INT);
+            proc.setInt(2, nOnu);
+            proc.execute();
+            
+            Integer numero;
+            ResultSet rs =  proc.getResultSet();
+            while(rs.next()){
+                
+                numero = rs.getInt(1);
+                
+                retorno.add(numero);
+            }
+            
+            proc.close();
+        } catch (Exception e) {
+        }
+        
+        return retorno;
+        
+        
     }
 
     /**
