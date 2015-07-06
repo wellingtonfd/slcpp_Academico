@@ -10,7 +10,6 @@ import entiti.Lote;
 import entiti.Lote.EstadoArmazenagem;
 import entiti.Movimentacao;
 import entiti.Produto;
-import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,10 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.ParameterMode;
-import javax.persistence.Query;
-import javax.persistence.StoredProcedureQuery;
 import reports.jasperConnection;
 
 /**
@@ -274,10 +269,10 @@ public class ArmazenagemService {
      * @param produtoVizinho
      * @return
      */
-    public boolean verificaCompatibilidade(Produto produtoParaArmazenar, Produto produtoVizinho) {
+    public boolean verificaCompatibilidade(Integer produtoParaArmazenar, Integer produtoVizinho) {
         List<Integer> numeros;
-        numeros = getProdutosIncompativeis(produtoParaArmazenar.getNumOnu());
-        return !numeros.contains(produtoVizinho.getNumOnu());
+        numeros = getProdutosIncompativeis(produtoParaArmazenar);
+        return !numeros.contains(produtoVizinho);
     }
 
     /**
@@ -511,15 +506,21 @@ public class ArmazenagemService {
      * @param produtoArmazenar
      * @return
      */
-    public boolean verificaLotesVizinhosCompativeis(List<Lote> lotes, Produto produtoArmazenar) {
+    public boolean verificaLotesVizinhosCompativeis(List<Lote> lotes, Integer produtoArmazenar) {
 
         boolean retorno = true;
         for (Lote lote : lotes) {
-            retorno = retorno && verificaCompatibilidade(produtoArmazenar, lote.getProduto());
+            retorno = retorno && verificaCompatibilidade(produtoArmazenar, lote.getIdProduto());
         }
         return retorno;
     }
 
+    
+    /**
+     * retorna a ultima movimentação inserida no banco de dados que será usada 
+     * para armazenagem
+     * @return 
+     */
     public Movimentacao getUltimaMovimentacao() {
         Movimentacao movimentacao = new Movimentacao();
         ResultSet rs = null;
@@ -546,5 +547,30 @@ public class ArmazenagemService {
         return movimentacao;
 
     }
-
 }
+
+//    
+//    public Produto getProduto(Integer produtoId){
+//    
+//          ResultSet rs;
+//          Produto produto = new Produto();
+//        try {
+//            Connection connection = jasperConnection.getConexao();
+//
+//            String query = "select * from produto l where l.num_onu = " + produtoId + "; ";
+//            PreparedStatement prepared = connection.prepareStatement(query);
+//            rs = prepared.executeQuery();
+//
+//            while (rs.next()) {
+//            
+//                produto.set
+//            
+//            }
+//            connection.close();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+    
+  //  }//

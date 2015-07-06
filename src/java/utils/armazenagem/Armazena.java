@@ -49,7 +49,7 @@ public class Armazena {
     ArmazenagemUtil armazenagemUtil= new ArmazenagemUtil();
   
     public void armazena(ActionEvent event){
-        armazenagemUtil.armazenaProduto(idProduto, qtdTotal, qtdPalete);
+      //  armazenagemUtil.armazenaProduto(idProduto, qtdTotal, qtdPalete);
     }
     
 }

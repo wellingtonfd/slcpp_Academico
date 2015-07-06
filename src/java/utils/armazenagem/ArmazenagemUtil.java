@@ -11,12 +11,10 @@ import entiti.Dimensoes;
 import entiti.Lote;
 import entiti.Movimentacao;
 import entiti.Produto;
-import static java.lang.System.out;
+import java.security.Provider.Service;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ui.bean.LoteFacade;
-import ui.bean.MovimentacaoFacade;
 
 /**
  *
@@ -99,7 +97,7 @@ public class ArmazenagemUtil {
      * @param numeroPaletes
      * @param totalProduto
      */
-    public void armazenaProduto(Armazem armazem, Produto produto, int numeroPaletes, double totalProduto) {
+    public void armazenaProduto(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto) {
 
         Lote lote = null;
         Integer armazemId = armazem.getIdArmazem();
@@ -107,7 +105,7 @@ public class ArmazenagemUtil {
         if (armazenagemService.verificaArmazemVazio(armazem.getIdArmazem())) {
             lote = new Lote();
             lote.setArmazem(armazem);
-            lote.setProduto(produto);
+            lote.setIdProduto(produtoId);
             lote.setNumeroPaletesArmazenados(numeroPaletes);
             lote.setQuantidadeProduto(totalProduto);
             lote.setSequencial(1);
@@ -120,7 +118,7 @@ public class ArmazenagemUtil {
         List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazemId);
         if (lotes != null) {
             for (Lote loteExistente : lotes) {
-                if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produto)) {
+                if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
                     armazenagemService.persistLote(loteExistente);
                 }
 
@@ -129,7 +127,7 @@ public class ArmazenagemUtil {
            
         }
         else{
-         lote = criaNovoLote(armazem, produto, numeroPaletes, totalProduto);
+         lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
          armazenagemService.persistLote(lote);
         }
     }
@@ -151,14 +149,14 @@ public class ArmazenagemUtil {
      * @param quantidadeTotal
      * @param quantidadePorPalete
      */
-    public void armazenaProduto(Produto produto, double quantidadeTotal, int quantidadePorPalete) {
+    public void armazenaProduto(Integer produtoId, double quantidadeTotal, int quantidadePorPalete) {
         Armazem armazem = verificaArmazemDisponivel(getArmazens());
         if (armazem == null) {
             return;
         }
         int numeroDePaletes = getNumeroPaletes(quantidadePorPalete, quantidadeTotal);
         System.out.println("armazem: " + armazem + "numero paletes: " + numeroDePaletes);
-        armazenaProduto(armazem, produto, numeroDePaletes, quantidadeTotal);
+        armazenaProduto(armazem, produtoId, numeroDePaletes, quantidadeTotal);
     }
 
     /**
@@ -188,8 +186,8 @@ public class ArmazenagemUtil {
      * @param produto
      * @return
      */
-    public Double getQuantidadeTotalProduto(Produto produto) {
-        return (Double) armazenagemService.getQuantidadeTotalProduto(produto.getNumOnu());
+    public Double getQuantidadeTotalProduto(Integer produtoId) {
+        return (Double) armazenagemService.getQuantidadeTotalProduto(produtoId);
     }
 
     /**
@@ -201,7 +199,7 @@ public class ArmazenagemUtil {
         return armazenagemService.getAllArmazens();
     }
 
-    public Lote criaNovoLote(Armazem armazem, Produto produto, int numeroPaletes, double totalProduto) {
+    public Lote criaNovoLote(Armazem armazem, Integer produto, int numeroPaletes, double totalProduto) {
        
         Integer armazemId = armazem.getIdArmazem();
         Lote lote = new Lote();
@@ -238,6 +236,8 @@ public class ArmazenagemUtil {
       Movimentacao  movimentacao = new Movimentacao();
         try {
             movimentacao = armazenagemService.getUltimaMovimentacao();
+            armazenaProduto(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete());
+            
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
