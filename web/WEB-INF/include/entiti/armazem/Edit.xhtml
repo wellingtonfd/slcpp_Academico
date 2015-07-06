@@ -14,89 +14,22 @@
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
                         <p:tab id="personales" title="Dados Armazém">    
                             <p:panel header="Dados Armazém">
-
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column" rendered="#{armazemController.selected != null}">
-
-                                    <p:outputLabel value="#{myBundle.EditArmazemLabel_tipoArmazem}" for="tipoArmazem" />
-                                    <p:inputText id="tipoArmazem" value="#{armazemController.selected.tipoArmazem}" title="#{myBundle.CreateArmazemTitle_tipoArmazem}" required="true" requiredMessage="#{myBundle.EditArmazemRequiredMessage_tipoArmazem}" size="45" maxlength="45"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_capacidadeArmazem}" for="capacidadeArmazem" />
-                                    <p:inputText id="capacidadeArmazem" value="#{armazemController.selected.capacidadeArmazem}" title="#{myBundle.EditArmazemTitle_capacidadeArmazem}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_capacidadeArmazem}" size="30" maxlength="30"/>
-
-                                    <p:outputLabel value="#{myBundle.EditArmazemLabel_certificacaoArmazem}" for="certificacaoArmazem" />
-                                    <p:inputText id="certificacaoArmazem" value="#{armazemController.selected.certificacaoArmazem}" title="#{myBundle.CreateArmazemTitle_certificacaoArmazem}"  size="45" maxlength="45"/>
-
-                                    <p:outputLabel value="#{myBundle.EditArmazemLabel_especArmazem}" for="especArmazem" />
-                                    <p:inputTextarea id="especArmazem" value="#{armazemController.selected.especArmazem}" title="#{myBundle.CreateArmazemTitle_especArmazem}"  maxlength="45"/>
-
-                                    <p:outputLabel value="#{myBundle.EditArmazemLabel_estoqueMax}" for="estoqueMax" />
-                                    <p:inputText id="estoqueMax" value="#{armazemController.selected.estoqueMax}" title="#{myBundle.CreateArmazemTitle_estoqueMax}" required="true" requiredMessage="#{myBundle.EditArmazemRequiredMessage_estoqueMax}" size="30" maxlength="30"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_estoqueMin}" for="estoqueMin" />
-                                    <p:inputText id="estoqueMin" value="#{armazemController.selected.estoqueMin}" title="#{myBundle.EditArmazemTitle_estoqueMin}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_estoqueMin}" size="30" maxlength="30"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateCompatibilidadeLabel_idLegendaCompatibilidade}" for="idLegendaCompatibilidade" />
-                                    <p:selectOneMenu id="idLegendaCompatibilidade" var="teste3" value="#{armazemController.selected.idCompatibilidade.idLegendaCompatibilidade}"  converter="legendaCompatibilidadeConverter">
-                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{legendaCompatibilidadeController.items}"
-                                                       var="idLegendaCompatibilidadeItem"
-                                                       itemValue="#{idLegendaCompatibilidadeItem}"
-                                                       itemLabel="#{idLegendaCompatibilidadeItem.especLegenda.toString()}"
-                                                       />
-                                        <p:column >
-                                            <h:outputText value="#{teste3.legenda}"/>
-                                        </p:column>
-                                        <p:column>
-                                            <h:outputText value="#{teste3.especLegenda}"/>
-                                        </p:column>
-
-                                    </p:selectOneMenu>
-
-
-                                </p:panelGrid>
-                            </p:panel>
-                        </p:tab>
-                        <p:tab id="personales2" title="Especificação">    
-                            <p:panel header="Endereçamento">
-                                <p:messages/>
-
-                                <p:panelGrid columns="2" columnClasses="column">
-
-                                    <p:outputLabel value="#{myBundle.EditEndArmazemLabel_corEndArmazem}" for="corEndArmazem" />
-                                    <p:inputText id="corEndArmazem" value="#{armazemController.selected.idEndarmazem.corEndArmazem}" title="#{myBundle.CreateEndArmazemTitle_corEndArmazem}" required="true" requiredMessage="#{myBundle.EditEndArmazemRequiredMessage_corEndArmazem}" size="40" maxlength="40"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_ruaEndArmazem}" for="ruaEndArmazem" />
-                                    <p:inputText id="ruaEndArmazem" value="#{armazemController.selected.idEndarmazem.ruaEndArmazem}" title="#{myBundle.EditEndArmazemTitle_ruaEndArmazem}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_ruaEndArmazem}" size="25" maxlength="25"/>
-
-                                    <p:outputLabel value="#{myBundle.EditEndArmazemLabel_ladoEndArmazem}" for="ladoEndArmazem" />
-                                    <p:inputText id="ladoEndArmazem" value="#{armazemController.selected.idEndarmazem.ladoEndArmazem}" title="#{myBundle.CreateEndArmazemTitle_ladoEndArmazem}" required="true" requiredMessage="#{myBundle.EditEndArmazemRequiredMessage_ladoEndArmazem}" size="15" maxlength="15"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_nivelEndArmazem}" for="nivelEndArmazem" />
-                                    <p:inputText id="nivelEndArmazem" value="#{armazemController.selected.idEndarmazem.nivelEndArmazem}" title="#{myBundle.EditEndArmazemTitle_nivelEndArmazem}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_nivelEndArmazem}" size="15" maxlength="15"/>
-
-                                    <p:outputLabel value="#{myBundle.EditEndArmazemLabel_posicaoEndArmazem}" for="posicaoEndArmazem" />
-                                    <p:inputText id="posicaoEndArmazem" value="#{armazemController.selected.idEndarmazem.posicaoEndArmazem}" title="#{myBundle.CreateEndArmazemTitle_posicaoEndArmazem}" required="true" requiredMessage="#{myBundle.EditEndArmazemRequiredMessage_posicaoEndArmazem}" size="15" maxlength="15"/>
-
-
-                                    <p:outputLabel value="Status:" for="statusArmazemIdStatusArmazem" />
-                                    <p:selectOneMenu id="statusArmazemIdStatusArmazem" value="#{armazemController.selected.statusArmazemIdStatusArmazem}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_statusArmazemIdStatusArmazem}" converter="statusArmazemConverter">
-                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{statusArmazemController.items}"
-                                                       var="statusArmazemIdStatusArmazemItem"
-                                                       itemValue="#{statusArmazemIdStatusArmazemItem}"
-                                                       itemLabel="#{statusArmazemIdStatusArmazemItem.tipoStatusArmazem.toString()}"
-                                                       />
-
-                                    </p:selectOneMenu>
-
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_tipoArmazem}" for="tipoArmazem" />
+                                    <p:inputText id="tipoArmazem" value="#{armazemController.selected.tipoArmazem}" title="#{myBundle.CreateArmazemTitle_tipoArmazem}" required="true" requiredMessage="#{myBundle.CreateArmazemRequiredMessage_tipoArmazem}" size="45" maxlength="45"/>
+                                    <p:outputLabel value="#{myBundle.CreateArmazemLabel_especArmazem}" for="especArmazem" />
+                                    <p:inputText id="especArmazem" value="#{armazemController.selected.especArmazem}" title="#{myBundle.CreateArmazemTitle_especArmazem}" size="45" maxlength="45"/>                                        
+                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_comp_Dimensao}" for="ladoEndArmazem" />
+                                    <p:inputText id="ladoEndArmazem" value="#{armazemController.selected.dimensoes.comprimento}" title="#{myBundle.CreateEndArmazemTitle_comp_Dimensao}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_comp_Dimensao}" size="15" maxlength="15"/>
+                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_lar_Dimensao}" for="ladoEndArmazem" />
+                                    <p:inputText id="posicaoEndArmazem" value="#{armazemController.selected.dimensoes.largura}" title="#{myBundle.CreateEndArmazemTitle_lar_Dimensao}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_lar_Dimensao}" size="15" maxlength="15"/>   
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
                                 <p:messages/>
-
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="label, value">
                                     <h:outputLabel value="#{myBundle.EditArmazemLabel_tipoArmazem}" for="tipoArmazem" />
                                     <h:outputText value="#{armazemController.selected.tipoArmazem}" styleClass="outputLabel"/>
@@ -137,14 +70,9 @@
 
                                     </h:panelGrid>
                                 </h:panelGrid>
-
-
-
-
                                 <p:commandButton actionListener="#{armazemController.saveNew}" value="#{myBundle.Save}" update="display,:ArmazemListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ArmazemEditDialog);">
                                     <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
                                 </p:commandButton>
-
                                 <p:commandButton value="#{myBundle.Cancel}" onclick="ArmazemEditDialog.hide()"/>
                             </p:panel>
                         </p:tab>

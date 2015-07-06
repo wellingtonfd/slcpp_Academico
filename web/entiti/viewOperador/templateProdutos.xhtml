@@ -35,11 +35,11 @@
                     <h:outputText value="#{item.descProduto}"/>
                 </p:column>
                 
-                <p:column sortBy="#{item.classe.idClasse}" filterBy="#{item.classe.idClasse}">
+                 <p:column sortBy="#{item.classe.numClasse}" filterBy="#{item.classe.numClasse}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListProdutoTitle_idClasse}"/>
                     </f:facet>
-                    <h:outputText value="#{item.classe.idClasse}"/>
+                    <h:outputText value="#{item.classe.numClasse}"/>
                 </p:column>
                             
             </p:dataTable>

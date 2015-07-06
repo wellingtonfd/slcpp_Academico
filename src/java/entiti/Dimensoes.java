@@ -18,11 +18,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Gustavo
- */
-
 @Entity
 @Table(name = "dimensoes")
 @XmlRootElement

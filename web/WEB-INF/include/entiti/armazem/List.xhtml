@@ -15,9 +15,6 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ArmazemListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ArmazemListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_produtoList}" icon="ui-icon-search"  action="#{armazemController.navigateProdutoList}" disabled="#{empty armazemController.selected.produtoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_tipoSolicitacaoList}" icon="ui-icon-search"  action="#{armazemController.navigateTipoSolicitacaoList}" disabled="#{empty armazemController.selected.tipoSolicitacaoList}" ajax="false"/>  
-                <p:menuitem value="#{myBundle.ArmazemMenuItem_movimentacaoList}" icon="ui-icon-search"  action="#{armazemController.navigateMovimentacaoList}" disabled="#{empty armazemController.selected.movimentacaoList}" ajax="false"/>  
                 <p:menuitem value="#{myBundle.ArmazemMenuItem_statusArmazemIdStatusArmazem}" icon="ui-icon-search"  actionListener="#{armazemController.prepareStatusArmazemIdStatusArmazem}" update=":StatusArmazemViewForm" oncomplete="StatusArmazemViewDialog.show()" disabled="#{empty armazemController.selected.statusArmazemIdStatusArmazem}"/>  
                 <p:menuitem value="#{myBundle.ArmazemMenuItem_localOperacaoIdLocalOper}" icon="ui-icon-search"  actionListener="#{armazemController.prepareLocalOperacaoIdLocalOper}" update=":LocalOperacaoViewForm" oncomplete="LocalOperacaoViewDialog.show()" disabled="#{empty armazemController.selected.localOperacaoIdLocalOper}"/>  
                 <p:menuitem value="#{myBundle.ArmazemMenuItem_idEndarmazem}" icon="ui-icon-search"  actionListener="#{armazemController.prepareIdEndarmazem}" update=":EndArmazemViewForm" oncomplete="EndArmazemViewDialog.show()" disabled="#{empty armazemController.selected.idEndarmazem}"/>  
@@ -57,13 +54,14 @@
                     </f:facet>
                     <h:outputText value="#{item.especArmazem}"/>
                 </p:column>
-                
-                <p:column sortBy="#{item.capacidadeArmazem}" filterBy="#{item.capacidadeArmazem}">
+                <!--
+                <p:column sortBy="#{item.dimensoes.comprimento}" filterBy="#{item.dimensoes.comprimento}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListArmazemTitle_capacidadeArmazem}"/>
                     </f:facet>
-                    <h:outputText value="#{item.capacidadeArmazem}"/>
+                    <h:outputText value="#{item.dimensoes.comprimento}"/>
                 </p:column>
+                -->
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{armazemController.prepareCreate}" update=":ArmazemCreateForm" oncomplete="ArmazemCreateDialog.show()"/>

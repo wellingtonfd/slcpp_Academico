@@ -18,22 +18,16 @@
                             <p:panel header="Dados Fornecedor" styleClass="panel_wizard">
                                 <p:messages/>
                                 <p:panelGrid columns="2" columnClasses="column">
-
                                     <p:outputLabel value="Razão Social" for="razaoSocial" />
                                     <p:inputText id="razaoSocial" value="#{fornecedorController.selected.razaoSocial}" title="#{myBundle.CreateFornecedorTitle_razaoSocial}" required="true" requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_razaoSocial}" size="60" maxlength="60"/>
-
-
                                     <p:outputLabel value="CNPJ:" for="cnpj" />
                                     <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorController.selected.cnpj}" 
                                                  title="#{myBundle.CreateFornecedorTitle_cnpj}" required="true" 
                                                  requiredMessage="#{myBundle.CreateFornecedorRequiredMessage_cnpj}" size="20" maxlength="20">
                                         <f:validator validatorId="StellaCNPJValidator"/>
                                     </p:inputMask>
-
                                     <p:outputLabel value="#{myBundle.CreateFornecedorLabel_nomeFantasia}" for="nomeFantasia" />
                                     <p:inputText id="nomeFantasia" value="#{fornecedorController.selected.nomeFantasia}" title="#{myBundle.CreateFornecedorTitle_nomeFantasia}"  size="60" maxlength="60"/>
-
-
                                     <p:outputLabel value="Insc.Social" for="inscSocial" />
                                     <p:inputText id="inscSocial" value="#{fornecedorController.selected.inscSocial}" 
                                                  title="#{myBundle.CreateFornecedorTitle_inscSocial}" required="true" 
@@ -45,12 +39,9 @@
                         <p:tab id="personales2" title="Dados Cadastrais">    
                             <p:panel header="Dados Cadastrais">
                                 <p:messages/>
-
                                 <p:panelGrid columns="2" columnClasses="label, value">
-
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
-                                    <p:inputText id="logradouro" value="#{fornecedorController.selected.idEndereco.logadouro}" title="#{myBundle.Createlo}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
-
+                                    <p:inputText id="logradouro" value="#{fornecedorController.selected.idEndereco.logadouro}" title="#{myBundle.CreateEnderecoTitle_idLogradouro}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_bairro}" for="bairro" />
                                     <p:inputText id="bairro" value="#{fornecedorController.selected.idEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
 

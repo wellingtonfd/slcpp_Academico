@@ -15,7 +15,6 @@
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('FornecedorListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('FornecedorListForm:deleteButton').click();" icon="ui-icon-trash"/>
                 <p:separator/>
-                <p:menuitem value="#{myBundle.FornecedorMenuItem_tipoSolicitacaoList}" icon="ui-icon-search"  action="#{fornecedorController.navigateTipoSolicitacaoList}" disabled="#{empty fornecedorController.selected.tipoSolicitacaoList}" ajax="false"/>  
                 <p:menuitem value="#{myBundle.FornecedorMenuItem_detNotaList}" icon="ui-icon-search"  action="#{fornecedorController.navigateDetNotaList}" disabled="#{empty fornecedorController.selected.detNotaList}" ajax="false"/>  
                 <p:menuitem value="#{myBundle.FornecedorMenuItem_idEndereco}" icon="ui-icon-search"  actionListener="#{fornecedorController.prepareIdEndereco}" update=":EnderecoViewForm" oncomplete="EnderecoViewDialog.show()" disabled="#{empty fornecedorController.selected.idEndereco}"/>  
                 <p:menuitem value="#{myBundle.FornecedorMenuItem_contatosIdContato}" icon="ui-icon-search"  actionListener="#{fornecedorController.prepareContatosIdContato}" update=":ContatosViewForm" oncomplete="ContatosViewDialog.show()" disabled="#{empty fornecedorController.selected.contatosIdContato}"/>  

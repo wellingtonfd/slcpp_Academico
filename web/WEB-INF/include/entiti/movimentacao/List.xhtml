@@ -50,14 +50,14 @@
 
                 <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idEndarmazem}"/>
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeTotal}"/>
                     </f:facet>
                     <h:outputText value="#{item.quantidadeTotal}"/>
                 </p:column>
                 
                 <p:column sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idEndarmazem}"/>
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
                     </f:facet>
                     <h:outputText value="#{item.quantidadePorPalete}"/>
                 </p:column>
