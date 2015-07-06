@@ -85,7 +85,7 @@ public class Lote implements Serializable {
     private String lado;
     @Column(name = "sequencial")
     private int sequencial;    // Sequencial que identifica a posição do lote no armazem
-    @Column(name = "quantidade_produto")
+    @Column(name = "quantidade_produtos")
     private double quantidadeProduto; // quantidade de um produto para necessidade de retiradas parciais
     @JoinColumn(name = "id_armazem", referencedColumnName = "id_armazem")
     @ManyToOne

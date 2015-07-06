@@ -364,8 +364,8 @@ public class ArmazenagemService {
     public void persistLote(Lote lote) {
         try {
            Connection connection = jasperConnection.getConexao();
-             String insert = "insert into lote(numero_paletes_armazenados,lado,sequencial,quantidade_produto"
-                    + "id_armazem,num_onu) values(?,?,?,?,?,?) "; 
+             String insert = "insert into lote(numero_paletes_armazenados, lado, sequencial, quantidade_produtos,"
+                    + "id_armazem, num_onu, fk_id_dimensoes ) values(?,?,?,?,?,?,?) "; 
             PreparedStatement prepared = connection.prepareStatement(insert);
              
             prepared.setInt(1, lote.getNumeroPaletesArmazenados());
@@ -374,11 +374,14 @@ public class ArmazenagemService {
             prepared.setDouble(4, lote.getQuantidadeProduto());
             prepared.setInt(5, lote.getIdArmazem());
             prepared.setInt(6, lote.getIdProduto());
+            prepared.setInt(7, lote.getIdDimensoes());
             
             
-            prepared.execute();
+            prepared.executeUpdate();
+                        
             
             connection.commit();
+            
             prepared.close();
             connection.close();
         } catch (Exception e) {
