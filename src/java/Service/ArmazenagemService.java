@@ -7,6 +7,7 @@ package Service;
 
 import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 import entiti.Armazem;
+import entiti.Dimensoes;
 import entiti.Lote;
 import entiti.Lote.EstadoArmazenagem;
 import entiti.Movimentacao;
@@ -576,30 +577,32 @@ public class ArmazenagemService {
         return movimentacao;
 
     }
-}
 
-//    
-//    public Produto getProduto(Integer produtoId){
-//    
-//          ResultSet rs;
-//          Produto produto = new Produto();
-//        try {
-//            Connection connection = jasperConnection.getConexao();
-//
-//            String query = "select * from produto l where l.num_onu = " + produtoId + "; ";
-//            PreparedStatement prepared = connection.prepareStatement(query);
-//            rs = prepared.executeQuery();
-//
-//            while (rs.next()) {
-//            
-//                produto.set
-//            
-//            }
-//            connection.close();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
+  
+    public Dimensoes getDimensoes(Integer DimencoesId){
     
-  //  }//
+          ResultSet rs;
+          Dimensoes dimencoes = new Dimensoes();
+        try {
+            Connection connection = jasperConnection.getConexao();
+
+            String query = "select * from dimensoes l where l.id_dimensoes = " + DimencoesId + "; ";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+
+            while (rs.next()) {
+                dimencoes.setComprimento(rs.getDouble("comp_dimensao"));
+                dimencoes.setLargura(rs.getDouble("lar_dimensao"));
+            
+            }
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+       return dimencoes;
+    }
+    
+}

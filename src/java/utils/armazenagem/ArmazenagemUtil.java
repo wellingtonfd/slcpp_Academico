@@ -121,10 +121,7 @@ public class ArmazenagemUtil {
                 if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
                     armazenagemService.persistLote(loteExistente);
                 }
-
             }
-
-           
         }
         else{
          lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
@@ -232,6 +229,9 @@ public class ArmazenagemUtil {
         return retorno;
     }
     
+    /**
+     * Realiza o armazenamento no lote a partir da ultima movimentação realizada
+     */
     public void insereUltimaMovimentacao(){
       Movimentacao  movimentacao = new Movimentacao();
         try {
