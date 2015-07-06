@@ -7,13 +7,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:stella="http://stella.caelum.com.br/faces2">
 
-
     <ui:composition>
-
         <p:dialog id="FuncionarioCreateDlg" widgetVar="FuncionarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Criar novo Funcionário" closeOnEscape="true">
             <h:form id="FuncionarioCreateForm">
                 <h:panelGroup id="display" rendered="#{funcionarioController.selected != null}">
-
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
                         <p:tab id="personales" title="Dados Funcionais">    
                             <p:panel header="Dados Funcionais">
@@ -23,8 +20,8 @@
                                 <p:panelGrid columns="2" columnClasses="label, value">
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_matFuncionario}" for="matFuncionario" />
-                                    <p:inputMask mask="999999" id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}" 
-                                                 title="#{myBundle.EditFuncionarioTitle_matFuncionario}" size="7" maxlength="7"
+                                    <p:inputMask mask="9999" id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}" 
+                                                 title="#{myBundle.EditFuncionarioTitle_matFuncionario}" size="4" maxlength="4"
                                                  required="true" requiredMessage="Campo Matrícula é obrigatorio ser preenchido por números"/>
 
                                     <p:outputLabel value="Nome:" for="nomeFuncionario" />
@@ -60,8 +57,6 @@
                                     
                                     <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
                                     <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
-
-
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -142,9 +137,7 @@
                                     </p:selectOneMenu>
 
                                 </p:panelGrid>
-
                             </p:panel>
-
                         </p:tab>
                         <p:tab id="personales3" title="Contatos">    
                             <p:panel header="Contatos">
@@ -166,13 +159,9 @@
 
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
                                     <p:inputText id="email" value="#{funcionarioController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_email}" size="40" maxlength="40"/>
-
-
-
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
-
                         <p:tab id="confirm" title="Confirmação">
                             <p:panel header="Confirmação">
                                 <h:panelGrid id="Confirmação" columns="2" columnClasses="grid,grid">
@@ -256,15 +245,12 @@
                                         <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.email}" styleClass="outputLabel"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
-
                                 <p:commandButton actionListener="#{funcionarioController.saveNew}" value="#{myBundle.Save}" 
                                                  update="display,:FuncionarioListForm:datalist,:growl" 
                                                  oncomplete="handleSubmit(xhr,status,args,FuncionarioCreateDialog);" process="@this">
                                     <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                                 </p:commandButton>
-
                                 <p:commandButton value="#{myBundle.Cancel}" onclick="FuncionarioCreateDialog.hide()"/>
-
                             </p:panel>
                         </p:tab>
                     </p:wizard>
