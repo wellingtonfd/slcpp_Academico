@@ -111,6 +111,7 @@ public class ArmazenagemUtil {
             lote.setSequencial(1);
             lote.setLado("E");
             lote.setDimensoes(getTamanhoNecessarioLote(armazem, numeroPaletes));
+            lote.setIdArmazem(armazemId);
             armazenagemService.persistLote(lote);
             return;
         }

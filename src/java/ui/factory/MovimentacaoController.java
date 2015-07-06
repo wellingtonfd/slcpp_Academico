@@ -29,11 +29,11 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
     /**
      * metodo utilizado para realizar a armazenagem a partir da movimentacao realizada
      */
-    public void salvaArmazenagem(){
+    public int salvaArmazenagem(){
     
         ArmazenagemUtil armazenagemUtil = new ArmazenagemUtil();
         armazenagemUtil.insereUltimaMovimentacao();
-        
+        return 0;  
       
     }
     

@@ -161,6 +161,10 @@ public class ArmazenagemService {
                 armazem.setTamanhoEspacoArmazenagem(rs.getDouble("tamanho_espaco_armazenagem"));
                 armazem.setIdDimensao(rs.getInt("fk_id_dimensoes"));
 
+                Dimensoes dimensoes = new Dimensoes();
+                dimensoes = getDimensoes(armazem.getIdDimensao());
+                armazem.setDimensoes(dimensoes);
+                
                 armazens.add(armazem);
 
             }
@@ -373,7 +377,10 @@ public class ArmazenagemService {
             
             
             prepared.execute();
+            
+            connection.commit();
             prepared.close();
+            connection.close();
         } catch (Exception e) {
         }
      
