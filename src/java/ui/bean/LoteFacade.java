@@ -6,9 +6,12 @@
 package ui.bean;
 
 import entiti.Lote;
+import entiti.Movimentacao;
+import static java.lang.System.out;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,5 +30,7 @@ public class LoteFacade extends AbstractFacade<Lote> {
     public LoteFacade() {
         super(Lote.class);
     }
-
+    
+  
 }
+

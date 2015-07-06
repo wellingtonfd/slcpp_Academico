@@ -11,6 +11,7 @@ import static java.lang.System.out;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import utils.armazenagem.ArmazenagemUtil;
 
 /**
@@ -36,14 +37,19 @@ public class MovimentacaoFacade extends AbstractFacade<Movimentacao> {
 
     @Override
     public void create(Movimentacao entity) {
-        System.out.println("ENTITY  1" + entity);
-        out.println("teste 2");
-       // super.create(entity); //To change body of generated methods, choose Tools | Templates.
-        armazenagemUtil = new ArmazenagemUtil();
-        System.out.println("ENTITY " + entity);
-        armazenagemUtil.armazenaProduto(entity.getIdProduto(), entity.getQuantidadeTotal(), entity.getQuantidadePorPalete());
+        super.create(entity); //To change body of generated methods, choose Tools | Templates.
        
         
+    }
+    
+    
+     public Movimentacao getUltimaMovimentacao(){
+        Movimentacao  movimentacao = null;
+        Query query = em.createQuery("SELECT m FROM Movimentacao m  WHERE m.idMovimentacao = select MAX(b.idMovimentacao) from Movimentacao b");
+        movimentacao =(Movimentacao)query.getSingleResult();        
+        out.println("teste service: " + movimentacao);
+        return movimentacao;
+     
     }
     
     
