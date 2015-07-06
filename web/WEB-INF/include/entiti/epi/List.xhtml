@@ -61,15 +61,6 @@
                     <h:outputText value="#{item.especEpi}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.idTipoMaterial}" filterBy="#{item.idTipoMaterial}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListEpiTitle_idMaterial}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idTipoMaterial.nomeMaterial}"/>
-                </p:column>
-
-
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{epiController.prepareCreate}" update=":EpiCreateForm" oncomplete="EpiCreateDialog.show()"/>
