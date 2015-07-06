@@ -6,7 +6,6 @@
 package entiti;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,12 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.ws.soap.MTOM;
 
 /**
  *
@@ -90,6 +87,9 @@ public class Armazem implements Serializable {
     @Column(name = "tamanho_espaco_armazenagem")
     private double tamanhoEspacoArmazenagem;
 
+    
+    @Transient
+    private Integer idDimensao;
     
 
     public Armazem() {
@@ -219,6 +219,14 @@ public class Armazem implements Serializable {
 
     public void setTamanhoEspacoArmazenagem(double tamanhoEspacoArmazenagem) {
         this.tamanhoEspacoArmazenagem = tamanhoEspacoArmazenagem;
+    }
+
+    public Integer getIdDimensao() {
+        return idDimensao;
+    }
+
+    public void setIdDimensao(Integer idDimensao) {
+        this.idDimensao = idDimensao;
     }
     
             

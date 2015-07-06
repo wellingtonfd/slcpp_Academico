@@ -19,12 +19,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
- * @author Gustavo classe lote representa o espaço ocupado pelo produto
+ * classe lote representa o espaço ocupado pelo produto
  * armazenado todo armazem será dividido em lotes; O endereço do lote é definido
  * de acordo com o armazem que ele está locado, o lado do armazem onde ele está,
  * Esquerda ou Direita e o sequencial para indicar a posição onde o lote esta
@@ -99,6 +99,18 @@ public class Lote implements Serializable {
     //Comprimento padrão para o caso onde é necessário criar o lote vazio
     double comprimentoPadrao = 4.0;
    
+    
+   @Transient
+   private Integer IdArmazem;
+   
+   @Transient
+   private Integer IdDimensoes;
+   
+   @Transient
+   private Integer IdProduto;
+
+ 
+    
     EstadoArmazenagem estadoArmazenagem = EstadoArmazenagem.VAZIO;
         
     public Lote(Dimensoes dimensoes) {
@@ -193,6 +205,31 @@ public class Lote implements Serializable {
     public void setEstadoArmazenamento(EstadoArmazenagem estadoArmazenamento) {
         this.estadoArmazenagem = estadoArmazenamento;
     }
+
+    public Integer getIdArmazem() {
+        return IdArmazem;
+    }
+
+    public void setIdArmazem(Integer IdArmazem) {
+        this.IdArmazem = IdArmazem;
+    }
+
+    public Integer getIdDimensoes() {
+        return IdDimensoes;
+    }
+
+    public void setIdDimensoes(Integer IdDimensoes) {
+        this.IdDimensoes = IdDimensoes;
+    }
+
+    public Integer getIdProduto() {
+        return IdProduto;
+    }
+
+    public void setIdProduto(Integer IdProduto) {
+        this.IdProduto = IdProduto;
+    }
+    
     
     
     @Override

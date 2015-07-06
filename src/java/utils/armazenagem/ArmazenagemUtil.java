@@ -13,7 +13,10 @@ import entiti.Movimentacao;
 import entiti.Produto;
 import static java.lang.System.out;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ui.bean.LoteFacade;
+import ui.bean.MovimentacaoFacade;
 
 /**
  *
@@ -24,8 +27,7 @@ public class ArmazenagemUtil {
     // estamos arbitrando que o tamanho do palete é 1x1;
     final Dimensoes tamanhoPalete;
 
-     @Autowired 
-    ArmazenagemService armazenagemService ;
+    ArmazenagemService armazenagemService = new ArmazenagemService();
 
        
     public ArmazenagemUtil() {
@@ -100,8 +102,9 @@ public class ArmazenagemUtil {
     public void armazenaProduto(Armazem armazem, Produto produto, int numeroPaletes, double totalProduto) {
 
         Lote lote = null;
+        Integer armazemId = armazem.getIdArmazem();
 
-        if (armazenagemService.verificaArmazemVazio(armazem)) {
+        if (armazenagemService.verificaArmazemVazio(armazem.getIdArmazem())) {
             lote = new Lote();
             lote.setArmazem(armazem);
             lote.setProduto(produto);
@@ -114,10 +117,10 @@ public class ArmazenagemUtil {
             return;
         }
 
-        List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazem);
+        List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazemId);
         if (lotes != null) {
             for (Lote loteExistente : lotes) {
-                if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente), produto)) {
+                if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produto)) {
                     armazenagemService.persistLote(loteExistente);
                 }
 
@@ -137,8 +140,8 @@ public class ArmazenagemUtil {
      * @param produto
      * @return
      */
-    public List<Lote> getLocalProdutoArmazenado(Produto produto) {
-        return armazenagemService.getLocalProdutoArmazenado(produto);
+    public List<Lote> getLocalProdutoArmazenado(Integer produtoId) {
+        return armazenagemService.getLocalProdutoArmazenado(produtoId);
     }
 
     /**
@@ -165,8 +168,8 @@ public class ArmazenagemUtil {
      * @param quantidade
      * @return
      */
-    public boolean retiraProtudo(Produto produto, int quantidade) {
-        return armazenagemService.retiraProtudo(produto, quantidade);
+    public boolean retiraProtudo(Integer produtoId, int quantidade) {
+        return armazenagemService.retiraProtudo(produtoId, quantidade);
     }
 
     /**
@@ -176,7 +179,7 @@ public class ArmazenagemUtil {
      * @return
      */
     public List<Lote> getlotesDisponiveis(Armazem armazem) {
-        return armazenagemService.getLotesdisponiveis(armazem);
+        return armazenagemService.getLotesdisponiveis(armazem.getIdArmazem());
     }
 
     /**
@@ -186,7 +189,7 @@ public class ArmazenagemUtil {
      * @return
      */
     public Double getQuantidadeTotalProduto(Produto produto) {
-        return (Double) armazenagemService.getQuantidadeTotalProduto(produto);
+        return (Double) armazenagemService.getQuantidadeTotalProduto(produto.getNumOnu());
     }
 
     /**
@@ -199,12 +202,14 @@ public class ArmazenagemUtil {
     }
 
     public Lote criaNovoLote(Armazem armazem, Produto produto, int numeroPaletes, double totalProduto) {
+       
+        Integer armazemId = armazem.getIdArmazem();
         Lote lote = new Lote();
         lote.setArmazem(armazem);
         lote.setDimensoes(getTamanhoNecessarioLote(armazem, numeroPaletes));
         lote.setQuantidadeProduto(totalProduto);
-        lote.setSequencial(armazenagemService.getProximoSequencial(armazem).intValue() + 1);
-        if (armazenagemService.verificaEspacoVazioArmazem(armazem, "E")) {
+        lote.setSequencial(armazenagemService.getProximoSequencial(armazemId).intValue() + 1);
+        if (armazenagemService.verificaEspacoVazioArmazem(armazemId, "E", armazem.getDimensoes().getComprimento())) {
             lote.setLado("E");
         } else {
             lote.setLado("D");
@@ -222,7 +227,7 @@ public class ArmazenagemUtil {
     public Armazem verificaArmazemDisponivel(List<Armazem> armazens) {
         Armazem retorno = null;
         for (Armazem armazem : armazens) {
-            if (armazenagemService.verificaEspacoVazioArmazem(armazem, "E") || armazenagemService.verificaEspacoVazioArmazem(armazem, "D")) {
+            if (armazenagemService.verificaEspacoVazioArmazem(armazem.getIdArmazem(), "E", armazem.getDimensoes().getComprimento()) || armazenagemService.verificaEspacoVazioArmazem(armazem.getIdArmazem(), "D", armazem.getDimensoes().getComprimento())) {
                 return armazem;
             }
         }
@@ -231,8 +236,12 @@ public class ArmazenagemUtil {
     
     public void insereUltimaMovimentacao(){
       Movimentacao  movimentacao = new Movimentacao();
-      movimentacao = armazenagemService.getUltimaMovimentacao();
-      out.println("movimentacao: " + movimentacao);
+        try {
+            movimentacao = armazenagemService.getUltimaMovimentacao();
+        } catch (Exception ex) {
+            Logger.getLogger(ArmazenagemUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
     
     }
 }

@@ -17,8 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
-import utils.armazenagem.ArmazenagemUtil;
 
 /**
  *
@@ -47,6 +47,10 @@ public class Movimentacao implements Serializable {
     @Column(name = "qtdporpalete")
     private Integer quantidadePorPalete;
     
+   @Transient
+    private Integer numeroOnu;        
+    
+    
     public Movimentacao() {
     }
 
@@ -68,6 +72,7 @@ public class Movimentacao implements Serializable {
 
     public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
+        this.numeroOnu = idProduto.getNumOnu();
     }
 
     public Integer getQuantidadeTotal() {
@@ -84,6 +89,14 @@ public class Movimentacao implements Serializable {
 
     public void setQuantidadePorPalete(Integer quantidadePorPalete) {
         this.quantidadePorPalete = quantidadePorPalete;
+    }
+
+    public Integer getNumeroOnu() {
+        return numeroOnu;
+    }
+
+    public void setNumeroOnu(Integer numeroOnu) {
+        this.numeroOnu = numeroOnu;
     }
     
     
@@ -110,7 +123,7 @@ public class Movimentacao implements Serializable {
 
     @Override
     public String toString() {
-        return "entiti.Movimentacao[ idMovimentacao=" + idMovimentacao + " ]";
+        return "entiti.Movimentacao[ idMovimentacao=" + idMovimentacao + " quantidadePOrpalete: " + quantidadePorPalete + " total " + quantidadeTotal + " produto " + idProduto +"   ]";
     }
     
 }
