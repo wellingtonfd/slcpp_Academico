@@ -97,7 +97,7 @@ public class ArmazenagemUtil {
      * @param numeroPaletes
      * @param totalProduto
      */
-    public void armazenaProduto(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto) {
+    public void armazenaProduto(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto, Integer idMovimentacao) {
 
         Lote lote = null;
         Integer armazemId = armazem.getIdArmazem();
@@ -115,7 +115,10 @@ public class ArmazenagemUtil {
             armazenagemService.persistDimensoes(lote.getDimensoes());
             lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
             lote.setEstado(3);
+            lote.setIdMovimentacao(idMovimentacao);
             armazenagemService.persistLote(lote);
+            armazenagemService.persistMovimentacao(lote, 0);
+            
             return;
         }
 
@@ -123,7 +126,9 @@ public class ArmazenagemUtil {
         if (lotes != null && lotes.size() <0) {
             for (Lote loteExistente : lotes) {
                 if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
+                     lote.setIdMovimentacao(idMovimentacao);
                     armazenagemService.persistLote(loteExistente);
+                    armazenagemService.persistMovimentacao(lote, 0);
                 }
             }
         }
@@ -131,7 +136,9 @@ public class ArmazenagemUtil {
          lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
          armazenagemService.persistDimensoes(lote.getDimensoes());
          lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
+         lote.setIdMovimentacao(idMovimentacao);
          armazenagemService.persistLote(lote);
+         armazenagemService.persistMovimentacao(lote, 0);
         }
     }
 
@@ -152,14 +159,14 @@ public class ArmazenagemUtil {
      * @param quantidadeTotal
      * @param quantidadePorPalete
      */
-    public void armazenaProduto(Integer produtoId, double quantidadeTotal, int quantidadePorPalete) {
+    public void armazenaProduto(Integer produtoId, double quantidadeTotal, int quantidadePorPalete, Integer IdMovimentacao) {
         Armazem armazem = verificaArmazemDisponivel(getArmazens());
         if (armazem == null) {
             return;
         }
         int numeroDePaletes = getNumeroPaletes(quantidadePorPalete, quantidadeTotal);
         System.out.println("armazem: " + armazem + "numero paletes: " + numeroDePaletes);
-        armazenaProduto(armazem, produtoId, numeroDePaletes, quantidadeTotal);
+        armazenaProduto(armazem, produtoId, numeroDePaletes, quantidadeTotal, IdMovimentacao);
     }
 
     /**
@@ -221,6 +228,29 @@ public class ArmazenagemUtil {
 
         return lote;
     }
+    
+    
+    public Lote criaLoteVazio(Armazem armazem){
+    
+        Integer armazemId = armazem.getIdArmazem();
+        Lote lote = new Lote();
+        
+        Double comprimento = lote.getComprimentoPadrao();
+        Double largura = armazem.getTamanhoEspacoArmazenagem();
+        Dimensoes dimensoes = new Dimensoes(comprimento, largura);       
+        
+        lote.setIdArmazem(armazemId);
+          
+        lote.setDimensoes(dimensoes);
+        armazenagemService.persistDimensoes(dimensoes);
+        lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
+        
+        
+        
+        return lote;
+    
+    
+    }
 
     /**
      * MMetodo verica e retorna o armazem que será utilizado
@@ -245,7 +275,7 @@ public class ArmazenagemUtil {
       Movimentacao  movimentacao = new Movimentacao();
         try {
             movimentacao = armazenagemService.getUltimaMovimentacao();
-            armazenaProduto(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete());
+            armazenaProduto(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete(), movimentacao.getIdMovimentacao());
             
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemUtil.class.getName()).log(Level.SEVERE, null, ex);

@@ -52,7 +52,7 @@ public class ArmazenagemService {
             String query = "select * from lote l where l.num_onu = " + produtoId + "; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
-            retorno = (rs != null);
+            retorno = rs.next();
 
             connection.close();
 
@@ -196,6 +196,7 @@ public class ArmazenagemService {
                 lote.setIdProduto(rs.getInt("num_onu"));
                 lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
+                lote.setLado(rs.getString("lado"));
                 
                 lote.setDimensoes(getDimensoes(lote.getIdDimensoes()));
                 
@@ -261,7 +262,7 @@ public class ArmazenagemService {
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
             
-            retorno =  (rs == null);
+            retorno =  (!rs.next());
             
             connection.close();
 
@@ -448,7 +449,7 @@ public class ArmazenagemService {
             String query = "select * from lote where id_armazem = " + armazemId + " AND estado = 1 order by sequencial; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
-            retorno = (rs != null);
+            retorno = rs.next();
              
             connection.close();
 
@@ -573,6 +574,7 @@ public class ArmazenagemService {
                 movimentacao.setQuantidadePorPalete(rs.getInt("qtdporpalete"));
                 movimentacao.setQuantidadeTotal(rs.getDouble("qtdtotal"));
                 movimentacao.setNumeroOnu(rs.getInt("id_produto"));
+                movimentacao.setIdMovimentacao(rs.getInt("id_movimentacao"));
 
             }
 
@@ -671,5 +673,31 @@ public class ArmazenagemService {
 
     }
 
-    
+       
+       /**
+        * atualiza a movimentação de acordo com a realização do armazenametto do produto
+        */
+      public void persistMovimentacao(Lote lote, Integer sucesso ) {
+          String referenciaLote = lote.getLado() + lote.getSequencial();
+          
+          try {
+           Connection connection = jasperConnection.getConexao();
+             String insert = "Update movimentacao set referencia_lote = ? , sucesso = ? where id_movimentacao=?"; 
+            PreparedStatement prepared = connection.prepareStatement(insert);
+             
+            prepared.setString(1, referenciaLote);
+            prepared.setInt(2, sucesso);
+            prepared.setInt(3, lote.getIdMovimentacao());
+        
+            prepared.executeUpdate();
+            
+            connection.commit();
+            
+            prepared.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+     
+    }
 }
