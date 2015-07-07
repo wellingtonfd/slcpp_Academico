@@ -1,10 +1,11 @@
 package ui.factory;
 
 import entiti.Movimentacao;
-import static java.sql.DriverManager.println;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 import utils.armazenagem.ArmazenagemUtil;
 
 @Named(value = "movimentacaoController")
@@ -36,6 +37,16 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         return 0;  
       
     }
+    
+    
+
+    
+    public void informacao2() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto "+getSelected().getIdProduto().getDescProduto(), "Foi armanazenado com sucesso");
+         
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+    }
+     
     
     
     /**
