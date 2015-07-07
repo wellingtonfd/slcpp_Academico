@@ -112,13 +112,15 @@ public class ArmazenagemUtil {
             lote.setLado("E");
             lote.setDimensoes(getTamanhoNecessarioLote(armazem, numeroPaletes));
             lote.setIdArmazem(armazemId);
-            lote.setIdDimensoes(2);
+            armazenagemService.persistDimensoes(lote.getDimensoes());
+            lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
+            lote.setEstado(3);
             armazenagemService.persistLote(lote);
             return;
         }
 
         List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazemId);
-        if (lotes != null) {
+        if (lotes != null && lotes.size() <0) {
             for (Lote loteExistente : lotes) {
                 if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
                     armazenagemService.persistLote(loteExistente);
@@ -127,6 +129,8 @@ public class ArmazenagemUtil {
         }
         else{
          lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
+         armazenagemService.persistDimensoes(lote.getDimensoes());
+         lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
          armazenagemService.persistLote(lote);
         }
     }
@@ -198,13 +202,16 @@ public class ArmazenagemUtil {
         return armazenagemService.getAllArmazens();
     }
 
-    public Lote criaNovoLote(Armazem armazem, Integer produto, int numeroPaletes, double totalProduto) {
+    public Lote criaNovoLote(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto) {
        
         Integer armazemId = armazem.getIdArmazem();
         Lote lote = new Lote();
         lote.setArmazem(armazem);
         lote.setDimensoes(getTamanhoNecessarioLote(armazem, numeroPaletes));
         lote.setQuantidadeProduto(totalProduto);
+        lote.setIdArmazem(armazemId);
+        lote.setIdProduto(produtoId);
+        lote.setEstado(3);
         lote.setSequencial(armazenagemService.getProximoSequencial(armazemId).intValue() + 1);
         if (armazenagemService.verificaEspacoVazioArmazem(armazemId, "E", armazem.getDimensoes().getComprimento())) {
             lote.setLado("E");
@@ -212,7 +219,7 @@ public class ArmazenagemUtil {
             lote.setLado("D");
         }
 
-        return new Lote();
+        return lote;
     }
 
     /**

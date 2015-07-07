@@ -87,7 +87,7 @@ public class ArmazenagemService {
                 lote.setIdArmazem(rs.getInt("id_armazem"));
                 lote.setIdDimensoes(rs.getInt("fk_id_dimensoes"));
                 lote.setIdProduto(rs.getInt("num_onu"));
-                lote.setQuantidadeProduto(rs.getDouble("quantidade_produto"));
+                lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
 
                 lotes.add(lote);
@@ -194,9 +194,11 @@ public class ArmazenagemService {
                 lote.setIdArmazem(rs.getInt("id_armazem"));
                 lote.setIdDimensoes(rs.getInt("fk_id_dimensoes"));
                 lote.setIdProduto(rs.getInt("num_onu"));
-                lote.setQuantidadeProduto(rs.getDouble("quantidade_produto"));
+                lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
-
+                
+                lote.setDimensoes(getDimensoes(lote.getIdDimensoes()));
+                
                 lotes.add(lote);
 
             }
@@ -221,7 +223,7 @@ public class ArmazenagemService {
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select * from lote where id_armazem = " + armazemId + " AND estado " + EstadoArmazenagem.VAZIO + " order by sequencial; ";
+            String query = "select * from lote where id_armazem = " + armazemId + " AND estado = 1  order by sequencial; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
 
@@ -231,9 +233,11 @@ public class ArmazenagemService {
                 lote.setIdArmazem(rs.getInt("id_armazem"));
                 lote.setIdDimensoes(rs.getInt("fk_id_dimensoes"));
                 lote.setIdProduto(rs.getInt("num_onu"));
-                lote.setQuantidadeProduto(rs.getDouble("quantidade_produto"));
+                lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
-
+                
+                lote.setDimensoes(getDimensoes(lote.getIdDimensoes()));
+                
                 lotes.add(lote);
 
             }
@@ -249,15 +253,15 @@ public class ArmazenagemService {
     public boolean verificaArmazemVazio(Integer armazemId) {
 
         boolean retorno = false;
-        ResultSet rs;
+        ResultSet rs = null;
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select * from armazem where id_armazem = "+armazemId + "; ";
+            String query = "select * from lote where id_armazem = "+armazemId + "; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
             
-            retorno = rs != null;
+            retorno =  (rs == null);
             
             connection.close();
 
@@ -308,7 +312,7 @@ public class ArmazenagemService {
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select SUM(quantidade_produto)as total FROM Lote where num_onu = " +produtoId + "; ";
+            String query = "select SUM(quantidade_produtos)as total FROM Lote where num_onu = " +produtoId + "; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
 
@@ -365,7 +369,7 @@ public class ArmazenagemService {
         try {
            Connection connection = jasperConnection.getConexao();
              String insert = "insert into lote(numero_paletes_armazenados, lado, sequencial, quantidade_produtos,"
-                    + "id_armazem, num_onu, fk_id_dimensoes ) values(?,?,?,?,?,?,?) "; 
+                    + "id_armazem, num_onu, fk_id_dimensoes, estado ) values(?,?,?,?,?,?,?,?) "; 
             PreparedStatement prepared = connection.prepareStatement(insert);
              
             prepared.setInt(1, lote.getNumeroPaletesArmazenados());
@@ -375,6 +379,7 @@ public class ArmazenagemService {
             prepared.setInt(5, lote.getIdArmazem());
             prepared.setInt(6, lote.getIdProduto());
             prepared.setInt(7, lote.getIdDimensoes());
+            prepared.setInt(8, lote.getEstado());
             
             
             prepared.executeUpdate();
@@ -397,15 +402,7 @@ public class ArmazenagemService {
      */
     public List<Integer> getProdutosIncompativeis(int nOnu) {
 
-//        StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("incompatibilidade");
-//        // set parametros
-//        storedProcedure.registerStoredProcedureParameter("p_numonu ", Integer.class, ParameterMode.IN);
-//        storedProcedure.registerStoredProcedureParameter("numonu", Integer.class, ParameterMode.OUT);
-//        storedProcedure.setParameter("p_numonu", nOnu);
-//        // executa SP
-//        storedProcedure.execute();
-//        // get resultado
-//        List<Integer> resultado = (List<Integer>) storedProcedure.getOutputParameterValue("numonu");
+
           List<Integer> retorno = new ArrayList<Integer>();
         
         try { 
@@ -448,10 +445,10 @@ public class ArmazenagemService {
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select * from lote where id_armazem = " + armazemId + " AND estado " + EstadoArmazenagem.VAZIO + " order by sequencial; ";
+            String query = "select * from lote where id_armazem = " + armazemId + " AND estado = 1 order by sequencial; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
-            retorno = rs != null;
+            retorno = (rs != null);
              
             connection.close();
 
@@ -511,7 +508,7 @@ public class ArmazenagemService {
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select * from lote where id_armazem = " + armazemId + " AND estado " + EstadoArmazenagem.VAZIO + " AND lado = '" +lado + "' order by sequencial; ";
+            String query = "select * from lote where id_armazem = " + armazemId + " AND estado = 1 AND lado = '" +lado + "' order by sequencial; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
 
@@ -521,7 +518,7 @@ public class ArmazenagemService {
                 novoLote.setIdArmazem(rs.getInt("id_armazem"));
                 novoLote.setIdDimensoes(rs.getInt("fk_id_dimensoes"));
                 novoLote.setIdProduto(rs.getInt("num_onu"));
-                novoLote.setQuantidadeProduto(rs.getDouble("quantidade_produto"));
+                novoLote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 novoLote.setSequencial(rs.getInt("sequencial"));
 
                 lotes.add(novoLote);
@@ -589,7 +586,11 @@ public class ArmazenagemService {
     }
 
 
-  
+  /**
+   * Retorna a Dimensoes
+   * @param DimencoesId
+   * @return 
+   */
     public Dimensoes getDimensoes(Integer DimencoesId){
     
           ResultSet rs;
@@ -614,5 +615,61 @@ public class ArmazenagemService {
 
        return dimencoes;
     }
+    
+    
+    
+    /**
+     * persist objeto dimensoes
+     * @param dimensoes 
+     */
+    public void persistDimensoes(Dimensoes dimensoes ) {
+        try {
+           Connection connection = jasperConnection.getConexao();
+             String insert = "insert into dimensoes(lar_dimensao, comp_dimensao)  values(?,?)"; 
+            PreparedStatement prepared = connection.prepareStatement(insert);
+             
+            prepared.setDouble(1, dimensoes.getAltura());
+            prepared.setDouble(2, dimensoes.getComprimento());
+        
+            prepared.executeUpdate();
+            
+            connection.commit();
+            
+            prepared.close();
+            connection.close();
+        } catch (Exception e) {
+        }
+     
+    }
+    
+       /**
+        * retorna o Id da ultima dimensao persistida
+        * @return 
+        */
+       public Integer getUltimaDimensao() {
+        
+        ResultSet rs = null;
+        Integer retorno = 2;
+
+        try {
+            Connection connection = jasperConnection.getConexao();
+
+            String query = "select * from dimensoes m where m.id_dimensoes = (select MAX(b.id_dimensoes) from dimensoes b); ";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+
+            while (rs.next()) {
+                retorno = rs.getInt("id_dimensoes");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+
+    }
+
     
 }

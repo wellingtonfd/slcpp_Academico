@@ -52,7 +52,7 @@ public class Lote implements Serializable {
     public static enum EstadoArmazenagem {
 
         VAZIO(1), SEMIPREENCHIDO(2), CHEIO(3);
-        private final int codigo;
+        public  int codigo;
 
         EstadoArmazenagem(int codigo) {
             this.codigo = codigo;
@@ -109,6 +109,8 @@ public class Lote implements Serializable {
    @Transient
    private Integer IdProduto;
 
+   @Transient 
+   private Integer estado;
  
     
     EstadoArmazenagem estadoArmazenagem = EstadoArmazenagem.VAZIO;
@@ -228,6 +230,14 @@ public class Lote implements Serializable {
 
     public void setIdProduto(Integer IdProduto) {
         this.IdProduto = IdProduto;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
     
     
