@@ -280,7 +280,26 @@ public class ArmazenagemUtil {
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
+    }
+    
+    /**
+     * metodo que retorna todos os lotes armazenados
+     * @return 
+     */
+    public List<Lote> getAllLotes(){
+     return armazenagemService.getAllLotes();
     
     }
+    
+    /**
+     * Retorno todos os lotes de acordo com o armazem
+     * @param idArmazem
+     * @return 
+     */
+    public List<Lote> getLotesPorArmazem(Integer idArmazem){
+     return armazenagemService.getLotesPorAramazem(idArmazem);
+    
+    }
+
+
 }
