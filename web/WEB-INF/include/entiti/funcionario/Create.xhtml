@@ -8,6 +8,7 @@
       xmlns:stella="http://stella.caelum.com.br/faces2">
 
     <ui:composition>
+
         <p:dialog id="FuncionarioCreateDlg" widgetVar="FuncionarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Criar novo Funcionário" closeOnEscape="true">
             <h:form id="FuncionarioCreateForm">
                 <h:panelGroup id="display" rendered="#{funcionarioController.selected != null}">
@@ -39,9 +40,6 @@
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cargo}" for="cargo" />
                                     <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" for="nivelFuncionario" />
-                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}" size="10" maxlength="10"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_especializacao}" for="especializacao" />
                                     <p:inputText id="especializacao" value="#{funcionarioController.selected.especializacao}" 
@@ -190,9 +188,6 @@
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
                                         <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" />
-                                        <h:outputText value="#{funcionarioController.selected.nivelFuncionario}"  styleClass="outputLabel"/>
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
                                         <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>

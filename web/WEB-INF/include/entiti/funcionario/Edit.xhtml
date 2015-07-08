@@ -8,7 +8,7 @@
       xmlns:stella="http://stella.caelum.com.br/faces2">
 
     <ui:composition>
-        <p:dialog id="FuncionarioEditDlg" widgetVar="FuncionarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Criar novo Funcionário" closeOnEscape="true">
+        <p:dialog id="FuncionarioEditDlg" widgetVar="FuncionarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="editar Funcionário" closeOnEscape="true">
             <h:form id="FuncionarioEditForm">
                 <h:panelGroup id="display" rendered="#{funcionarioController.selected != null}">
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
@@ -19,11 +19,11 @@
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
 
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_matFuncionario}" for="matFuncionario" />
-                                    <p:inputMask mask="9999" id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}" 
-                                                 title="#{myBundle.EditFuncionarioTitle_matFuncionario}" size="4" maxlength="4"
-                                                 required="true" requiredMessage="Campo Matrícula é obrigatorio ser preenchido por números"/>
+                                    
+                                    <h:outputText value="#{myBundle.EditFuncionarioLabel_idFuncionario}"  />
+                                    <h:outputText value="#{funcionarioController.selected.idFuncionario}" styleClass="outputLabel"/>
 
+ 
                                     <p:outputLabel value="Nome:" for="nomeFuncionario" />
                                     <p:inputText id="nomeFuncionario" value="#{funcionarioController.selected.nomeFuncionario}" title="#{myBundle.EditFuncionarioTitle_nomeFuncionario}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_nomeFuncionario}" size="60" maxlength="60"/>
 
@@ -39,9 +39,6 @@
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cargo}" for="cargo" />
                                     <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" for="nivelFuncionario" />
-                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}" size="10" maxlength="10"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_especializacao}" for="especializacao" />
                                     <p:inputText id="especializacao" value="#{funcionarioController.selected.especializacao}" 
@@ -190,9 +187,6 @@
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
                                         <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" />
-                                        <h:outputText value="#{funcionarioController.selected.nivelFuncionario}"  styleClass="outputLabel"/>
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
                                         <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>

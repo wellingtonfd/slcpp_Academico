@@ -57,6 +57,19 @@ public class Epi implements Serializable {
     @JoinColumn(name = "id_tipo_material", referencedColumnName = "id_tipo_material")
     @ManyToOne
     private TipoMaterial idMaterial;
+    //Inserido  
+    @JoinColumn(name = "id_fornecedor", referencedColumnName = "id_fornecedor")
+    @ManyToOne
+    private Fornecedor idFornecedor = new Fornecedor();
+    
+     public Fornecedor getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(Fornecedor idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+    
 
     public Epi() {
     }

@@ -23,6 +23,14 @@ public class FornecedorController extends AbstractController<Fornecedor> {
     
      private boolean skip;
 
+    public boolean isSkip() {
+        return skip;
+    }
+
+    public void setSkip(boolean skip) {
+        this.skip = skip;
+    }
+     
     public FornecedorController() {
         // Inform the Abstract parent controller of the concrete Fornecedor?cap_first Entity
         super(Fornecedor.class);

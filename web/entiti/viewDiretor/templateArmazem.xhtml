@@ -19,7 +19,8 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{armazemController.selected}">
-            <p:column sortBy="#{item.idArmazem}" filterBy="#{item.idArmazem}">
+                
+                <p:column sortBy="#{item.idArmazem}" filterBy="#{item.idArmazem}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListArmazemTitle_idArmazem}"/>
                     </f:facet>

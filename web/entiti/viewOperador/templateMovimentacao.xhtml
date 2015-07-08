@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="MovimentacaoListForm">
+
+        <p:panel header="Listar Movimentação">
+           
+            <p:dataTable id="datalist"
+                         value="#{movimentacaoController.items}"
+                         var="item"
+                         rowKey="#{item.idMovimentacao}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{movimentacaoController.selected}">
+
+                <p:column sortBy="#{item.idMovimentacao}" filterBy="#{item.idMovimentacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idMovimentacao}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idProduto.descProduto}" filterBy="#{item.idProduto.descProduto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idProduto.descProduto}"/>
+                </p:column>
+
+
+
+                <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeTotal}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quantidadeTotal}"/>
+                </p:column>
+                
+                <p:column sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quantidadePorPalete}"/>
+                </p:column>
+            </p:dataTable>
+        </p:panel>     
+    </h:form>
+</ui:composition>
