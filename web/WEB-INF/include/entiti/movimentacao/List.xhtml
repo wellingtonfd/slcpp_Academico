@@ -61,6 +61,13 @@
                     </f:facet>
                     <h:outputText value="#{item.quantidadePorPalete}"/>
                 </p:column>
+                
+                <p:column sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_refLote}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quantidadePorPalete}"/>
+                </p:column>
 
 
 
