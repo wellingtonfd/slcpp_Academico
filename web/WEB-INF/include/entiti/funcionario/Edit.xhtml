@@ -32,7 +32,7 @@
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
                                     <p:calendar id="dtAdmissao"  locale="pt_BR" value="#{funcionarioController.selected.dtAdmissao}" title="#{myBundle.EditFuncionarioTitle_dtAdmissao}" 
-                                                mindate="1/1/00" maxdate="01/01/22" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtAdmissao}" showOn="button"/>
+                                                yearRange="c-10:+00"  required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtAdmissao}" showOn="button"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_funcao}" for="funcao" />
                                     <p:inputText id="funcao" value="#{funcionarioController.selected.funcao}" title="#{myBundle.EditFuncionarioTitle_funcao}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_funcao}" size="40" maxlength="40"/>
@@ -80,7 +80,7 @@
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtNasc}" for="dtNasc" />
                                     <p:calendar locale="pt_BR" id="dtNasc"  value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.EditFuncionarioTitle_dtNasc}" 
-                                                mindate="1/1/00" maxdate="01/01/22" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}" showOn="button"/>
+                                                yearRange="-80:+00" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}" showOn="button"/>
 
                                     <p:outputLabel value="#{myBundle.EditEnderecoLabel_idLogradouro}" for="logradouro" />
                                     <p:inputText id="logradouro" value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" title="#{myBundle.EditEnderecoLabel_idLogradouro}" required="true" requiredMessage="#{myBundle.EditPaisRequiredMessage_logradouro}" size="40" maxlength="40"/>

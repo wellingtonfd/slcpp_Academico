@@ -40,31 +40,28 @@
                     <h:outputText value="#{item.idFornecedor}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.cnpj}" filterBy="#{item.cnpj}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListFornecedorTitle_cnpj}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.cnpj}"/>
-                </p:column>
-
-
                 <p:column sortBy="#{item.nomeFantasia}" filterBy="#{item.nomeFantasia}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_nomeFantasia}"/>
                     </f:facet>
                     <h:outputText value="#{item.nomeFantasia}"/>
                 </p:column>
-
-
-    <!--            <p:column sortBy="#{item.razaoSocial}" filterBy="#{item.razaoSocial}">
+                
+                 <p:column sortBy="#{item.razaoSocial}" filterBy="#{item.razaoSocial}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_razaoSocial}"/>
                     </f:facet>
                     <h:outputText value="#{item.razaoSocial}"/>
                 </p:column>
                 
-                <p:column sortBy="#{item.inscSocial}" filterBy="#{item.inscSocial}">
+                <p:column sortBy="#{item.cnpj}" filterBy="#{item.cnpj}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListFornecedorTitle_cnpj}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cnpj}"/>
+                </p:column>
+                
+                 <p:column sortBy="#{item.inscSocial}" filterBy="#{item.inscSocial}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_inscSocial}"/>
                     </f:facet>
@@ -72,7 +69,8 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.idContato}" filterBy="#{item.idContato}">
+    <!--           
+               <p:column sortBy="#{item.idContato}" filterBy="#{item.idContato}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_idContato}"/>
                     </f:facet>
