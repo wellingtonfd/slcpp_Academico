@@ -5,11 +5,9 @@
  */
 package Service;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 import entiti.Armazem;
 import entiti.Dimensoes;
 import entiti.Lote;
-import entiti.Lote.EstadoArmazenagem;
 import entiti.Movimentacao;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -17,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -177,6 +174,11 @@ public class ArmazenagemService {
 
     }
 
+    /**
+     * Metodo retorna a lista de lotes de um determinado armazem
+     * @param armazemId
+     * @return 
+     */
     public List<Lote> getLotesPorAramazem(Integer armazemId) {
 
         List<Lote> lotes = new ArrayList<Lote>();
@@ -251,6 +253,11 @@ public class ArmazenagemService {
 
     }
 
+    /**
+     * Verifica se o armazem esta vazio para o caso inicial
+     * @param armazemId
+     * @return 
+     */
     public boolean verificaArmazemVazio(Integer armazemId) {
 
         boolean retorno = false;
@@ -412,7 +419,7 @@ public class ArmazenagemService {
            
             CallableStatement proc =  connection.prepareCall(" { call incompatibilidade(?) } ");
            
-            proc.registerOutParameter(1,Type.INT);
+            proc.registerOutParameter(1,java.sql.Types.INTEGER);
             proc.setInt(2, nOnu);
             proc.execute();
             
@@ -700,4 +707,67 @@ public class ArmazenagemService {
         }
      
     }
+      
+      
+      /**
+       * Metodo retorna o ultimo lote do armazem, q
+       * @param armazemId
+       * @return 
+       */
+        public Lote getUltimoLote(Integer armazemId) {
+
+       Lote lote = new Lote();
+        ResultSet rs;
+        try {
+            Connection connection = jasperConnection.getConexao();
+
+            String query = "select * from lote l where l.id_armazem = " + armazemId + " AND l.sequencial = select MAX(b.sequencial) from lote b where b.id_armazem =  " + armazemId +  ";";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+
+            while (rs.next()) {
+               
+                lote.setIdLote(rs.getInt("id_lote"));
+                lote.setIdArmazem(rs.getInt("id_armazem"));
+                lote.setIdDimensoes(rs.getInt("fk_id_dimensoes"));
+                lote.setIdProduto(rs.getInt("num_onu"));
+                lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
+                lote.setSequencial(rs.getInt("sequencial"));
+                
+                lote.setDimensoes(getDimensoes(lote.getIdDimensoes()));
+                
+                           }
+            connection.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lote;
+
+    }
+        /**
+         * netodo que atualiza o lote deve ser usado para retirada do produto
+         */
+       public void atualizaLote(Lote lote){
+       try {
+           Connection connection = jasperConnection.getConexao();
+            String insert = "Update movimentacao set referencia_lote = ? , sucesso = ? where id_movimentacao=?"; 
+            PreparedStatement prepared = connection.prepareStatement(insert);
+            
+            prepared.setInt(3, lote.getIdMovimentacao());
+        
+            prepared.executeUpdate();
+            
+            connection.commit();
+            
+            prepared.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+       
+       } 
+        
+
 }

@@ -133,18 +133,28 @@ public class ArmazenagemUtil {
             }
         }
         else{
-         lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
-         armazenagemService.persistDimensoes(lote.getDimensoes());
-         lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
-         lote.setIdMovimentacao(idMovimentacao);
-         armazenagemService.persistLote(lote);
-         armazenagemService.persistMovimentacao(lote, 0);
+          if (armazenagemService.verificaCompatibilidade(armazenagemService.getUltimoLote(armazemId).getIdProduto(), produtoId)) {
+          
+            lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
+           armazenagemService.persistDimensoes(lote.getDimensoes());
+           lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
+           lote.setIdMovimentacao(idMovimentacao);
+           armazenagemService.persistLote(lote);
+           armazenagemService.persistMovimentacao(lote, 0);
+          
+          }else{
+          
+              lote = criaLoteVazio(armazem);
+              armazenagemService.persistLote(lote);
+              armazenagemService.persistMovimentacao(lote, 0);
+         
+          } 
+         
         }
     }
 
     /**
      * retorna lista de lotes onde o produto está armazenado
-     *
      * @param produto
      * @return
      */
@@ -209,6 +219,15 @@ public class ArmazenagemUtil {
         return armazenagemService.getAllArmazens();
     }
 
+    
+    /**
+     * Cria um novo Lote
+     * @param armazem
+     * @param produtoId
+     * @param numeroPaletes
+     * @param totalProduto
+     * @return 
+     */
     public Lote criaNovoLote(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto) {
        
         Integer armazemId = armazem.getIdArmazem();
@@ -230,6 +249,11 @@ public class ArmazenagemUtil {
     }
     
     
+    /**
+     * Cria um lote vazio que será usado comom espaço entre produtos incompativeis
+     * @param armazem
+     * @return 
+     */
     public Lote criaLoteVazio(Armazem armazem){
     
         Integer armazemId = armazem.getIdArmazem();
@@ -244,11 +268,8 @@ public class ArmazenagemUtil {
         lote.setDimensoes(dimensoes);
         armazenagemService.persistDimensoes(dimensoes);
         lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
-        
-        
-        
+               
         return lote;
-    
     
     }
 
@@ -280,26 +301,7 @@ public class ArmazenagemUtil {
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    /**
-     * metodo que retorna todos os lotes armazenados
-     * @return 
-     */
-    public List<Lote> getAllLotes(){
-     return armazenagemService.getAllLotes();
+ 
     
     }
-    
-    /**
-     * Retorno todos os lotes de acordo com o armazem
-     * @param idArmazem
-     * @return 
-     */
-    public List<Lote> getLotesPorArmazem(Integer idArmazem){
-     return armazenagemService.getLotesPorAramazem(idArmazem);
-    
-    }
-
-
 }
