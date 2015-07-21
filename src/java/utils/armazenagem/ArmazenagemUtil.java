@@ -11,7 +11,6 @@ import entiti.Dimensoes;
 import entiti.Lote;
 import entiti.Movimentacao;
 import entiti.Produto;
-import java.security.Provider.Service;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,10 +91,11 @@ public class ArmazenagemUtil {
      * metodo com a logica de negocio para definir onde o produto sera
      * armazenado
      *
-     * @param produto
      * @param armazem
+     * @param produtoId
      * @param numeroPaletes
      * @param totalProduto
+     * @param idMovimentacao
      */
     public void armazenaProduto(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto, Integer idMovimentacao) {
 
@@ -250,7 +250,7 @@ public class ArmazenagemUtil {
     
     
     /**
-     * Cria um lote vazio que será usado comom espaço entre produtos incompativeis
+     * Cria um lote vazio que será usado como espaço entre produtos incompativeis
      * @param armazem
      * @return 
      */
@@ -304,4 +304,43 @@ public class ArmazenagemUtil {
  
     
     }
+    
+    
+    /**
+     * retorna todos os lotes de um determinado amrmazem
+     */
+    public List<Lote> getLotesPorArmazem(Integer armazemId){
+    
+        return armazenagemService.getLotesPorAramazem(armazemId);
+    }
+    
+    
+    /**
+     * rertona a lista de lotes onde um determinado produto está armazenado
+     * @param produtoId
+     * @return 
+     */
+    public List<Lote> getLotesProdutoArmazenado(Integer produtoId){
+    
+        return armazenagemService.getLocalProdutoArmazenado(produtoId);
+    
+    }
+    
+    
+    /**
+     * verifica o estado que o lote está devida s inserçoes e retiradas
+     * @param numeroProdutos
+     * @param qtdPorPalete
+     * @param dimensoes
+     * @return 
+     */
+    public Integer verificaEstadolote(Integer numeroProdutos, Integer qtdPorPalete, Dimensoes dimensoes ){
+    
+    Integer estado = 0;
+    return estado;
+    
+    
+    
+    }
+    
 }

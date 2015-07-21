@@ -34,7 +34,7 @@ public class ArmazenagemService {
     /**
      * Verifica se o produto a ser inserido ja está armazenado
      *
-     * @param produto
+     * @param produtoId
      * @return boolean
      */
     public boolean verificaExisteProduto(String produtoId) {
@@ -63,7 +63,7 @@ public class ArmazenagemService {
     /**
      * metodo que retorna a lista de lotes onde o produto está armazenado
      *
-     * @param produto
+     * @param produtoId
      * @return
      */
     public List<Lote> getLocalProdutoArmazenado(Integer produtoId) {
@@ -216,7 +216,7 @@ public class ArmazenagemService {
     /**
      * retorna a lista de lotes vazios em um determibnado armazem
      *
-     * @param armazem
+     * @param armazemId
      * @return
      */
     public List<Lote> getLotesdisponiveis(Integer armazemId) {
@@ -297,7 +297,7 @@ public class ArmazenagemService {
     /**
      * retira o produto
      *
-     * @param produto
+     * @param produtoId
      * @param quantidade
      * @return
      */
@@ -341,7 +341,7 @@ public class ArmazenagemService {
     /**
      * retorna o proximo sequencial a ser utilizado para o enrereçamento do lote
      *
-     * @param produto
+     * @param armazemId
      * @return
      */
     public Integer getProximoSequencial(Integer armazemId) {
@@ -393,7 +393,7 @@ public class ArmazenagemService {
             prepared.executeUpdate();
                         
             
-            connection.commit();
+          //  connection.commit();
             
             prepared.close();
             connection.close();
@@ -444,7 +444,7 @@ public class ArmazenagemService {
     /**
      * Verifica se Existe lote disponivel no armazem
      *
-     * @param armazem
+     * @param armazemId
      * @return
      */
     public boolean verificaLoteDisponivel(Integer armazemId) {
@@ -471,7 +471,9 @@ public class ArmazenagemService {
      * Metodo verifica o espaço vazio dentro do armazem. Usado para a criação de
      * um novo lote
      *
-     * @param armazem
+     * @param armazemId
+     * @param lado
+     * @param comprimentoArmazem
      * @return
      */
     public boolean verificaEspacoVazioArmazem(Integer armazemId, String lado, double comprimentoArmazem) {
@@ -498,6 +500,7 @@ public class ArmazenagemService {
      * reaproveitar os lotes vazios no meio do armazem
      *
      * @param lote
+     * @param armazemId
      * @return
      */
     public List<Lote> getLotesVizinhos(Lote lote, Integer armazemId) {
@@ -637,7 +640,7 @@ public class ArmazenagemService {
              String insert = "insert into dimensoes(lar_dimensao, comp_dimensao)  values(?,?)"; 
             PreparedStatement prepared = connection.prepareStatement(insert);
              
-            prepared.setDouble(1, dimensoes.getAltura());
+            prepared.setDouble(1, dimensoes.getLargura());
             prepared.setDouble(2, dimensoes.getComprimento());
         
             prepared.executeUpdate();
@@ -683,9 +686,11 @@ public class ArmazenagemService {
        
        /**
         * atualiza a movimentação de acordo com a realização do armazenametto do produto
+     * @param lote
+     * @param sucesso
         */
       public void persistMovimentacao(Lote lote, Integer sucesso ) {
-          String referenciaLote = lote.getLado() + lote.getSequencial();
+          String referenciaLote = lote.getLado() + Integer.toString(lote.getSequencial());
           
           try {
            Connection connection = jasperConnection.getConexao();
@@ -746,7 +751,7 @@ public class ArmazenagemService {
 
     }
         /**
-         * netodo que atualiza o lote deve ser usado para retirada do produto
+         *Atualiza o lote deve ser usado para retirada do produto
          */
        public void atualizaLote(Lote lote){
        try {
@@ -754,6 +759,9 @@ public class ArmazenagemService {
             String insert = "Update movimentacao set referencia_lote = ? , sucesso = ? where id_movimentacao=?"; 
             PreparedStatement prepared = connection.prepareStatement(insert);
             
+            String referenciaLote = lote.getLado() + Integer.toString(lote.getSequencial());
+            prepared.setString(1, referenciaLote);
+            prepared.setInt(2, lote.getSucesso());
             prepared.setInt(3, lote.getIdMovimentacao());
         
             prepared.executeUpdate();
@@ -768,6 +776,58 @@ public class ArmazenagemService {
        
        
        } 
+       
+       
+       
+       /**
+        * Retorna o espaço disponivel na rua para a criação de um novo lote, assim 
+        * podemos verificar se temos espaço suficiente para o lote naquela rua
+        * @param armazemId
+        * @param lado
+        * @return 
+        */
+        public Double getEspacoDisponivelLado(Integer armazemId, String lado) {
+
+        List<Lote> lotes = new ArrayList<>();
+        ResultSet rs;
+        try {
+            try (Connection connection = jasperConnection.getConexao()) {
+                String query = "select * from lote where id_armazem = " + armazemId + " AND lado ='"+ lado +"'; ";
+                PreparedStatement prepared = connection.prepareStatement(query);
+                rs = prepared.executeQuery();
+                
+                while (rs.next()) {
+                    Lote lote = new Lote();
+                    lote.setIdLote(rs.getInt("id_lote"));
+                    lote.setIdArmazem(rs.getInt("id_armazem"));
+                    lote.setIdDimensoes(rs.getInt("fk_id_dimensoes"));
+                    lote.setIdProduto(rs.getInt("num_onu"));
+                    lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
+                    lote.setSequencial(rs.getInt("sequencial"));
+                    
+                    lote.setDimensoes(getDimensoes(lote.getIdDimensoes()));
+                    
+                    lotes.add(lote);
+                    
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+        Double tamanhoUsado = 0.0;
+        for(Lote loteUsado:lotes){
+          
+           tamanhoUsado += loteUsado.getDimensoes().getComprimento();
+            
+        }
+        
+        return tamanhoUsado;
+
+    }
+
         
 
 }

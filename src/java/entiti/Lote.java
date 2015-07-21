@@ -114,6 +114,9 @@ public class Lote implements Serializable {
    
    @Transient 
    private Integer idMovimentacao;
+   
+   @Transient
+   private Integer sucesso;        
  
     
     EstadoArmazenagem estadoArmazenagem = EstadoArmazenagem.VAZIO;
@@ -249,6 +252,14 @@ public class Lote implements Serializable {
 
     public Integer getIdMovimentacao() {
         return idMovimentacao;
+    }
+
+    public Integer getSucesso() {
+        return sucesso;
+    }
+
+    public void setSucesso(Integer sucesso) {
+        this.sucesso = sucesso;
     }
     
     

@@ -41,7 +41,7 @@ public class Movimentacao implements Serializable {
     private Integer idMovimentacao;
     @JoinColumn(name = "id_produto", referencedColumnName = "num_onu")
     @ManyToOne
-    private Produto idProduto;   
+    private Produto idProduto;
     @Column(name = "qtdtotal")
     private Double quantidadeTotal;
     @Column(name = "qtdporpalete")
