@@ -11,8 +11,7 @@ import javax.inject.Inject;
 @ViewScoped
 public class EpeController extends AbstractController<Epe> {
 
-    @Inject
-    private TipoEquipamentoController tipoEquipamentoListController;
+
     @Inject
     private FornecedorController idFornecedorController;
 

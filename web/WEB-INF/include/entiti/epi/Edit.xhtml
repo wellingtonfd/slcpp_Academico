@@ -19,24 +19,24 @@
                         <h:outputText id="idEpi" value="#{epiController.selected.idEpi}" />
 
                         <p:outputLabel value="#{myBundle.EditEpiLabel_nomeEpi}" for="nomeEpi" />
-                        <p:inputText id="nomeEpi" value="#{epiController.selected.nomeEpi}" title="#{myBundle.EditEpiTitle_nomeEpi}"  size="45" maxlength="45"/>
+                        <p:inputText id="nomeEpi" value="#{epiController.selected.nomeEpi}" title="#{myBundle.EditEpiTitle_nomeEpi}" required="true" requiredMessage="#{myBundle.EditEpiRequiredMessage_nomeEpi}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.EditEpiLabel_grupoEpi}" for="grupoEpi" />
-                        <p:inputText id="grupoEpi" value="#{epiController.selected.grupoEpi}" title="#{myBundle.EditEpiTitle_grupoEpi}"  size="25" maxlength="25"/>
+                        <p:inputText id="grupoEpi" value="#{epiController.selected.grupoEpi}" title="#{myBundle.EditEpiTitle_grupoEpi}" required="true" requiredMessage="#{myBundle.EditEpiRequiredMessage_grupoEpi}" size="25" maxlength="25"/>
 
                         <p:outputLabel value="#{myBundle.EditEpiLabel_especEpi}" for="especEpi" />
                         <p:inputTextarea rows="4" cols="30" id="especEpi" value="#{epiController.selected.especEpi}" title="#{myBundle.EditEpiTitle_especEpi}" />
 
-                        <p:outputLabel value="#{myBundle.CreateFornecedorLabel_idFornecedor}" for="idFornecedor" />
-                        <p:selectOneMenu id="idFornecedor" value="#{epiController.selected.idFornecedor}"  converter="fornecedorConverter">
+                        <p:outputLabel value="#{myBundle.CreateEpiLabel_idMaterial}" for="idMaterial" />
+                        <p:selectOneMenu id="idMaterial" value="#{epiController.selected.idMaterial}"  required="true" requiredMessage="#{myBundle.TipoMaterialTitle}" converter="tipoMaterialConverter">
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{fornecedorController.items}"
-                                           var="idFornecedorItem"
-                                           itemValue="#{idFornecedorItem}"
-                                           itemLabel="#{idFornecedorItem.nomeFantasia.toString()}"
+                            <f:selectItems value="#{tipoMaterialController.items}"
+                                           var="tipoMaterialItem"
+                                           itemValue="#{tipoMaterialItem}"
+                                           itemLabel="#{tipoMaterialItem.nomeMaterial.toString()}"
                                            />
+
                         </p:selectOneMenu>
-                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epiController.save}" value="#{myBundle.Save}" update="display,:EpiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpiEditDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>

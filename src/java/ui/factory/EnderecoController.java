@@ -12,10 +12,6 @@ import javax.inject.Inject;
 public class EnderecoController extends AbstractController<Endereco> {
 
     @Inject
-    private FornecedorController fornecedorListController;
-    @Inject
-    private FuncionarioController funcionarioListController;
-    @Inject
     private PaisController idPaisController;
     @Inject
     private EstadoController idEstadoController;

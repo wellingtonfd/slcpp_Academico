@@ -99,6 +99,9 @@ public class ArmazenagemUtil {
      */
     public void armazenaProduto(Armazem armazem, Integer produtoId, int numeroPaletes, double totalProduto, Integer idMovimentacao) {
 
+        try {
+    
+        
         Lote lote = null;
         Integer armazemId = armazem.getIdArmazem();
 
@@ -119,11 +122,14 @@ public class ArmazenagemUtil {
             armazenagemService.persistLote(lote);
             armazenagemService.persistMovimentacao(lote, 0);
             
+            
+            
+            
             return;
         }
 
         List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazemId);
-        if (lotes != null && lotes.size() <0) {
+        if (lotes != null && lotes.size() > 0) {
             for (Lote loteExistente : lotes) {
                 if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
                      lote.setIdMovimentacao(idMovimentacao);
@@ -151,6 +157,12 @@ public class ArmazenagemUtil {
           } 
          
         }
+        
+                
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
     /**
@@ -186,7 +198,7 @@ public class ArmazenagemUtil {
      * @param quantidade
      * @return
      */
-    public boolean retiraProtudo(Integer produtoId, int quantidade) {
+    public boolean retiraProtudo(Integer produtoId, Double quantidade) {
         return armazenagemService.retiraProtudo(produtoId, quantidade);
     }
 

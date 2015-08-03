@@ -11,11 +11,6 @@ import javax.inject.Inject;
 @ViewScoped
 public class UsuarioController extends AbstractController<Usuario> {
 
-    @Inject
-    private UsuarioRolerController UsuarioRolerListController;
-    @Inject
-    private FuncionarioController funcionarioListController;
-
     public UsuarioController() {
         // Inform the Abstract parent controller of the concrete Usuario?cap_first Entity
         super(Usuario.class);

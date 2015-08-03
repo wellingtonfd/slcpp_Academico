@@ -12,10 +12,7 @@ import org.primefaces.event.FlowEvent;
 @ViewScoped
 public class FornecedorController extends AbstractController<Fornecedor> {
 
-    @Inject
-    private TipoSolicitacaoController tipoSolicitacaoListController;
-    @Inject
-    private DetNotaController detNotaListController;
+
     @Inject
     private EnderecoController idEnderecoController;
     @Inject

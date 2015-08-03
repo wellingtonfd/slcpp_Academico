@@ -12,8 +12,6 @@ import javax.inject.Inject;
 public class VeiculoController extends AbstractController<Veiculo> {
 
     @Inject
-    private TipoEquipamentoController tipoEquipamentoListController;
-    @Inject
     private CombustivelController idCombustivelController;
     @Inject
     private FornecedorController idFornecedorController;

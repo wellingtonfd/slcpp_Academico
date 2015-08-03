@@ -29,6 +29,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 
     /**
      * metodo utilizado para realizar a armazenagem a partir da movimentacao realizada
+     * @return 
      */
     public int salvaArmazenagem(){
     

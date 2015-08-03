@@ -38,12 +38,6 @@
                     <h:outputText value="#{item.idMovimentacao}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.idProduto.numOnu}" filterBy="#{item.idProduto.numOnu}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idProduto.numOnu}"/>
-                </p:column>
 
                 <p:column sortBy="#{item.idProduto.descProduto}" filterBy="#{item.idProduto.descProduto}">
                     <f:facet name="header">
@@ -67,6 +61,9 @@
                     </f:facet>
                     <h:outputText value="#{item.quantidadePorPalete}"/>
                 </p:column>
+
+
+
 
             </p:dataTable>
 

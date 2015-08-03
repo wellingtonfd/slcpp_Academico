@@ -27,9 +27,8 @@
                         <h:outputText value="#{myBundle.ViewEpeLabel_agenteEpe}"/>
                         <h:outputText value="#{epeController.selected.agenteEpe}" title="#{myBundle.ViewEpeTitle_agenteEpe}"/>
 
-                         <h:outputText value="Fornecedor"/>
-                         <h:outputText value="#{epeController.selected.idFornecedor.nomeFantasia}" title="#{myBundle.ViewVeiculoTitle_chassiVeiculo}"/>
-                        
+                        <h:outputText value="#{myBundle.ViewEpeLabel_tipoMaterialIdMaterial}"/>
+                        <h:outputText value="#{epeController.selected.tipoMaterialIdMaterial}" title="#{myBundle.ViewEpeTitle_tipoMaterialIdMaterial}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="EpeViewDialog.hide()"/>
                 </h:panelGroup>

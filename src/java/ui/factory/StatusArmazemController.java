@@ -11,8 +11,6 @@ import javax.inject.Inject;
 @ViewScoped
 public class StatusArmazemController extends AbstractController<StatusArmazem> {
 
-    @Inject
-    private ArmazemController armazemListController;
 
     public StatusArmazemController() {
         // Inform the Abstract parent controller of the concrete StatusArmazem?cap_first Entity

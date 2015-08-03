@@ -4,15 +4,13 @@ import entiti.LocalOperacao;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
 @Named(value = "localOperacaoController")
 @ViewScoped
 public class LocalOperacaoController extends AbstractController<LocalOperacao> {
 
-    @Inject
-    private ArmazemController armazemListController;
+
 
     public LocalOperacaoController() {
         // Inform the Abstract parent controller of the concrete LocalOperacao?cap_first Entity

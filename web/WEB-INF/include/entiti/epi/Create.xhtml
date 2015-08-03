@@ -19,20 +19,11 @@
                         <p:inputText id="nomeEpi" value="#{epiController.selected.nomeEpi}" title="#{myBundle.CreateEpiTitle_nomeEpi}" required="true" requiredMessage="#{myBundle.CreateEpiRequiredMessage_nomeEpi}" size="45" maxlength="45"/>
 
                         <p:outputLabel value="#{myBundle.CreateEpiLabel_grupoEpi}" for="grupoEpi" />
-                        <p:inputText id="grupoEpi" value="#{epiController.selected.grupoEpi}" title="#{myBundle.CreateEpiTitle_grupoEpi}"  size="25" maxlength="25"/>
+                        <p:inputText id="grupoEpi" value="#{epiController.selected.grupoEpi}" title="#{myBundle.CreateEpiTitle_grupoEpi}" required="true" requiredMessage="#{myBundle.CreateEpiRequiredMessage_grupoEpi}" size="25" maxlength="25"/>
 
                         <p:outputLabel value="#{myBundle.CreateEpiLabel_especEpi}" for="especEpi" />
                         <p:inputTextarea rows="4" cols="30" id="especEpi" value="#{epiController.selected.especEpi}" title="#{myBundle.CreateEpiTitle_especEpi}" />
 
-                        <p:outputLabel value="#{myBundle.CreateFornecedorLabel_idFornecedor}" for="idFornecedor" />
-                        <p:selectOneMenu id="idFornecedor" value="#{epeController.selected.idFornecedor}"  converter="fornecedorConverter">
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{fornecedorController.items}"
-                                           var="idFornecedorItem"
-                                           itemValue="#{idFornecedorItem}"
-                                           itemLabel="#{idFornecedorItem.nomeFantasia.toString()}"
-                                           />
-                        </p:selectOneMenu>
 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{epiController.saveNew}" value="#{myBundle.Save}" update="display,:EpiListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EpiCreateDialog);">

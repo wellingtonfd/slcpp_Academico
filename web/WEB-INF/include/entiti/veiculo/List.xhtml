@@ -71,14 +71,7 @@
                     <h:outputText value="#{item.placaVeiculo}"/>
                 </p:column>
 
-                <p:column sortBy="#{item.chassiVeiculo}" filterBy="#{item.chassiVeiculo}">
-                    <f:facet name="header">
-                    <h:outputText value="#{myBundle.ListVeiculoTitle_chassiVeiculo}"/>
-                            </f:facet>
-                    <h:outputText value="#{item.chassiVeiculo}"/>
-                </p:column>
 
-                
                 <p:column sortBy="#{item.corVeiculo}" filterBy="#{item.corVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_corVeiculo}"/>
@@ -94,7 +87,14 @@
                                         <h:outputText value="#{item.anoVeiculo}"/>
                                     </p:column>
                 -->
-               
+                <!--
+                                    <p:column sortBy="#{item.chassiVeiculo}" filterBy="#{item.chassiVeiculo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListVeiculoTitle_chassiVeiculo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.chassiVeiculo}"/>
+                                    </p:column>
+                -->
                 <!--
                                     <p:column sortBy="#{item.idCombustivel.idCombustivel}" filterBy="#{item.idCombustivel.idCombustivel}">
                                         <f:facet name="header">

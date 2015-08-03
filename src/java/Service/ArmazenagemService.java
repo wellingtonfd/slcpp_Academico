@@ -301,9 +301,26 @@ public class ArmazenagemService {
      * @param quantidade
      * @return
      */
-    public boolean retiraProtudo(Integer produtoId, int quantidade) {
+    public boolean retiraProtudo(Integer produtoId, Double quantidadeRetirada) {
         List<Lote> lotes = getLocalProdutoArmazenado(produtoId);
-
+         Double quantidade;
+         for (Lote lote : lotes) {
+            quantidade = lote.getQuantidadeProduto();
+           if(quantidade > quantidadeRetirada ){
+               lote.setQuantidadeProduto(quantidade - quantidadeRetirada);
+               lote.setEstado(2);
+               atualizaLote(lote);
+               return true;
+            }else{
+               lote.setQuantidadeProduto(0);
+               lote.setEstado(1);
+               atualizaLote(lote);
+               quantidadeRetirada = quantidadeRetirada - quantidade;
+           
+           }   
+        }
+  
+        
         return false;
     }
 
@@ -645,7 +662,7 @@ public class ArmazenagemService {
         
             prepared.executeUpdate();
             
-            connection.commit();
+          //  connection.commit();
             
             prepared.close();
             connection.close();
@@ -703,7 +720,7 @@ public class ArmazenagemService {
         
             prepared.executeUpdate();
             
-            connection.commit();
+         //   connection.commit();
             
             prepared.close();
             connection.close();
@@ -726,7 +743,7 @@ public class ArmazenagemService {
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select * from lote l where l.id_armazem = " + armazemId + " AND l.sequencial = select MAX(b.sequencial) from lote b where b.id_armazem =  " + armazemId +  ";";
+            String query = "select * from lote l where l.id_armazem = " + armazemId + " AND l.sequencial = (select MAX(b.sequencial) from lote b where b.id_armazem =  " + armazemId +  ");";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
 
@@ -765,8 +782,8 @@ public class ArmazenagemService {
             prepared.setInt(3, lote.getIdMovimentacao());
         
             prepared.executeUpdate();
-            
-            connection.commit();
+              
+           // connection.commit();
             
             prepared.close();
             connection.close();
