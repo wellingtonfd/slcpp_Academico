@@ -128,7 +128,7 @@ public class Lote implements Serializable {
 
     public Lote() {
 
-        Dimensoes dim = new Dimensoes(comprimentoPadrao, 0);
+        Dimensoes dim = new Dimensoes(0, comprimentoPadrao);
         this.dimensoes = dim;
     }
 

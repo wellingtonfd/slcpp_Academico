@@ -50,8 +50,8 @@ public class ArmazenagemUtil {
         Dimensoes dimensoesLote = new Dimensoes(y, qtdX * tamanhoPalete.getComprimento());
         return dimensoesLote;
     }
-
-    /**
+    
+     /**
      * metodo retorno o tamaho fisico restante do armazem no eixo x
      *
      * @param armazem
@@ -101,7 +101,6 @@ public class ArmazenagemUtil {
 
         try {
     
-        
         Lote lote = null;
         Integer armazemId = armazem.getIdArmazem();
 
@@ -122,9 +121,7 @@ public class ArmazenagemUtil {
             armazenagemService.persistLote(lote);
             armazenagemService.persistMovimentacao(lote, 0);
             
-            
-            
-            
+          
             return;
         }
 
@@ -132,7 +129,7 @@ public class ArmazenagemUtil {
         if (lotes != null && lotes.size() > 0) {
             for (Lote loteExistente : lotes) {
                 if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
-                     lote.setIdMovimentacao(idMovimentacao);
+                    lote.setIdMovimentacao(idMovimentacao);
                     armazenagemService.persistLote(loteExistente);
                     armazenagemService.persistMovimentacao(lote, 0);
                 }
@@ -141,7 +138,7 @@ public class ArmazenagemUtil {
         else{
           if (armazenagemService.verificaCompatibilidade(armazenagemService.getUltimoLote(armazemId).getIdProduto(), produtoId)) {
           
-            lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
+           lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
            armazenagemService.persistDimensoes(lote.getDimensoes());
            lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
            lote.setIdMovimentacao(idMovimentacao);
@@ -150,8 +147,17 @@ public class ArmazenagemUtil {
           
           }else{
           
+              // caso do produto incompativel primerio cria um lote vazio
               lote = criaLoteVazio(armazem);
+              armazenagemService.persistLoteVazio(lote);
+              
+              // depois armazena o produto de forma normal
+              lote = criaNovoLote(armazem, produtoId, numeroPaletes, totalProduto);
+              armazenagemService.persistDimensoes(lote.getDimensoes());
+              lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
+              lote.setIdMovimentacao(idMovimentacao);
               armazenagemService.persistLote(lote);
+         
               armazenagemService.persistMovimentacao(lote, 0);
          
           } 
@@ -273,13 +279,18 @@ public class ArmazenagemUtil {
         
         Double comprimento = lote.getComprimentoPadrao();
         Double largura = armazem.getTamanhoEspacoArmazenagem();
-        Dimensoes dimensoes = new Dimensoes(comprimento, largura);       
-        
+        Dimensoes dimensoes = new Dimensoes(largura,comprimento);       
         lote.setIdArmazem(armazemId);
-          
         lote.setDimensoes(dimensoes);
         armazenagemService.persistDimensoes(dimensoes);
         lote.setIdDimensoes(armazenagemService.getUltimaDimensao());
+        
+         lote.setSequencial(armazenagemService.getProximoSequencial(armazemId).intValue() + 1);
+        if (armazenagemService.verificaEspacoVazioArmazem(armazemId, "E", armazem.getDimensoes().getComprimento())) {
+            lote.setLado("E");
+        } else {
+            lote.setLado("D");
+        }
                
         return lote;
     
@@ -308,13 +319,17 @@ public class ArmazenagemUtil {
       Movimentacao  movimentacao = new Movimentacao();
         try {
             movimentacao = armazenagemService.getUltimaMovimentacao();
-            armazenaProduto(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete(), movimentacao.getIdMovimentacao());
+            
+            if( true /*movimentacao.getTipo()== 0*/){ // necessario preparar a chamada anterior para carregar este parametro
+                armazenaProduto(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete(), movimentacao.getIdMovimentacao());
+            }else{
+                  retiraProtudo(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal());
+            }
             
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
  
-    
     }
     
     
@@ -333,14 +348,14 @@ public class ArmazenagemUtil {
      * @return 
      */
     public List<Lote> getLotesProdutoArmazenado(Integer produtoId){
-    
         return armazenagemService.getLocalProdutoArmazenado(produtoId);
-    
+   
     }
     
     
     /**
-     * verifica o estado que o lote está devida s inserçoes e retiradas
+     * verifica o estado que o lote está devidas inserçoes e retiradas
+     * VAZIO(1), SEMIPREENCHIDO(2), CHEIO(3)
      * @param numeroProdutos
      * @param qtdPorPalete
      * @param dimensoes
@@ -348,11 +363,45 @@ public class ArmazenagemUtil {
      */
     public Integer verificaEstadolote(Integer numeroProdutos, Integer qtdPorPalete, Dimensoes dimensoes ){
     
-    Integer estado = 0;
-    return estado;
+       Integer estado = 0;
+       
+       
+       return estado;
     
+        
+    }
     
+    /**
+     * Verifica o estado do lote   VAZIO(1), SEMIPREENCHIDO(2), CHEIO(3)
+     * de acordo com as dimensões do mesmo e a quantidade de paletes
+     * @param numeroPaletes
+     * @param dimensoes
+     * @return 
+     */
+    public Integer verificaEstadolote(Integer numeroPaletes, Dimensoes dimensoes ){
     
+       Integer estado = 1;
+       
+       if(numeroPaletes == 0){
+         return 1;
+       }
+       
+       Double comprimento = dimensoes.getComprimento();
+       Double largura = dimensoes.getLargura();
+       
+              
+        double y = largura;
+        int qtdY = (int) (y / tamanhoPalete.getLargura());
+        int qtdX = 1;
+        while ((qtdY * qtdX) < numeroPaletes) {
+            qtdX++;
+        }
+        Dimensoes dimensoesLote = new Dimensoes(y, qtdX * tamanhoPalete.getComprimento());
+              
+       
+       return estado;
+    
+        
     }
     
 }

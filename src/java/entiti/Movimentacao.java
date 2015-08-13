@@ -47,6 +47,9 @@ public class Movimentacao implements Serializable {
     @Column(name = "qtdporpalete")
     private Integer quantidadePorPalete;
     
+    @Column(name = "tipo")
+    private Integer tipo;
+    
    @Transient
     private Integer numeroOnu;        
     
@@ -98,8 +101,16 @@ public class Movimentacao implements Serializable {
     public void setNumeroOnu(Integer numeroOnu) {
         this.numeroOnu = numeroOnu;
     }
+
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }
     
-    
+       
 
     @Override
     public int hashCode() {

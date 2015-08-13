@@ -59,7 +59,7 @@ public class Dimensoes implements Serializable {
      * @params double comprimento
      * @params double largura 
      */
-    public Dimensoes(double comprimento, double largura) {
+    public Dimensoes(double largura, double comprimento) {
         this.largura = largura;
         this.comprimento = comprimento;
     }

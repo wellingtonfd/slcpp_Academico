@@ -23,7 +23,7 @@ import reports.jasperConnection;
 /**
  * Classe service para tratar das interações [com o banco de dados da classe
  * armazenagem Util
- *
+ *obs: metodos de inserção utilizando o commit automatico do banco
  */
 public class ArmazenagemService {
 
@@ -238,6 +238,7 @@ public class ArmazenagemService {
                 lote.setIdProduto(rs.getInt("num_onu"));
                 lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
+                lote.setLado(rs.getString("lado"));
                 
                 lote.setDimensoes(getDimensoes(lote.getIdDimensoes()));
                 
@@ -418,6 +419,35 @@ public class ArmazenagemService {
         }
      
     }
+    /**
+     * Persist lote Vazio metodo para persiistencia de um lote vazio para garantir a 
+     * compatilbilidade entre produtos adjacentes
+     *
+     * @param lote
+     */
+    public void persistLoteVazio(Lote lote) {
+        try {
+           Connection connection = jasperConnection.getConexao();
+             String insert = "insert into lote(lado, sequencial, "
+                    + "id_armazem, fk_id_dimensoes, estado ) values(?,?,?,?,?) "; 
+            PreparedStatement prepared = connection.prepareStatement(insert);
+             
+            prepared.setString(1, lote.getLado());
+            prepared.setInt(2, lote.getSequencial());
+            prepared.setInt(3, lote.getIdArmazem());
+            prepared.setInt(4, lote.getIdDimensoes());
+            prepared.setInt(5, 1);
+            
+            
+            prepared.executeUpdate();
+           
+                            
+            prepared.close();
+            connection.close();
+        } catch (Exception e) {
+        }
+     
+    }
 
     /**
      * Metodo que executa procedure para buscar os produtos inconpativeis
@@ -429,30 +459,40 @@ public class ArmazenagemService {
 
 
           List<Integer> retorno = new ArrayList<Integer>();
-        
-        try { 
-            
+           ResultSet rs = null;
+
+        try {
             Connection connection = jasperConnection.getConexao();
-           
-            CallableStatement proc =  connection.prepareCall(" { call incompatibilidade(?) } ");
-           
-            proc.registerOutParameter(1,java.sql.Types.INTEGER);
-            proc.setInt(2, nOnu);
-            proc.execute();
-            
-            Integer numero;
-            ResultSet rs =  proc.getResultSet();
-            while(rs.next()){
-                
-                numero = rs.getInt(1);
-                
-                retorno.add(numero);
+
+            String query = " SELECT " +
+"				c.numonu " +
+"			        FROM " +
+"				produto p, " +
+"				tipo_comp t, " +
+"				compatibilidade c " +
+"			WHERE " +
+"				p.num_onu = " + nOnu+ 
+"				AND " +
+                                nOnu +	" != c.numonu " +
+"				AND " +
+"				p.classe = t.id_classe " +
+"				AND " +
+"				t.id_tipo_comp = c.id_tipo_comp; ";
+          
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+
+            while (rs.next()) {
+                retorno.add(rs.getInt("numonu"));
+               
             }
-            
-            proc.close();
-        } catch (Exception e) {
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+                
         return retorno;
         
         
@@ -548,6 +588,7 @@ public class ArmazenagemService {
                 novoLote.setIdProduto(rs.getInt("num_onu"));
                 novoLote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 novoLote.setSequencial(rs.getInt("sequencial"));
+                novoLote.setLado(rs.getString("lado"));
 
                 lotes.add(novoLote);
 
