@@ -456,8 +456,6 @@ public class ArmazenagemService {
      * @return
      */
     public List<Integer> getProdutosIncompativeis(int nOnu) {
-
-
           List<Integer> retorno = new ArrayList<Integer>();
            ResultSet rs = null;
 
@@ -470,7 +468,7 @@ public class ArmazenagemService {
 "				produto p, " +
 "				tipo_comp t, " +
 "				compatibilidade c " +
-"			WHERE " +
+"		        WHERE " +
 "				p.num_onu = " + nOnu+ 
 "				AND " +
                                 nOnu +	" != c.numonu " +
@@ -576,7 +574,7 @@ public class ArmazenagemService {
         try {
             Connection connection = jasperConnection.getConexao();
 
-            String query = "select * from lote where id_armazem = " + armazemId + " AND estado = 1 AND lado = '" +lado + "' order by sequencial; ";
+            String query = "select * from lote where id_armazem = " + armazemId + " AND lado = '" +lado + "' AND (sequencial = " + seqA + " OR sequencial = " + seqB +"  ) order by sequencial; ";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
 
