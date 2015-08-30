@@ -22,7 +22,7 @@ public class ReportVei {
         return nomeReport;
     }
 
-    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Veicuto/RelatorioVeiculo.jasper");
+    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Veiculo/RelatorioVeiculo.jasper");
 
     public StreamedContent getArquivoRetorno() {
         FacesContext context = FacesContext.getCurrentInstance();
