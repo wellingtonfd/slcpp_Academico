@@ -26,6 +26,8 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
                         <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
+                        <p:outputLabel value="Tipo" for="tipo" />
+                        <p:inputText id="tipo" value="#{movimentacaoController.selected.tipo}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
                      </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.saveNew}" action="#{movimentacaoController.informacao2}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
