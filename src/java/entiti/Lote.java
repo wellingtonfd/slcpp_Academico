@@ -39,7 +39,6 @@ import javax.persistence.Transient;
     @NamedQuery(name = "Lote.findBySequencial", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial"),
     @NamedQuery(name = "Lote.findByQuantidadeProduto", query = "SELECT l FROM Lote l WHERE l.quantidadeProduto = :quantidadeProduto"),
     @NamedQuery(name = "Lote.findByNumeroPaletesArmazenados", query = "SELECT l FROM Lote l WHERE l.numeroPaletesArmazenados = :numeroPaletesArmazenados"),
-    @NamedQuery(name = "Lote.findLoteVazio", query = "SELECT l FROM Lote l WHERE l.estadoArmazenagem = :estadoArmazenagem"  ),
     @NamedQuery(name = "Lote.findByProduto", query = "SELECT l FROM Lote l WHERE l.produto = :produto"),
     @NamedQuery(name = "Lote.findByEndereco", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial and l.lado = :lado"),
     @NamedQuery(name = "Lote.findByArmazem", query = "SELECT l FROM Lote l WHERE l.armazem = :armazem")})
@@ -97,6 +96,7 @@ public class Lote implements Serializable {
     @ManyToOne
     private Produto produto;
     //Comprimento padrão para o caso onde é necessário criar o lote vazio
+    @Transient
     double comprimentoPadrao = 4.0;
    
     
@@ -118,7 +118,7 @@ public class Lote implements Serializable {
    @Transient
    private Integer sucesso;        
  
-    
+    @Transient
     EstadoArmazenagem estadoArmazenagem = EstadoArmazenagem.VAZIO;
         
     public Lote(Dimensoes dimensoes) {

@@ -57,20 +57,9 @@
             <h:panelGrid columns="2" cellpadding="5">
                 <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
                 <h:form id="referencia">
-                    <h:outputText value="Produto" />
-                    <h:selectOneMenu value="#{armazena.idProduto}" converter="produtoConverter">
-                        <f:selectItem itemLabel="Produto"/>
-                        <f:selectItems value="#{produtoController.items}"
-                                       var="idProdutoItem"
-                                       itemValue="#{idProdutoItem}"
-                                       itemLabel="#{idProdutoItem.numOnu.toString()}"
-                                       />
-                    </h:selectOneMenu>
-                    <h:outputText value="Quantidade de Total de Produto" />
-                    <h:inputText value="#{armazena.qtdTotal}" converter="movimentacaoConverter"/>
-                    <h:outputText value="Quantidade de Produto por Palete" />
-                    <h:inputText value="#{armazena.qtdPalete}" converter="movimentacaoConverter"/>
-                    <h:commandButton actionListener="#{armazena.armazena}"/>
+                      <h:commandButton type="submit" value="Gerar Relatorio" >
+                   <p:fileDownload value="#{ReportArmazem.arquivoRetorno}" />
+                </h:commandButton> 
                 </h:form>
             </h:panelGrid>
         </p:panel>
