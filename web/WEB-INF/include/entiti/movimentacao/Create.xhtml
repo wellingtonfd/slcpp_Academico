@@ -15,6 +15,12 @@
                 <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
+                        <p:outputLabel id="tipo"  value="Tipo de Movimentação" />
+                        <p:selectOneButton value="#{movimentacaoController.selected.tipo}">
+                            <f:selectItem itemLabel="Entrata" itemValue="0" />
+                            <f:selectItem itemLabel="Saida" itemValue="1" />
+                        </p:selectOneButton>
+
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
                         <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
@@ -24,11 +30,11 @@
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
                         </p:selectOneMenu>
+
                         <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
                         <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
-                        <p:outputLabel value="Tipo" for="tipo" />
-                        <p:inputText id="tipo" value="#{movimentacaoController.selected.tipo}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
-                     </p:panelGrid>
+
+                    </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.saveNew}" action="#{movimentacaoController.informacao2}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
