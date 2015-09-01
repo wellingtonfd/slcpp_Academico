@@ -17,8 +17,8 @@
 
                         <p:outputLabel id="tipo"  value="Tipo de Movimentação" />
                         <p:selectOneButton value="#{movimentacaoController.selected.tipo}">
-                            <f:selectItem itemLabel="Entrata" itemValue="0" />
-                            <f:selectItem itemLabel="Saida" itemValue="1" />
+                            <f:selectItem itemLabel="Entrada" itemValue="0" />
+                          <f:selectItem itemLabel="Saída" itemValue="1" /> 
                         </p:selectOneButton>
 
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
@@ -29,10 +29,20 @@
                                            itemValue="#{idProdutoItem}"
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
+                            <p:column style="width:10%">
+                                <h:outputText value="#{movimentacaoController.selected.quantidadeTotal}" />
+                             </p:column>
+ 
+                            <p:column>
+                                <h:outputText value="#{movimentacaoController.selected.tipo}" />
+                             </p:column>
                         </p:selectOneMenu>
 
                         <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
                         <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
+                        
+                        <p:outputLabel value="Quantidade de Produdos por Palete" for="qtdProdPalete" />
+                        <p:inputText id="qtdProdPalete" value="#{movimentacaoController.selected.quantidadePorPalete}" title="#{myBundle.CreateEstadoTitle_qtdProdPalete}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProdPalete}" size="6" maxlength="6"/>
 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{movimentacaoController.saveNew}" action="#{movimentacaoController.informacao2}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoCreateDialog);">

@@ -37,7 +37,7 @@ import javax.persistence.Transient;
     @NamedQuery(name = "Lote.findByIdLote", query = "SELECT l FROM Lote l WHERE l.idLote = :idLote"),
     @NamedQuery(name = "Lote.findByLado", query = "SELECT l FROM Lote l WHERE l.lado = :lado"),
     @NamedQuery(name = "Lote.findBySequencial", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial"),
-    @NamedQuery(name = "Lote.findByQuantidadeProduto", query = "SELECT l FROM Lote l WHERE l.quantidadeProduto = :quantidadeProduto"),
+    @NamedQuery(name = "Lote.findByQuantidadeProduto", query = "SELECT l FROM Lote l WHERE l.quantidadeProduto = :quantidadeProduto" ),
     @NamedQuery(name = "Lote.findByNumeroPaletesArmazenados", query = "SELECT l FROM Lote l WHERE l.numeroPaletesArmazenados = :numeroPaletesArmazenados"),
     @NamedQuery(name = "Lote.findByProduto", query = "SELECT l FROM Lote l WHERE l.produto = :produto"),
     @NamedQuery(name = "Lote.findByEndereco", query = "SELECT l FROM Lote l WHERE l.sequencial = :sequencial and l.lado = :lado"),
