@@ -86,7 +86,7 @@ public class ArmazenagemService {
                 lote.setIdProduto(rs.getInt("num_onu"));
                 lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
-
+                lote.setLado(rs.getString("lado"));
                 lotes.add(lote);
 
             }
@@ -641,6 +641,7 @@ public class ArmazenagemService {
                 movimentacao.setQuantidadeTotal(rs.getDouble("qtdtotal"));
                 movimentacao.setNumeroOnu(rs.getInt("id_produto"));
                 movimentacao.setIdMovimentacao(rs.getInt("id_movimentacao"));
+                movimentacao.setTipo(rs.getInt("tipo"));
 
             }
 
@@ -812,13 +813,13 @@ public class ArmazenagemService {
        public void atualizaLote(Lote lote){
        try {
            Connection connection = jasperConnection.getConexao();
-            String insert = "Update movimentacao set referencia_lote = ? , sucesso = ? where id_movimentacao=?"; 
+            String insert = "Update lote set estado = ? , quantidade_produtos = ? where id_lote=?"; 
             PreparedStatement prepared = connection.prepareStatement(insert);
             
-            String referenciaLote = lote.getLado() + Integer.toString(lote.getSequencial());
-            prepared.setString(1, referenciaLote);
-            prepared.setInt(2, lote.getSucesso());
-            prepared.setInt(3, lote.getIdMovimentacao());
+            
+            prepared.setInt(1, lote.getEstado());
+            prepared.setDouble(2, lote.getQuantidadeProduto());
+            prepared.setInt(3, lote.getIdLote());
         
             prepared.executeUpdate();
               

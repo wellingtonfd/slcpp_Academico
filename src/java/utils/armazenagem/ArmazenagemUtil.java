@@ -315,7 +315,7 @@ public class ArmazenagemUtil {
         try {
             movimentacao = armazenagemService.getUltimaMovimentacao();
 
-            if (true /*movimentacao.getTipo()== 0*/) { // necessario preparar a chamada anterior para carregar este parametro
+            if (movimentacao.getTipo()== 0) { // necessario preparar a chamada anterior para carregar este parametro
                 armazenaProduto(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal(), movimentacao.getQuantidadePorPalete(), movimentacao.getIdMovimentacao());
             } else {
                 retiraProtudo(movimentacao.getNumeroOnu(), movimentacao.getQuantidadeTotal());
