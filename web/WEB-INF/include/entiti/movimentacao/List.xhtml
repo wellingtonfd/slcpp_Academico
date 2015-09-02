@@ -11,6 +11,7 @@
         <p:panel header="#{myBundle.ListMovimentacaoTitle}">
             <p:contextMenu id="MovimentacaoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimentacaoListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimentacaoListForm:outputButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('MovimentacaoListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('MovimentacaoListForm:editButton').click();" icon="ui-icon-pencil"/>
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('MovimentacaoListForm:deleteButton').click();" icon="ui-icon-trash"/>
@@ -27,8 +28,8 @@
                          selectionMode="single"
                          selection="#{movimentacaoController.selected}">
 
-                <p:ajax event="rowSelect"   update=":MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
+                <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('MovimentacaoListForm:viewButton').click();"/>
 
                 <p:column sortBy="#{item.idMovimentacao}" filterBy="#{item.idMovimentacao}">
@@ -54,8 +55,8 @@
                     </f:facet>
                     <h:outputText value="#{item.quantidadeTotal}"/>
                 </p:column>
-                
-                               
+
+
                 <p:column sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
@@ -66,7 +67,12 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoCreateForm" oncomplete="MovimentacaoCreateDialog.show()"/>
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoCreateForm" oncomplete="MovimentacaoCreateDialog.show()">
+                <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="0"/>   
+            </p:commandButton>
+            <p:commandButton id="outputButton"                             icon="ui-icon-plus"   value="Saida" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoSaidaForm" oncomplete="MovimentacaoSaidaDialog.show()">
+                <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="1"/>   
+            </p:commandButton>
             <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":MovimentacaoViewForm" oncomplete="MovimentacaoViewDialog.show()" disabled="#{empty movimentacaoController.selected}"/>
             <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MovimentacaoEditForm" oncomplete="MovimentacaoEditDialog.show()" disabled="#{empty movimentacaoController.selected}"/>
             <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{movimentacaoController.delete}" update=":growl,datalist" disabled="#{empty movimentacaoController.selected}">
