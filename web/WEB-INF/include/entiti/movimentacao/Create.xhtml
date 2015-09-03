@@ -22,19 +22,18 @@
                         </p:selectOneButton>
 
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
-                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
-                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" var="idProduto" style="width:80px" filter="true" filterMatchMode="startsWith">
                             <f:selectItems value="#{produtoController.items}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
                             <p:column style="width:10%">
-                                <h:outputText value="#{movimentacaoController.selected.quantidadeTotal}" />
+                                <h:outputText value="#{idProduto.numOnu}" />
                              </p:column>
  
-                            <p:column>
-                                <h:outputText value="#{movimentacaoController.selected.tipo}" />
+                            <p:column style="width:60%">
+                                <h:outputText value="#{idProduto.descProduto}" />
                              </p:column>
                         </p:selectOneMenu>
 
