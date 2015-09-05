@@ -55,6 +55,7 @@ public class ArmazenagemService {
 
         } catch (Exception e) {
             e.printStackTrace();
+           
         }
 
         return retorno;
@@ -458,9 +459,10 @@ public class ArmazenagemService {
     public List<Integer> getProdutosIncompativeis(int nOnu) {
           List<Integer> retorno = new ArrayList<Integer>();
            ResultSet rs = null;
+           Connection connection = null;
 
         try {
-            Connection connection = jasperConnection.getConexao();
+             connection = jasperConnection.getConexao();
 
             String query = " SELECT " +
 "				c.numonu " +
@@ -484,13 +486,16 @@ public class ArmazenagemService {
                 retorno.add(rs.getInt("numonu"));
                
             }
-
+        connection.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
         }
-                
+         
+    
+        
         return retorno;
         
         
@@ -645,6 +650,7 @@ public class ArmazenagemService {
 
             }
 
+            connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -731,6 +737,7 @@ public class ArmazenagemService {
                 retorno = rs.getInt("id_dimensoes");
             }
 
+             connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -867,6 +874,7 @@ public class ArmazenagemService {
                     lotes.add(lote);
                     
                 }
+                 connection.close();
             }
 
         } catch (Exception e) {
