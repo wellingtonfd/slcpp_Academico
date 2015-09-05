@@ -6,6 +6,8 @@
 package entiti;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +19,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -33,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Movimentacao.findByQuantidadeTotal", query = "SELECT m FROM Movimentacao m WHERE m.quantidadeTotal = :quantidadeTotal"),
     @NamedQuery(name = "Movimentacao.findByQuantitdadePorPalete", query = "SELECT m FROM Movimentacao m WHERE m.quantidadePorPalete = :quantidadePorPalete")})
 public class Movimentacao implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,14 +51,18 @@ public class Movimentacao implements Serializable {
     private Double quantidadeTotal;
     @Column(name = "qtdporpalete")
     private Integer quantidadePorPalete;
-    
+    @Column(name = "dt_movimentacao", updatable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dtMovimentacao = Calendar.getInstance().getTime();
+    @Column(name = "referencia_lote")
+    private String referencia;
     @Column(name = "tipo")
     private Integer tipo;
-    
-   @Transient
-    private Integer numeroOnu;        
-    
-    
+
+    @Transient
+    private Integer numeroOnu;
+
     public Movimentacao() {
     }
 
@@ -109,8 +118,14 @@ public class Movimentacao implements Serializable {
     public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
-    
-       
+
+    public Date getDtMovimentacao() {
+        return dtMovimentacao;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
 
     @Override
     public int hashCode() {
@@ -134,7 +149,7 @@ public class Movimentacao implements Serializable {
 
     @Override
     public String toString() {
-        return "entiti.Movimentacao[ idMovimentacao=" + idMovimentacao + " quantidadePOrpalete: " + quantidadePorPalete + " total " + quantidadeTotal + " produto " + idProduto +"   ]";
+        return "entiti.Movimentacao[ idMovimentacao=" + idMovimentacao + " quantidadePOrpalete: " + quantidadePorPalete + " total " + quantidadeTotal + " produto " + idProduto + "   ]";
     }
-    
+
 }

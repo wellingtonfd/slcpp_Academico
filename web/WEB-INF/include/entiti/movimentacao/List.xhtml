@@ -19,24 +19,41 @@
                 <p:menuitem value="#{myBundle.MovimentacaoMenuItem_idProduto}" icon="ui-icon-search"  actionListener="#{movimentacaoController.prepareIdProduto}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty movimentacaoController.selected.idProduto}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{loteController.items}"
+                         value="#{movimentacaoController.items}"
                          var="item"
-                         rowKey="#{item.idLote}"
+                         rowKey="#{item.idMovimentacao}"
                          paginator="true"
-                         rows="5"
-                         rowsPerPageTemplate="5,10,20,30,40,50"
+                         rows="15"
+                         rowsPerPageTemplate="15,30,45,65"
                          selectionMode="single"
-                         selection="#{loteController.selected}">
+                         selection="#{movimentacaoController.selected}">
 
                 <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
                 <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('MovimentacaoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.idLote}" filterBy="#{item.idLote}">
+                <p:column sortBy="#{item.dtMovimentacao}" filterBy="#{item.dtMovimentacao}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idLote}"/>
+                    <h:outputText value="#{item.dtMovimentacao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column sortBy="#{item.tipo}" filterBy="#{item.tipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
+                    </f:facet>
+                    <h:outputText value="Entrada" rendered="#{item.tipo==0}"/>
+                    <h:outputText value="Saída" rendered="#{item.tipo==1}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.referencia}" filterBy="#{item.referencia}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.referencia}"/>
                 </p:column>
 
 
@@ -44,25 +61,18 @@
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
                     </f:facet>
-                    <h:outputText value="#{item.produto.descProduto}"/>
+                    <h:outputText value="#{item.idProduto.descProduto}"/>
                 </p:column>
 
 
 
-                <p:column sortBy="#{item.quantidadeProduto}" filterBy="#{item.quantidadeProduto}">
+                <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeTotal}"/>
                     </f:facet>
-                    <h:outputText value="#{item.quantidadeProduto}"/>
+                    <h:outputText value="#{item.quantidadeTotal}"/>
                 </p:column>
 
-
-                <p:column sortBy="#{item.lado}" filterBy="#{item.lado}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.lado}"/>
-                </p:column>
 
 
             </p:dataTable>
