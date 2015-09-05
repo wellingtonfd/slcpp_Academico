@@ -311,11 +311,13 @@ public class ArmazenagemService {
            if(quantidade > quantidadeRetirada ){
                lote.setQuantidadeProduto(quantidade - quantidadeRetirada);
                lote.setEstado(2);
+               lote.setIdProduto(produtoId);
                atualizaLote(lote);
                return true;
             }else{
                lote.setQuantidadeProduto(0);
                lote.setEstado(1);
+               lote.setIdProduto(null);
                atualizaLote(lote);
                quantidadeRetirada = quantidadeRetirada - quantidade;
            
@@ -820,14 +822,19 @@ public class ArmazenagemService {
        public void atualizaLote(Lote lote){
        try {
            Connection connection = jasperConnection.getConexao();
-            String insert = "Update lote set estado = ? , quantidade_produtos = ? where id_lote=?"; 
+            String insert = "Update lote set estado = ? , quantidade_produtos = ?, num_onu = ? where id_lote=?"; 
             PreparedStatement prepared = connection.prepareStatement(insert);
-            
-            
+                       
             prepared.setInt(1, lote.getEstado());
             prepared.setDouble(2, lote.getQuantidadeProduto());
-            prepared.setInt(3, lote.getIdLote());
-        
+            if(lote.getIdProduto() == null){
+                prepared.setNull(3, java.sql.Types.INTEGER);
+            }else{
+                prepared.setInt(3, lote.getIdProduto());
+            }
+            
+            prepared.setInt(4, lote.getIdLote());
+            
             prepared.executeUpdate();
               
            // connection.commit();
