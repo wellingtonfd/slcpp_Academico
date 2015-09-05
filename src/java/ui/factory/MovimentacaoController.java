@@ -28,28 +28,30 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
     }
 
     /**
-     * metodo utilizado para realizar a armazenagem a partir da movimentacao realizada
-     * @return 
+     * metodo utilizado para realizar a armazenagem a partir da movimentacao
+     * realizada
+     *
+     * @return
      */
-    public int salvaArmazenagem(){
-    
+    public int salvaArmazenagem() {
+
         ArmazenagemUtil armazenagemUtil = new ArmazenagemUtil();
         armazenagemUtil.insereUltimaMovimentacao();
-        return 0;  
-      
-    }
-    
-    
+        return 0;
 
-    
+    }
+
     public void informacao2() {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto "+getSelected().getIdProduto().getDescProduto(), "Foi armanazenado com sucesso");
-         
+        FacesMessage message = null;
+        if (+getSelected().getTipo() == 0) {
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto " + getSelected().getIdProduto().getDescProduto(), "Foi armanazenado com sucesso");
+        }
+        if (+getSelected().getTipo() == 1) {
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Produto " + getSelected().getIdProduto().getDescProduto(), "Foi retirado com sucesso");
+        }
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
-     
-    
-    
+
     /**
      * Sets the "selected" attribute of the Produto controller in order to
      * display its data in a dialog. This is reusing existing the existing View
@@ -62,8 +64,4 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 //            idProdutoController.setSelected(this.getSelected().getIdProduto());
 //        }
 //    }
-
-
-
-  
 }
