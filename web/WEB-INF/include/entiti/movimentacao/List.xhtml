@@ -34,7 +34,7 @@
 
                 <p:column sortBy="#{item.dtMovimentacao}" filterBy="#{item.dtMovimentacao}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_dtMovimentacao}"/>
                     </f:facet>
                     <h:outputText value="#{item.dtMovimentacao}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -51,7 +51,7 @@
 
                 <p:column sortBy="#{item.referencia}" filterBy="#{item.referencia}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
+                        <h:outputText value="#{myBundle.CreateMovimentacaoReferenciaLote}"/>
                     </f:facet>
                     <h:outputText value="#{item.referencia}"/>
                 </p:column>
@@ -78,10 +78,12 @@
             </p:dataTable>
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoCreateForm" oncomplete="MovimentacaoCreateDialog.show()">
-                <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="0"/>   
+                <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="0"/>
+                <f:setPropertyActionListener target="#{movimentacaoController.selected.usuario}" value="#{request.remoteUser}"/>
             </p:commandButton>
             <p:commandButton id="outputButton"                             icon="ui-icon-plus"   value="Saida" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoSaidaForm" oncomplete="MovimentacaoSaidaDialog.show()">
-                <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="1"/>   
+                <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="1"/>
+                <f:setPropertyActionListener target="#{movimentacaoController.selected.usuario}" value="#{request.remoteUser}"/>
             </p:commandButton>
             <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":MovimentacaoViewForm" oncomplete="MovimentacaoViewDialog.show()" disabled="#{empty movimentacaoController.selected}"/>
             <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MovimentacaoEditForm" oncomplete="MovimentacaoEditDialog.show()" disabled="#{empty movimentacaoController.selected}"/>

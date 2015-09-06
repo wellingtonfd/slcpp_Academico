@@ -59,6 +59,8 @@ public class Movimentacao implements Serializable {
     private String referencia;
     @Column(name = "tipo")
     private Integer tipo;
+    @Column(name = "usuario")
+    private String usuario;
 
     @Transient
     private Integer numeroOnu;
@@ -126,6 +128,16 @@ public class Movimentacao implements Serializable {
     public String getReferencia() {
         return referencia;
     }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 
     @Override
     public int hashCode() {
