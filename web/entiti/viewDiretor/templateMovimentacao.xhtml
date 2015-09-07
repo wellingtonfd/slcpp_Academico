@@ -8,76 +8,33 @@
 
     <h:form id="MovimentacaoListForm">
 
-        <p:panel header="Listar Movimentação">
-           
-            <p:dataTable id="datalist"
-                         value="#{movimentacaoController.items}"
-                         var="item"
-                         rowKey="#{item.idMovimentacao}"
-                         paginator="true"
-                         rows="5"
-                         rowsPerPageTemplate="5,10,20,30,40,50"
-                         selectionMode="single"
-                         selection="#{movimentacaoController.selected}">
-
-                <p:column sortBy="#{item.idMovimentacao}" filterBy="#{item.idMovimentacao}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idMovimentacao}"/>
-                </p:column>
-                
-                <p:column sortBy="#{item.idProduto.numOnu}" filterBy="#{item.idProduto.numOnu}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idProduto.numOnu}"/>
-                </p:column>
-
-                <p:column sortBy="#{item.idProduto.descProduto}" filterBy="#{item.idProduto.descProduto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idProduto.descProduto}"/>
-                </p:column>
-
-
-                 <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeTotal}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.quantidadeTotal}"/>
-                </p:column>
-
-                <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeTotal}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.quantidadeTotal}"/>
-                </p:column>
-                
-                <p:column sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.quantidadePorPalete}"/>
-                </p:column>
-            </p:dataTable>
-        </p:panel>
-        <p:panel header="Gerar Relatório">
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
+        <p:growl id="msgs" showDetail="false" />
+          
+        <p:fieldset legend="Gerar Relatórios" toggleable="true" toggleSpeed="500">
+            
+           <h:panelGrid columns="2" cellpadding="5">
+                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" style="border:0"  width="35" height="35"/>                
            <h:form id="referencia">
-                     <h:outputText value="Data Inicial"/>
+                  <p:separator/>
+                     <h:outputText value="Data Inicial :  "/>
                      <p:calendar value="#{ReportMovimentacao.dtInicial}"/>
-                     <h:outputText value="Data Final"/>
-                     <p:calendar value="#{ReportMovimentacao.dtFinal}"/>
-               <h:commandButton type="submit" value="Gerar Relatorio" >
+                     <h:outputText value="  Data Final :  "/>
+                     <p:calendar value="#{ReportMovimentacao.dtFinal}"/><br />
+                  <p:separator/>
+               
+               <h:commandButton type="submit" value="Relatorio Movimentações" >
                    <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
                 </h:commandButton> 
-                 </h:form>
+               <h:commandButton type="submit" value="Relatorio" >
+                   <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
+               </h:commandButton>                
+               <h:commandButton type="submit" value="Relatorio" >
+                   <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
+               </h:commandButton> 
+            </h:form>
             </h:panelGrid>
-        </p:panel>       
+    </p:fieldset>
+             
     </h:form>
 
 </ui:composition>

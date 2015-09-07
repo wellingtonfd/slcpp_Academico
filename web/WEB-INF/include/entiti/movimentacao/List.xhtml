@@ -51,12 +51,18 @@
 
                 <p:column sortBy="#{item.referencia}" filterBy="#{item.referencia}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.CreateMovimentacaoReferenciaLote}"/>
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_refLote}"/>
                     </f:facet>
                     <h:outputText value="#{item.referencia}"/>
                 </p:column>
 
-
+                <p:column sortBy="#{item.idProduto.numOnu}" filterBy="#{item.idProduto.numOnu}">
+                    <f:facet name="header">
+                        <h:outputText value="Num. ONU"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idProduto.numOnu}"/>
+                </p:column>
+                
                 <p:column sortBy="#{item.idProduto.descProduto}" filterBy="#{item.idProduto.descProduto}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
@@ -77,11 +83,11 @@
 
             </p:dataTable>
 
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoCreateForm" oncomplete="MovimentacaoCreateDialog.show()">
+            <p:commandButton id="createButton"                             icon="ui-icon-circle-plus"   value="Entrada" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoCreateForm" oncomplete="MovimentacaoCreateDialog.show()">
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="0"/>
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.usuario}" value="#{request.remoteUser}"/>
             </p:commandButton>
-            <p:commandButton id="outputButton"                             icon="ui-icon-plus"   value="Saida" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoSaidaForm" oncomplete="MovimentacaoSaidaDialog.show()">
+            <p:commandButton id="outputButton"                             icon="ui-icon-circle-minus"   value="Saida" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoSaidaForm" oncomplete="MovimentacaoSaidaDialog.show()">
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="1"/>
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.usuario}" value="#{request.remoteUser}"/>
             </p:commandButton>

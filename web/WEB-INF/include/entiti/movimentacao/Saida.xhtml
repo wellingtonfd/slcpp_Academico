@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="MovimentacaoSaidaDlg" widgetVar="MovimentacaoSaidaDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateMovimentacaoTitle}" closeOnEscape="true">
+        <p:dialog id="MovimentacaoSaidaDlg" widgetVar="MovimentacaoSaidaDialog" modal="true" resizable="false" appendTo="@(body)" header="CRIAR NOVA MOVIMENTAÇÃO - SAÍDA" closeOnEscape="true">
 
             <h:form id="MovimentacaoSaidaForm">
 
@@ -16,7 +16,7 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_idProduto}" for="idProduto" />
-                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
+                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}"  converter="produtoConverter" filter="true" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{produtoController.items}"
                                            var="idProdutoItem"
