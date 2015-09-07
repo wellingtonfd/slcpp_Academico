@@ -466,26 +466,13 @@ public class ArmazenagemService {
         try {
              connection = jasperConnection.getConexao();
 
-            String query = " SELECT " +
-"				c.numonu " +
-"			        FROM " +
-"				produto p, " +
-"				tipo_comp t, " +
-"				compatibilidade c " +
-"		        WHERE " +
-"				p.num_onu = " + nOnu+ 
-"				AND " +
-                                nOnu +	" != c.numonu " +
-"				AND " +
-"				p.classe = t.id_classe " +
-"				AND " +
-"				t.id_tipo_comp = c.id_tipo_comp; ";
+            String query = " SELECT " + " incompatibilidade  (" +nOnu+ ") "+"ORDER BY" + "incompatibilidade;";
           
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
 
             while (rs.next()) {
-                retorno.add(rs.getInt("numonu"));
+                retorno.add(rs.getInt("incompatibilidade"));
                
             }
         connection.close();
