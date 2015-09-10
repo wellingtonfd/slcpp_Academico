@@ -12,10 +12,7 @@
             <p:contextMenu id="MovimentacaoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimentacaoListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimentacaoListForm:outputButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('MovimentacaoListForm:viewButton').click();" icon="ui-icon-search"/>
-                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('MovimentacaoListForm:editButton').click();" icon="ui-icon-pencil"/>
-                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('MovimentacaoListForm:deleteButton').click();" icon="ui-icon-trash"/>
-                <p:separator/>
+               <p:separator/>
                 <p:menuitem value="#{myBundle.MovimentacaoMenuItem_idProduto}" icon="ui-icon-search"  actionListener="#{movimentacaoController.prepareIdProduto}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty movimentacaoController.selected.idProduto}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
@@ -28,9 +25,8 @@
                          selectionMode="single"
                          selection="#{movimentacaoController.selected}">
 
-                <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:viewButton :MovimentacaoListForm:editButton :MovimentacaoListForm:deleteButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
-                <p:ajax event="rowDblselect" onsuccess="document.getElementById('MovimentacaoListForm:viewButton').click();"/>
+                <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton  :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
 
                 <p:column sortBy="#{item.dtMovimentacao}" filterBy="#{item.dtMovimentacao}">
                     <f:facet name="header">
@@ -91,11 +87,7 @@
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="1"/>
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.usuario}" value="#{request.remoteUser}"/>
             </p:commandButton>
-            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":MovimentacaoViewForm" oncomplete="MovimentacaoViewDialog.show()" disabled="#{empty movimentacaoController.selected}"/>
-            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MovimentacaoEditForm" oncomplete="MovimentacaoEditDialog.show()" disabled="#{empty movimentacaoController.selected}"/>
-            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{movimentacaoController.delete}" update=":growl,datalist" disabled="#{empty movimentacaoController.selected}">
-                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
-            </p:commandButton>
+           
 
         </p:panel>
         <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
