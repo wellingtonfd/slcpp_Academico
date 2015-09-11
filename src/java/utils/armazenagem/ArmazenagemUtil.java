@@ -122,7 +122,7 @@ public class ArmazenagemUtil {
                 List<Lote> lotes = armazenagemService.getLotesdisponiveis(armazemId);
                 if (lotes != null && lotes.size() > 0) {
                     for (Lote loteExistente : lotes) {
-                        if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId)) {
+                        if (armazenagemService.verificaLotesVizinhosCompativeis(armazenagemService.getLotesVizinhos(loteExistente, armazemId), produtoId) && !armazenou) {
                             loteExistente.setIdMovimentacao(idMovimentacao);
                             loteExistente.setIdProduto(produtoId);
                             loteExistente.setNumeroPaletesArmazenados(numeroPaletes);
@@ -190,7 +190,6 @@ public class ArmazenagemUtil {
             return;
         }
         int numeroDePaletes = getNumeroPaletes(quantidadePorPalete, quantidadeTotal);
-        System.out.println("armazem: " + armazem + "numero paletes: " + numeroDePaletes);
         armazenaProduto(armazem, produtoId, numeroDePaletes, quantidadeTotal, IdMovimentacao);
     }
 
