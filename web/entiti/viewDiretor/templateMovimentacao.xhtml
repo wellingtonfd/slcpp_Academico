@@ -9,32 +9,39 @@
     <h:form id="MovimentacaoListForm">
 
         <p:growl id="msgs" showDetail="false" />
-          
-        <p:fieldset legend="Gerar Relatórios" toggleable="true" toggleSpeed="500">
-            
-           <h:panelGrid columns="2" cellpadding="5">
+
+        <p:fieldset legend="Relatório de Movimentação por data" toggleable="true" toggleSpeed="500">
+
+            <h:panelGrid columns="2" cellpadding="5">
                 <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" style="border:0"  width="35" height="35"/>                
-           <h:form id="referencia">
-                  <p:separator/>
-                     <h:outputText value="Data Inicial :  "/>
-                     <p:calendar value="#{ReportMovimentacao.dtInicial}"/>
-                     <h:outputText value="  Data Final :  "/>
-                     <p:calendar value="#{ReportMovimentacao.dtFinal}"/><br />
-                  <p:separator/>
-               
-               <h:commandButton type="submit" value="Relatório Movimentações" >
-                   <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
-                </h:commandButton> 
-               <h:commandButton type="submit" value="Relatório de Movimentação por Usuário  " >
-                   <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
-               </h:commandButton>                
-               <h:commandButton type="submit" value="Relatório Total Produtos" >
-                   <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
-               </h:commandButton> 
-            </h:form>
+                <h:form id="referencia">
+                    <p:separator/>
+                    <h:outputText value="Data Inicial :  "/>
+                    <p:calendar value="#{ReportMovimentacao.dtInicial}"/>
+                    <h:outputText value="  Data Final :  "/>
+                    <p:calendar value="#{ReportMovimentacao.dtFinal}"/><br />
+                    <p:separator/>
+
+                    <h:commandButton type="submit" value="Relatório Movimentações" >
+                        <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
+                    </h:commandButton> 
+                </h:form>
             </h:panelGrid>
-    </p:fieldset>
-             
+        </p:fieldset>
+        <br/>
+        <br/>
+        <p:fieldset legend="Movimentação por Entrada" toggleable="true" toggleSpeed="500">
+
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" style="border:0"  width="35" height="35"/>                
+                <h:form id="referencia1">
+                    <h:commandButton type="submit" value="Relatório Total Produtos" >
+                        <p:fileDownload value="#{ReportMovimentacao.arquivoRetorno}" />
+                    </h:commandButton> 
+                </h:form>
+            </h:panelGrid>
+        </p:fieldset>
+
     </h:form>
 
 </ui:composition>
