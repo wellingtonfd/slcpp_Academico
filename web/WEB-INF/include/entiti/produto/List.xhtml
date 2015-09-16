@@ -50,13 +50,14 @@
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListProdutoTitle_idClasse}"/>
                     </f:facet>
-                    <h:outputText value="#{item.classe.numClasse}"/>
+                    <h:outputText value="#{item.classe.numClasse}: "/>
+                    <h:outputText value="#{item.classe.descClasse}"/>
                 </p:column>       
             </p:dataTable>
-            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{produtoController.prepareCreate}" update=":ProdutoCreateForm" oncomplete="ProdutoCreateDialog.show()"/>
-            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty produtoController.selected}"/>
-            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ProdutoEditForm" oncomplete="ProdutoEditDialog.show()" disabled="#{empty produtoController.selected}"/>
-            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{produtoController.delete}" update=":growl,datalist" disabled="#{empty produtoController.selected}">
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{produtoController.prepareCreate}" update=":ProdutoCreateForm" oncomplete="ProdutoCreateDialog.show()" rendered="#{sec:areAnyGranted('ROLE_DIR')}" />
+            <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty produtoController.selected}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"/>
+            <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ProdutoEditForm" oncomplete="ProdutoEditDialog.show()" disabled="#{empty produtoController.selected}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"/>
+            <p:commandButton id="deleteButton"                             icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{produtoController.delete}" update=":growl,datalist" disabled="#{empty produtoController.selected}" rendered="#{sec:areAnyGranted('ROLE_DIR')}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
         </p:panel>
