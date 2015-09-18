@@ -1,11 +1,16 @@
 package ui.factory;
 
 import entiti.Produto;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import reports.jasperConnection;
 
 @Named(value = "produtoController")
 @ViewScoped
@@ -32,6 +37,35 @@ public class ProdutoController extends AbstractController<Produto> {
         idLegendaCompatibilidadeController.setSelected(null);
         idCompatibilidadeController.setSelected(null);
         idClasseController.setSelected(null);
+        
+    }
+    
+    public List<Produto> getProduto(){
+        
+        List<Produto> produtos = new ArrayList<Produto>();
+        
+        ResultSet rs;
+        try{
+            Connection connection = jasperConnection.getConexao();
+            
+            String query = "SELECT p.num_onu, p.desc_produto FROM produto p WHERE EXISTS (SELECT 1 FROM lote l WHERE l.num_onu = p.num_onu);";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setNumOnu(rs.getInt("num_onu"));
+                produto.setDescProduto(rs.getString("desc_produto"));
+                produtos.add(produto);
+            }
+            connection.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return produtos;
         
     }
 
