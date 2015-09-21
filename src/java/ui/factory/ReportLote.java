@@ -26,7 +26,7 @@ public class ReportLote {
         return nomeReport;
     }
 
-    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Lote/ReportLote.jasper");
+    String jr = FacesContext.getCurrentInstance().getExternalContext().getRealPath("WEB-INF/reports/Relatorio_Lote/ProdutoPorLote.jasper");
 
     public StreamedContent getArquivoRetorno() {
         FacesContext context = FacesContext.getCurrentInstance();
