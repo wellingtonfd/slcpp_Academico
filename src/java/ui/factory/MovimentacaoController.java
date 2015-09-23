@@ -1,11 +1,16 @@
 package ui.factory;
 
 import entiti.Movimentacao;
+import entiti.Produto;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
+import reports.jasperConnection;
 import utils.armazenagem.ArmazenagemUtil;
 
 @Named(value = "movimentacaoController")
@@ -14,7 +19,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 
     @Inject
     private ProdutoController idProdutoController;
-
+     
     public MovimentacaoController() {
         // Inform the Abstract parent controller of the concrete Movimentacao?cap_first Entity
         super(Movimentacao.class);
@@ -26,7 +31,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
     public void resetParents() {
         idProdutoController.setSelected(null);
     }
-
+    
     /**
      * metodo utilizado para realizar a armazenagem a partir da movimentacao
      * realizada
@@ -51,7 +56,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         }
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
-
+  
     /**
      * Sets the "selected" attribute of the Produto controller in order to
      * display its data in a dialog. This is reusing existing the existing View
@@ -64,4 +69,28 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 //            idProdutoController.setSelected(this.getSelected().getIdProduto());
 //        }
 //    }
+    
+    public float getTotalProduto(){
+        ResultSet rs = null;
+        float retorno = 0;
+        
+        try{
+            Connection connection = jasperConnection.getConexao();
+            
+            String query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l WHERE l.num_onu = " + getSelected().getIdProduto().getNumOnu() +";";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+            
+            while(rs.next()){
+                retorno = rs.getFloat("totalDeProdutos");
+            }
+            
+            connection.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return retorno;
+    }
 }

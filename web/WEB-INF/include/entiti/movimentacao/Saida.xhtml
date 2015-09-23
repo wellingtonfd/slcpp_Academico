@@ -24,10 +24,14 @@
                                            itemValue="#{idProdutoItem}"
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
+                            <f:ajax execute="idProduto" render="qtdProdTotal" />
                         </p:selectOneMenu>
+                        <p:outputLabel value="Quantidade Total de Produtos " for="qtdProdTotal" />
+                        <h:outputText id="qtdProdTotal" value="#{movimentacaoController.totalProduto}"/>
                         <p:outputLabel value="Quantidade de Produtos Retirada" for="qtdProd" />
                         <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
                     </p:panelGrid>
+                    <br/>
                     <p:commandButton actionListener="#{movimentacaoController.saveNew}" action="#{movimentacaoController.informacao2}" value="#{myBundle.Save}" update="display,:MovimentacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MovimentacaoSaidaDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
