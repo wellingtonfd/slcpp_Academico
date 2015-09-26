@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.faces.application.FacesMessage;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -72,12 +73,16 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
     
     public float getTotalProduto(){
         ResultSet rs = null;
+        String query = null;
         float retorno = 0;
         
         try{
             Connection connection = jasperConnection.getConexao();
-            
-            String query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l WHERE l.num_onu = " + getSelected().getIdProduto().getNumOnu() +";";
+            try{
+                query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l WHERE l.num_onu = " + getSelected().getIdProduto().getNumOnu() +";";
+            }catch(Exception e){
+                query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l;";
+            }
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
             
