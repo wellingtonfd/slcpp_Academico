@@ -81,7 +81,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
             try{
                 query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l WHERE l.num_onu = " + getSelected().getIdProduto().getNumOnu() +";";
             }catch(Exception e){
-                query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l;";
+                query = "SELECT 0 as totalDeProdutos;";
             }
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
