@@ -48,7 +48,7 @@ public class ProdutoController extends AbstractController<Produto> {
         try{
             Connection connection = jasperConnection.getConexao();
             
-            String query = "SELECT p.num_onu, p.desc_produto FROM produto p WHERE EXISTS (SELECT 1 FROM lote l WHERE l.num_onu = p.num_onu);";
+            String query = "SELECT p.num_onu, p.desc_produto FROM produto p WHERE EXISTS (SELECT 1 FROM lote l WHERE l.num_onu = p.num_onu) ORDER BY num_onu;";
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
             
