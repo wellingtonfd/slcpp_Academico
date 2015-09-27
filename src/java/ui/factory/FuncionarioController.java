@@ -1,12 +1,19 @@
 package ui.factory;
 
+import entiti.Cidade;
 import entiti.Funcionario;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import org.primefaces.event.FlowEvent;
+import reports.jasperConnection;
 
 @Named(value = "funcionarioController")
 @ViewScoped
@@ -110,6 +117,37 @@ public class FuncionarioController extends AbstractController<Funcionario> {
         else {
             return event.getNewStep();
         }
+    }
+    
+    public List<Cidade> getCidade(){
+        List<Cidade> cidades = new ArrayList<Cidade>();
+        String query = null;
+        
+        ResultSet rs;
+        try{
+            Connection connection = jasperConnection.getConexao();
+            
+            try{
+            query = "SELECT c.id_cidade, c.nome_cidade, c.id_estado FROM cidade c where c.id_estado = " + getSelected().getEnderecoIdEndereco().getIdEstado().getIdEstado() + ";";
+            }catch(Exception e){
+                query = "SELECT * FROM cidade;";
+            }
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+            
+            while(rs.next()){
+                Cidade cidade = new Cidade();
+                cidade.setIdCidade(rs.getInt("id_cidade"));
+                cidade.setNomeCidade(rs.getString("nome_cidade"));
+                cidades.add(cidade);
+            }
+            
+            connection.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return cidades;
+         
     }
     
 }

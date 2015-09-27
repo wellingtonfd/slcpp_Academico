@@ -101,19 +101,18 @@
                                                  required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_numero}"
                                                  title="#{myBundle.CreateEnderecoTitle_numero}"  size="9" maxlength="9"/>
 
-
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
-                                    <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
+                                    <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{cidadeController.items}"
-                                                       var="idCidadeItem"
-                                                       itemValue="#{idCidadeItem}"
-                                                       itemLabel="#{idCidadeItem.nomeCidade.toString()}"
+                                        <f:selectItems value="#{paisController.items}"
+                                                       var="idPaisItem"
+                                                       itemValue="#{idPaisItem}"
+                                                       itemLabel="#{idPaisItem.nomePais.toString()}"
                                                        />
+                                        <f:ajax execute="idPais" render="idEstado"/>
 
                                     </p:selectOneMenu>
-
-
+                                    
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idEstado}" for="idEstado" />
                                     <p:selectOneMenu id="idEstado" value="#{funcionarioController.selected.enderecoIdEndereco.idEstado}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idEstado}" converter="estadoConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
@@ -122,16 +121,17 @@
                                                        itemValue="#{idEstadoItem}"
                                                        itemLabel="#{idEstadoItem.nomeEstado.toString()}"
                                                        />
+                                        <f:ajax execute="idEstado" render="idCidade"/>
 
                                     </p:selectOneMenu>
 
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
-                                    <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
+                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
+                                    <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
                                         <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{paisController.items}"
-                                                       var="idPaisItem"
-                                                       itemValue="#{idPaisItem}"
-                                                       itemLabel="#{idPaisItem.nomePais.toString()}"
+                                        <f:selectItems value="#{funcionarioController.cidade}"
+                                                       var="idCidadeItem"
+                                                       itemValue="#{idCidadeItem}"
+                                                       itemLabel="#{idCidadeItem.nomeCidade.toString()}"
                                                        />
 
                                     </p:selectOneMenu>
