@@ -849,16 +849,17 @@ public class ArmazenagemService {
            try {
            Connection connection = jasperConnection.getConexao();
             String insert = "Update lote set estado = ? , quantidade_produtos = ?, numero_paletes_armazenados = ? "
+                    + " num_onu = ? "
                     + "  where id_lote=?"; 
             PreparedStatement prepared = connection.prepareStatement(insert);
                        
             prepared.setInt(1, lote.getEstado());
             prepared.setDouble(2, lote.getQuantidadeProduto());
             prepared.setInt(3, lote.getNumeroPaletesArmazenados());
+             prepared.setInt(4, lote.getIdProduto());
             
             
-            
-            prepared.setInt(4, lote.getIdLote());
+            prepared.setInt(5, lote.getIdLote());
             
             prepared.executeUpdate();
               
