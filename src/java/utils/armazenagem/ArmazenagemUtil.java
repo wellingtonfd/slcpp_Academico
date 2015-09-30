@@ -128,7 +128,7 @@ public class ArmazenagemUtil {
                             loteExistente.setNumeroPaletesArmazenados(numeroPaletes);
                             loteExistente.setQuantidadeProduto(totalProduto);
                             loteExistente.setEstado(3);
-                            armazenagemService.persistLote(loteExistente);
+                            armazenagemService.atualizaLoteDisponivel(loteExistente);
                             armazenagemService.persistMovimentacao(loteExistente, 0);
                             armazenou = true;
                         }
@@ -249,6 +249,7 @@ public class ArmazenagemUtil {
         lote.setIdArmazem(armazemId);
         lote.setIdProduto(produtoId);
         lote.setEstado(3);
+        lote.setNumeroPaletesArmazenados(numeroPaletes);
         lote.setSequencial(armazenagemService.getProximoSequencial(armazemId).intValue() + 1);
         if (armazenagemService.verificaEspacoVazioArmazem(armazemId, "E", armazem.getDimensoes().getComprimento())) {
             lote.setLado("E");

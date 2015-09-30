@@ -290,7 +290,7 @@ public class ArmazenagemService {
      * @param produtoVizinho
      * @return
      */
-    public boolean verificaCompatibilidade(Integer produtoParaArmazenar, Integer produtoVizinho) {
+    public boolean verificaCompatibilidade(Integer produtoVizinho, Integer produtoParaArmazenar ) {
         List<Integer> numeros;
         numeros = getProdutosIncompativeis(produtoParaArmazenar);
         return !numeros.contains(produtoVizinho);
@@ -466,7 +466,7 @@ public class ArmazenagemService {
         try {
              connection = jasperConnection.getConexao();
 
-            String query = " SELECT " + " incompatibilidade  (" +nOnu+ ") "+"ORDER BY" + "incompatibilidade;";
+            String query = " SELECT incompatibilidade  (" + nOnu + ") ORDER BY incompatibilidade;";
           
             PreparedStatement prepared = connection.prepareStatement(query);
             rs = prepared.executeQuery();
@@ -482,12 +482,7 @@ public class ArmazenagemService {
         } catch (Exception ex) {
             Logger.getLogger(ArmazenagemService.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-    
-        
         return retorno;
-        
-        
     }
 
     /**
@@ -528,7 +523,7 @@ public class ArmazenagemService {
     public boolean verificaEspacoVazioArmazem(Integer armazemId, String lado, double comprimentoArmazem) {
 
         double comprimento = 0;
-        if (verificaLoteDisponivel(armazemId)) {
+        if (verificaArmazemVazio(armazemId)) {
             return true;
         } else {
             List<Lote> lotes = getLotesPorAramazem(armazemId);
@@ -544,6 +539,20 @@ public class ArmazenagemService {
         return false;
     }
 
+    /**
+     * verifica se no armazem existe um espaço vazio ou lote disponivel para a
+     * armazenagem
+     * @param armazemId
+     * @param lado
+     * @param comprimentoArmazem
+     * @return 
+     */
+    public boolean verificaEspacoOuLoteDisponivelArmazem(Integer armazemId, String lado, double comprimentoArmazem) {
+
+        return  (verificaEspacoVazioArmazem(armazemId, "E", comprimentoArmazem) || verificaEspacoVazioArmazem(armazemId, "D", comprimentoArmazem))
+                || verificaLoteDisponivel(armazemId); 
+        
+    }
     /**
      * retorno os lotes vizinhos a um lote já criado porem vazio assim podemos
      * reaproveitar os lotes vazios no meio do armazem
@@ -835,6 +844,34 @@ public class ArmazenagemService {
        
        } 
        
+       public void atualizaLoteDisponivel(Lote lote){
+           
+           try {
+           Connection connection = jasperConnection.getConexao();
+            String insert = "Update lote set estado = ? , quantidade_produtos = ?, numero_paletes_armazenados = ? "
+                    + "  where id_lote=?"; 
+            PreparedStatement prepared = connection.prepareStatement(insert);
+                       
+            prepared.setInt(1, lote.getEstado());
+            prepared.setDouble(2, lote.getQuantidadeProduto());
+            prepared.setInt(3, lote.getNumeroPaletesArmazenados());
+            
+            
+            
+            prepared.setInt(4, lote.getIdLote());
+            
+            prepared.executeUpdate();
+              
+           // connection.commit();
+            
+            prepared.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
+       
+       } 
        
        
        /**
