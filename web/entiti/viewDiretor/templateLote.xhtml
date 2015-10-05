@@ -8,74 +8,21 @@
 
     <h:form id="EpeListForm">
 
-        <p:panel header="#{myBundle.ListLoteTitle}">
-
-            <p:dataTable id="datalist"
-                         value="#{loteController.items}"
-                         var="item"
-                         rowKey="#{item.idLote}"
-                         paginator="true"
-                         rows="5"
-                         rowsPerPageTemplate="5,10,20,30,40,50"
-                         selectionMode="single"
-                         selection="#{loteController.selected}">
-                
-                <p:column sortBy="#{item.idLote}" filterBy="#{item.idLote}">
-                    <f:facet name="header">
-                        <h:outputText value="Id Lote"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idLote}"/>
-                </p:column>
-                
-                <p:column sortBy="#{item.idMovimentacao.referencia}" filterBy="#{item.idMovimentacao.referencia}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_refLote}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.lado}#{item.sequencial}" />
-                    
-                </p:column>
-                
-                 <p:column sortBy="#{item.produto.numOnu}" filterBy="#{item.produto.numOnu}">
-                    <f:facet name="header">
-                        <h:outputText value="Num. ONU"/>
-                    </f:facet>
-                    <h:outputText value="#{item.produto.numOnu}"/>
-                </p:column>
-                
-                 <p:column sortBy="#{item.produto.descProduto}" filterBy="#{item.produto.descProduto}">
-                    <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
-                    </f:facet>
-                    <h:outputText value="#{item.produto.descProduto}"/>
-                </p:column>
-                       
-                  <p:column sortBy="#{item.quantidadeProduto}" filterBy="#{item.quantidadeProduto}">
-                    <f:facet name="header">
-                        <h:outputText value="Qtd. Produto"/>
-                    </f:facet>
-                    <h:outputText value="#{item.quantidadeProduto}" />
-                </p:column>  
-                
-                <p:column sortBy="#{item.numeroPaletesArmazenados}" filterBy="#{item.numeroPaletesArmazenados}">
-                    <f:facet name="header">
-                        <h:outputText value="Nº Paletes"/>
-                    </f:facet>
-                    <h:outputText value="#{item.numeroPaletesArmazenados}"/>
-                </p:column>
-                                   
-            </p:dataTable>
-
-
-        </p:panel>
+        
         <p:panel header="Gerar Relatório">
-           
+
             <h:panelGrid columns="2" cellpadding="5">
                 <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
-                 <h:form id="referencia">
-               <h:commandButton type="submit" value="Gerar Relatorio" >
-                   <p:fileDownload value="#{ReportLote.arquivoRetorno}" />
-                </h:commandButton> 
-                 </h:form>
+                <h:form id="referencia">
+                    <h:commandButton type="submit" value="Gerar Relatorio" >
+                        <p:fileDownload value="#{ReportLote.arquivoRetorno}" />
+                    </h:commandButton> 
+                    <br/>
+                    <br/>
+                    <h:commandButton type="submit" value="Quantidade de Produtos por Lote" >
+                        <p:fileDownload value="#{ReportLote.qtdProdutoLote}" />
+                    </h:commandButton>
+                </h:form>
             </h:panelGrid>
         </p:panel>
 
