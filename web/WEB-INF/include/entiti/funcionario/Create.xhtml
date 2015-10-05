@@ -12,59 +12,19 @@
             <h:form id="FuncionarioCreateForm">
                 <h:panelGroup id="display" rendered="#{funcionarioController.selected != null}">
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
-                        <p:tab id="personales" title="Dados Funcionais">    
-                            <p:panel header="Dados Funcionais">
+                        <p:tab id="personales" title="Dados Pessoais">    
+                            <p:panel header="Dados Pessoais">
 
                                 <p:messages/>
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_matFuncionario}" for="matFuncionario" />
-                                    <p:inputMask mask="9999" id="matFuncionario" value="#{funcionarioController.selected.matFuncionario}" 
-                                                 title="#{myBundle.EditFuncionarioTitle_matFuncionario}" size="4" maxlength="4"
-                                                 required="true" requiredMessage="Campo Matrícula é obrigatorio ser preenchido por números"/>
 
                                     <p:outputLabel value="Nome:" for="nomeFuncionario" />
                                     <p:inputText id="nomeFuncionario" value="#{funcionarioController.selected.nomeFuncionario}" title="#{myBundle.CreateFuncionarioTitle_nomeFuncionario}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_nomeFuncionario}" size="60" maxlength="60"/>
 
                                     <p:outputLabel value="Sobrenome:" for="sbNomeFuncionario" />
                                     <p:inputText id="sbNomeFuncionario" value="#{funcionarioController.selected.sbNomeFuncionario}" title="#{myBundle.CreateFuncionarioTitle_sbNomeFuncionario}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_sbNomeFuncionario}" size="80" maxlength="80"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
-                                    <p:calendar id="dtAdmissao"  locale="pt_BR" value="#{funcionarioController.selected.dtAdmissao}" title="#{myBundle.EditFuncionarioTitle_dtAdmissao}" 
-                                                mindate="1/1/00" maxdate="01/01/22" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtAdmissao}" showOn="button"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_funcao}" for="funcao" />
-                                    <p:inputText id="funcao" value="#{funcionarioController.selected.funcao}" title="#{myBundle.EditFuncionarioTitle_funcao}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_funcao}" size="40" maxlength="40"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cargo}" for="cargo" />
-                                    <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" for="nivelFuncionario" />
-                                    <p:inputText id="nivelFuncionario" value="#{funcionarioController.selected.nivelFuncionario}" title="#{myBundle.EditFuncionarioTitle_nivelFuncionario}" size="10" maxlength="10"/>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_especializacao}" for="especializacao" />
-                                    <p:inputText id="especializacao" value="#{funcionarioController.selected.especializacao}" 
-                                                 title="#{myBundle.EditFuncionarioTitle_especializacao}" size="12" maxlength="12"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_login}" for="login" />
-                                    <p:inputText id="login" value="#{funcionarioController.selected.idUsuario.login}"  
-                                                 title="#{myBundle.CreateUsuarioTitle_login}" size="12" maxlength="12"/>
-
-                                    <p:outputLabel value="Senha:" for="senha" />
-                                    <p:inputText id="senha" value="#{funcionarioController.selected.idUsuario.senha}"  
-                                                 title="#{myBundle.CreateUsuarioTitle_senha}" size="12" maxlength="12"/>
-                                    
-                                    <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
-                                    <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
-                                </p:panelGrid>
-                            </p:panel>
-                        </p:tab>
-                        <p:tab id="personales2" title="Dados Pessoais">    
-                            <p:panel header="Dados Pessoais">
-                                <p:messages/>
-
-                                <p:panelGrid columns="2" columnClasses="label, value">
+                                                                       
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_sexo}"  />
                                     <p:selectOneRadio id="selecao"  value="#{funcionarioController.selected.sexo}" 
                                                       required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_sexo}">
@@ -82,8 +42,10 @@
                                                  required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_rg}" size="15" maxlength="15"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtNasc}" for="dtNasc" />
-                                    <p:calendar locale="pt_BR" id="dtNasc"  value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.EditFuncionarioTitle_dtNasc}" 
-                                                mindate="1/1/00" maxdate="01/01/22" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}" showOn="button"/>
+                                     <p:calendar pattern="dd/MM/yyyy" size="12" navigator="true" yearRange="1945:1997s" 
+                                               id="dtNasc" locale="pt_BR"  value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.EditFuncionarioTitle_dtNasc}" 
+                                                required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}"  showOn="button">
+                                    </p:calendar>
 
                                     <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
                                     <p:inputText id="logradouro" value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" title="#{myBundle.CreateEnderecoLabel_idLogradouro}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
@@ -135,7 +97,38 @@
                                                        />
 
                                     </p:selectOneMenu>
+                                    
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="personales2" title="Dados Funcionais">    
+                            <p:panel header="Dados Funcionais">
+                                <p:messages/>
+          
+                                <p:panelGrid columns="2" columnClasses="label, value">
+                                    
+                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
+                                    <p:calendar pattern="dd/MM/yyyy" navigator="true"   mindate="01/01/10" maxdate="30/10/15" yearRange="c-5:c00"
+                                                id="dtAdmissao"  locale="pt_BR" value="#{funcionarioController.selected.dtAdmissao}" title="#{myBundle.CreateFuncionarioTitle_dtAdmissao}" 
+                                                required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_dtAdmissao}" showOn="button">
+                                    </p:calendar>
 
+                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_funcao}" for="funcao" />
+                                    <p:inputText id="funcao" value="#{funcionarioController.selected.funcao}" title="#{myBundle.EditFuncionarioTitle_funcao}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_funcao}" size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cargo}" for="cargo" />
+                                    <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
+
+                                    <p:outputLabel value="#{myBundle.CreateUsuarioRolerLabel_login}" for="login" />
+                                    <p:inputText id="login" value="#{funcionarioController.selected.idUsuario.login}"  
+                                                 title="#{myBundle.CreateUsuarioTitle_login}" size="12" maxlength="12"/>
+
+                                    <p:outputLabel value="Senha:" for="senha" />
+                                    <p:inputText id="senha" value="#{funcionarioController.selected.idUsuario.senha}"  
+                                                 title="#{myBundle.CreateUsuarioTitle_senha}" size="12" maxlength="12"/>
+                                    
+                                    <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                                    <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -190,12 +183,6 @@
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
                                         <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" />
-                                        <h:outputText value="#{funcionarioController.selected.nivelFuncionario}"  styleClass="outputLabel"/>
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
-                                        <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>
 
                                         <p:outputLabel value="#{myBundle.EditUsuarioRolerLabel_login}" for="login" />
                                         <h:outputText value="#{funcionarioController.selected.idUsuario.login}" styleClass="outputLabel"/>

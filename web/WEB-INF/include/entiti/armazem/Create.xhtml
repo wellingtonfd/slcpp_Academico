@@ -22,7 +22,7 @@
                                     <p:inputText id="especArmazem" value="#{armazemController.selected.especArmazem}" title="#{myBundle.CreateArmazemTitle_especArmazem}" size="45" maxlength="45"/>                                        
                                     <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_comp_Dimensao}" for="ladoEndArmazem" />
                                     <p:inputText id="ladoEndArmazem" value="#{armazemController.selected.dimensoes.comprimento}" title="#{myBundle.CreateEndArmazemTitle_comp_Dimensao}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_comp_Dimensao}" size="15" maxlength="15"/>
-                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_lar_Dimensao}" for="ladoEndArmazem" />
+                                    <p:outputLabel value="#{myBundle.CreateEndArmazemLabel_lar_Dimensao}" for="posicaoEndArmazem" />
                                     <p:inputText id="posicaoEndArmazem" value="#{armazemController.selected.dimensoes.largura}" title="#{myBundle.CreateEndArmazemTitle_lar_Dimensao}" required="true" requiredMessage="#{myBundle.CreateEndArmazemRequiredMessage_lar_Dimensao}" size="15" maxlength="15"/>   
                                 </p:panelGrid>
                             </p:panel>
@@ -36,6 +36,13 @@
                                 
                                     <h:outputLabel value="#{myBundle.EditArmazemLabel_especArmazem}" for="especArmazem" />
                                     <h:outputText value="#{armazemController.selected.especArmazem}" styleClass="outputLabel"/>
+                                    
+                                    <h:outputLabel value="#{myBundle.CreateEndArmazemLabel_comp_Dimensao}" for="ladoEndArmazem" />
+                                    <h:outputText value="#{armazemController.selected.dimensoes.comprimento}" styleClass="outputLabel"/>
+                                    
+                                    <h:outputLabel value="#{myBundle.CreateEndArmazemLabel_lar_Dimensao}" for="posicaoEndArmazem" />
+                                    <h:outputText value="#{armazemController.selected.dimensoes.largura}" styleClass="outputLabel"/>   
+                               
 
                                 </h:panelGrid>
                                 <p:commandButton actionListener="#{armazemController.saveNew}" value="#{myBundle.Save}" update="display,:ArmazemListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ArmazemEditDialog);">
