@@ -17,13 +17,22 @@
                     <p:panelGrid columns="2" columnClasses="column">
 
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_numOnu}" for="idProduto" />
-                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}" converter="produtoConverter" filter="true" required="true" requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
+                        <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}" var="mov" style="width:160px"
+                                         converter="produtoConverter" filter="true" required="true" panelStyle="width:480px"
+                                         requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                             <f:selectItems value="#{produtoController.produto}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
                                            itemLabel="#{idProdutoItem.numOnu.toString()}"
                                            />
+                            <p:column style="width:10%">
+                                <h:outputText value="#{mov.numOnu}" />
+                            </p:column>
+
+                            <p:column>
+                                <h:outputText value="#{mov.descProduto}" />
+                            </p:column>
                             <f:ajax execute="idProduto" render="qtdProdTotal" />
                         </p:selectOneMenu>
                         <p:outputLabel value="Quantidade Total de Produtos " for="qtdProdTotal" />
