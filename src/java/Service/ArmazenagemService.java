@@ -88,6 +88,7 @@ public class ArmazenagemService {
                 lote.setQuantidadeProduto(rs.getDouble("quantidade_produtos"));
                 lote.setSequencial(rs.getInt("sequencial"));
                 lote.setLado(rs.getString("lado"));
+                lote.setNumeroPaletesArmazenados(rs.getInt("numero_paletes_armazenados"));
                 lotes.add(lote);
 
             }
@@ -303,7 +304,7 @@ public class ArmazenagemService {
      * @param quantidade
      * @return
      */
-    public boolean retiraProtudo(Integer produtoId, Double quantidadeRetirada) {
+     public boolean retiraProtudo(Integer produtoId, Double quantidadeRetirada) {
         List<Lote> lotes = getLocalProdutoArmazenado(produtoId);
          Double quantidade;
          for (Lote lote : lotes) {
@@ -317,6 +318,7 @@ public class ArmazenagemService {
             }else{
                lote.setQuantidadeProduto(0);
                lote.setEstado(1);
+               lote.setNumeroPaletesArmazenados(0);
                lote.setIdProduto(null);
                atualizaLote(lote);
                quantidadeRetirada = quantidadeRetirada - quantidade;
@@ -818,7 +820,7 @@ public class ArmazenagemService {
        public void atualizaLote(Lote lote){
        try {
            Connection connection = jasperConnection.getConexao();
-            String insert = "Update lote set estado = ? , quantidade_produtos = ?, num_onu = ? where id_lote=?"; 
+            String insert = "Update lote set estado = ? , quantidade_produtos = ?, num_onu = ?, numero_paletes_armazenados = ?  where id_lote=?"; 
             PreparedStatement prepared = connection.prepareStatement(insert);
                        
             prepared.setInt(1, lote.getEstado());
@@ -829,12 +831,11 @@ public class ArmazenagemService {
                 prepared.setInt(3, lote.getIdProduto());
             }
             
-            prepared.setInt(4, lote.getIdLote());
+            prepared.setInt(4, lote.getNumeroPaletesArmazenados());
+            prepared.setInt(5, lote.getIdLote());
             
             prepared.executeUpdate();
               
-           // connection.commit();
-            
             prepared.close();
             connection.close();
         } catch (Exception e) {
