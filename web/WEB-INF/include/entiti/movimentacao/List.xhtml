@@ -16,69 +16,69 @@
                 <p:menuitem value="#{myBundle.MovimentacaoMenuItem_idProduto}" icon="ui-icon-search"  actionListener="#{movimentacaoController.prepareIdProduto}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty movimentacaoController.selected.idProduto}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"
-                         value="#{movimentacaoController.items}"
+                         value="#{loteController.items}"
                          var="item"
-                         rowKey="#{item.idMovimentacao}"
+                         rowKey="#{item.idLote}"
                          paginator="true"
-                         rows="15"
-                         rowsPerPageTemplate="15,30,45,65"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
                          selectionMode="single"
-                         selection="#{movimentacaoController.selected}">
-
-                <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton  :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
+                         selection="#{loteController.selected}">
+                
+                  <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton  :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
                 <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
 
-                <p:column sortBy="#{item.dtMovimentacao}" filterBy="#{item.dtMovimentacao}">
+                
+                <p:column sortBy="#{item.idLote}" filterBy="#{item.idLote}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_dtMovimentacao}"/>
+                        <h:outputText value="Id Lote"/>
                     </f:facet>
-                    <h:outputText value="#{item.dtMovimentacao}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
+                    <h:outputText value="#{item.idLote}"/>
                 </p:column>
-
-                <p:column sortBy="#{item.tipo}" filterBy="#{item.tipo}">
+                
+                <p:column sortBy="#{item.lado}" filterBy="#{item.lado}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
+                        <h:outputText value="Lado"/>
                     </f:facet>
-                    <h:outputText value="Entrada" rendered="#{item.tipo==0}"/>
-                    <h:outputText value="Saída" rendered="#{item.tipo==1}"/>
+                    <h:outputText value="#{item.lado}"/>
                 </p:column>
-
-                <p:column sortBy="#{item.referencia}" filterBy="#{item.referencia}">
+                
+                 <p:column sortBy="#{item.sequencial}" filterBy="#{item.sequencial}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_refLote}"/>
+                        <h:outputText value="Sequêncial"/>
                     </f:facet>
-                    <h:outputText value="#{item.referencia}"/>
+                    <h:outputText value="#{item.sequencial}"/>
                 </p:column>
-
-                <p:column sortBy="#{item.idProduto.numOnu}" filterBy="#{item.idProduto.numOnu}">
+                
+                 <p:column sortBy="#{item.produto.numOnu}" filterBy="#{item.produto.numOnu}">
                     <f:facet name="header">
                         <h:outputText value="Num. ONU"/>
                     </f:facet>
-                    <h:outputText value="#{item.idProduto.numOnu}"/>
+                    <h:outputText value="#{item.produto.numOnu}"/>
                 </p:column>
                 
-                <p:column sortBy="#{item.idProduto.descProduto}" filterBy="#{item.idProduto.descProduto}">
+                 <p:column sortBy="#{item.produto.descProduto}" filterBy="#{item.produto.descProduto}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
                     </f:facet>
-                    <h:outputText value="#{item.idProduto.descProduto}"/>
+                    <h:outputText value="#{item.produto.descProduto}"/>
                 </p:column>
-
-
-
-                <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
+                       
+                  <p:column sortBy="#{item.quantidadeProduto}" filterBy="#{item.quantidadeProduto}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeProd}"/>
+                        <h:outputText value="Qtd. Produto"/>
                     </f:facet>
-                    <h:outputText value="#{item.quantidadeTotal}"/>
+                    <h:outputText value="#{item.quantidadeProduto}"/>
+                </p:column>          
+                <p:column sortBy="#{item.numeroPaletesArmazenados}" filterBy="#{item.numeroPaletesArmazenados}">
+                    <f:facet name="header">
+                        <h:outputText value="Nº Produto por Palete"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numeroPaletesArmazenados}"/>
                 </p:column>
-
-
-
+                                   
             </p:dataTable>
-
+            <br/>
             <p:commandButton id="createButton"                             icon="ui-icon-circle-plus"   value="Entrada" actionListener="#{movimentacaoController.prepareCreate}" update=":MovimentacaoCreateForm" oncomplete="MovimentacaoCreateDialog.show()">
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.tipo}" value="0"/>
                 <f:setPropertyActionListener target="#{movimentacaoController.selected.usuario}" value="#{request.remoteUser}"/>
