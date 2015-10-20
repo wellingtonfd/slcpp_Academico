@@ -10,6 +10,7 @@
     <ui:composition>
         <p:dialog id="FuncionarioCreateDlg" widgetVar="FuncionarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Criar novo Funcionário" closeOnEscape="true">
             <h:form id="FuncionarioCreateForm">
+                <p:growl id="growl" sticky="true" showDetail="true"/>
                 <h:panelGroup id="display" rendered="#{funcionarioController.selected != null}">
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
                         <p:tab id="personales" title="Dados Pessoais">    
@@ -17,96 +18,131 @@
 
                                 <p:messages/>
 
-                                <p:panelGrid columns="2" columnClasses="label, value">
-
-                                    <p:outputLabel value="Nome:" for="nomeFuncionario" />
-                                    <p:inputText id="nomeFuncionario" value="#{funcionarioController.selected.nomeFuncionario}" title="#{myBundle.CreateFuncionarioTitle_nomeFuncionario}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_nomeFuncionario}" size="60" maxlength="60"/>
-
-                                    <p:outputLabel value="Sobrenome:" for="sbNomeFuncionario" />
-                                    <p:inputText id="sbNomeFuncionario" value="#{funcionarioController.selected.sbNomeFuncionario}" title="#{myBundle.CreateFuncionarioTitle_sbNomeFuncionario}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_sbNomeFuncionario}" size="80" maxlength="80"/>
-                                                                       
+                                <h:panelGrid width="100%" style="text-align:justify" columns="1" columnClasses="label, value">
+                                    <h:panelGrid columns="2" >
+                                        <h:panelGroup>
+                                            <p:outputLabel value="Nome:" for="nomeFuncionario" />
+                                            <br />
+                                            <p:inputText id="nomeFuncionario" value="#{funcionarioController.selected.nomeFuncionario}" title="#{myBundle.CreateFuncionarioTitle_nomeFuncionario}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_nomeFuncionario}" size="25" maxlength="25"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:outputLabel value="Sobrenome:" for="sbNomeFuncionario" />
+                                            <br />
+                                            <p:inputText id="sbNomeFuncionario" value="#{funcionarioController.selected.sbNomeFuncionario}" title="#{myBundle.CreateFuncionarioTitle_sbNomeFuncionario}" required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_sbNomeFuncionario}" size="45" maxlength="45"/>
+                                        </h:panelGroup>
+                                    </h:panelGrid>
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_sexo}"  />
                                     <p:selectOneRadio id="selecao"  value="#{funcionarioController.selected.sexo}" 
                                                       required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_sexo}">
                                         <f:selectItem itemLabel="Feminino" itemValue="F" />
                                         <f:selectItem itemLabel="Masculino" itemValue="M" />
                                     </p:selectOneRadio>
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cpf}" for="cpf" />
-                                    <p:inputMask id="cpf" mask="999.999.999-99" value="#{funcionarioController.selected.cpf}" title="#{myBundle.EditFuncionarioTitle_cpf}" 
-                                                 required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cpf}" size="15" maxlength="15">
-                                        <f:validator validatorId="StellaCPFValidator"/>
-                                    </p:inputMask>
+                                    <h:panelGrid columns="3">
+                                        <h:panelGroup >
+                                            <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtNasc}" for="dtNasc" />
+                                            <br />
+                                            <p:calendar pattern="dd/MM/yyyy" size="12" navigator="true" yearRange="1945:1997s" 
+                                                        id="dtNasc" locale="pt_BR"  value="#{funcionarioController.selected.dtNasc}"  title="#{myBundle.EditFuncionarioTitle_dtNasc}" 
+                                                        required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}"  showOn="button">
+                                            </p:calendar>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cpf}" for="cpf" />
+                                            <br />
+                                            <p:inputMask id="cpf" mask="999.999.999-99" value="#{funcionarioController.selected.cpf}" title="#{myBundle.EditFuncionarioTitle_cpf}" 
+                                                         required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cpf}" size="15" maxlength="15">
+                                                <f:validator validatorId="StellaCPFValidator"/>
+                                            </p:inputMask>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.EditFuncionarioLabel_rg}" for="rg" />
+                                            <br />
+                                            <p:inputMask id="rg" mask="99999999-9" value="#{funcionarioController.selected.rg}" title="#{myBundle.EditFuncionarioTitle_rg}" 
+                                                          requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_rg}" size="11" maxlength="11"/>
+                                        </h:panelGroup>
 
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_rg}" for="rg" />
-                                    <p:inputMask id="rg" mask="99999999-9" value="#{funcionarioController.selected.rg}" title="#{myBundle.EditFuncionarioTitle_rg}" 
-                                                 required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_rg}" size="15" maxlength="15"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2">
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
+                                            <br />
+                                            <p:inputText id="logradouro" value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" title="#{myBundle.CreateEnderecoLabel_idLogradouro}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
+                                            <br />
+                                            <p:inputText id="numero" value="#{funcionarioController.selected.enderecoIdEndereco.numero}"
+                                                         required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_numero}"
+                                                         title="#{myBundle.CreateEnderecoTitle_numero}"  size="9" maxlength="9"/>
+                                        </h:panelGroup>
+                                    </h:panelGrid>
 
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtNasc}" for="dtNasc" />
-                                     <p:calendar pattern="dd/MM/yyyy" size="12" navigator="true" yearRange="1945:1997s" 
-                                               id="dtNasc" locale="pt_BR"  value="#{funcionarioController.selected.dtNasc}" title="#{myBundle.EditFuncionarioTitle_dtNasc}" 
-                                                required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_dtNasc}"  showOn="button">
-                                    </p:calendar>
+                                    <h:panelGrid columns="2">
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_bairro}" for="bairro" />
+                                            <br />
+                                            <p:inputText id="bairro" value="#{funcionarioController.selected.enderecoIdEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
+                                            <br />
+                                            <p:inputMask mask="99999-999" id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}"
+                                                         required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_cep}"
+                                                         title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
+                                        </h:panelGroup>     
+                                    </h:panelGrid>
 
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
-                                    <p:inputText id="logradouro" value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" title="#{myBundle.CreateEnderecoLabel_idLogradouro}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
+                                    <h:panelGrid columns="3">
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
+                                            <br />
+                                            <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
+                                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                                <f:selectItems value="#{paisController.items}"
+                                                               var="idPaisItem"
+                                                               itemValue="#{idPaisItem}"
+                                                               itemLabel="#{idPaisItem.nomePais.toString()}"
+                                                               />
+                                                <f:ajax execute="idPais" render="idEstado"/>
+                                            </p:selectOneMenu>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idEstado}" for="idEstado" />
+                                            <br />
+                                            <p:selectOneMenu id="idEstado" value="#{funcionarioController.selected.enderecoIdEndereco.idEstado}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idEstado}" converter="estadoConverter">
+                                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                                <f:selectItems value="#{estadoController.items}"
+                                                               var="idEstadoItem"
+                                                               itemValue="#{idEstadoItem}"
+                                                               itemLabel="#{idEstadoItem.nomeEstado.toString()}"
+                                                               />
+                                                <f:ajax execute="idEstado" render="idCidade"/>
+                                            </p:selectOneMenu>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
 
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_bairro}" for="bairro" />
-                                    <p:inputText id="bairro" value="#{funcionarioController.selected.enderecoIdEndereco.bairro}" title="#{myBundle.CreateEnderecoTitle_bairro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_bairro}" size="50" maxlength="50"/>
+                                            <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
+                                            <br />
+                                            <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                                <f:selectItems value="#{funcionarioController.cidade}"
+                                                               var="idCidadeItem"
+                                                               itemValue="#{idCidadeItem}"
+                                                               itemLabel="#{idCidadeItem.nomeCidade.toString()}"
+                                                               />
 
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
-                                    <p:inputMask mask="99999-999" id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}"
-                                                 required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_cep}"
-                                                 title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
-                                    <p:inputText id="numero" value="#{funcionarioController.selected.enderecoIdEndereco.numero}"
-                                                 required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_numero}"
-                                                 title="#{myBundle.CreateEnderecoTitle_numero}"  size="9" maxlength="9"/>
-
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
-                                    <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
-                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{paisController.items}"
-                                                       var="idPaisItem"
-                                                       itemValue="#{idPaisItem}"
-                                                       itemLabel="#{idPaisItem.nomePais.toString()}"
-                                                       />
-                                        <f:ajax execute="idPais" render="idEstado"/>
-
-                                    </p:selectOneMenu>
-                                    
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idEstado}" for="idEstado" />
-                                    <p:selectOneMenu id="idEstado" value="#{funcionarioController.selected.enderecoIdEndereco.idEstado}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idEstado}" converter="estadoConverter">
-                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{estadoController.items}"
-                                                       var="idEstadoItem"
-                                                       itemValue="#{idEstadoItem}"
-                                                       itemLabel="#{idEstadoItem.nomeEstado.toString()}"
-                                                       />
-                                        <f:ajax execute="idEstado" render="idCidade"/>
-
-                                    </p:selectOneMenu>
-
-                                    <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
-                                    <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
-                                        <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                                        <f:selectItems value="#{funcionarioController.cidade}"
-                                                       var="idCidadeItem"
-                                                       itemValue="#{idCidadeItem}"
-                                                       itemLabel="#{idCidadeItem.nomeCidade.toString()}"
-                                                       />
-
-                                    </p:selectOneMenu>
-                                    
-                                </p:panelGrid>
+                                            </p:selectOneMenu>
+                                        </h:panelGroup>
+                                    </h:panelGrid>
+                                </h:panelGrid>
                             </p:panel>
                         </p:tab>
                         <p:tab id="personales2" title="Dados Funcionais">    
                             <p:panel header="Dados Funcionais">
                                 <p:messages/>
-          
+
                                 <p:panelGrid columns="2" columnClasses="label, value">
-                                    
+
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
                                     <p:calendar pattern="dd/MM/yyyy" navigator="true"   mindate="01/01/10" maxdate="30/10/15" yearRange="c-5:c00"
                                                 id="dtAdmissao"  locale="pt_BR" value="#{funcionarioController.selected.dtAdmissao}" title="#{myBundle.CreateFuncionarioTitle_dtAdmissao}" 
@@ -126,7 +162,7 @@
                                     <p:outputLabel value="Senha:" for="senha" />
                                     <p:inputText id="senha" value="#{funcionarioController.selected.idUsuario.senha}"  
                                                  title="#{myBundle.CreateUsuarioTitle_senha}" size="12" maxlength="12"/>
-                                    
+
                                     <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
                                     <p:selectBooleanCheckbox id="ativo" value="#{funcionarioController.selected.idUsuario.ativo}"/>
                                 </p:panelGrid>
@@ -151,7 +187,9 @@
                                     <p:inputText id="radio" value="#{funcionarioController.selected.contatosIdContato.radio}" title="#{myBundle.CreateContatosTitle_radio}"  size="15" maxlength="15"/>
 
                                     <p:outputLabel value="#{myBundle.CreateContatosLabel_email}" for="email" />
-                                    <p:inputText id="email" value="#{funcionarioController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}" required="true" requiredMessage="#{myBundle.CreateContatosRequiredMessage_email}" size="40" maxlength="40"/>
+                                    <p:inputText id="email" value="#{funcionarioController.selected.contatosIdContato.email}" title="#{myBundle.CreateContatosTitle_email}"  validatorMessage="Formato do email inválido." size="40" maxlength="40">
+                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    </p:inputText>
                                 </p:panelGrid>
                             </p:panel>
                         </p:tab>
@@ -206,7 +244,7 @@
                                         <h:outputText value="#{funcionarioController.selected.dtNasc}" styleClass="outputLabel">
                                             <f:convertDateTime locale="pt_BR" type="date"  />
                                         </h:outputText>
-                                       
+
                                         <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
                                         <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" styleClass="outputLabel"/>
 
@@ -233,7 +271,7 @@
                                     </h:panelGrid>
                                 </h:panelGrid>
                                 <p:commandButton actionListener="#{funcionarioController.saveNew}" value="#{myBundle.Save}" 
-                                                 update="display,:FuncionarioListForm:datalist,:growl" 
+                                                 update="display,:FuncionarioCreateForm,:FuncionarioListForm:datalist,:growl" immediate="true"
                                                  oncomplete="handleSubmit(xhr,status,args,FuncionarioCreateDialog);" process="@this">
                                     <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                                 </p:commandButton>

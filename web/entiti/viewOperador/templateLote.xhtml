@@ -72,17 +72,6 @@
 
 
         </p:panel>
-        <p:panel header="Gerar Relatório">
-           
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
-                 <h:form id="referencia">
-               <h:commandButton type="submit" value="Gerar Relatorio" >
-                   <p:fileDownload value="#{ReportLote.arquivoRetorno}" />
-                </h:commandButton> 
-                 </h:form>
-            </h:panelGrid>
-        </p:panel>
 
     </h:form>
 

@@ -9,7 +9,7 @@
     <h:form id="ProdutoListForm">
 
         <p:panel header="Lista Produtos">
-            
+
             <p:dataTable id="datalist"
                          value="#{produtoController.items}"
                          var="item"
@@ -19,9 +19,9 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{produtoController.selected}">
-             
 
-                 <p:column sortBy="#{item.numOnu}" filterBy="#{item.numOnu}">
+
+                <p:column sortBy="#{item.numOnu}" filterBy="#{item.numOnu}">
                     <f:facet name="header">
                         <h:outputText value="Número da Onu"/>
                     </f:facet>
@@ -34,29 +34,28 @@
                     </f:facet>
                     <h:outputText value="#{item.descProduto}"/>
                 </p:column>
-                
+
                 <p:column sortBy="#{item.classe.numClasse}" filterBy="#{item.classe.numClasse}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListProdutoTitle_idClasse}"/>
                     </f:facet>
                     <h:outputText value="#{item.classe.numClasse}"/>
                 </p:column>
-                            
+
             </p:dataTable>
         </p:panel>
         <p:panel header="Gerar Relatório">
             <h:panelGrid columns="2" cellpadding="5">
                 <h:graphicImage value="/imagens/pdf.jpg"  title="Imprimir PDF" />
                 <h:form id="referencia">
-                     <h:outputText value="Codigo do produto"/>
-                     <h:inputText value="#{reportIncomp.produto}"/>
-               <h:commandButton type="submit" value="Gerar Relatorio Incompatibilidade" >
-                   <p:fileDownload value="#{reportIncomp.arquivoRetorno}" />
-                </h:commandButton> 
-                 </h:form>
+                    <h:outputText value="Codigo do produto"/>
+                    <h:inputText value="#{reportIncomp.produto}"/>
+                    <h:commandButton type="submit" value="Gerar Relatorio Incompatibilidade" >
+                        <p:fileDownload value="#{reportIncomp.arquivoRetorno}" />
+                    </h:commandButton> 
+                </h:form>
             </h:panelGrid>
         </p:panel>
-       
-    </h:form>
 
+    </h:form>
 </ui:composition>
