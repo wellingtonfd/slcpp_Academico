@@ -68,6 +68,35 @@ public class ProdutoController extends AbstractController<Produto> {
         return produtos;
         
     }
+    
+    public List<Produto> getProdutoCreate(){
+        
+        List<Produto> produtos = new ArrayList<Produto>();
+        
+        ResultSet rs;
+        try{
+            Connection connection = jasperConnection.getConexao();
+            
+            String query = "SELECT p.num_onu, p.desc_produto FROM produto p ORDER BY p.num_onu;";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+            
+            while(rs.next()){
+                Produto produto = new Produto();
+                produto.setNumOnu(rs.getInt("num_onu"));
+                produto.setDescProduto(rs.getString("desc_produto"));
+                produtos.add(produto);
+            }
+            connection.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return produtos;
+        
+    }
 
     /**
      * Sets the "selected" attribute of the NumOnu controller in order to

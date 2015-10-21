@@ -25,8 +25,8 @@
                          selectionMode="single"
                          selection="#{loteController.selected}">
                 
-                  <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton  :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
-                <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{movimentacaoController.resetParents}"/>
+                  <p:ajax event="rowSelect"   update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton  :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{loteController.resetParents}"/>
+                <p:ajax event="rowUnselect" update=":MovimentacaoListForm:outputButton :MovimentacaoListForm:createButton :MovimentacaoListForm:MovimentacaoDataTableContextMenu" listener="#{loteController.resetParents}"/>
 
                 
                 <p:column sortBy="#{item.idLote}" filterBy="#{item.idLote}">

@@ -9,7 +9,7 @@
 
     <ui:composition>
 
-        <p:dialog id="MovimentacaoCreateDlg" widgetVar="MovimentacaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="CRIAR NOVA MOVIMENTAÇÃO - ENTRADA" closeOnEscape="true">
+        <p:dialog id="MovimentacaoCreateDlg" widgetVar="MovimentacaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="CRIAR NOVA MOVIMENTAÇÃO - ENTRADA " closeOnEscape="true" dynamic="true">
 
             <h:form id="MovimentacaoCreateForm">
                 <style type="text/css">
@@ -21,10 +21,15 @@
                 <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
 
                     <p:panelGrid columns="2" columnClasses="column">
-                        <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_numOnu}" for="idProduto" />
+
+                        <h:outputText value="#{myBundle.CreateMovimentacaoLabel_numOnu}" style="font-size: 18px"/>
+                        <h:outputText id="numOnu" value="#{movimentacaoController.selected.idProduto.numOnu}" style="font-size: 18px"/>
+
+                        <p:outputLabel value="#{myBundle.ViewMovimentacaoLabel_idProduto}" for="idProduto" />
                         <p:selectOneMenu id="idProduto" 
                                          value="#{movimentacaoController.selected.idProduto}" 
                                          var="mov" 
+
                                          style="width:160px"
                                          converter="produtoConverter" 
                                          filter="true"
@@ -32,20 +37,21 @@
                                          panelStyle="width:480px"
                                          requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{produtoController.items}"
-                                           var="idProdutoItem"
-                                           itemValue="#{idProdutoItem}"
-                                           itemLabel="#{idProdutoItem.numOnu.toString()}"
+                            <f:selectItems value="#{produtoController.produtoCreate}"
+                                           var="idProdutoItem" itemLabelEscaped="true" itemDescription="#{mov.numOnu}"
+                                           itemValue="#{idProdutoItem}" 
+                                           itemLabel="#{idProdutoItem.descProduto.toString()}" 
                                            />
-                            <p:column style="width:10%" >
+                            <p:column style="width:10%" sortBy="#{mov.numOnu}" >
                                 <h:outputText value="#{mov.numOnu}" />
                             </p:column>
 
                             <p:column >
                                 <h:outputText value="#{mov.descProduto}" />
                             </p:column>
+                            <f:ajax execute="idProduto" render="numOnu" />
                         </p:selectOneMenu>
-                                                
+
                         <p:outputLabel value="Quantidade de Produdos" for="qtdProd" />
                         <p:inputText id="qtdProd" value="#{movimentacaoController.selected.quantidadeTotal}" title="#{myBundle.CreateEstadoTitle_qtdProd}" required="true" requiredMessage="#{myBundle.CreateEstadoRequiredMessage_qtdProd}" size="6" maxlength="6"/>
 
@@ -58,7 +64,7 @@
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
 
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="MovimentacaoCreateDialog.hide()"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="MovimentacaoCreateDialog.hide()" immediate="true" update=":MovimentacaoSaidaForm"/>
                 </h:panelGroup>
 
             </h:form>
