@@ -16,6 +16,9 @@
                 <h:panelGroup id="display" rendered="#{movimentacaoController.selected != null}">
                     <p:panelGrid columns="2" columnClasses="column">
 
+                        <h:outputText value="#{myBundle.CreateMovimentacaoLabel_numOnu}" style="font-size: 18px"/>
+                        <h:outputText id="numOnu" value="#{movimentacaoController.selected.idProduto.numOnu}" style="font-size: 18px"/>
+
                         <p:outputLabel value="#{myBundle.CreateMovimentacaoLabel_numOnu}" for="idProduto" />
                         <p:selectOneMenu id="idProduto" value="#{movimentacaoController.selected.idProduto}" var="mov" style="width:160px"
                                          converter="produtoConverter" filter="true" required="true" panelStyle="width:480px"
@@ -24,7 +27,7 @@
                             <f:selectItems value="#{produtoController.produto}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
-                                           itemLabel="#{idProdutoItem.numOnu.toString()}"
+                                           itemLabel="#{idProdutoItem.descProduto.toString()}"
                                            />
                             <p:column style="width:10%">
                                 <h:outputText value="#{mov.numOnu}" />
@@ -34,6 +37,7 @@
                                 <h:outputText value="#{mov.descProduto}" />
                             </p:column>
                             <f:ajax execute="idProduto" render="qtdProdTotal" />
+                            <f:ajax execute="idProduto" render="numOnu" />
                         </p:selectOneMenu>
                         <p:outputLabel value="Quantidade Total de Produtos " for="qtdProdTotal" />
                         <h:outputText id="qtdProdTotal" value="#{movimentacaoController.totalProduto}"/>
