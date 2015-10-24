@@ -1,49 +1,70 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ui.factory;
 
 import entiti.Roler;
-import javax.inject.Named;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.view.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
+import javax.inject.Named;
+import reports.jasperConnection;
 
+/**
+ *
+ * @author sacramento
+ */
 @Named(value = "rolerController")
 @ViewScoped
-public class RolerController extends AbstractController<Roler> {
-
+public class RolerController extends AbstractController<Roler>{
+    
     @Inject
-    private UsuarioRolerController UsuarioRolerListController;
-
+    private UsuarioController idUsuarioController;
+    
     public RolerController() {
-        // Inform the Abstract parent controller of the concrete Roler?cap_first Entity
         super(Roler.class);
     }
-
-    /**
-     * Resets the "selected" attribute of any parent Entity controllers.
-     */
-    public void resetParents() {
-    }
-
-    /**
-     * Sets the "items" attribute with a List of Usuario entities that are
-     * retrieved from Roler?cap_first and returns the navigation outcome.
-     *
-     * @return navigation outcome for Usuario page
-     *
-    public String navigateUsuarioList() {
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("Usuario_items", this.getSelected().getUsuarioList());
-        }
-        return "/entiti/usuario/index";
-    }
-    */
     
-    public String navigateUsuarioRolerList(){
-        if (this.getSelected() != null) {
-            FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("UsuarioRoler_items", this.getSelected().getUsuarioRolerList());
-        }
-        return "/entiti/usuarioroler/index";
+    public  void resetParents(){
+        idUsuarioController.setSelected(null);
+        
     }
-
+    
+    public List<Roler> getRolerList(){
+        
+        List<Roler> rolers = new ArrayList<Roler>();
+        
+        ResultSet rs;
+        try{
+            Connection connection = jasperConnection.getConexao();
+            
+            String query = "SELECT * FROM roler r ORDER BY r.id_roler;";
+            PreparedStatement prepared = connection.prepareStatement(query);
+            rs = prepared.executeQuery();
+            
+            while(rs.next()){
+                Roler roler = new Roler();
+                roler.setIdRoler(rs.getInt("id_roler"));
+                roler.setNomeRoler(rs.getString("nome_roler"));
+                roler.setDescricao(rs.getString("descricao"));
+                rolers.add(roler);
+              
+            }
+            connection.close();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        return rolers;
+        
+    }
+    
 }

@@ -6,6 +6,7 @@
 package entiti;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,9 +14,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,24 +29,28 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author sacramento
  */
 @Entity
-@Table(name = "roler")
+@Table(name = "roler", catalog = "slcpp", schema = "public")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Roler.findAll", query = "SELECT r FROM Roler r"),
     @NamedQuery(name = "Roler.findByIdRoler", query = "SELECT r FROM Roler r WHERE r.idRoler = :idRoler"),
+    @NamedQuery(name = "Roler.findByDescricao", query = "SELECT r FROM Roler r WHERE r.descricao = :descricao"),
     @NamedQuery(name = "Roler.findByNomeRoler", query = "SELECT r FROM Roler r WHERE r.nomeRoler = :nomeRoler")})
 public class Roler implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_roler")
+    @Column(name = "id_roler", nullable = false)
     private Integer idRoler;
     @Size(max = 255)
-    @Column(name = "nome_roler")
+    @Column(name = "descricao", length = 255)
+    private String descricao;
+    @Size(max = 255)
+    @Column(name = "nome_roler", length = 255)
     private String nomeRoler;
-    @OneToMany(mappedBy = "roler")
-    private List<UsuarioRoler> usuarioRolerList;
+    @ManyToMany
+    private List<Usuario> usuarioList;
 
     public Roler() {
     }
@@ -60,6 +67,14 @@ public class Roler implements Serializable {
         this.idRoler = idRoler;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public String getNomeRoler() {
         return nomeRoler;
     }
@@ -68,14 +83,14 @@ public class Roler implements Serializable {
         this.nomeRoler = nomeRoler;
     }
 
-    @XmlTransient
-    public List<UsuarioRoler> getUsuarioRolerList() {
-        return usuarioRolerList;
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
     }
 
-    public void setUsuarioRolerList(List<UsuarioRoler> usuarioRolerList) {
-        this.usuarioRolerList = usuarioRolerList;
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
+
 
     @Override
     public int hashCode() {
