@@ -35,18 +35,19 @@
                                     requiredMessage="#{myBundle.CreateUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
 
                         <h:outputLabel value="#{myBundle.CreateUsuarioLabel_ativo}" for="Ativo" />
-                        <p:selectBooleanCheckbox value="#{usuarioController.selected.ativo}"/>
+                        <p:selectBooleanCheckbox id="Ativo" value="#{usuarioController.selected.ativo}"/>
                         
-                        <h:outputLabel value="Autoridade" for="auto"/>
+                        <h:outputLabel value="Permissão" for="auto"/>
                         <p:selectManyCheckbox id="auto" value="#{usuarioController.selected.rolerList}" layout="grid" columns="2" converter="rolerConverter">
                             <f:selectItems value="#{rolerController.rolerList}" var="roler" itemValue="#{roler}" itemLabel="#{roler.descricao}"/>
                         </p:selectManyCheckbox>
 
                     </p:panelGrid>
+                    <br/>
                     <p:commandButton actionListener="#{usuarioController.saveNew}" value="#{myBundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UsuarioCreateDialog);">
                         <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
                     </p:commandButton>
-                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="UsuarioCreateDialog.hide()" immediate="true" update=":UsuarioCreateForm"/>
                     <p:commandButton value="Limpar" type="reset"/>
                 </h:panelGroup>
 
