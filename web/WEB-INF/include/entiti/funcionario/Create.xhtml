@@ -66,7 +66,7 @@
                                         <h:panelGroup>
                                             <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idLogradouro}" for="logradouro" />
                                             <br />
-                                            <p:inputText id="logradouro" value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" title="#{myBundle.CreateEnderecoLabel_idLogradouro}" required="true" requiredMessage="#{myBundle.CreatePaisRequiredMessage_logradouro}" size="40" maxlength="40"/>
+                                            <p:inputText id="logradouro" value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" title="#{myBundle.CreateEnderecoLabel_idLogradouro}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idLogradouro}" size="40" maxlength="40"/>
                                         </h:panelGroup>
                                         <h:panelGroup>
                                             <p:outputLabel value="#{myBundle.CreateEnderecoLabel_numero}" for="numero" />
@@ -204,38 +204,12 @@
                                     <h:panelGrid columns="2" columnClasses="label, value">
 
 
-                                        <h:outputLabel value="#{myBundle.EditFuncionarioLabel_idFuncionario}" for="idFuncionario" />
-                                        <h:outputText id="idFuncionario" value="#{funcionarioController.selected.idFuncionario}" />
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_matFuncionario}" />
-                                        <h:outputText  value="#{funcionarioController.selected.matFuncionario}"  styleClass="outputLabel" />
-
                                         <h:outputText value="Nome:" />
                                         <h:outputText  value="#{funcionarioController.selected.nomeFuncionario}"  styleClass="outputLabel"/> 
 
                                         <h:outputText value="Sobrenome:"  />
                                         <h:outputText value="#{funcionarioController.selected.sbNomeFuncionario}"  styleClass="outputLabel" />
 
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_dtAdmissao}"  />
-                                        <h:outputText value="#{funcionarioController.selected.dtAdmissao}" styleClass="outputLabel" >
-                                            <f:convertDateTime locale="pt_BR" type="date"  />
-                                        </h:outputText>
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_funcao}" />
-                                        <h:outputText value="#{funcionarioController.selected.funcao}" styleClass="outputLabel" />
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
-                                        <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
-
-                                        <p:outputLabel value="#{myBundle.EditUsuarioRolerLabel_login}" for="login" />
-                                        <h:outputText value="#{funcionarioController.selected.idUsuario.login}" styleClass="outputLabel"/>
-
-                                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
-                                        <h:outputText value="#{funcionarioController.selected.idUsuario.ativo}" styleClass="outputLabel"/>
-
-
-                                    </h:panelGrid>
-                                    <h:panelGrid columns="2" columnClasses="label, value">
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
                                         <h:outputText value="#{funcionarioController.selected.sexo}" styleClass="outputLabel"/>
 
@@ -265,6 +239,27 @@
                                         <h:outputText value="#{myBundle.CreateEnderecoLabel_idPais}"/>
                                         <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.idPais.nomePais}"  styleClass="outputLabel"/>
 
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+
+                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_dtAdmissao}"  />
+                                        <h:outputText value="#{funcionarioController.selected.dtAdmissao}" styleClass="outputLabel" >
+                                            <f:convertDateTime locale="pt_BR" type="date"  />
+                                        </h:outputText>
+
+                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_funcao}" />
+                                        <h:outputText value="#{funcionarioController.selected.funcao}" styleClass="outputLabel" />
+
+                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
+                                        <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
+
+                                        <p:outputLabel value="#{myBundle.EditUsuarioRolerLabel_login}" for="login" />
+                                        <h:outputText value="#{funcionarioController.selected.idUsuario.login}" styleClass="outputLabel"/>
+
+                                        <h:outputLabel value="#{myBundle.EditUsuarioLabel_ativo}" for="Ativo" />
+                                        <h:outputText value="#{funcionarioController.selected.idUsuario.ativo}" styleClass="outputLabel"/>                                        
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="3" columnClasses="label, value">
                                         <p:outputLabel value="#{myBundle.CreateContatosLabel_tel}" />
                                         <p:outputLabel value="#{funcionarioController.selected.contatosIdContato.tel}" styleClass="outputLabel"/>
 
