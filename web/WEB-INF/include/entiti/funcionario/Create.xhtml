@@ -15,9 +15,7 @@
                     <p:wizard flowListener="#{funcionarioController.onFlowProcess}" backLabel="Retornar" nextLabel="Avançar">
                         <p:tab id="personales" title="Dados Pessoais">    
                             <p:panel header="Dados Pessoais">
-
                                 <p:messages/>
-
                                 <h:panelGrid width="100%" style="text-align:justify" columns="1" columnClasses="label, value">
                                     <h:panelGrid columns="2" >
                                         <h:panelGroup>
@@ -50,7 +48,7 @@
                                             <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cpf}" for="cpf" />
                                             <br />
                                             <p:inputMask id="cpf" mask="999.999.999-99" value="#{funcionarioController.selected.cpf}" title="#{myBundle.EditFuncionarioTitle_cpf}" 
-                                                         required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cpf}" size="15" maxlength="15">
+                                                         required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cpf}" validatorMessage="CPF inválido ou duplicado." size="15" maxlength="15">
                                                 <f:validator validatorId="StellaCPFValidator"/>
                                             </p:inputMask>
                                         </h:panelGroup>
@@ -87,7 +85,6 @@
                                             <p:outputLabel value="#{myBundle.CreateEnderecoLabel_cep}" for="cep" />
                                             <br />
                                             <p:inputMask mask="99999-999" id="cep" value="#{funcionarioController.selected.enderecoIdEndereco.cep}"
-                                                         required="true"  requiredMessage="#{myBundle.EditEnderecoRequiredMessage_cep}"
                                                          title="#{myBundle.CreateEnderecoTitle_cep}" size="9" maxlength="9"/>
                                         </h:panelGroup>     
                                     </h:panelGrid>
@@ -96,7 +93,8 @@
                                         <h:panelGroup>
                                             <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idPais}" for="idPais" />
                                             <br />
-                                            <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
+                                            <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" 
+                                                             required="true"  requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idPais}" converter="paisConverter">
                                                 <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{paisController.items}"
                                                                var="idPaisItem"
@@ -109,7 +107,8 @@
                                         <h:panelGroup>
                                             <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idEstado}" for="idEstado" />
                                             <br />
-                                            <p:selectOneMenu id="idEstado" value="#{funcionarioController.selected.enderecoIdEndereco.idEstado}" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idEstado}" converter="estadoConverter">
+                                            <p:selectOneMenu id="idEstado" value="#{funcionarioController.selected.enderecoIdEndereco.idEstado}" 
+                                                             required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idEstado}" converter="estadoConverter">
                                                 <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{estadoController.items}"
                                                                var="idEstadoItem"
@@ -120,10 +119,10 @@
                                             </p:selectOneMenu>
                                         </h:panelGroup>
                                         <h:panelGroup>
-
                                             <p:outputLabel value="#{myBundle.CreateEnderecoLabel_idCidade}" for="idCidade" />
                                             <br />
-                                            <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                            <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" 
+                                                             filter="true" required="true" requiredMessage="#{myBundle.CreateEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
                                                 <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{funcionarioController.cidade}"
                                                                var="idCidadeItem"
@@ -142,15 +141,11 @@
                                 <p:messages/>
 
                                 <p:panelGrid columns="2" columnClasses="label, value">
-
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_dtAdmissao}" for="dtAdmissao" />
                                     <p:calendar pattern="dd/MM/yyyy" navigator="true"   mindate="01/01/10" maxdate="30/10/15" yearRange="c-5:c00"
                                                 id="dtAdmissao"  locale="pt_BR" value="#{funcionarioController.selected.dtAdmissao}" title="#{myBundle.CreateFuncionarioTitle_dtAdmissao}" 
                                                 required="true" requiredMessage="#{myBundle.CreateFuncionarioRequiredMessage_dtAdmissao}" showOn="button">
                                     </p:calendar>
-
-                                    <p:outputLabel value="#{myBundle.EditFuncionarioLabel_funcao}" for="funcao" />
-                                    <p:inputText id="funcao" value="#{funcionarioController.selected.funcao}" title="#{myBundle.EditFuncionarioTitle_funcao}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_funcao}" size="40" maxlength="40"/>
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cargo}" for="cargo" />
                                     <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
@@ -246,9 +241,6 @@
                                         <h:outputText value="#{funcionarioController.selected.dtAdmissao}" styleClass="outputLabel" >
                                             <f:convertDateTime locale="pt_BR" type="date"  />
                                         </h:outputText>
-
-                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_funcao}" />
-                                        <h:outputText value="#{funcionarioController.selected.funcao}" styleClass="outputLabel" />
 
                                         <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
                                         <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>

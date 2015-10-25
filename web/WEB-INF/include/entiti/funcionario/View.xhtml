@@ -31,20 +31,10 @@
                                     <f:convertDateTime locale="pt_BR" type="date"  />
                                 </h:outputText>
 
-                                <h:outputText value="#{myBundle.EditFuncionarioLabel_funcao}" />
-                                <h:outputText value="#{funcionarioController.selected.funcao}" styleClass="outputLabel" />
-
                                 <h:outputText value="#{myBundle.EditFuncionarioLabel_cargo}"  />
                                 <h:outputText value="#{funcionarioController.selected.cargo}"  styleClass="outputLabel"/>
-
-                                <h:outputText value="#{myBundle.EditFuncionarioLabel_nivelFuncionario}" />
-                                <h:outputText value="#{funcionarioController.selected.nivelFuncionario}"  styleClass="outputLabel"/>
-
-                                <h:outputText value="#{myBundle.EditFuncionarioLabel_especializacao}" />
-                                <h:outputText value="#{funcionarioController.selected.especializacao}" styleClass="outputLabel"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
+                                
+                                   <h:outputText value="#{myBundle.EditFuncionarioLabel_sexo}" />
                                 <h:outputText value="#{funcionarioController.selected.sexo}" styleClass="outputLabel"/>
 
                                 <h:outputText value="#{myBundle.EditFuncionarioLabel_cpf}" />
@@ -57,7 +47,9 @@
                                 <h:outputText value="#{funcionarioController.selected.dtNasc}" styleClass="outputLabel">
                                     <f:convertDateTime locale="pt_BR" type="date"  />
                                 </h:outputText>
-
+                            </h:panelGrid>
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                         
                                 <h:outputText value="#{myBundle.CreateEnderecoLabel_idLogradouro}" />
                                 <h:outputText value="#{funcionarioController.selected.enderecoIdEndereco.logadouro}" styleClass="outputLabel"/>
 
