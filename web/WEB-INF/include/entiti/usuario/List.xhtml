@@ -53,9 +53,9 @@
 
             <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm,datalist" oncomplete="UsuarioCreateDialog.show()"/>
             <p:commandButton id="viewButton"                               icon="ui-icon-search" value="#{myBundle.View}" update=":UsuarioViewForm,datalist" oncomplete="UsuarioViewDialog.show()" disabled="#{empty usuarioController.selected}"/>
-            <p:commandButton id="roleButton"                               icon="ui-icon-search" value="Premissao" update=":UsuarioPermForm,datalist" oncomplete="UsuarioPermDialog.show()" disabled="#{empty usuarioController.selected}"/>
+            <p:commandButton id="roleButton"                               icon="ui-icon-search" value="Premissão" update=":UsuarioPermForm,datalist" oncomplete="UsuarioPermDialog.show()" disabled="#{empty usuarioController.selected}"/>
             <p:commandButton id="editButton"                               icon="ui-icon-pencil" value="#{myBundle.EditPassword}" update=":UsuarioEditForm,datalist" oncomplete="UsuarioEditDialog.show()" disabled="#{empty usuarioController.selected}"/>
-            <p:commandButton id="ativarButton"                             icon="ui-icon-circle-plus"   value="Des/Ativar" actionListener="#{usuarioController.setAtivo}" update=":growl,datalist" disabled="#{empty usuarioController.selected}">
+            <p:commandButton id="ativarButton"                             icon="ui-icon-circle-plus"   value="Desativar/Ativar" actionListener="#{usuarioController.setAtivo}" update=":growl,datalist" disabled="#{empty usuarioController.selected}">
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="Confirma a alteração!!" icon="ui-icon-alert"/>
             </p:commandButton>
    
