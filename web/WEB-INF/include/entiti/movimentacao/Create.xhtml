@@ -37,7 +37,7 @@
                                          panelStyle="width:480px"
                                          requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{produtoController.produtoCreate}"
+                            <f:selectItems value="#{produtoController.produtoEntrada}"
                                            var="idProdutoItem" itemLabelEscaped="true" itemDescription="#{mov.numOnu}"
                                            itemValue="#{idProdutoItem}" 
                                            itemLabel="#{idProdutoItem.descProduto.toString()}" 
