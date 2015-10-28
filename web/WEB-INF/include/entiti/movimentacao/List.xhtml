@@ -9,10 +9,7 @@
     <h:form id="MovimentacaoListForm">
 
         <p:panel header="#{myBundle.ListMovimentacaoTitle}">
-            <p:contextMenu id="MovimentacaoDataTableContextMenu" for="datalist" style="visibility: hidden;">  
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimentacaoListForm:createButton').click();" icon="ui-icon-plus"/>
-                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimentacaoListForm:outputButton').click();" icon="ui-icon-plus"/>
-               <p:separator/>
+            <p:contextMenu id="MovimentacaoDataTableContextMenu" for="datalist" >
                 <p:menuitem value="#{myBundle.MovimentacaoMenuItem_idProduto}" icon="ui-icon-search"  actionListener="#{movimentacaoController.prepareIdProduto}" update=":ProdutoViewForm" oncomplete="ProdutoViewDialog.show()" disabled="#{empty movimentacaoController.selected.idProduto}"/>  
             </p:contextMenu>
             <p:dataTable id="datalist"

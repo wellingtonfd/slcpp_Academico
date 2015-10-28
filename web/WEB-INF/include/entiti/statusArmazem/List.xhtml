@@ -9,7 +9,7 @@
     <h:form id="StatusArmazemListForm">
 
         <p:panel header="#{myBundle.ListStatusArmazemTitle}">
-            <p:contextMenu id="StatusArmazemDataTableContextMenu" for="datalist" style="visibility: hidden;">  
+            <p:contextMenu id="StatusArmazemDataTableContextMenu" for="datalist" >  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('StatusArmazemListForm:createButton').click();" icon="ui-icon-plus"/>
                 <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('StatusArmazemListForm:viewButton').click();" icon="ui-icon-search"/>
                 <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('StatusArmazemListForm:editButton').click();" icon="ui-icon-pencil"/>

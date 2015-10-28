@@ -24,7 +24,7 @@
                                          converter="produtoConverter" filter="true" required="true" panelStyle="width:480px"
                                          requiredMessage="#{myBundle.CreateProdutoRequiredMessage_idProduto}" >
                             <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{produtoController.produto}"
+                            <f:selectItems value="#{produtoController.produtoSaida}"
                                            var="idProdutoItem"
                                            itemValue="#{idProdutoItem}"
                                            itemLabel="#{idProdutoItem.descProduto.toString()}"

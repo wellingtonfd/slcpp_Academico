@@ -10,6 +10,10 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import reports.jasperConnection;
 
 @Named(value = "produtoController")
@@ -24,6 +28,10 @@ public class ProdutoController extends AbstractController<Produto> {
     private CompatibilidadeController idCompatibilidadeController;
     @Inject
     private ClasseController idClasseController;
+    @PersistenceContext
+    private EntityManager em;
+    
+     List<Produto> produtos = null;
 
     public ProdutoController() {
         // Inform the Abstract parent controller of the concrete Produto?cap_first Entity
@@ -39,135 +47,31 @@ public class ProdutoController extends AbstractController<Produto> {
         idClasseController.setSelected(null);
         
     }
-    
-    public List<Produto> getProduto(){
-        
-        List<Produto> produtos = new ArrayList<Produto>();
-        
-        ResultSet rs;
+      
+    public List<Produto> getProdutoSaida(){
+ 
+         boolean num = true;
         try{
-            Connection connection = jasperConnection.getConexao();
-            
-            String query = "SELECT p.num_onu, p.desc_produto FROM produto p WHERE EXISTS (SELECT 1 FROM lote l WHERE l.num_onu = p.num_onu) ORDER BY num_onu;";
-            PreparedStatement prepared = connection.prepareStatement(query);
-            rs = prepared.executeQuery();
-            
-            while(rs.next()){
-                Produto produto = new Produto();
-                produto.setNumOnu(rs.getInt("num_onu"));
-                produto.setDescProduto(rs.getString("desc_produto"));
-                produtos.add(produto);
-            }
-            connection.close();
-            
+            Query query = em.createNamedQuery("Produto.findAllByLote").setParameter("num", num);
+            produtos = query.getResultList();
         }catch(Exception e){
             e.printStackTrace();
         }
-        
-        
         return produtos;
-        
     }
     
-    public List<Produto> getProdutoCreate(){
-        
-        List<Produto> produtos = new ArrayList<Produto>();
-        
-        ResultSet rs;
+    public List<Produto> getProdutoEntrada(){  
+
         try{
-            Connection connection = jasperConnection.getConexao();
-            
-            String query = "SELECT p.num_onu, p.desc_produto FROM produto p ORDER BY p.num_onu;";
-            PreparedStatement prepared = connection.prepareStatement(query);
-            rs = prepared.executeQuery();
-            
-            while(rs.next()){
-                Produto produto = new Produto();
-                produto.setNumOnu(rs.getInt("num_onu"));
-                produto.setDescProduto(rs.getString("desc_produto"));
-                produtos.add(produto);
-            }
-            connection.close();
-            
+            Query query = em.createNamedQuery("Produto.findAll");
+            produtos = query.getResultList();
         }catch(Exception e){
             e.printStackTrace();
-        }
-        
-        
-        return produtos;
-        
+        }    
+        return produtos;    
     }
 
-    /**
-     * Sets the "selected" attribute of the NumOnu controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-   
 
-    /**
-     * Sets the "selected" attribute of the NumCas controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-  
-
-    /**
-     * Sets the "selected" attribute of the LegendaCompatibilidade controller in
-     * order to display its data in a dialog. This is reusing existing the
-     * existing View dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-    
-    /**
-     * Sets the "selected" attribute of the EstFisico controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-   
-
-    /**
-     * Sets the "selected" attribute of the EndArmazem controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-   
-
-    /**
-     * Sets the "selected" attribute of the Compatibilidade controller in order
-     * to display its data in a dialog. This is reusing existing the existing
-     * View dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-   
-
-    /**
-     * Sets the "selected" attribute of the Classe controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-   
-
-    /**
-     * Sets the "selected" attribute of the Armazem controller in order to
-     * display its data in a dialog. This is reusing existing the existing View
-     * dialog.
-     *
-     * @param event Event object for the widget that triggered an action
-     */
-  
 
     /**
      * Sets the "items" attribute with a List of Movimentacao entities
