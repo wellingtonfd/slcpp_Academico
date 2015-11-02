@@ -20,20 +20,11 @@
                          selectionMode="single"
                          selection="#{funcionarioController.selected}">
 
-                <p:column sortBy="#{item.idFuncionario}" filterBy="#{item.idFuncionario}">
+               <p:column  style="text-align: center;" sortBy="#{item.idFuncionario}" filterBy="#{item.idFuncionario}" >
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListFuncionarioTitle_idFuncionario}"/>
+                        <h:outputText value="Matrícula Funcionário"/>
                     </f:facet>
                     <h:outputText value="#{item.idFuncionario}"/>
-                </p:column>
-
-
-<!--codigo gerado em 27/10/2014-->
-                <p:column sortBy="#{item.matFuncionario}" filterBy="#{item.matFuncionario}">
-                    <f:facet name="header">
-                        <h:outputText value="Matrícula"/>
-                    </f:facet>
-                    <h:outputText value="#{item.matFuncionario}"/>
                 </p:column>
                                 
                 

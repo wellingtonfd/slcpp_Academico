@@ -30,7 +30,7 @@
                 <p:ajax event="rowUnselect" update=":EpeListForm:createButton :EpeListForm:viewButton :EpeListForm:editButton :EpeListForm:deleteButton :EpeListForm:EpeDataTableContextMenu" listener="#{epeController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('EpeListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.idEpe}" filterBy="#{item.idEpe}">
+                <p:column style="text-align: center;" sortBy="#{item.idEpe}" filterBy="#{item.idEpe}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListEpeTitle_idEpe}"/>
                     </f:facet>

@@ -19,15 +19,16 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{movimentacaoController.selected}">
-
-                <p:column sortBy="#{item.idMovimentacao}" filterBy="#{item.idMovimentacao}">
+                
+                <p:column style="text-align: center;" sortBy="#{item.idMovimentacao}" filterBy="#{item.idMovimentacao}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_idMovimentacao}"/>
                     </f:facet>
                     <h:outputText value="#{item.idMovimentacao}"/>
                 </p:column>
 
-                 <p:column sortBy="#{item.idProduto.numOnu}" filterBy="#{item.idProduto.numOnu}">
+                
+                 <p:column style="text-align: center;" sortBy="#{item.idProduto.numOnu}" filterBy="#{item.idProduto.numOnu}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_idProduto}"/>
                     </f:facet>
@@ -43,14 +44,14 @@
 
 
 
-                <p:column sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
+                <p:column style="text-align: center;" sortBy="#{item.quantidadeTotal}" filterBy="#{item.quantidadeTotal}">
                     <f:facet name="header">
-                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeTotal}"/>
+                        <h:outputText value="#{myBundle.ListMovimentacaoTitle_quantidadeProd}"/>
                     </f:facet>
                     <h:outputText value="#{item.quantidadeTotal}"/>
                 </p:column>
                 
-                <p:column sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
+                <p:column style="text-align: center;" sortBy="#{item.quantidadePorPalete}" filterBy="#{item.quantidadePorPalete}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListMovimentacaoTitle_qtdProdutoPalete}"/>
                     </f:facet>

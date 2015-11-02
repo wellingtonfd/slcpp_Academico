@@ -20,7 +20,7 @@
                          selectionMode="single"
                          selection="#{veiculoController.selected}">
 
-                <p:column sortBy="#{item.idVeiculo}" filterBy="#{item.idVeiculo}">
+                <p:column style="text-align: center;" sortBy="#{item.idVeiculo}" filterBy="#{item.idVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_idVeiculo}"/>
                     </f:facet>
@@ -28,7 +28,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.nomeVeiculo}" filterBy="#{item.nomeVeiculo}">
+                <p:column  sortBy="#{item.nomeVeiculo}" filterBy="#{item.nomeVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_nomeVeiculo}"/>
                     </f:facet>

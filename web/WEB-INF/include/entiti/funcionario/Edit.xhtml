@@ -18,6 +18,10 @@
                                 <p:messages/>
 
                                 <h:panelGrid width="100%" style="text-align:justify" columns="1" columnClasses="label, value">
+                                    <h:panelGrid columns="2">
+                                        <h:outputText value="#{myBundle.EditFuncionarioLabel_matFuncionario}"/>
+                                        <h:outputText style="font-weight:bold " value="#{funcionarioController.selected.idFuncionario}"  styleClass="outputLabel"/>
+                                    </h:panelGrid>
                                     <h:panelGrid columns="2" >
                                         <h:panelGroup>
                                             <p:outputLabel value="Nome:" for="nomeFuncionario" />
@@ -92,7 +96,7 @@
                                             <p:outputLabel value="#{myBundle.EditEnderecoLabel_idPais}" for="idPais" />
                                             <br />
                                             <p:selectOneMenu id="idPais" value="#{funcionarioController.selected.enderecoIdEndereco.idPais}" 
-                                                required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_idPais}" converter="paisConverter">
+                                                             required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_idPais}" converter="paisConverter">
                                                 <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{paisController.items}"
                                                                var="idPaisItem"
@@ -106,8 +110,8 @@
                                             <p:outputLabel value="#{myBundle.EditEnderecoLabel_idEstado}" for="idEstado" />
                                             <br />
                                             <p:selectOneMenu id="idEstado" value="#{funcionarioController.selected.enderecoIdEndereco.idEstado}" 
-                                                  required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_idEstado}" 
-                                                  converter="estadoConverter">
+                                                             required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_idEstado}" 
+                                                             converter="estadoConverter">
                                                 <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{estadoController.items}"
                                                                var="idEstadoItem"
@@ -121,7 +125,7 @@
                                             <p:outputLabel value="#{myBundle.EditEnderecoLabel_idCidade}" for="idCidade" />
                                             <br />
                                             <p:selectOneMenu id="idCidade" value="#{funcionarioController.selected.enderecoIdEndereco.idCidade}" 
-                                                filter="true" required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
+                                                             filter="true" required="true" requiredMessage="#{myBundle.EditEnderecoRequiredMessage_idCidade}" converter="cidadeConverter">
                                                 <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{funcionarioController.cidade}"
                                                                var="idCidadeItem"
@@ -131,7 +135,7 @@
                                             </p:selectOneMenu>
                                         </h:panelGroup>
                                     </h:panelGrid>
-                                    </h:panelGrid>
+                                </h:panelGrid>
                             </p:panel>
                         </p:tab>
                         <p:tab id="personales2" title="Dados Funcionais">    
@@ -148,7 +152,7 @@
 
                                     <p:outputLabel value="#{myBundle.EditFuncionarioLabel_cargo}" for="cargo" />
                                     <p:inputText id="cargo" value="#{funcionarioController.selected.cargo}" title="#{myBundle.EditFuncionarioTitle_cargo}" required="true" requiredMessage="#{myBundle.EditFuncionarioRequiredMessage_cargo}" size="40" maxlength="40"/>
-                                   
+
                                     <p:outputLabel value="#{myBundle.EditUsuarioRolerLabel_login}" for="login" />
                                     <p:inputText id="login" value="#{funcionarioController.selected.idUsuario.login}"  
                                                  title="#{myBundle.EditUsuarioTitle_login}" size="12" maxlength="12"/>

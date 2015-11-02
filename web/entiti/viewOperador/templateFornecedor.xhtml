@@ -19,7 +19,7 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{fornecedorController.selected}">
-                <p:column sortBy="#{item.idFornecedor}" filterBy="#{item.idFornecedor}">
+                <p:column style="text-align: center;" sortBy="#{item.idFornecedor}" filterBy="#{item.idFornecedor}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_idFornecedor}"/>
                     </f:facet>
@@ -27,7 +27,7 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.nomeFantasia}" filterBy="#{item.nomeFantasia}">
+                <p:column  sortBy="#{item.nomeFantasia}" filterBy="#{item.nomeFantasia}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_nomeFantasia}"/>
                     </f:facet>

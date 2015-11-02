@@ -21,7 +21,7 @@
                          selection="#{produtoController.selected}">
              
 
-                 <p:column sortBy="#{item.numOnu}" filterBy="#{item.numOnu}">
+                 <p:column style="text-align: center;" sortBy="#{item.numOnu}" filterBy="#{item.numOnu}">
                     <f:facet name="header">
                         <h:outputText value="Número da Onu"/>
                     </f:facet>
@@ -39,7 +39,8 @@
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListProdutoTitle_idClasse}"/>
                     </f:facet>
-                    <h:outputText value="#{item.classe.numClasse}"/>
+                    <h:outputText value="#{item.classe.numClasse}: "/>
+                    <h:outputText value="#{item.classe.descClasse}"/>
                 </p:column>
                             
             </p:dataTable>

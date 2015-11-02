@@ -30,7 +30,7 @@
                 <p:ajax event="rowUnselect" update=":EpiListForm:createButton :EpiListForm:viewButton :EpiListForm:editButton :EpiListForm:deleteButton :EpiListForm:EpiDataTableContextMenu" listener="#{epiController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('EpiListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.idEpi}" filterBy="#{item.idEpi}">
+                <p:column style="text-align: center;" sortBy="#{item.idEpi}" filterBy="#{item.idEpi}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListEpiTitle_idEpi}"/>
                     </f:facet>

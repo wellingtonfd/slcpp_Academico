@@ -34,7 +34,7 @@
                 <p:ajax event="rowUnselect" update=":FuncionarioListForm:createButton :FuncionarioListForm:viewButton :FuncionarioListForm:editButton :FuncionarioListForm:deleteButton :FuncionarioListForm:FuncionarioDataTableContextMenu" listener="#{funcionarioController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('FuncionarioListForm:viewButton').click();"/>
 <!-- Mat/id-->
-                <p:column sortBy="#{item.idFuncionario}" filterBy="#{item.idFuncionario}" >
+                <p:column style="text-align: center;" sortBy="#{item.idFuncionario}" filterBy="#{item.idFuncionario}" >
                     <f:facet name="header">
                         <h:outputText value="Matrícula Funcionário"/>
                     </f:facet>

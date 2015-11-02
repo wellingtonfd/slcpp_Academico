@@ -32,7 +32,7 @@
                 <p:ajax event="rowUnselect" update=":VeiculoListForm:createButton :VeiculoListForm:viewButton :VeiculoListForm:editButton :VeiculoListForm:deleteButton :VeiculoListForm:VeiculoDataTableContextMenu" listener="#{veiculoController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('VeiculoListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.idVeiculo}" filterBy="#{item.idVeiculo}">
+                <p:column style="text-align: center;" sortBy="#{item.idVeiculo}" filterBy="#{item.idVeiculo}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListVeiculoTitle_idVeiculo}"/>
                     </f:facet>

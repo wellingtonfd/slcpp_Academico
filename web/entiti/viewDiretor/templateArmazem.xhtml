@@ -20,7 +20,7 @@
                          selectionMode="single"
                          selection="#{armazemController.selected}">
                 
-                <p:column sortBy="#{item.idArmazem}" filterBy="#{item.idArmazem}">
+                <p:column style="text-align: center;" sortBy="#{item.idArmazem}" filterBy="#{item.idArmazem}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListArmazemTitle_idArmazem}"/>
                     </f:facet>
@@ -28,14 +28,14 @@
                 </p:column>
 
 
-                <p:column sortBy="#{item.tipoArmazem}" filterBy="#{item.tipoArmazem}">
+                <p:column style="text-align: center;" sortBy="#{item.tipoArmazem}" filterBy="#{item.tipoArmazem}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListArmazemTitle_tipoArmazem}"/>
                     </f:facet>
                     <h:outputText value="#{item.tipoArmazem}"/>
                 </p:column>
                 
-               <p:column sortBy="#{item.especArmazem}" filterBy="#{item.especArmazem}">
+               <p:column  style="text-align: center;" sortBy="#{item.especArmazem}" filterBy="#{item.especArmazem}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListArmazemTitle_especArmazem}"/>
                     </f:facet>

@@ -20,28 +20,28 @@
                          selectionMode="single"
                          selection="#{loteController.selected}">
                 
-                <p:column sortBy="#{item.idLote}" filterBy="#{item.idLote}">
+                <p:column style="text-align: center;" sortBy="#{item.idLote}" filterBy="#{item.idLote}">
                     <f:facet name="header">
                         <h:outputText value="Id Lote"/>
                     </f:facet>
                     <h:outputText value="#{item.idLote}"/>
                 </p:column>
                 
-                <p:column sortBy="#{item.lado}" filterBy="#{item.lado}">
+                <p:column style="text-align: center;" sortBy="#{item.lado}" filterBy="#{item.lado}">
                     <f:facet name="header">
                         <h:outputText value="Lado"/>
                     </f:facet>
                     <h:outputText value="#{item.lado}"/>
                 </p:column>
                 
-                 <p:column sortBy="#{item.sequencial}" filterBy="#{item.sequencial}">
+                 <p:column style="text-align: center;" sortBy="#{item.sequencial}" filterBy="#{item.sequencial}">
                     <f:facet name="header">
                         <h:outputText value="Sequêncial"/>
                     </f:facet>
                     <h:outputText value="#{item.sequencial}"/>
                 </p:column>
                 
-                 <p:column sortBy="#{item.produto.numOnu}" filterBy="#{item.produto.numOnu}">
+                 <p:column style="text-align: center;" sortBy="#{item.produto.numOnu}" filterBy="#{item.produto.numOnu}">
                     <f:facet name="header">
                         <h:outputText value="Num. ONU"/>
                     </f:facet>
@@ -55,13 +55,13 @@
                     <h:outputText value="#{item.produto.descProduto}"/>
                 </p:column>
                        
-                  <p:column sortBy="#{item.quantidadeProduto}" filterBy="#{item.quantidadeProduto}">
+                  <p:column style="text-align: center;" sortBy="#{item.quantidadeProduto}" filterBy="#{item.quantidadeProduto}">
                     <f:facet name="header">
                         <h:outputText value="Qtd. Produto"/>
                     </f:facet>
                     <h:outputText value="#{item.quantidadeProduto}"/>
                 </p:column>          
-                <p:column sortBy="#{item.numeroPaletesArmazenados}" filterBy="#{item.numeroPaletesArmazenados}">
+                <p:column style="text-align: center;" sortBy="#{item.numeroPaletesArmazenados}" filterBy="#{item.numeroPaletesArmazenados}">
                     <f:facet name="header">
                         <h:outputText value="Nº Produto por Palete"/>
                     </f:facet>

@@ -19,7 +19,8 @@
                          rowsPerPageTemplate="5,10,20,30,40,50"
                          selectionMode="single"
                          selection="#{fornecedorController.selected}">
-                <p:column sortBy="#{item.idFornecedor}" filterBy="#{item.idFornecedor}">
+                
+                <p:column style="text-align: center;" sortBy="#{item.idFornecedor}" filterBy="#{item.idFornecedor}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_idFornecedor}"/>
                     </f:facet>

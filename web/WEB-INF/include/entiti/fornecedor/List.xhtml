@@ -33,7 +33,7 @@
                 <p:ajax event="rowUnselect" update=":FornecedorListForm:createButton :FornecedorListForm:viewButton :FornecedorListForm:editButton :FornecedorListForm:deleteButton :FornecedorListForm:FornecedorDataTableContextMenu" listener="#{fornecedorController.resetParents}"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('FornecedorListForm:viewButton').click();"/>
 
-                <p:column sortBy="#{item.idFornecedor}" filterBy="#{item.idFornecedor}">
+                <p:column style="text-align: center;" sortBy="#{item.idFornecedor}" filterBy="#{item.idFornecedor}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListFornecedorTitle_idFornecedor}"/>
                     </f:facet>
