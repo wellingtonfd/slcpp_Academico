@@ -10,6 +10,9 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
 import reports.jasperConnection;
 import utils.armazenagem.ArmazenagemUtil;
@@ -20,7 +23,9 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 
     @Inject
     private ProdutoController idProdutoController;
-     
+    @PersistenceContext
+    EntityManager em;
+
     public MovimentacaoController() {
         // Inform the Abstract parent controller of the concrete Movimentacao?cap_first Entity
         super(Movimentacao.class);
@@ -32,7 +37,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
     public void resetParents() {
         idProdutoController.setSelected(null);
     }
-    
+
     /**
      * metodo utilizado para realizar a armazenagem a partir da movimentacao
      * realizada
@@ -57,45 +62,37 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
         }
         RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
-  
+
     /**
      * Sets the "selected" attribute of the Produto controller in order to
      * display its data in a dialog. This is reusing existing the existing View
      * dialog.
      *
      * @param event Event object for the widget that triggered an action
+     * @return
      */
 //    public void prepareIdProduto(ActionEvent event) {
 //        if (this.getSelected() != null && idProdutoController.getSelected() == null) {
 //            idProdutoController.setSelected(this.getSelected().getIdProduto());
 //        }
 //    }
-    
-    public float getTotalProduto(){
-        ResultSet rs = null;
-        String query = null;
-        float retorno = 0;
-        
-        try{
-            Connection connection = jasperConnection.getConexao();
-            try{
-                query = "SELECT SUM(l.quantidade_produtos) as totalDeProdutos FROM lote l WHERE l.num_onu = " + getSelected().getIdProduto().getNumOnu() +";";
-            }catch(Exception e){
-                query = "SELECT 0 as totalDeProdutos;";
-            }
-            PreparedStatement prepared = connection.prepareStatement(query);
-            rs = prepared.executeQuery();
-            
-            while(rs.next()){
-                retorno = rs.getFloat("totalDeProdutos");
-            }
-            
-            connection.close();
-            
-        }catch(Exception e){
-            e.printStackTrace();
+
+
+    public Number getTotalProduto() {
+        Number retorno = 0;
+
+        String sql = "SELECT SUM(l.quantidadeProduto) FROM Lote l WHERE l.produto = :numonu";
+
+        try {
+
+            Query query = em.createQuery(sql);
+            query.setParameter("numonu", getSelected().getIdProduto());
+            retorno = (Number) query.getSingleResult();
+
+        } catch (Exception e) {
+            retorno = 0;
         }
-        
+
         return retorno;
     }
 }
