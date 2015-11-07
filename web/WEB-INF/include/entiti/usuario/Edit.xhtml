@@ -32,6 +32,8 @@
                         <p:password id="confirmaSenha" value="#{usuarioController.selected.senha}"  feedback="true"   
                                     promptLabel="Confirme a senha" 
                                     title="#{myBundle.EditUsuarioTitle_senha}" required="true" 
+                                    weakLabel="Força da senha : Fraca"   
+                                    goodLabel="Força da senha : Média" strongLabel="Força da senha : Forte"
                                     requiredMessage="#{myBundle.EditUsuarioRequiredMessage_senha}" size="25" maxlength="25"/>
 
                     </p:panelGrid>
