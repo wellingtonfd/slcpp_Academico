@@ -32,7 +32,7 @@
                     <p:separator />
                     <p:menuitem value="Produtos" outcome="/entiti/viewOperador/viewProdutos" />
                 </p:submenu>
-                <p:submenu label="#{myBundle.AdministrarUsuarios}" rendered="#{sec:areAnyGranted('ROLE_ADMIN')}" icon="ui-icon-person" >
+                <p:submenu label="#{myBundle.AdministrarUsuarios}" icon="ui-icon-person" >
                     <p:menuitem value="#{myBundle.UsuarioHeading}" outcome="/entiti/usuario/index" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
