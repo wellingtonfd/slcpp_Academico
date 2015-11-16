@@ -2,6 +2,8 @@ package ui.factory;
 
 import entiti.Produto;
 import java.util.List;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -41,7 +43,7 @@ public class ProdutoController extends AbstractController<Produto> {
         idClasseController.setSelected(null);
         
     }
-      
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public List<Produto> getProdutoSaida(){
  
          boolean num = true;
@@ -54,6 +56,7 @@ public class ProdutoController extends AbstractController<Produto> {
         return produtos;
     }
     
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public List<Produto> getProdutoEntrada(){  
 
         try{
