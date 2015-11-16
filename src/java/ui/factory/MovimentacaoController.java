@@ -1,12 +1,9 @@
 package ui.factory;
 
 import entiti.Movimentacao;
-import entiti.Produto;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.faces.application.FacesMessage;
-import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -14,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.primefaces.context.RequestContext;
-import reports.jasperConnection;
 import utils.armazenagem.ArmazenagemUtil;
 
 @Named(value = "movimentacaoController")
@@ -78,6 +74,7 @@ public class MovimentacaoController extends AbstractController<Movimentacao> {
 //    }
 
 
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public Number getTotalProduto() {
         Number retorno = 0;
 
