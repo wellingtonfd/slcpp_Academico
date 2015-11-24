@@ -22,7 +22,8 @@
                         <h:outputText value="#{usuarioController.selected.login}" title="#{myBundle.ViewUsuarioTitle_login}"/>
 
                         <h:outputText value="#{myBundle.ViewUsuarioLabel_ativo}"/>
-                        <h:outputText value="#{usuarioController.selected.ativo}"/>
+                        <h:outputText  value="Ativo" rendered="#{usuarioController.selected.ativo==true}"/>
+                            <h:outputText  value="Desativado" rendered="#{usuarioController.selected.ativo==false}" />
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="UsuarioViewDialog.hide()"/>
                 </h:panelGroup>

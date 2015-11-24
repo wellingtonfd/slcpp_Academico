@@ -55,8 +55,7 @@
                     <p:menuitem value="Produtos"  outcome="/entiti/produto/index"/>
                 </p:submenu>
                 <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
-                    <p:menuitem value="Armazéns" outcome="/entiti/viewDiretor/relatorioArmazem"/>
-                    <p:separator/>
+                   
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/viewDiretor/relatorioEPE"/>  
                         <p:separator/>
