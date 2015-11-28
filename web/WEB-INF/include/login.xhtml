@@ -11,11 +11,11 @@
         <form action="j_spring_security_check" method="post" >
             <p:growl showDetail="false"/>
             <h:panelGrid columns="2" cellpadding="5">
-                <h:outputLabel for="j_username" value="Login: *" />
-                <h:inputText id="j_username" required="true"/>
-                <h:outputLabel for="j_password" value="Senha: * " />
-                <h:inputSecret id="j_password" required="true"/>
-                <h:commandButton type="submit" value="Login"/>
+                <p:outputLabel for="j_username" value="Login: " />
+                <p:inputText id="j_username" required="true"/>
+                <p:outputLabel for="j_password" value="Senha: " />
+                <p:password id="j_password" required="true"/>
+                <p:commandButton onclick="handleSubmit()" value="Login"/>
             </h:panelGrid>
             <center>
                 <h:panelGroup rendered="#{!empty param.login_error}">
