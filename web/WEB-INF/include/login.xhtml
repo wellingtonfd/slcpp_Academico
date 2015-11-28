@@ -6,16 +6,16 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <p:dialog header="Login" visible="true" closable="false" draggable="false" modal="true" appendTo="@(body)" closeOnEscape="true" resizable="false" width="280">
-        <h:outputLabel ><h3 align="center">SLCPP <br />Sistema Logístico de Controle <br />de Produtos Perigosos</h3></h:outputLabel>
+        <h:outputLabel ><h1 align="center">SLCPP</h1><h3 align="center">Sistema Logístico de Controle <br />de Produtos Perigosos</h3></h:outputLabel>
         <p:separator/>
         <form action="j_spring_security_check" method="post" >
             <p:growl showDetail="false"/>
             <h:panelGrid columns="2" cellpadding="5">
-                <p:outputLabel for="j_username" value="Login: " />
+                <h:outputLabel for="j_username" value="Login: " style="font-weight: bolder;font-size: large" />
                 <p:inputText id="j_username" required="true"/>
-                <p:outputLabel for="j_password" value="Senha: " />
+                <h:outputLabel for="j_password" value="Senha: " style="font-weight: bolder;font-size: large" />
                 <p:password id="j_password" required="true"/>
-                <p:commandButton onclick="handleSubmit()" value="Login"/>
+                <p:commandButton onclick="handleSubmit()" value="Login" />
             </h:panelGrid>
             <center>
                 <h:panelGroup rendered="#{!empty param.login_error}">
