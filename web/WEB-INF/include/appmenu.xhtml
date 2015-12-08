@@ -11,8 +11,8 @@
         <h:form id="menuForm">  
             <p:menubar>
                 <p:menuitem value="#{myBundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >
-                       <p:menuitem value="Armazéns"  outcome="/entiti/viewOperador/viewArmazem" />                  
+                <p:submenu label="#{myBundle.Visualizar}" rendered="#{sec:areAnyGranted('ROLE_OPE')}" icon="ui-icon-search" >                
+                    <p:menuitem value="Armazém" outcome="/entiti/viewOperador/viewArmazem"/>
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/viewOperador/viewEPE"/>
@@ -28,7 +28,7 @@
                     <p:separator />
                     <p:menuitem  value="Lotes" outcome="/entiti/viewOperador/viewLote"/>
                     <p:separator />
-                     <p:menuitem value="Movimentações" outcome="/entiti/viewOperador/viewMovimentacao"/>
+                    <p:menuitem value="Movimentações" outcome="/entiti/viewOperador/viewMovimentacao"/>
                     <p:separator />
                     <p:menuitem value="Produtos" outcome="/entiti/viewOperador/viewProdutos" />
                 </p:submenu>
@@ -36,7 +36,7 @@
                     <p:menuitem value="#{myBundle.UsuarioHeading}" outcome="/entiti/usuario/index" />
                 </p:submenu>
                 <p:submenu label="#{myBundle.Cadastros}" rendered="#{sec:areAnyGranted('ROLE_SUP')}" >
-                    <p:menuitem value="Armazéns" outcome="/entiti/armazem/index" />
+                    <p:menuitem value="Armazém" outcome="/entiti/armazem/index"  />
                     <p:separator />
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/epe/index"/>
@@ -55,7 +55,8 @@
                     <p:menuitem value="Produtos"  outcome="/entiti/produto/index"/>
                 </p:submenu>
                 <p:submenu label="#{myBundle.Relatorios}" rendered="#{sec:areAnyGranted('ROLE_DIR')}"  icon="ui-icon-print" >
-                   
+                    <p:menuitem value="Armazém" outcome="/entiti/viewDiretor/relatorioArmazem"/>  
+                    <p:separator/>
                     <p:submenu label="Equipamentos...">
                         <p:menuitem value="EPC" outcome="/entiti/viewDiretor/relatorioEPE"/>  
                         <p:separator/>
@@ -78,8 +79,6 @@
                     <p:menuitem value="#{myBundle.Help}" url="/ajuda.jsf" icon="ui-icon-help"/>
                     <p:separator/>
                     <p:menuitem value="Aviso CIPA" onclick="PF('View1').show()" icon="ui-icon-alert"/>
-                    <p:separator/>
-                    <p:menuitem value="Contatos Suporte" onclick="PF('View2').show()" icon="ui-icon-mail-closed" />
                     <p:separator/>
                     <p:menuitem value="Sobre" onclick="PF('View3').show()" icon="ui-icon-star"/>
                 </p:submenu>

@@ -21,35 +21,14 @@
                         <h:outputText value="#{myBundle.ViewArmazemLabel_tipoArmazem}"/>
                         <h:outputText value="#{armazemController.selected.tipoArmazem}" title="#{myBundle.ViewArmazemTitle_tipoArmazem}"/>
 
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_capacidadeArmazem}"/>
-                        <h:outputText value="#{armazemController.selected.capacidadeArmazem}" title="#{myBundle.ViewArmazemTitle_capacidadeArmazem}"/>
-
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_certificacaoArmazem}"/>
-                        <h:outputText value="#{armazemController.selected.certificacaoArmazem}" title="#{myBundle.ViewArmazemTitle_certificacaoArmazem}"/>
-
                         <h:outputText value="#{myBundle.ViewArmazemLabel_especArmazem}"/>
                         <h:outputText value="#{armazemController.selected.especArmazem}" title="#{myBundle.ViewArmazemTitle_especArmazem}"/>
 
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_estoqueMax}"/>
-                        <h:outputText value="#{armazemController.selected.estoqueMax}" title="#{myBundle.ViewArmazemTitle_estoqueMax}"/>
+                        <h:outputText value="Largura"/>
+                        <h:outputText value="#{armazemController.selected.dimensoes.largura}" title="#{myBundle.ViewArmazemTitle_capacidadeArmazem}"/>
 
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_estoqueMin}"/>
-                        <h:outputText value="#{armazemController.selected.estoqueMin}" title="#{myBundle.ViewArmazemTitle_estoqueMin}"/>
-
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_idStatusArmazem}"/>
-                        <h:outputText value="#{armazemController.selected.idStatusArmazem}" title="#{myBundle.ViewArmazemTitle_idStatusArmazem}"/>
-
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_idLocalOper}"/>
-                        <h:outputText value="#{armazemController.selected.idLocalOper}" title="#{myBundle.ViewArmazemTitle_idLocalOper}"/>
-
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_statusArmazemIdStatusArmazem}"/>
-                        <h:outputText value="#{armazemController.selected.statusArmazemIdStatusArmazem.idStatusArmazem}"/>
-
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_localOperacaoIdLocalOper}"/>
-                        <h:outputText value="#{armazemController.selected.localOperacaoIdLocalOper.idLocalOper}"/>
-
-                        <h:outputText value="#{myBundle.ViewArmazemLabel_idEndarmazem}"/>
-                        <h:outputText value="#{armazemController.selected.idEndarmazem.idEndarmazem}"/>
+                        <h:outputText value="Comprimento"/>
+                        <h:outputText value="#{armazemController.selected.dimensoes.comprimento}" title="#{myBundle.ViewArmazemTitle_certificacaoArmazem}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{myBundle.Close}" onclick="ArmazemViewDialog.hide()"/>
                 </h:panelGroup>
